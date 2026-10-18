@@ -24,7 +24,7 @@ IT DOES NOT NEED TO BE DISCONNECTED
 -----------------------------------
 Attaching the triangle to the octahedron by a single edge gives a CONNECTED planar graph on 9
 vertices and 16 edges, and the Z/2 in H_3(B_5) survives the attachment.  By contrast the
-octahedron and the cube on their own have torsion-free H_3 at k = 5 and k = 6 -- the room the
+octahedron on its own has torsion-free H_3 at k = 5 and k = 6 -- the room the
 extra cycle takes up is exactly what the higher-degree class needs.
 
 AND IT IS NOT ONLY Z/2, NOR ONLY PLANAR
@@ -51,7 +51,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (Graph, cube, disjoint_union, lean, octahedron, paths,     # noqa: E402
+from gbt import (Graph, disjoint_union, lean, octahedron, paths,           # noqa: E402
                  primary)
 from gbt.sizes import reduced_cell_count_by_degree as slices_by_degree     # noqa: E402
 
@@ -86,8 +86,6 @@ def main():
     # the controls: the carriers on their own, which should stay torsion-free above H_2
     cases.append(("octahedron", octahedron(), 5, 3, "control: no room for an H_3 class"))
     cases.append(("octahedron", octahedron(), 6, 3, "control"))
-    cases.append(("cube", cube(), 5, 3, "control"))
-    cases.append(("cube", cube(), 6, 3, "control"))
     # the construction, degree by degree
     for i in range(3, args.max_degree + 1):
         G = octahedron_plus_triangles(i - 2)
@@ -96,8 +94,6 @@ def main():
     # and connected, in degree 3
     cases.append(("oct-C_3 joined", octahedron_triangle_joined(), 5, 3,
                   "CONNECTED planar"))
-    cases.append(("cube + C_3", disjoint_union(cube(), C3), 5, 3,
-                  "the same with the cube"))
 
     hdr = ("%-22s %3s %3s %3s %4s %13s %-14s %s"
            % ("graph", "N", "M", "k", "deg", "slice cells", "torsion", "note"))

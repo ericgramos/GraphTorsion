@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """
-Do the Platonic solids have torsion in H_*(B_k)?  Four of the five do, and all at k = 4.
+Do the Platonic solids have torsion in H_*(B_k)?  The octahedron, dodecahedron and icosahedron
+do, all at k = 4; the tetrahedron does not.
 
 THE RESULT
 ----------
     solid          N   M   degree   k<=3        k=4
     tetrahedron    4   6   3        free        free  (and free for every k <= 10)
-    cube           8  12   3        free        Z/2 in H_2
     octahedron     6  12   4        free        Z/2 in H_2
     dodecahedron  20  30   3        free        Z/2 in H_2
     icosahedron   12  30   5        free        Z/2 in H_2
 
 So the tetrahedron is the exception, and it is not a matter of waiting for more particles:
 H_*(B_k K_4) is torsion-free for every k up to 10, with rank H_2 = 6k - 15 growing linearly.
-Nor is it only the Platonic solids: the triangular prism, which is the 3-prism just as the
-cube is the 4-prism, is torsion-free for every k up to 7 (k <= 4 is stored in data/; k = 5, 6, 7
+The triangular prism (the 3-prism) is likewise torsion-free for every k up to 7 (k <= 4 is stored in data/; k = 5, 6, 7
 were checked separately with fast.compute and are not stored).
 
 WHY k = 4
@@ -42,10 +41,8 @@ exhibits this for the octahedron, where one embedded theta accounts for the enti
 
 NO CLEAN CRITERION
 ------------------
-The mechanism is common to all four; a combinatorial criterion is not, and the data says
-fairly firmly that none exists.  All five cubic graphs on eight vertices have twelve edges,
-and exactly two of them have H_2 torsion at k = 4 -- the cube, and one non-planar graph.
-Among the eighteen graphs on seven vertices with twelve edges and minimum degree three, three
+The mechanism is common to all three; a combinatorial criterion is not, and the data says
+fairly firmly that none exists.  Among the eighteen graphs on seven vertices with twelve edges and minimum degree three, three
 have the torsion and fifteen do not, and the three are not separated from the fifteen by
 degree sequence, girth, planarity, connectivity or triangle count.  What IS visible is a
 threshold: no graph of minimum degree three with at most eleven edges has H_2 torsion at
@@ -100,7 +97,7 @@ def main():
     res = paths.load_json(DATA_FILE)
 
     # ------------------------------------------------------------------ k <= kmax
-    print("== the five Platonic solids, full homology for k <= %d ==\n" % args.kmax)
+    print("== the Platonic solids, full homology for k <= %d ==\n" % args.kmax)
     hdr = "%-14s %3s %3s %4s %10s %-46s %s" % ("solid", "N", "M", "k", "cells",
                                                "homology", "torsion")
     print(hdr)
@@ -121,7 +118,7 @@ def main():
             paths.save_json(DATA_FILE, res)
     print("-" * len(hdr))
     print("No Platonic solid has any torsion at k <= 3.  H_1 is torsion-free throughout,")
-    print("as Ko--Park requires: all five are planar.")
+    print("as Ko--Park requires: all of them are planar.")
 
     # ------------------------------------------------------------------ k = 4
     if args.include_k4:
@@ -180,7 +177,7 @@ def main():
         print("rank H_2(B_k K_4) = 6k - 15 for k >= 3: linear, and torsion-free throughout.")
 
         print("\n== the prism and antiprism families at k = 4 ==")
-        print("   (the cube is the 4-prism and the octahedron is the 3-antiprism)\n")
+        print("   (the octahedron is the 3-antiprism)\n")
         print("%-16s %3s %3s %10s %-20s %s" % ("graph", "N", "M", "cells",
                                                "torsion of H_2", ""))
         for n in range(3, 7):
@@ -194,8 +191,6 @@ def main():
                 H = full_homology(G, 4)
                 t = H.get(2, (0, []))[1]
                 note = ""
-                if fam == "prism" and n == 4:
-                    note = "= the cube"
                 if fam == "antiprism" and n == 3:
                     note = "= the octahedron"
                 print("%-16s %3d %3d %10s %-20s %s"

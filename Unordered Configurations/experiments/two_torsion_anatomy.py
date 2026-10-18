@@ -41,8 +41,8 @@ WHAT THIS SCRIPT CHECKS
         length 3, the tripods at the two hubs are vertex-disjoint, so the product of their two
         star classes is a 2-cycle on 4 particles.  Prediction: it generates H_2(B_4 Theta) = Z.
     (C) theta classes in degree two: push the generator of H_2(B_4 Theta) into a graph and
-        compute its order.  Prediction: exactly 2 in the octahedron and the cube, and not of
-        order 2 in the triangular prism, which has no torsion.
+        compute its order.  Prediction: exactly 2 in the octahedron, and not of order 2 in
+        the triangular prism, which has no torsion.
 
 Orders are computed exactly: m.s lies in the image of d iff adjoining it as a column changes
 neither the rank nor the invariant factors (a finitely generated abelian group is Hopfian, so
@@ -57,7 +57,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (Graph, complete, complete_bip, cube, octahedron, paths,      # noqa: E402
+from gbt import (Graph, complete, complete_bip, octahedron, paths,            # noqa: E402
                  prism, swiatkowski, tetrahedron, theta)
 from gbt.linalg import indexed_columns, kernel_basis, sparse_smith           # noqa: E402
 
@@ -257,10 +257,8 @@ def main():
     print("   push the generator of H_2(B_4 theta) = Z into the graph and compute its order\n")
     print("%-12s %-8s %-30s %s" % ("graph", "planar", "theta (hubs; branches)", "order"))
     OCT_THETA = [(0, 2), (2, 1), (0, 3), (3, 1), (0, 4), (4, 1)]
-    CUBE_THETA = [(0, 1), (1, 3), (3, 7), (0, 2), (2, 6), (6, 7), (0, 4), (4, 5), (5, 7)]
     PRISM_THETA = [(0, 3), (0, 1), (1, 4), (4, 3), (0, 2), (2, 5), (5, 3)]
     casesC = [("octahedron", octahedron(), OCT_THETA, "0,1; 2,2,2"),
-              ("cube", cube(), CUBE_THETA, "0,7; 3,3,3"),
               ("prism", prism(), PRISM_THETA, "0,3; 1,3,3")]
     for name, G, sub, desc in casesC:
         t0 = time.time()

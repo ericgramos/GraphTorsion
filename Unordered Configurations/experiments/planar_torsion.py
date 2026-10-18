@@ -3,8 +3,7 @@
 Planar graphs with torsion in H_2, and the three planar generators of An--Knudsen.
 
 In degree one, Ko--Park says torsion happens exactly for non-planar graphs.  In degree two
-that is false: the octahedron K_{2,2,2} and the 3-cube Q_3 are planar and both carry Z/2 in
-H_2(B_4).  This script establishes that, and then puts it next to the theorem that makes it
+that is false: the octahedron K_{2,2,2} is planar and carries Z/2 in H_2(B_4).  This script establishes that, and then puts it next to the theorem that makes it
 surprising.
 
 An and Knudsen (J. Topol. 15 (2022) 666-691) prove that for a PLANAR graph, H_2 of the
@@ -28,7 +27,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (Graph, complete, complete_bip, cube, octahedron, prism,    # noqa: E402
+from gbt import (Graph, complete, complete_bip, octahedron, prism,          # noqa: E402
                  theta, wheel, reduced_cell_count, paths)
 from gbt import fast, lean                                                 # noqa: E402
 from gbt.report import has_torsion, homology_line, torsion_line             # noqa: E402
@@ -51,7 +50,6 @@ def cases():
         ("K_{2,3}", complete_bip(2, 3), "planar"),
         ("K_{2,4}", complete_bip(2, 4), "planar"),
         ("octahedron", octahedron(), "planar, 6 vertices 12 edges"),
-        ("cube Q_3", cube(), "planar, 8 vertices 12 edges"),
     ]
 
 

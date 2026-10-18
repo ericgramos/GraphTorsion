@@ -26,8 +26,8 @@ q >= 1, so it needs a cycle: at least 3 more vertices.  Hence
 
 So the search below is exhaustive over the planar graphs on 6 and 7 vertices with minimum degree
 3 -- all 55 of them, from the graph atlas -- together with a SAMPLE of 10 eight-vertex planar
-graphs (the cubic ones found by random sampling, the 4-antiprism, the cube, some maximal planar
-ones); the eight-vertex part is not exhaustive.  Minimum degree 3
+graphs (cubic ones found by random sampling, the 4-antiprism, some maximal planar ones); the
+eight-vertex part is not exhaustive.  Minimum degree 3
 loses only subdivisions and graphs with leaves; leaves are NOT covered by this search.
 
 Only the torsion of H_3 is computed, via tors H_d = tors coker d_{d+1} and `lean.torsion_in_degree`, so only the
@@ -38,7 +38,7 @@ WHAT THE SEARCH FOUND
 Nothing.  Of the 65 graphs in the pool, those whose two slices fit under the default cap were
 computed: 59 at k = 5 (all 9 + 46 on 6 and 7 vertices, 4 of the 10 on 8 vertices) and 52 at
 k = 6 (9 + 40 + 3), as stored in data/genuine_higher_torsion.json.  Every one has torsion-free
-H_3.  The octahedron and the cube have torsion-free H_3 at k = 7 and H_4 at k = 6 and 7, and the
+H_3.  The octahedron has torsion-free H_3 at k = 7 and H_4 at k = 6 and 7, and the
 4-antiprism torsion-free H_3 at k = 6 and H_4 at k = 5 (`--deep`).  Every planar example of torsion
 above H_2 that we have is still a Kunneth class.
 
@@ -55,7 +55,7 @@ and so is any torsion in it.  Degree two would then be the only degree in which 
     python3 experiments/genuine_higher_torsion.py --deep
 
 k = 5 is a few minutes for the whole sweep; k = 6 is an hour or so.  `--deep` pushes the
-octahedron and the cube to k = 7 in degrees 3 and 4, which is the furthest this implementation
+octahedron to k = 7 in degrees 3 and 4 (and the 4-antiprism to k = 6), which is the furthest this implementation
 reaches (a million cells per slice, a few minutes each).  Exits 0 whether or not anything is
 found -- the finding is the output, not the status.
 """
@@ -67,7 +67,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (antiprism, cube, from_networkx, lean, octahedron, paths,      # noqa: E402
+from gbt import (antiprism, from_networkx, lean, octahedron, paths,            # noqa: E402
                  primary)
 from gbt.sizes import reduced_cell_count_by_degree as slices_by_degree         # noqa: E402
 
@@ -95,9 +95,8 @@ def atlas_planar(nvert, mindeg=3):
 def eight_vertex_planar():
     """The 8-vertex planar graphs we can get at without a graph generator.
 
-    Cubic ones by random sampling up to isomorphism (there are five cubic graphs on eight
-    vertices, three of them planar), plus the 4-antiprism, the cube, and maximal planar graphs
-    grown by stacking.
+    Cubic and 4-regular ones by random sampling up to isomorphism, plus the 4-antiprism and
+    maximal planar graphs grown by stacking.
     """
     import random
     import networkx as nx
@@ -117,7 +116,6 @@ def eight_vertex_planar():
         add(nx.random_regular_graph(3, 8, seed=rng.randrange(10 ** 9)))
     for _ in range(3000):
         add(nx.random_regular_graph(4, 8, seed=rng.randrange(10 ** 9)))
-    add(nx.Graph(cube().edges))
     add(nx.Graph(antiprism(4).edges))
     # maximal planar: stack a vertex into a random face of a triangulation
     for seed in range(40):
@@ -134,13 +132,13 @@ def eight_vertex_planar():
 
 
 def deep_probe():
-    """The octahedron and the cube as far as the machine reaches: k <= 7, degrees 3 and 4.
+    """The octahedron and the 4-antiprism as far as the machine reaches: degrees 3 and 4.
 
     Both have at most 8 vertices, so nothing here can be a product.
     """
     res = paths.load_json(DATA_FILE)
     jobs = []
-    for name, G in (("octahedron", octahedron()), ("cube", cube())):
+    for name, G in (("octahedron", octahedron()),):
         for k, d in ((7, 3), (6, 4), (7, 4)):
             jobs.append((name, G, k, d))
     jobs.append(("antiprism_4", antiprism(4), 6, 3))
@@ -178,8 +176,8 @@ def deep_probe():
     if found:
         print("\nindecomposable higher torsion: %s" % (found,))
     else:
-        print("\nThe octahedron and the cube have torsion-free H_3 and H_4 at every k <= 7.")
-        print("Their H_2 torsion does not propagate upward on its own: the higher-degree")
+        print("\nThe octahedron has torsion-free H_3 and H_4 at every k <= 7.")
+        print("Its H_2 torsion does not propagate upward on its own: the higher-degree")
         print("classes that do carry torsion all need an extra disjoint cycle.")
     print("\nwrote data/%s" % DATA_FILE)
     return 0
@@ -192,7 +190,7 @@ def main():
     ap.add_argument("--cap", type=int, default=400_000,
                     help="skip a graph if its two relevant slices exceed this")
     ap.add_argument("--deep", action="store_true",
-                    help="instead: push the octahedron and the cube to k=7, degrees 3 and 4")
+                    help="instead: push the octahedron to k=7 and the 4-antiprism to k=6, degrees 3 and 4")
     args = ap.parse_args()
     k, d = args.k, args.degree
 

@@ -12,8 +12,7 @@ fundamental group and so no H_2, and UConf_k of a circle is a circle.  And
 H_2(B_k theta) = 0 for k <= 3 and Z for k = 4 -- which is exactly the particle number at
 which planar torsion starts appearing (`platonic_solids.py`).
 
-And yet the octahedron, the cube and the dodecahedron are all planar and all have Z/2 in
-H_2(B_4).  A direct sum of torsion-free groups has no torsion, so the resolution has to be
+And yet the octahedron and the dodecahedron are both planar and both have Z/2 in H_2(B_4).  A direct sum of torsion-free groups has no torsion, so the resolution has to be
 that the generation statement is about images, not summands: a FREE class on an embedded atom
 can map to a TORSION class.  This script verifies that directly, and it supports the
 conjecture that torsion in these spaces is never carried by a generator of the Z[E]-module
@@ -32,10 +31,11 @@ the inclusion and adjoin the lot to the image of d_3.  If the Z/2 dies, those fr
 classes map onto it.  Then repeat with every theta subgraph at once.
 
 Note that the theta subgraph need not have paths of length 2: configuration spaces are
-invariant under subdivision, so every theta graph has the same H_*(B_k), and the cube (girth
-four, so no two vertices with three common neighbours) needs paths of length three.
+invariant under subdivision, so every theta graph has the same H_*(B_k), and a graph of girth
+at least four (no two vertices with three common neighbours) needs paths of length three or
+more.
 
-    python3 experiments/theta_class.py [--graph octahedron|cube|prism|...] [--k 4]
+    python3 experiments/theta_class.py [--graph octahedron|dodecahedron|prism|...] [--k 4]
                                        [--max-thetas N]
 
 Takes several minutes; the kernel lattice of the theta subgraph is the slow part.
@@ -59,8 +59,8 @@ def theta_subgraphs(G, limit=None):
     """Theta subgraphs of G: (hubs, edge list) for three internally disjoint u-w paths.
 
     Uses a max-flow computation (networkx's node_disjoint_paths) rather than looking for
-    common neighbours, so it finds thetas whose paths are longer than 2 -- which is what the
-    cube and the dodecahedron need.  Only the three shortest disjoint paths found for each
+    common neighbours, so it finds thetas whose paths are longer than 2 -- which is what graphs of
+    girth at least four, such as the dodecahedron, need.  Only the three shortest disjoint paths found for each
     pair are used, which keeps the subgraph small; the result is one theta per vertex pair
     that admits one.
     """
@@ -126,7 +126,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--graph", default="octahedron",
                    help="any zero-argument graph constructor in gbt, e.g. octahedron, "
-                        "cube, dodecahedron, prism, tetrahedron")
+                        "dodecahedron, prism, tetrahedron")
     ap.add_argument("--k", type=int, default=4)
     ap.add_argument("--max-thetas", type=int, default=None,
                    help="cap on how many theta subgraphs to push (default: all)")
@@ -146,7 +146,7 @@ def main():
           flush=True)
     if not baseline:
         print("  no torsion here, so there is nothing to explain.")
-        print("  (run with --graph octahedron, cube or dodecahedron, and --k 4)")
+        print("  (run with --graph octahedron or dodecahedron, and --k 4)")
         return 0
 
     thetas = theta_subgraphs(G, limit=args.max_thetas)

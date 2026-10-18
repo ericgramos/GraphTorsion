@@ -1,7 +1,7 @@
 """
 Abrams' discretised configuration space -- an independent model, used only to cross-check.
 
-For a graph G, the discretised configuration space UD^k(G) is the cube complex whose cells
+For a graph G, the discretised configuration space UD^k(G) is the cubical complex whose cells
 are the k-element sets of pairwise disjoint closed cells of G (so each chosen cell is a
 vertex or a whole edge, and no two share an endpoint).  The homological degree of a cell is
 the number of edges it uses.

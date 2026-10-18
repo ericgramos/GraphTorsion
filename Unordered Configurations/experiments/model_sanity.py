@@ -106,7 +106,7 @@ for name, G, k in [("K_{3,3}, k=3", complete_bip(3, 3), 3),
 # ---------------------------------------------------------------------------
 print("\n== (4) Abrams' model, and values known from the literature ==")
 # Abrams requires sufficient subdivision; t is chosen by hand per case and the
-# resulting cube complex is huge, so only the two smallest cases are feasible.
+# resulting cubical complex is huge, so only the two smallest cases are feasible.
 for name, G, k, t in [("K_5, k=2", complete(5), 2, 1),
                       ("octahedron, k=3", octahedron(), 3, 2)]:
     t0 = time.time()

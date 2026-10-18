@@ -21,19 +21,19 @@ not planar, and zero otherwise. Above degree one the computations here show that
   torsion of H_{n−1}(B_n K_{n+1,b}) is the torsion of the cokernel of the 0/1 inclusion matrix
   of (n−1)-subsets against n-subsets of a b-set, so Wilson's diagonal form for that matrix gives
   it in closed form. The scripts check this identification on every case they can build.
-* **planar graphs carry torsion in H_2.** The octahedron, the cube, the dodecahedron and the
-  icosahedron all have exactly Z/2 in H_2(B_4). In all 804 planar graphs computed, every
+* **planar graphs carry torsion in H_2.** The octahedron, the dodecahedron and the icosahedron
+  all have exactly Z/2 in H_2(B_4). In all 803 planar graphs computed, every
   torsion summand found, in any degree, is Z/2.
 * **complete graphs carry only Z/2.** For 8 ≤ n ≤ 12, H_2(B_3 K_n) has torsion (Z/2)^m with
   m = C(n−1, 2) = rank H_1.
 * **the smallest carriers are known.** Among all 853 connected graphs on seven vertices, K_7 is
   the only one with torsion in H_2(B_3). At k = 4 the octahedron is the carrier of H_2 torsion
   with the fewest vertices, and no graph on at most seven vertices with fewer than 12 edges has
-  any torsion in H_2(B_4). The octahedron is not the only minimal carrier, though: the cube,
-  three seven-vertex graphs with 12 edges, and a seven-vertex graph with a pendant edge are all
+  any torsion in H_2(B_4). The octahedron is not the only minimal carrier, though: three
+  seven-vertex graphs with 12 edges, and a seven-vertex graph with a pendant edge are all
   minimal under edge deletion, and none of them contains the octahedron.
 
-All told the stored data hold 2,908 computations on 1,069 graphs up to isomorphism (2,479
+All told the stored data hold 2,892 computations on 1,068 graphs up to isomorphism (2,475
 distinct pairs (Γ, k), with k between 2 and 12). Section 12 explains how that accounting is
 made and how to regenerate it.
 
@@ -85,7 +85,7 @@ There is no installation step. Unpack the folder and run the scripts from anywhe
 
     cd graph-braid-torsion
     pip install -r requirements.txt       # only networkx
-    python3 experiments/validate.py       # 61 regression checks; prints ALL CHECKS PASSED
+    python3 experiments/validate.py       # 60 regression checks; prints ALL CHECKS PASSED
 
 Every script in `experiments/` puts the repository root on `sys.path` itself, so
 `python3 experiments/NAME.py` works from any working directory. To use the library from your
@@ -232,8 +232,8 @@ basepoint edge at each vertex.
 | `from_networkx(Gx)` | conversion from a networkx graph with any hashable labels (needs networkx) |
 | `disjoint_union(G, H)` | G ⊔ H, with H's vertices shifted up by G.N |
 | `subdivide(G, t)` | replaces every edge by a path of t edges (t = 1 changes nothing) |
-| `octahedron()`, `tetrahedron()`, `cube()`, `dodecahedron()`, `icosahedron()` | the five Platonic solids. `OCTAHEDRON_EDGES`, `DODECAHEDRON_EDGES`, `ICOSAHEDRON_EDGES` are the fixed edge lists, and the octahedron's antipodal pairs are {0,1}, {2,3}, {4,5} |
-| `platonic_solids()` | the five as (name, Graph) pairs, in order of edge count |
+| `tetrahedron()`, `octahedron()`, `dodecahedron()`, `icosahedron()` | the tetrahedron, octahedron, dodecahedron and icosahedron. `OCTAHEDRON_EDGES`, `DODECAHEDRON_EDGES`, `ICOSAHEDRON_EDGES` are the fixed edge lists, and the octahedron's antipodal pairs are {0,1}, {2,3}, {4,5} |
+| `platonic_solids()` | these graphs as (name, Graph) pairs, in order of edge count |
 | `prism_graph(n)`, `prism()` | the n-prism (two n-cycles joined by a matching), and the triangular prism |
 | `antiprism(n)` | the n-antiprism (two n-cycles joined by a zigzag band; 4-regular) |
 | `theta(paths=3, length=2)` | two hub vertices joined by `paths` internally disjoint paths of `length` edges |
@@ -458,7 +458,7 @@ rough.
 | `torsion_class_X.py` | `[n,N ...]` (default: nine cases) | builds the chain X of `gbt.flipchains` for K_{n+1,N} straight from the closed formula, applies ∂ term by term without building the complex, and checks (P1) the parked part of ∂X vanishes and (P2) the rest is (N−n+1)·y with all coefficients of y equal to ±1. At N = 2n−1 this gives Z/n in H_{n−1}. It also runs the competing ordering in the definition of σ (by A-value instead of by B-source) and shows it fails (18 parked terms survive on K_{3,3}; on K_{4,5} the gcd collapses to 1) | seconds to minutes; K_{5,8} is the slow case |
 | `wilson_block.py` | `[n,b ...]` (default (2,3), (2,4), (2,5), (3,4), (3,5), (3,6)) | checks, case by case on the unreduced complex: (1) ∂X_{B₀} = (−1)^{n−1} Σ_T Y_T for every B₀; (2) X_{B₀} has the closed-form coefficients; (3) the parked and B-sitting rows have all invariant factors 1, and kernel of rank C(b,n), so spanned by the X_{B₀}; (4) the Y_T have disjoint supports and entries ±1; (5) the non-unit invariant factors of ∂_n are those of W_{n−1,n}(b); (6) the completion of the row basis can be taken to be standard basis vectors in these cases. Prints `ALL CHECKS PASSED` | about a minute |
 | `wilson_cokernel.py` | `[--cap 150000] [--matrix-cap 20000]` | (1) Wilson's diagonal form against an exact Smith form of W_{t,k}(m), compared on elementary divisors because Wilson's list is not a divisibility chain (for W_{3,5}(9) it reads 10, 6^8, 3^27, 1^48); (2) Gottlieb's rank theorem, and with it b ≤ 2n−1 ⇔ ker W_{n−1,n}(b) = 0; (3) coker W_{n−1,n}(b) against the torsion of H_{n−1}(B_n K_{n+1,b}) computed from the complex, for every (n, b) under the cap | a couple of minutes |
-| `prime_census.py` | `[--skip-compute]` | (1) computes tors H_3(B_4 K_{5,7}) and tors H_3(B_4 K_{5,8}) directly with `lean.torsion_in_degree` (2.6 and 4.6 million cells in the full complexes) and compares them with coker W_{3,4}(b). These are the Z/4 cases; (2) takes a census of every torsion summand stored in `data/`, by primary type and graph family: of 960 stored summands, 29 are not Z/2, and the script checks by subgraph search that every one occurs in a graph containing K_{4,5} | under a minute |
+| `prime_census.py` | `[--skip-compute]` | (1) computes tors H_3(B_4 K_{5,7}) and tors H_3(B_4 K_{5,8}) directly with `lean.torsion_in_degree` (2.6 and 4.6 million cells in the full complexes) and compares them with coker W_{3,4}(b). These are the Z/4 cases; (2) takes a census of every torsion summand stored in `data/`, by primary type and graph family: of 955 stored summands, 29 are not Z/2, and the script checks by subgraph search that every one occurs in a graph containing K_{4,5} | under a minute |
 | `large_cases.py` | `--list`, or `NAME ...` [`--force`] | the individually expensive full computations, one at a time with `gbt.lean`: `K55` (K_{5,5}, k = 4, 617,235 cells), `K56` (K_{5,6}, k = 4, 1,355,675), `K8-4`, `K12-3`, and two that do not fit in 7 GB, `K57` (2,615,835 cells) and `K13-3` (1,639,573). `--list` shows sizes, whether each fits, and whether it is stored | hours each |
 | `density_interpolation.py` | `[--k 3]` | adds edges inside the large side of K_{4,5}, one at a time, up to K_9 on the same nine vertices, and watches the Z/3 disappear. The Z/3 is gone once the large side is filled in, although K_9 contains K_{4,5} | seconds |
 
@@ -472,11 +472,11 @@ degree, and so reaches further.
 | `sweep_complete.py` | `[--cap 400000] [--nmax 13] [--kmax 12]` | full H_*(B_k K_n) for every (n, k) under the cap, cheapest first. Stored: K_3 to K_12, k from 2 up to 12 for small n. Every torsion summand is Z/2; for 8 ≤ n ≤ 12 at k = 3 the multiplicity in H_2 is exactly rank H_1 = C(n−1, 2) | minutes at the default cap; hours at `--cap 1600000` |
 | `sweep_bipartite.py` | `[--cap 400000] [--amax 7] [--bmax 8] [--kmax 7]` | full H_*(B_k K_{a,b}). Lists every case with odd torsion, and the "background": in most cases the 2-torsion of H_{k−1} has multiplicity exactly rank H_1, and the interesting graphs are those that deviate. The stored data used `--cap 700000` | minutes; about an hour at 700,000 |
 | `sweep_small_graphs.py` | `[--vertices 6] [--k 3,4] [--mindeg 3]` | every connected graph on the given number of vertices with minimum degree at least `--mindeg`, from the networkx graph atlas (complete up to seven vertices), at each k. Writes `data/small_graphs_n{N}_k{K}_d{D}.json`. `--mindeg 2` loses only subdivisions. `--mindeg 3` also loses graphs with leaves, which **do** matter (Section 9), so the stored exhaustive sweeps use `--mindeg 1` | seconds (≤ 6 vertices) to minutes (7 vertices) |
-| `planar_torsion.py` | `[--k 3,4]` | planar graphs with torsion in H_2 (the octahedron and the cube at k = 4), next to the three planar "atoms" of An–Knudsen (the cycle, the star and the theta graph), whose H_2 is torsion-free | seconds |
-| `platonic_solids.py` | `[--kmax 3] [--include-k4] [--extras]` | the five Platonic solids. With `--include-k4`, the k = 4 cases, using the single-degree route for the large ones: all but the tetrahedron have Z/2 in H_2(B_4). With `--extras`, prisms and antiprisms | seconds at k ≤ 3; minutes (dodecahedron) to much longer with several GB (icosahedron) at k = 4 |
-| `planar_odd_search.py` | `[--kmax 4] [--cap 600000]` | a search for torsion other than Z/2 in a planar graph, in the places where the inclusion-matrix mechanism comes closest to being available: generalised thetas K_{2,m}, wheels, bipyramids, grids, maximal planar graphs, the Platonic solids, prisms and antiprisms (29 graphs). Every invariant factor found is 2. Exits with 1 if a counterexample turns up | a few minutes |
-| `higher_degree_torsion.py` | `[--max-degree 4]` | Z/2 in H_3 and H_4 of planar graphs, from Künneth products of the octahedron's class with disjoint triangles, including a connected example (octahedron and triangle joined by an edge, Z/2 in H_3(B_5)). The octahedron and the cube alone stay torsion-free in H_3 at k = 5, 6 | about a minute |
-| `genuine_higher_torsion.py` | `[--k 5] [--degree 3] [--cap 400000]`, or `--deep` | torsion in H_3 of planar graphs on at most 8 vertices, where no Künneth product can produce it: all 55 planar graphs of minimum degree 3 on 6 and 7 vertices, and a sample of 10 on 8 vertices. 59 fit the cap at k = 5 and 52 at k = 6. `--deep` takes the octahedron, the cube and the 4-antiprism further. Nothing found. The search does not cover graphs with leaves | minutes at k = 5; about an hour at k = 6 |
+| `planar_torsion.py` | `[--k 3,4]` | planar graphs with torsion in H_2 (the octahedron at k = 4), next to the three planar "atoms" of An–Knudsen (the cycle, the star and the theta graph), whose H_2 is torsion-free | seconds |
+| `platonic_solids.py` | `[--kmax 3] [--include-k4] [--extras]` | the tetrahedron, octahedron, dodecahedron and icosahedron. With `--include-k4`, the k = 4 cases, using the single-degree route for the large ones: the octahedron, dodecahedron and icosahedron have Z/2 in H_2(B_4), the tetrahedron none. With `--extras`, the prism and antiprism families at k = 4 | seconds at k ≤ 3; minutes (dodecahedron) to much longer with several GB (icosahedron) at k = 4 |
+| `planar_odd_search.py` | `[--kmax 4] [--cap 600000]` | a search for torsion other than Z/2 in a planar graph, in the places where the inclusion-matrix mechanism comes closest to being available: generalised thetas K_{2,m}, wheels, bipyramids, grids, maximal planar graphs, the tetrahedron, octahedron, dodecahedron and icosahedron, prisms and antiprisms (28 graphs). Every invariant factor found is 2. Exits with 1 if a counterexample turns up | a few minutes |
+| `higher_degree_torsion.py` | `[--max-degree 4]` | Z/2 in H_3 and H_4 of planar graphs, from Künneth products of the octahedron's class with disjoint triangles, including a connected example (octahedron and triangle joined by an edge, Z/2 in H_3(B_5)). The octahedron alone stays torsion-free in H_3 at k = 5, 6 | about a minute |
+| `genuine_higher_torsion.py` | `[--k 5] [--degree 3] [--cap 400000]`, or `--deep` | torsion in H_3 of planar graphs on at most 8 vertices, where no Künneth product can produce it: all 55 planar graphs of minimum degree 3 on 6 and 7 vertices, and a sample of 10 on 8 vertices. 59 fit the cap at k = 5 and 52 at k = 6. `--deep` takes the octahedron and the 4-antiprism further. Nothing found. The search does not cover graphs with leaves | minutes at k = 5; about an hour at k = 6 |
 | `petersen_family.py` | `[--k 3]` | the seven Petersen-family graphs: H_2 torsion-free at k = 3, exactly Z/2 at k = 4. So H_2 torsion does not detect intrinsic linking | minutes at k = 3; hours at k = 4 |
 | `linkless_controls.py` | `[--k 3]` | linklessly embeddable graphs: K_5, K_{3,3}, K_{3,3}+e, apex graphs, maximal planar graphs, the octahedron, and K_6 minus a perfect matching (which is the octahedron again, a consistency check). The apex graph apex(planar 8) has (Z/2)^4 in H_2 already at k = 3 | seconds at k = 3; a few minutes at k = 4 |
 
@@ -487,13 +487,13 @@ These scripts look at individual torsion classes rather than groups. Most use th
 
 | script | usage | what it shows | time |
 |---|---|---|---|
-| `two_torsion_anatomy.py` | none | (A) the star (exchange) class of a tripod, pushed into a graph at k = 2, has order exactly 2 in K_{3,3} and K_5 and infinite order in planar graphs; (B) in a theta graph with branches of length 3 the product of the two hub star classes generates H_2(B_4 Θ) = Z; (C) that theta class, pushed into the octahedron or the cube, has order 2, and has infinite order in the torsion-free triangular prism | a few minutes |
-| `theta_class.py` | `[--graph octahedron] [--k 4] [--max-thetas N]` | pushes the generator of H_2 of each embedded theta subgraph into the graph and tests whether it kills the Z/2. For the octahedron and the cube it does: the planar torsion is the image of a **free** class, created by relations rather than carried by a new generator. `--graph` accepts any zero-argument constructor in `gbt` | about 20 s for the octahedron; several minutes for the cube |
+| `two_torsion_anatomy.py` | none | (A) the star (exchange) class of a tripod, pushed into a graph at k = 2, has order exactly 2 in K_{3,3} and K_5 and infinite order in planar graphs; (B) in a theta graph with branches of length 3 the product of the two hub star classes generates H_2(B_4 Θ) = Z; (C) that theta class, pushed into the octahedron, has order 2, and has infinite order in the torsion-free triangular prism | a few minutes |
+| `theta_class.py` | `[--graph octahedron] [--k 4] [--max-thetas N]` | pushes the generator of H_2 of each embedded theta subgraph into the graph and tests whether it kills the Z/2. For the octahedron it does: the planar torsion is the image of a **free** class, created by relations rather than carried by a new generator. `--graph` accepts any zero-argument constructor in `gbt` | about 20 s for the octahedron; longer for larger graphs |
 | `octahedron_generator.py` | `[--strategy random\|prefix\|bisect] [--seed 4] [--tries 12]` | an explicit cycle z = ∂x/2 generating the octahedron's Z/2 in H_2(B_4), found by halving (Section 14), and the fact that its image in K_6 generates the Z/2 of H_2(B_4 K_6). `prefix` is included to document that the obvious search fails here | a few minutes |
 | `decomposability_K8.py` | `[--n 8]` | builds every Künneth product class in H_2(B_3 K_n), i.e. K_5 with two particles times a disjoint triangle with one, with the Koszul sign of the merge, and adjoins all of them to im ∂_3. For K_8 the 9,296 products kill the whole (Z/2)^21, so every torsion class there is decomposable. For n ≤ 7 there are no products at all | about twenty minutes and several GB for K_8 |
 | `kunneth_K6.py` | `[--n 6] [--k 4]` | lists every splitting of K_6 into two vertex-disjoint complete graphs and every k₁ + k₂ = 4, with the homology of the pieces, and shows that none of the 75 combinations can contribute torsion to H_2. So the Z/2 of H_2(B_4 K_6) is indecomposable | seconds |
 | `edge_minimality.py` | `[--case K7-3\|K6-4\|OCT-4\|descent\|stab\|all]` | (1) every single-edge deletion kills the torsion of K_7 at k = 3 (21 deletions) and of the octahedron at k = 4 (12), but none of the 15 deletions from K_6 at k = 4 does; (2) a randomised greedy descent from K_6 that keeps the torsion lands on the octahedron; (3) K_6 has torsion-free H_2 at k = 2, 3 and Z/2 from k = 4 on | seconds to a minute per case |
-| `minimal_carriers.py` | none | tests edge-minimality and octahedron containment for the octahedron, the cube, the three 7-vertex 12-edge carriers (read from `data/small_graphs_n7_k4_d1.json`), and the graph K_5 + a vertex joined to two vertices of K_5 + a pendant edge (edges (0,1), (0,2), (0,3), (0,4), (1,2), (1,3), (1,4), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6)). All are edge-minimal and only the octahedron contains the octahedron. The last example has Z/2 in H_2(B_4) and loses it when the pendant edge is deleted, so a leaf can create torsion | about a minute |
+| `minimal_carriers.py` | none | tests edge-minimality and octahedron containment for the octahedron, the three 7-vertex 12-edge carriers (read from `data/small_graphs_n7_k4_d1.json`), and the graph K_5 + a vertex joined to two vertices of K_5 + a pendant edge (edges (0,1), (0,2), (0,3), (0,4), (1,2), (1,3), (1,4), (2,3), (2,4), (3,4), (3,5), (4,5), (5,6)). All are edge-minimal and only the octahedron contains the octahedron. The last example has Z/2 in H_2(B_4) and loses it when the pendant edge is deleted, so a leaf can create torsion | about a minute |
 
 Edge-minimality is not indecomposability. A graph can be an edge-minimal carrier of a torsion
 class and that class can still be the image of a free class on a subgraph, which is exactly
@@ -507,10 +507,10 @@ verdict line.
 | script | what it checks | time |
 |---|---|---|
 | `model_sanity.py` | five checks of the machinery, independent of any torsion result: (1) ∂∘∂ = 0; (2) the closed-form cell counts against the built complexes; (3) `reduce_at` does not change the homology; (4) Abrams' model agrees with Świątkowski's on small cases, and reproduces Abrams' surfaces B_2 K_5 = N_7 and B_2 K_{3,3} = N_5 (H_1 = Z^6 ⊕ Z/2 and Z^4 ⊕ Z/2); (5) tors coker ∂_{d+1} = tors H_d in every degree, with free ranks differing by exactly rank ∂_d. Prints `ALL CHECKS PASSED`. Run it first if anything looks surprising | under a minute here; the docstring allows three |
-| `validate.py` | 61 regression checks of every headline number that is cheap to recompute, in eight groups: known values from the literature; the top-degree vanishing; the torsion of H_{n−1}(B_n K_{n+1,b}) against coker W; the rank formula for H_n; complete graphs; the planar carriers; the An–Knudsen atoms; internal consistency (`fast` against `lean` against the reference pipeline against Abrams). Run it after changing anything in `gbt/`. Prints `ALL CHECKS PASSED` | under a minute here; up to five on a slower machine |
+| `validate.py` | 60 regression checks of every headline number that is cheap to recompute, in eight groups: known values from the literature; the top-degree vanishing; the torsion of H_{n−1}(B_n K_{n+1,b}) against coker W; the rank formula for H_n; complete graphs; the planar carriers; the An–Knudsen atoms; internal consistency (`fast` against `lean` against the reference pipeline against Abrams). Run it after changing anything in `gbt/`. Prints `ALL CHECKS PASSED` | under a minute here; up to five on a slower machine |
 | `validate_slow.py` | `--list`, or case numbers: the four million-cell cases (K_{5,5} and K_{5,6} at k = 4, K_8 at k = 4, K_12 at k = 3), one at a time | minutes to hours each |
 | `crosscheck_mod_p.py` | `[--cap 200000]`: Betti numbers over F_2 and over F_1000003 computed from the **raw** complex, with no Morse reduction and no Smith form, against the prediction of the integral answer through universal coefficients, dim H_d(F_p) = f_d + #{p \| q_{d,i}} + #{p \| q_{d−1,i}}. First on named cases, then on every stored sweep result under the cap | a few seconds to two minutes |
-| `verify_headlines.py` | `[--skip-large]`: recomputes the headline torsion groups by two further routes, the single-degree pipeline (24 cases) and Abrams' model on the subdivided graph (7 cases: K_5, K_{3,3}, the octahedron at k = 3 and 4, the cube, K_{4,5}, K_7), and compares with the expected values. Prints `ALL HEADLINE VALUES CONFIRMED by both routes.` | about ten minutes; one with `--skip-large` |
+| `verify_headlines.py` | `[--skip-large]`: recomputes the headline torsion groups by two further routes, the single-degree pipeline (23 cases) and Abrams' model on the subdivided graph (6 cases: K_5, K_{3,3}, the octahedron at k = 3 and 4, K_{4,5}, K_7), and compares with the expected values. Prints `ALL HEADLINE VALUES CONFIRMED by both routes.` | about ten minutes; one with `--skip-large` |
 | `make_tables.py` | `[--latex]`: regenerates the summary tables (complete graphs by (n, k); the multiplicity against C(n−1, 2); every bipartite case with odd torsion; the a = n+1 family against coker W; the background count; the top-degree trichotomy; and the other stored files) from `data/` alone. With `--latex` the tables come out as LaTeX tabular bodies. With an empty `data/` it prints "(no data -- run the corresponding sweep first)" for each table | instant |
 
 ## 11. Data `data/`
@@ -527,16 +527,16 @@ invariant factors > 1. Keys use `|` as a separator.
 | `top_degree_vanishing.json` | `K{a},{b}\|{n}` | `H_n` (H_n only), `cells`, `predicted` (null where only the conjecture applies) | 81 |
 | `prime_census.json` | `K{a},{b}\|{k}\|{d}` | `a`, `b`, `k`, `degree`, `torsion` (of H_d only) | 5 |
 | `density_interpolation.json` | `{name}\|{k}` | `H`, `edges`, `note` | 6 |
-| `planar_torsion.json` | `{name}\|{k}` | `H`, `vertices`, `edges`, `note` | 20 |
-| `planar_odd_search.json` | `{name}\|{k}` | `H`, `N`, `M`, `note` | 104 (29 graphs) |
-| `platonic_solids.json` | `{name}\|{k}` | `H` (full computation) or `H2_torsion` (single degree), `N`, `M` | 22 |
+| `planar_torsion.json` | `{name}\|{k}` | `H`, `vertices`, `edges`, `note` | 18 |
+| `planar_odd_search.json` | `{name}\|{k}` | `H`, `N`, `M`, `note` | 100 (28 graphs) |
+| `platonic_solids.json` | `{name}\|{k}` | `H` (full computation) or `H2_torsion` (single degree), `N`, `M` | 19 |
 | `petersen_family.json` | `{name}\|{k}` | `H` | 14 |
 | `linkless_controls.json` | `{name}\|{k}` | `H` | 9 |
-| `higher_degree_torsion.json` | `{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `cells`, `planar` | 8 |
-| `genuine_higher_torsion.json` | `{N}\|{edge list}\|{k}\|{d}`, or `deep\|{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `edgelist` | 119 |
-| `two_torsion_anatomy.json` | `A\|{graph}`, `C\|{graph}`, and `B` | `order` of the pushed class (`"2"` or `"infinite"`); for `B`, `is_cycle` and `generates` | 9 |
+| `higher_degree_torsion.json` | `{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `cells`, `planar` | 5 |
+| `genuine_higher_torsion.json` | `{N}\|{edge list}\|{k}\|{d}`, or `deep\|{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `edgelist` | 116 |
+| `two_torsion_anatomy.json` | `A\|{graph}`, `C\|{graph}`, and `B` | `order` of the pushed class (`"2"` or `"infinite"`); for `B`, `is_cycle` and `generates` | 8 |
 | `small_graphs_n{N}_k{K}_d{D}.json` | (a list) | one entry per (graph, k): `edgelist`, `degrees`, `edges`, `k`, `planar`, `torsion` (a string, `none` if torsion-free), `torsion_above_H1` | see below |
-| `inventory.csv` | (a table) | Section 12 | 2,908 |
+| `inventory.csv` | (a table) | Section 12 | 2,892 |
 
 The small-graph sweeps stored are
 
@@ -573,14 +573,14 @@ It also prints a summary per source. The current totals:
 
 | | |
 |---|---|
-| records | 2,908 |
-| distinct graphs (up to isomorphism) | 1,069 |
-| distinct pairs (graph, k) | 2,479, with k from 2 to 12 |
-| graphs with torsion in some H_i, i ≥ 2 | 183 |
+| records | 2,892 |
+| distinct graphs (up to isomorphism) | 1,068 |
+| distinct pairs (graph, k) | 2,475, with k from 2 to 12 |
+| graphs with torsion in some H_i, i ≥ 2 | 182 |
 | graphs with a torsion summand other than Z/2 | 11, all containing K_{4,5} |
-| planar graphs | 804, of which 27 have torsion in some H_i with i ≥ 2, and none has a summand other than Z/2 |
+| planar graphs | 803, of which 26 have torsion in some H_i with i ≥ 2, and none has a summand other than Z/2 |
 
-Of the 1,069 graphs, 992 come from the exhaustive sweeps of Section 11. The script takes a
+Of the 1,068 graphs, 992 come from the exhaustive sweeps of Section 11. The script takes a
 few seconds; rerun it after any new computation.
 
 ## 13. Reproducing the main results
@@ -603,7 +603,7 @@ recompute.
 | planar torsion | `python3 experiments/planar_torsion.py --k 3,4` and `python3 experiments/platonic_solids.py --include-k4 --extras` | seconds; up to hours and several GB (icosahedron) |
 | no odd planar torsion found | `python3 experiments/planar_odd_search.py --kmax 4` | a few minutes |
 | smallest carriers | `python3 experiments/sweep_small_graphs.py --vertices N --k K --mindeg 1` for (N, K) = (4, "2,3,4,5,6"), (5, "2,3,4,5"), (6, "2,3,4"), (7, 3), (7, 4); then `python3 experiments/minimal_carriers.py` | seconds to minutes each |
-| the structure of the classes | `two_torsion_anatomy.py`, `theta_class.py --graph octahedron`, `theta_class.py --graph cube`, `octahedron_generator.py`, `decomposability_K8.py`, `kunneth_K6.py`, `edge_minimality.py` | minutes each; `decomposability_K8` about twenty minutes |
+| the structure of the classes | `two_torsion_anatomy.py`, `theta_class.py --graph octahedron`, `octahedron_generator.py`, `decomposability_K8.py`, `kunneth_K6.py`, `edge_minimality.py` | minutes each; `decomposability_K8` about twenty minutes |
 | higher degrees | `higher_degree_torsion.py`, `genuine_higher_torsion.py --k 5`, `genuine_higher_torsion.py --deep` | minutes to an hour |
 | intrinsic linking | `petersen_family.py --k 3,4`, `linkless_controls.py --k 3,4` | hours (Petersen graph at k = 4) |
 | independent checks | `crosscheck_mod_p.py`, `verify_headlines.py` | minutes; about ten minutes |

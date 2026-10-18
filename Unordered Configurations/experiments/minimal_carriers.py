@@ -14,7 +14,6 @@ No.  A graph is called edge-minimal here if it carries torsion in H_2(B_4) and d
 single edge (keeping the graph connected) leaves H_2(B_4) torsion-free.  This script tests
 edge-minimality and octahedron-containment for
 
-    * the cube Q_3 (8 vertices, 12 edges);
     * every 7-vertex carrier with 12 edges (three graphs, one of them planar);
     * the 7-vertex, 13-edge graph  K_5 + a vertex joined to two vertices of the K_5 + a pendant
       edge  -- a carrier with a vertex of DEGREE ONE whose leaf cannot be removed: deleting the
@@ -42,7 +41,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import cube, fast, from_networkx, paths, primary   # noqa: E402
+from gbt import fast, from_networkx, paths, primary   # noqa: E402
 from gbt.report import has_torsion                            # noqa: E402
 
 K = 4
@@ -80,7 +79,7 @@ def main():
     import networkx as nx
     from networkx.algorithms import isomorphism
     octa = nx.octahedral_graph()
-    cands = [("octahedron", octa), ("cube Q_3", nx.Graph(cube().edges))]
+    cands = [("octahedron", octa)]
     src = os.path.join(paths.DATA, "small_graphs_n7_k4_d1.json")
     if os.path.exists(src):
         with open(src) as fh:

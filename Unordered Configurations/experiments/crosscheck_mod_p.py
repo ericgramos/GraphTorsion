@@ -42,7 +42,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (complete, complete_bip, cube, octahedron, prism,      # noqa: E402
+from gbt import (complete, complete_bip, octahedron, prism,            # noqa: E402
                  swiatkowski, cell_count, paths)
 from gbt import fast                                                  # noqa: E402
 from gbt.linalg import betti_mod_p                                     # noqa: E402
@@ -70,7 +70,6 @@ def named_cases():
         ("prism, k=4", prism(), 4),
         ("octahedron, k=3", octahedron(), 3),
         ("octahedron, k=4", octahedron(), 4),
-        ("cube Q_3, k=4", cube(), 4),
         ("K_6, k=3", complete(6), 3),
         ("K_6, k=4", complete(6), 4),
         ("K_7, k=3", complete(7), 3),

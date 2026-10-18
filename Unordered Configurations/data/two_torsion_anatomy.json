@@ -18,9 +18,6 @@
   "generates": true,
   "is_cycle": true
  },
- "C|cube": {
-  "order": "2"
- },
  "C|octahedron": {
   "order": "2"
  },

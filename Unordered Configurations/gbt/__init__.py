@@ -24,7 +24,7 @@ WHAT IS IN HERE
     report        one printing format for homology, shared by every experiment
     fast          integer-indexed pipeline, ~100x faster than `chain`
     lean          memory-lean pipeline for complexes of a few million cells
-    discretised   Abrams' discretised cube complex -- an independent model
+    discretised   Abrams' discretised cubical complex -- an independent model
     sizes         exact cell counts, for ordering and budgeting jobs
     flipchains    the flip chains z(e), X_{B_0}, Y_T for K_{n+1,b}
 
@@ -49,7 +49,6 @@ from .graphs import (                                            # noqa: F401
     disjoint_union,
     tetrahedron,
     octahedron,
-    cube,
     dodecahedron,
     icosahedron,
     platonic_solids,
@@ -70,7 +69,7 @@ from . import fast, lean, linalg, discretised, paths, report, flipchains  # noqa
 
 __all__ = [
     "Graph", "complete", "complete_bip", "from_edges", "from_networkx",
-    "subdivide", "disjoint_union", "tetrahedron", "octahedron", "cube",
+    "subdivide", "disjoint_union", "tetrahedron", "octahedron",
     "dodecahedron", "icosahedron", "platonic_solids", "antiprism", "prism_graph",
     "prism", "theta",
     "wheel", "petersen", "petersen_family",

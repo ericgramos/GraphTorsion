@@ -16,7 +16,7 @@ The answer splits by prime, not by degree.
 
     q = 2    not bipartite at all.  Ko--Park's Z/2 is the q = 2 case of the same inclusion
              matrix (coker W_{1,2}(3) = Z/2 for K_{3,3}), but the planar mechanism is
-             independent of it: the octahedron, cube, dodecahedron and icosahedron are planar,
+             independent of it: the octahedron, dodecahedron and icosahedron are planar,
              so they have no K_{3,3} minor whatsoever, and they all carry Z/2.  K_5 is another
              witness in degree one -- it has only five vertices, so no K_{3,3} minor, and it
              carries the Ko--Park class.
@@ -256,10 +256,9 @@ def two_is_different():
     """The Z/2 witnesses that have no K_{3,3} minor at all."""
     print("\n== (3) why q = 2 is exceptional ==\n")
     import networkx as nx
-    from gbt import cube, dodecahedron, icosahedron, octahedron, complete
+    from gbt import dodecahedron, icosahedron, octahedron, complete
     rows = [("K_5", complete(5), 2, 1, "Ko--Park class; only 5 vertices, so no K_{3,3} minor"),
             ("octahedron", octahedron(), 4, 2, "planar"),
-            ("cube Q_3", cube(), 4, 2, "planar"),
             ("dodecahedron", dodecahedron(), 4, 2, "planar"),
             ("icosahedron", icosahedron(), 4, 2, "planar")]
     print("%-16s %3s %4s %-9s %-9s %s"
@@ -271,7 +270,7 @@ def two_is_different():
         no_k33 = pl or G.N < 6
         print("%-16s %3d %4d %-9s %-9s %s"
               % (name, k, d, pl, "no" if no_k33 else "maybe", note))
-    print("\nAll five carry Z/2 and none can have a K_{3,3} minor, so the q = 2 case of")
+    print("\nAll four carry Z/2 and none can have a K_{3,3} minor, so the q = 2 case of")
     print("the odd-torsion conjecture is false -- which is exactly the point of the dichotomy.")
 
 

@@ -186,12 +186,6 @@ def tetrahedron():
     return complete(4)
 
 
-def cube():
-    """The 3-cube graph Q_3: planar, 8 vertices, 12 edges."""
-    return Graph(8, [(0, 1), (0, 2), (0, 4), (1, 3), (1, 5), (2, 3),
-                     (2, 6), (3, 7), (4, 5), (4, 6), (5, 7), (6, 7)])
-
-
 #: edge list of the dodecahedron (3-regular, 20 vertices, 30 edges)
 DODECAHEDRON_EDGES = [
     (0, 1), (0, 10), (0, 19), (1, 2), (1, 8), (2, 3), (2, 6), (3, 4), (3, 19),
@@ -218,9 +212,8 @@ def icosahedron():
 
 
 def platonic_solids():
-    """The five Platonic solids as (name, Graph) pairs, in order of edge count."""
+    """The Platonic solids provided here, as (name, Graph) pairs, in order of edge count."""
     return [("tetrahedron", tetrahedron()),
-            ("cube", cube()),
             ("octahedron", octahedron()),
             ("dodecahedron", dodecahedron()),
             ("icosahedron", icosahedron())]
@@ -247,7 +240,7 @@ def antiprism(n):
 def prism_graph(n):
     """The n-prism: two n-cycles joined by a perfect matching; 3-regular, planar.
 
-    prism_graph(3) is the triangular prism and prism_graph(4) is the cube.
+    prism_graph(3) is the triangular prism.
     """
     if n < 3:
         raise ValueError("n must be at least 3")

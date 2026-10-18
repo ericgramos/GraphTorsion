@@ -1,33 +1,4 @@
 {
- "cube + C_3|5|3": {
-  "M": 15,
-  "N": 11,
-  "cells": 142200,
-  "degree": 3,
-  "k": 5,
-  "planar": true,
-  "torsion": [
-   2
-  ]
- },
- "cube|5|3": {
-  "M": 12,
-  "N": 8,
-  "cells": 48384,
-  "degree": 3,
-  "k": 5,
-  "planar": true,
-  "torsion": []
- },
- "cube|6|3": {
-  "M": 12,
-  "N": 8,
-  "cells": 250432,
-  "degree": 3,
-  "k": 6,
-  "planar": true,
-  "torsion": []
- },
  "oct-C_3 joined|5|3": {
   "M": 16,
   "N": 9,

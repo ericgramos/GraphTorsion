@@ -256,20 +256,18 @@ planar_torsion,"K_{2,3}",11,5,6,3,all degrees,torsion-free
 planar_torsion,"K_{2,3}",11,5,6,4,all degrees,torsion-free
 planar_torsion,"K_{2,4}",12,6,8,3,all degrees,torsion-free
 planar_torsion,"K_{2,4}",12,6,8,4,all degrees,torsion-free
-planar_torsion,cube Q_3,61,8,12,3,all degrees,torsion-free
-planar_torsion,cube Q_3,61,8,12,4,all degrees,H2:Z/2
 planar_torsion,cycle C_4,10,4,4,3,all degrees,torsion-free
 planar_torsion,cycle C_4,10,4,4,4,all degrees,torsion-free
 planar_torsion,octahedron,56,6,12,3,all degrees,torsion-free
 planar_torsion,octahedron,56,6,12,4,all degrees,H2:Z/2
-planar_torsion,prism,62,6,9,3,all degrees,torsion-free
-planar_torsion,prism,62,6,9,4,all degrees,torsion-free
-planar_torsion,"star K_{1,4}",63,5,4,3,all degrees,torsion-free
-planar_torsion,"star K_{1,4}",63,5,4,4,all degrees,torsion-free
+planar_torsion,prism,61,6,9,3,all degrees,torsion-free
+planar_torsion,prism,61,6,9,4,all degrees,torsion-free
+planar_torsion,"star K_{1,4}",62,5,4,3,all degrees,torsion-free
+planar_torsion,"star K_{1,4}",62,5,4,4,all degrees,torsion-free
 planar_torsion,theta,11,5,6,3,all degrees,torsion-free
 planar_torsion,theta,11,5,6,4,all degrees,torsion-free
-planar_torsion,wheel W_5,64,6,10,3,all degrees,torsion-free
-planar_torsion,wheel W_5,64,6,10,4,all degrees,torsion-free
+planar_torsion,wheel W_5,63,6,10,3,all degrees,torsion-free
+planar_torsion,wheel W_5,63,6,10,4,all degrees,torsion-free
 planar_odd_search,"K_{2,4}",12,6,8,2,all degrees,torsion-free
 planar_odd_search,"K_{2,4}",12,6,8,3,all degrees,torsion-free
 planar_odd_search,"K_{2,4}",12,6,8,4,all degrees,torsion-free
@@ -290,287 +288,278 @@ planar_odd_search,"K_{2,8}",16,10,16,2,all degrees,torsion-free
 planar_odd_search,"K_{2,8}",16,10,16,3,all degrees,torsion-free
 planar_odd_search,"K_{2,8}",16,10,16,4,all degrees,torsion-free
 planar_odd_search,"K_{2,8}",16,10,16,5,all degrees,torsion-free
-planar_odd_search,W_10,65,11,20,2,all degrees,torsion-free
-planar_odd_search,W_10,65,11,20,3,all degrees,torsion-free
-planar_odd_search,W_10,65,11,20,4,all degrees,torsion-free
-planar_odd_search,W_5,64,6,10,2,all degrees,torsion-free
-planar_odd_search,W_5,64,6,10,3,all degrees,torsion-free
-planar_odd_search,W_5,64,6,10,4,all degrees,torsion-free
-planar_odd_search,W_5,64,6,10,5,all degrees,torsion-free
-planar_odd_search,W_6,66,7,12,2,all degrees,torsion-free
-planar_odd_search,W_6,66,7,12,3,all degrees,torsion-free
-planar_odd_search,W_6,66,7,12,4,all degrees,torsion-free
-planar_odd_search,W_6,66,7,12,5,all degrees,torsion-free
-planar_odd_search,W_7,67,8,14,2,all degrees,torsion-free
-planar_odd_search,W_7,67,8,14,3,all degrees,torsion-free
-planar_odd_search,W_7,67,8,14,4,all degrees,torsion-free
-planar_odd_search,W_7,67,8,14,5,all degrees,torsion-free
-planar_odd_search,W_8,68,9,16,2,all degrees,torsion-free
-planar_odd_search,W_8,68,9,16,3,all degrees,torsion-free
-planar_odd_search,W_8,68,9,16,4,all degrees,torsion-free
-planar_odd_search,W_8,68,9,16,5,all degrees,torsion-free
-planar_odd_search,W_9,69,10,18,2,all degrees,torsion-free
-planar_odd_search,W_9,69,10,18,3,all degrees,torsion-free
-planar_odd_search,W_9,69,10,18,4,all degrees,torsion-free
-planar_odd_search,antiprism_5,70,10,20,2,all degrees,torsion-free
-planar_odd_search,antiprism_5,70,10,20,3,all degrees,torsion-free
-planar_odd_search,antiprism_5,70,10,20,4,all degrees,H2:Z/2
-planar_odd_search,antiprism_6,71,12,24,2,all degrees,torsion-free
-planar_odd_search,antiprism_6,71,12,24,3,all degrees,torsion-free
-planar_odd_search,antiprism_6,71,12,24,4,all degrees,H2:Z/2
+planar_odd_search,W_10,64,11,20,2,all degrees,torsion-free
+planar_odd_search,W_10,64,11,20,3,all degrees,torsion-free
+planar_odd_search,W_10,64,11,20,4,all degrees,torsion-free
+planar_odd_search,W_5,63,6,10,2,all degrees,torsion-free
+planar_odd_search,W_5,63,6,10,3,all degrees,torsion-free
+planar_odd_search,W_5,63,6,10,4,all degrees,torsion-free
+planar_odd_search,W_5,63,6,10,5,all degrees,torsion-free
+planar_odd_search,W_6,65,7,12,2,all degrees,torsion-free
+planar_odd_search,W_6,65,7,12,3,all degrees,torsion-free
+planar_odd_search,W_6,65,7,12,4,all degrees,torsion-free
+planar_odd_search,W_6,65,7,12,5,all degrees,torsion-free
+planar_odd_search,W_7,66,8,14,2,all degrees,torsion-free
+planar_odd_search,W_7,66,8,14,3,all degrees,torsion-free
+planar_odd_search,W_7,66,8,14,4,all degrees,torsion-free
+planar_odd_search,W_7,66,8,14,5,all degrees,torsion-free
+planar_odd_search,W_8,67,9,16,2,all degrees,torsion-free
+planar_odd_search,W_8,67,9,16,3,all degrees,torsion-free
+planar_odd_search,W_8,67,9,16,4,all degrees,torsion-free
+planar_odd_search,W_8,67,9,16,5,all degrees,torsion-free
+planar_odd_search,W_9,68,10,18,2,all degrees,torsion-free
+planar_odd_search,W_9,68,10,18,3,all degrees,torsion-free
+planar_odd_search,W_9,68,10,18,4,all degrees,torsion-free
+planar_odd_search,antiprism_5,69,10,20,2,all degrees,torsion-free
+planar_odd_search,antiprism_5,69,10,20,3,all degrees,torsion-free
+planar_odd_search,antiprism_5,69,10,20,4,all degrees,H2:Z/2
+planar_odd_search,antiprism_6,70,12,24,2,all degrees,torsion-free
+planar_odd_search,antiprism_6,70,12,24,3,all degrees,torsion-free
+planar_odd_search,antiprism_6,70,12,24,4,all degrees,H2:Z/2
 planar_odd_search,bipyramid_4,56,6,12,2,all degrees,torsion-free
 planar_odd_search,bipyramid_4,56,6,12,3,all degrees,torsion-free
 planar_odd_search,bipyramid_4,56,6,12,4,all degrees,H2:Z/2
 planar_odd_search,bipyramid_4,56,6,12,5,all degrees,H2:Z/2
-planar_odd_search,bipyramid_5,72,7,15,2,all degrees,torsion-free
-planar_odd_search,bipyramid_5,72,7,15,3,all degrees,torsion-free
-planar_odd_search,bipyramid_5,72,7,15,4,all degrees,H2:Z/2
-planar_odd_search,bipyramid_5,72,7,15,5,all degrees,H2:Z/2
-planar_odd_search,bipyramid_6,73,8,18,2,all degrees,torsion-free
-planar_odd_search,bipyramid_6,73,8,18,3,all degrees,torsion-free
-planar_odd_search,bipyramid_6,73,8,18,4,all degrees,H2:Z/2
-planar_odd_search,bipyramid_7,74,9,21,2,all degrees,torsion-free
-planar_odd_search,bipyramid_7,74,9,21,3,all degrees,torsion-free
-planar_odd_search,bipyramid_7,74,9,21,4,all degrees,H2:Z/2
-planar_odd_search,cube,61,8,12,2,all degrees,torsion-free
-planar_odd_search,cube,61,8,12,3,all degrees,torsion-free
-planar_odd_search,cube,61,8,12,4,all degrees,H2:Z/2
-planar_odd_search,cube,61,8,12,5,all degrees,H2:Z/2
-planar_odd_search,dodecahedron,75,20,30,2,all degrees,torsion-free
-planar_odd_search,dodecahedron,75,20,30,3,all degrees,torsion-free
-planar_odd_search,grid 3x3,76,9,12,2,all degrees,torsion-free
-planar_odd_search,grid 3x3,76,9,12,3,all degrees,torsion-free
-planar_odd_search,grid 3x3,76,9,12,4,all degrees,torsion-free
-planar_odd_search,grid 3x3,76,9,12,5,all degrees,torsion-free
-planar_odd_search,grid 3x4,77,12,17,2,all degrees,torsion-free
-planar_odd_search,grid 3x4,77,12,17,3,all degrees,torsion-free
-planar_odd_search,grid 3x4,77,12,17,4,all degrees,torsion-free
-planar_odd_search,grid 3x4,77,12,17,5,all degrees,torsion-free
-planar_odd_search,icosahedron,78,12,30,2,all degrees,torsion-free
-planar_odd_search,icosahedron,78,12,30,3,all degrees,torsion-free
+planar_odd_search,bipyramid_5,71,7,15,2,all degrees,torsion-free
+planar_odd_search,bipyramid_5,71,7,15,3,all degrees,torsion-free
+planar_odd_search,bipyramid_5,71,7,15,4,all degrees,H2:Z/2
+planar_odd_search,bipyramid_5,71,7,15,5,all degrees,H2:Z/2
+planar_odd_search,bipyramid_6,72,8,18,2,all degrees,torsion-free
+planar_odd_search,bipyramid_6,72,8,18,3,all degrees,torsion-free
+planar_odd_search,bipyramid_6,72,8,18,4,all degrees,H2:Z/2
+planar_odd_search,bipyramid_7,73,9,21,2,all degrees,torsion-free
+planar_odd_search,bipyramid_7,73,9,21,3,all degrees,torsion-free
+planar_odd_search,bipyramid_7,73,9,21,4,all degrees,H2:Z/2
+planar_odd_search,dodecahedron,74,20,30,2,all degrees,torsion-free
+planar_odd_search,dodecahedron,74,20,30,3,all degrees,torsion-free
+planar_odd_search,grid 3x3,75,9,12,2,all degrees,torsion-free
+planar_odd_search,grid 3x3,75,9,12,3,all degrees,torsion-free
+planar_odd_search,grid 3x3,75,9,12,4,all degrees,torsion-free
+planar_odd_search,grid 3x3,75,9,12,5,all degrees,torsion-free
+planar_odd_search,grid 3x4,76,12,17,2,all degrees,torsion-free
+planar_odd_search,grid 3x4,76,12,17,3,all degrees,torsion-free
+planar_odd_search,grid 3x4,76,12,17,4,all degrees,torsion-free
+planar_odd_search,grid 3x4,76,12,17,5,all degrees,torsion-free
+planar_odd_search,icosahedron,77,12,30,2,all degrees,torsion-free
+planar_odd_search,icosahedron,77,12,30,3,all degrees,torsion-free
 planar_odd_search,octahedron,56,6,12,2,all degrees,torsion-free
 planar_odd_search,octahedron,56,6,12,3,all degrees,torsion-free
 planar_odd_search,octahedron,56,6,12,4,all degrees,H2:Z/2
 planar_odd_search,octahedron,56,6,12,5,all degrees,H2:Z/2
-planar_odd_search,prism_5,79,10,15,2,all degrees,torsion-free
-planar_odd_search,prism_5,79,10,15,3,all degrees,torsion-free
-planar_odd_search,prism_5,79,10,15,4,all degrees,H2:Z/2
-planar_odd_search,prism_5,79,10,15,5,all degrees,H2:Z/2
-planar_odd_search,prism_6,80,12,18,2,all degrees,torsion-free
-planar_odd_search,prism_6,80,12,18,3,all degrees,torsion-free
-planar_odd_search,prism_6,80,12,18,4,all degrees,H2:Z/2
+planar_odd_search,prism_5,78,10,15,2,all degrees,torsion-free
+planar_odd_search,prism_5,78,10,15,3,all degrees,torsion-free
+planar_odd_search,prism_5,78,10,15,4,all degrees,H2:Z/2
+planar_odd_search,prism_5,78,10,15,5,all degrees,H2:Z/2
+planar_odd_search,prism_6,79,12,18,2,all degrees,torsion-free
+planar_odd_search,prism_6,79,12,18,3,all degrees,torsion-free
+planar_odd_search,prism_6,79,12,18,4,all degrees,H2:Z/2
 planar_odd_search,tetrahedron,4,4,6,2,all degrees,torsion-free
 planar_odd_search,tetrahedron,4,4,6,3,all degrees,torsion-free
 planar_odd_search,tetrahedron,4,4,6,4,all degrees,torsion-free
 planar_odd_search,tetrahedron,4,4,6,5,all degrees,torsion-free
-planar_odd_search,triangulation_10,81,10,24,2,all degrees,torsion-free
-planar_odd_search,triangulation_10,81,10,24,3,all degrees,torsion-free
-planar_odd_search,triangulation_10,81,10,24,4,all degrees,torsion-free
-planar_odd_search,triangulation_11,82,11,27,2,all degrees,torsion-free
-planar_odd_search,triangulation_11,82,11,27,3,all degrees,torsion-free
-planar_odd_search,triangulation_8,83,8,18,2,all degrees,torsion-free
-planar_odd_search,triangulation_8,83,8,18,3,all degrees,torsion-free
-planar_odd_search,triangulation_8,83,8,18,4,all degrees,torsion-free
-planar_odd_search,triangulation_9,84,9,21,2,all degrees,torsion-free
-planar_odd_search,triangulation_9,84,9,21,3,all degrees,torsion-free
-planar_odd_search,triangulation_9,84,9,21,4,all degrees,H2:Z/2
+planar_odd_search,triangulation_10,80,10,24,2,all degrees,torsion-free
+planar_odd_search,triangulation_10,80,10,24,3,all degrees,torsion-free
+planar_odd_search,triangulation_10,80,10,24,4,all degrees,torsion-free
+planar_odd_search,triangulation_11,81,11,27,2,all degrees,torsion-free
+planar_odd_search,triangulation_11,81,11,27,3,all degrees,torsion-free
+planar_odd_search,triangulation_8,82,8,18,2,all degrees,torsion-free
+planar_odd_search,triangulation_8,82,8,18,3,all degrees,torsion-free
+planar_odd_search,triangulation_8,82,8,18,4,all degrees,torsion-free
+planar_odd_search,triangulation_9,83,9,21,2,all degrees,torsion-free
+planar_odd_search,triangulation_9,83,9,21,3,all degrees,torsion-free
+planar_odd_search,triangulation_9,83,9,21,4,all degrees,H2:Z/2
 density_interpolation,K_9,9,9,36,3,all degrees,H1:Z/2; H2:(Z/2)^28
-density_interpolation,"K_{4,5} + 3 in B",85,9,23,3,all degrees,H1:Z/2; H2:(Z/2)^13 + Z/3
-density_interpolation,"K_{4,5} + 6 in B",86,9,26,3,all degrees,H1:Z/2; H2:(Z/2)^18
-density_interpolation,"K_{4,5} + all A",87,9,26,3,all degrees,H1:Z/2; H2:(Z/2)^4 + Z/3
-density_interpolation,"K_{4,5} + all B",88,9,30,3,all degrees,H1:Z/2; H2:(Z/2)^22
+density_interpolation,"K_{4,5} + 3 in B",84,9,23,3,all degrees,H1:Z/2; H2:(Z/2)^13 + Z/3
+density_interpolation,"K_{4,5} + 6 in B",85,9,26,3,all degrees,H1:Z/2; H2:(Z/2)^18
+density_interpolation,"K_{4,5} + all A",86,9,26,3,all degrees,H1:Z/2; H2:(Z/2)^4 + Z/3
+density_interpolation,"K_{4,5} + all B",87,9,30,3,all degrees,H1:Z/2; H2:(Z/2)^22
 density_interpolation,"K_{4,5}",24,9,20,3,all degrees,H1:Z/2; H2:(Z/2)^4 + Z/3
 platonic_solids,antiprism_3,56,6,12,4,all degrees,H2:Z/2
-platonic_solids,antiprism_4,89,8,16,4,all degrees,H2:Z/2
-platonic_solids,antiprism_5,70,10,20,4,all degrees,H2:Z/2
-platonic_solids,cube,61,8,12,2,all degrees,torsion-free
-platonic_solids,cube,61,8,12,3,all degrees,torsion-free
-platonic_solids,cube,61,8,12,4,all degrees,H2:Z/2
-platonic_solids,dodecahedron,75,20,30,2,all degrees,torsion-free
-platonic_solids,dodecahedron,75,20,30,3,all degrees,torsion-free
-platonic_solids,dodecahedron,75,20,30,4,tors H_2,Z/2
-platonic_solids,icosahedron,78,12,30,2,all degrees,torsion-free
-platonic_solids,icosahedron,78,12,30,3,all degrees,torsion-free
-platonic_solids,icosahedron,78,12,30,4,tors H_2,Z/2
+platonic_solids,antiprism_4,88,8,16,4,all degrees,H2:Z/2
+platonic_solids,antiprism_5,69,10,20,4,all degrees,H2:Z/2
+platonic_solids,dodecahedron,74,20,30,2,all degrees,torsion-free
+platonic_solids,dodecahedron,74,20,30,3,all degrees,torsion-free
+platonic_solids,dodecahedron,74,20,30,4,tors H_2,Z/2
+platonic_solids,icosahedron,77,12,30,2,all degrees,torsion-free
+platonic_solids,icosahedron,77,12,30,3,all degrees,torsion-free
+platonic_solids,icosahedron,77,12,30,4,tors H_2,Z/2
 platonic_solids,octahedron,56,6,12,2,all degrees,torsion-free
 platonic_solids,octahedron,56,6,12,3,all degrees,torsion-free
 platonic_solids,octahedron,56,6,12,4,all degrees,H2:Z/2
-platonic_solids,prism_3,62,6,9,4,all degrees,torsion-free
-platonic_solids,prism_4,61,8,12,4,all degrees,H2:Z/2
-platonic_solids,prism_5,79,10,15,4,all degrees,H2:Z/2
-platonic_solids,prism_6,80,12,18,4,all degrees,H2:Z/2
+platonic_solids,prism_3,61,6,9,4,all degrees,torsion-free
+platonic_solids,prism_4,89,8,12,4,all degrees,H2:Z/2
+platonic_solids,prism_5,78,10,15,4,all degrees,H2:Z/2
+platonic_solids,prism_6,79,12,18,4,all degrees,H2:Z/2
 platonic_solids,tetrahedron,4,4,6,2,all degrees,torsion-free
 platonic_solids,tetrahedron,4,4,6,3,all degrees,torsion-free
 platonic_solids,tetrahedron,4,4,6,4,all degrees,torsion-free
-higher_degree_torsion,cube + C_3,90,11,15,5,tors H_3,Z/2
-higher_degree_torsion,cube,61,8,12,5,tors H_3,none
-higher_degree_torsion,cube,61,8,12,6,tors H_3,none
-higher_degree_torsion,oct-C_3 joined,91,9,16,5,tors H_3,Z/2
-higher_degree_torsion,octahedron + 1 x C_3,92,9,15,5,tors H_3,Z/2
-higher_degree_torsion,octahedron + 2 x C_3,93,12,18,6,tors H_4,Z/2
+higher_degree_torsion,oct-C_3 joined,90,9,16,5,tors H_3,Z/2
+higher_degree_torsion,octahedron + 1 x C_3,91,9,15,5,tors H_3,Z/2
+higher_degree_torsion,octahedron + 2 x C_3,92,12,18,6,tors H_4,Z/2
 higher_degree_torsion,octahedron,56,6,12,5,tors H_3,none
 higher_degree_torsion,octahedron,56,6,12,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=9,62,6,9,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=9,62,6,9,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=9,61,6,9,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=9,61,6,9,6,tors H_3,none
 genuine_higher_torsion,planar N=6 M=12,56,6,12,5,tors H_3,none
 genuine_higher_torsion,planar N=6 M=12,56,6,12,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=12,94,6,12,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=12,94,6,12,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=12,93,6,12,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=12,93,6,12,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=11,94,6,11,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=11,94,6,11,6,tors H_3,none
 genuine_higher_torsion,planar N=6 M=11,95,6,11,5,tors H_3,none
 genuine_higher_torsion,planar N=6 M=11,95,6,11,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=11,96,6,11,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=11,96,6,11,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=10,96,6,10,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=10,96,6,10,6,tors H_3,none
 genuine_higher_torsion,planar N=6 M=10,97,6,10,5,tors H_3,none
 genuine_higher_torsion,planar N=6 M=10,97,6,10,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=10,98,6,10,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=10,98,6,10,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=10,64,6,10,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=10,64,6,10,6,tors H_3,none
-genuine_higher_torsion,planar N=6 M=11,99,6,11,5,tors H_3,none
-genuine_higher_torsion,planar N=6 M=11,99,6,11,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,100,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,100,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,101,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,101,7,14,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=15,102,7,15,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,103,7,11,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,103,7,11,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=15,104,7,15,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,105,7,11,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,105,7,11,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,106,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,106,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,107,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,107,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=10,63,6,10,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=10,63,6,10,6,tors H_3,none
+genuine_higher_torsion,planar N=6 M=11,98,6,11,5,tors H_3,none
+genuine_higher_torsion,planar N=6 M=11,98,6,11,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,99,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,99,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,100,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,100,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=15,101,7,15,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,102,7,11,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,102,7,11,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=15,103,7,15,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,104,7,11,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,104,7,11,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,105,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,105,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,106,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,106,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,107,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,107,7,13,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,108,7,13,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,108,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,109,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,109,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,110,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,110,7,14,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=15,111,7,15,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,112,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,112,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,109,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,109,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=15,110,7,15,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,111,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,111,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,112,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,112,7,13,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,113,7,13,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,113,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,114,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,114,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,115,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,115,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=15,72,7,15,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,116,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,116,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,117,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,117,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,118,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,118,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,119,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,119,7,14,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,120,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,120,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,121,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,121,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,114,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,114,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=15,71,7,15,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,115,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,115,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,116,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,116,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,117,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,117,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,118,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,118,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,119,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,119,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,120,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,120,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,121,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,121,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,65,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,65,7,12,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,122,7,13,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,122,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,66,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,66,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,123,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,123,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,124,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,124,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,123,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,123,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,124,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,124,7,14,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=14,125,7,14,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=14,125,7,14,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,126,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,126,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,126,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,126,7,12,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,127,7,12,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,127,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,128,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,128,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,129,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,129,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,128,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,128,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,129,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,129,7,12,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,130,7,12,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,130,7,12,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,131,7,12,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=12,131,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,132,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,132,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,133,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,133,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,134,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,134,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=15,135,7,15,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,136,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,137,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,137,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,138,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,138,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,132,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,132,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,133,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,133,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=15,134,7,15,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,135,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,136,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,136,7,13,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,137,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,137,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,138,7,13,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=13,138,7,13,6,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,139,7,13,5,tors H_3,none
 genuine_higher_torsion,planar N=7 M=13,139,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,140,7,13,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=13,140,7,13,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,141,7,12,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=12,141,7,12,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,142,7,14,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=14,142,7,14,6,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,143,7,11,5,tors H_3,none
-genuine_higher_torsion,planar N=7 M=11,143,7,11,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,140,7,12,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=12,140,7,12,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,141,7,14,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=14,141,7,14,6,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,142,7,11,5,tors H_3,none
+genuine_higher_torsion,planar N=7 M=11,142,7,11,6,tors H_3,none
+genuine_higher_torsion,planar N=8 M=12,143,8,12,5,tors H_3,none
+genuine_higher_torsion,planar N=8 M=12,143,8,12,6,tors H_3,none
+genuine_higher_torsion,planar N=8 M=16,88,8,16,5,tors H_3,none
+genuine_higher_torsion,planar N=8 M=12,89,8,12,5,tors H_3,none
+genuine_higher_torsion,planar N=8 M=12,89,8,12,6,tors H_3,none
 genuine_higher_torsion,planar N=8 M=12,144,8,12,5,tors H_3,none
 genuine_higher_torsion,planar N=8 M=12,144,8,12,6,tors H_3,none
-genuine_higher_torsion,planar N=8 M=16,89,8,16,5,tors H_3,none
-genuine_higher_torsion,planar N=8 M=12,61,8,12,5,tors H_3,none
-genuine_higher_torsion,planar N=8 M=12,61,8,12,6,tors H_3,none
-genuine_higher_torsion,planar N=8 M=12,145,8,12,5,tors H_3,none
-genuine_higher_torsion,planar N=8 M=12,145,8,12,6,tors H_3,none
-genuine_higher_torsion,antiprism_4,89,8,16,5,tors H_4,none
-genuine_higher_torsion,antiprism_4,89,8,16,6,tors H_3,none
-genuine_higher_torsion,cube,61,8,12,6,tors H_4,none
-genuine_higher_torsion,cube,61,8,12,7,tors H_3,none
-genuine_higher_torsion,cube,61,8,12,7,tors H_4,none
+genuine_higher_torsion,antiprism_4,88,8,16,5,tors H_4,none
+genuine_higher_torsion,antiprism_4,88,8,16,6,tors H_3,none
 genuine_higher_torsion,octahedron,56,6,12,6,tors H_4,none
 genuine_higher_torsion,octahedron,56,6,12,7,tors H_3,none
 genuine_higher_torsion,octahedron,56,6,12,7,tors H_4,none
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,145,4,3,2,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,145,4,3,3,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,145,4,3,4,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,145,4,3,5,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,145,4,3,6,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,146,4,3,2,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,146,4,3,3,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,146,4,3,4,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,146,4,3,5,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,146,4,3,6,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,147,4,3,2,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,147,4,3,3,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,147,4,3,4,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,147,4,3,5,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=3,147,4,3,6,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,148,4,4,2,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,148,4,4,3,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,148,4,4,4,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,148,4,4,5,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,148,4,4,6,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,147,4,4,2,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,147,4,4,3,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,147,4,4,4,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,147,4,4,5,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,147,4,4,6,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,10,4,4,2,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,10,4,4,3,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,10,4,4,4,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,10,4,4,5,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=4,10,4,4,6,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,149,4,5,2,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,149,4,5,3,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,149,4,5,4,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,149,4,5,5,all degrees,torsion-free
-sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,149,4,5,6,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,148,4,5,2,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,148,4,5,3,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,148,4,5,4,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,148,4,5,5,all degrees,torsion-free
+sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=5,148,4,5,6,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=6,4,4,6,2,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=6,4,4,6,3,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=6,4,4,6,4,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=6,4,4,6,5,all degrees,torsion-free
 sweep_small_graphs:n4_k2-3-4-5-6_d1,N=4 M=6,4,4,6,6,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,63,5,4,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,63,5,4,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,63,5,4,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,63,5,4,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,62,5,4,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,62,5,4,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,62,5,4,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,62,5,4,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,149,5,4,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,149,5,4,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,149,5,4,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,149,5,4,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,150,5,4,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,150,5,4,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,150,5,4,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,150,5,4,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,151,5,4,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,151,5,4,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,151,5,4,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=4,151,5,4,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,151,5,5,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,151,5,5,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,151,5,5,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,151,5,5,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,152,5,5,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,152,5,5,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,152,5,5,4,all degrees,torsion-free
@@ -587,10 +576,10 @@ sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,155,5,5,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,155,5,5,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,155,5,5,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,155,5,5,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,156,5,5,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,156,5,5,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,156,5,5,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=5,156,5,5,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,156,5,6,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,156,5,6,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,156,5,6,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,156,5,6,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,157,5,6,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,157,5,6,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,157,5,6,4,all degrees,torsion-free
@@ -603,14 +592,14 @@ sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,159,5,6,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,159,5,6,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,159,5,6,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,159,5,6,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,160,5,6,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,160,5,6,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,160,5,6,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,160,5,6,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,11,5,6,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,11,5,6,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,11,5,6,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=6,11,5,6,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,160,5,7,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,160,5,7,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,160,5,7,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,160,5,7,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,161,5,7,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,161,5,7,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,161,5,7,4,all degrees,torsion-free
@@ -623,42 +612,42 @@ sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,163,5,7,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,163,5,7,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,163,5,7,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,163,5,7,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,164,5,7,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,164,5,7,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,164,5,7,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=7,164,5,7,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,164,5,8,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,164,5,8,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,164,5,8,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,164,5,8,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,165,5,8,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,165,5,8,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,165,5,8,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,165,5,8,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,166,5,8,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,166,5,8,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,166,5,8,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=8,166,5,8,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,167,5,9,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,167,5,9,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,167,5,9,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,167,5,9,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,166,5,9,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,166,5,9,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,166,5,9,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=9,166,5,9,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=10,5,5,10,2,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=10,5,5,10,3,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=10,5,5,10,4,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d1,N=5 M=10,5,5,10,5,all degrees,H_1: Z/2
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,156,5,5,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,156,5,5,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,156,5,5,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,156,5,5,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,155,5,5,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,155,5,5,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,155,5,5,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=5,155,5,5,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,158,5,6,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,158,5,6,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,158,5,6,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,158,5,6,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,159,5,6,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,159,5,6,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,159,5,6,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,159,5,6,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,160,5,6,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,160,5,6,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,160,5,6,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,160,5,6,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,11,5,6,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,11,5,6,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,11,5,6,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=6,11,5,6,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,161,5,7,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,161,5,7,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,161,5,7,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,161,5,7,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,162,5,7,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,162,5,7,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,162,5,7,4,all degrees,torsion-free
@@ -667,26 +656,25 @@ sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,163,5,7,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,163,5,7,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,163,5,7,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,163,5,7,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,164,5,7,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,164,5,7,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,164,5,7,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=7,164,5,7,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,164,5,8,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,164,5,8,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,164,5,8,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,164,5,8,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,165,5,8,2,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,165,5,8,3,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,165,5,8,4,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,165,5,8,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,166,5,8,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,166,5,8,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,166,5,8,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=8,166,5,8,5,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,167,5,9,2,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,167,5,9,3,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,167,5,9,4,all degrees,torsion-free
-sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,167,5,9,5,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,166,5,9,2,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,166,5,9,3,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,166,5,9,4,all degrees,torsion-free
+sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=9,166,5,9,5,all degrees,torsion-free
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=10,5,5,10,2,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=10,5,5,10,3,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=10,5,5,10,4,all degrees,H_1: Z/2
 sweep_small_graphs:n5_k2-3-4-5_d2,N=5 M=10,5,5,10,5,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,167,6,5,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,167,6,5,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,167,6,5,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,168,6,5,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,168,6,5,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,168,6,5,4,all degrees,torsion-free
@@ -702,9 +690,9 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,171,6,5,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,172,6,5,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,172,6,5,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,172,6,5,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,173,6,5,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,173,6,5,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=5,173,6,5,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,173,6,6,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,173,6,6,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,173,6,6,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,174,6,6,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,174,6,6,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,174,6,6,4,all degrees,torsion-free
@@ -741,9 +729,9 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,184,6,6,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,185,6,6,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,185,6,6,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,185,6,6,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,186,6,6,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,186,6,6,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=6,186,6,6,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,186,6,7,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,186,6,7,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,186,6,7,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,187,6,7,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,187,6,7,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,187,6,7,4,all degrees,torsion-free
@@ -798,9 +786,9 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,203,6,7,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,204,6,7,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,204,6,7,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,204,6,7,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,205,6,7,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,205,6,7,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=7,205,6,7,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,205,6,8,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,205,6,8,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,205,6,8,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,206,6,8,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,206,6,8,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,206,6,8,4,all degrees,torsion-free
@@ -837,12 +825,12 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,216,6,8,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,217,6,8,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,217,6,8,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,217,6,8,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,12,6,8,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,12,6,8,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,12,6,8,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,218,6,8,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,219,6,8,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,219,6,8,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,219,6,8,4,all degrees,torsion-free
@@ -864,9 +852,9 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,224,6,8,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,225,6,8,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,225,6,8,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,225,6,8,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,226,6,8,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,226,6,8,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=8,226,6,8,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,226,6,9,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,226,6,9,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,226,6,9,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,227,6,9,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,227,6,9,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,227,6,9,4,all degrees,torsion-free
@@ -918,15 +906,15 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,242,6,9,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,243,6,9,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,243,6,9,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,243,6,9,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,244,6,9,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,244,6,9,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,244,6,9,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,62,6,9,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,62,6,9,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,62,6,9,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,61,6,9,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,61,6,9,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,61,6,9,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,17,6,9,2,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,17,6,9,3,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=9,17,6,9,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,244,6,10,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,244,6,10,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,244,6,10,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,245,6,10,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,245,6,10,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,245,6,10,4,all degrees,torsion-free
@@ -954,94 +942,92 @@ sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,252,6,10,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,253,6,10,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,253,6,10,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,253,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,254,6,10,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,254,6,10,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,254,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,64,6,10,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,64,6,10,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,64,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,98,6,10,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,98,6,10,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,98,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,63,6,10,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,63,6,10,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,63,6,10,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,97,6,10,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,97,6,10,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,97,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,57,6,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,96,6,10,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,96,6,10,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=10,96,6,10,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,254,6,11,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,254,6,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,254,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,255,6,11,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,256,6,11,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,256,6,11,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,256,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,4,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,96,6,11,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,96,6,11,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,96,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,99,6,11,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,99,6,11,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,99,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,257,6,11,4,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,95,6,11,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,95,6,11,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,95,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,260,6,11,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,260,6,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,260,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,98,6,11,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,98,6,11,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,98,6,11,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,258,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,94,6,11,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,94,6,11,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,94,6,11,4,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=11,259,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,260,6,12,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,260,6,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,260,6,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,261,6,12,2,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,261,6,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,261,6,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,93,6,12,2,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,93,6,12,3,all degrees,torsion-free
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,93,6,12,4,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,262,6,12,2,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,262,6,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,262,6,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,94,6,12,2,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,94,6,12,3,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,94,6,12,4,all degrees,torsion-free
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,263,6,12,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,263,6,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,263,6,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,56,6,12,2,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,56,6,12,3,all degrees,torsion-free
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=12,56,6,12,4,all degrees,H_2: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,263,6,13,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,263,6,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,263,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,264,6,13,2,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,264,6,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,264,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,265,6,13,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,265,6,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=13,265,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,266,6,14,2,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,266,6,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,266,6,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,265,6,14,2,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,265,6,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k2-3-4_d1,N=6 M=14,265,6,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=15,6,6,15,2,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=15,6,6,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k2-3-4_d1,N=6 M=15,6,6,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n6_k4_d3,N=6 M=9,62,6,9,4,all degrees,torsion-free
+sweep_small_graphs:n6_k4_d3,N=6 M=9,61,6,9,4,all degrees,torsion-free
 sweep_small_graphs:n6_k4_d3,N=6 M=9,17,6,9,4,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k4_d3,N=6 M=10,64,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=10,98,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=10,57,6,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=10,63,6,10,4,all degrees,torsion-free
 sweep_small_graphs:n6_k4_d3,N=6 M=10,97,6,10,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=11,96,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=11,99,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=11,259,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=10,57,6,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=10,96,6,10,4,all degrees,torsion-free
 sweep_small_graphs:n6_k4_d3,N=6 M=11,95,6,11,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=11,260,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=11,98,6,11,4,all degrees,torsion-free
+sweep_small_graphs:n6_k4_d3,N=6 M=11,258,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=11,94,6,11,4,all degrees,torsion-free
+sweep_small_graphs:n6_k4_d3,N=6 M=11,259,6,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=12,261,6,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=12,93,6,12,4,all degrees,torsion-free
 sweep_small_graphs:n6_k4_d3,N=6 M=12,262,6,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n6_k4_d3,N=6 M=12,94,6,12,4,all degrees,torsion-free
-sweep_small_graphs:n6_k4_d3,N=6 M=12,263,6,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n6_k4_d3,N=6 M=12,56,6,12,4,all degrees,H_2: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=13,263,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n6_k4_d3,N=6 M=13,264,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n6_k4_d3,N=6 M=13,265,6,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n6_k4_d3,N=6 M=14,266,6,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n6_k4_d3,N=6 M=14,265,6,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n6_k4_d3,N=6 M=15,6,6,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=6,266,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,267,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,268,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,269,7,6,3,all degrees,torsion-free
@@ -1052,7 +1038,7 @@ sweep_small_graphs:n7_k3_d1,N=7 M=6,273,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,274,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,275,7,6,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=6,276,7,6,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=6,277,7,6,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=7,277,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,278,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,279,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,280,7,7,3,all degrees,torsion-free
@@ -1085,7 +1071,7 @@ sweep_small_graphs:n7_k3_d1,N=7 M=7,306,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,307,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,308,7,7,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=7,309,7,7,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=7,310,7,7,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=8,310,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,311,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,312,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,313,7,8,3,all degrees,torsion-free
@@ -1152,7 +1138,7 @@ sweep_small_graphs:n7_k3_d1,N=7 M=8,373,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,374,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,375,7,8,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=8,376,7,8,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=8,377,7,8,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=9,377,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,378,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,379,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,380,7,9,3,all degrees,torsion-free
@@ -1259,7 +1245,7 @@ sweep_small_graphs:n7_k3_d1,N=7 M=9,480,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,481,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,482,7,9,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=9,483,7,9,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=9,484,7,9,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=10,484,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,485,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,486,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,487,7,10,3,all degrees,torsion-free
@@ -1327,11 +1313,11 @@ sweep_small_graphs:n7_k3_d1,N=7 M=10,548,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,549,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,550,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,551,7,10,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=10,552,7,10,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=10,553,7,10,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=10,552,7,10,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=10,553,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,554,7,10,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=10,555,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,13,7,10,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=10,555,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,556,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,557,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,558,7,10,3,all degrees,torsion-free
@@ -1390,8 +1376,8 @@ sweep_small_graphs:n7_k3_d1,N=7 M=10,610,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,611,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,612,7,10,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=10,613,7,10,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=10,614,7,10,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=10,615,7,10,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=10,614,7,10,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,615,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,616,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,617,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,618,7,11,3,all degrees,torsion-free
@@ -1430,17 +1416,17 @@ sweep_small_graphs:n7_k3_d1,N=7 M=11,650,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,651,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,652,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,653,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,654,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,655,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,654,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,655,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,656,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,657,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,658,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,659,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,660,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,661,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,660,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,661,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,662,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,663,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,664,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,663,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,664,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,665,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,666,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,667,7,11,3,all degrees,torsion-free
@@ -1515,50 +1501,50 @@ sweep_small_graphs:n7_k3_d1,N=7 M=11,735,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,736,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,737,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,738,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,739,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,740,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,739,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,740,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,741,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,742,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,743,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,744,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,743,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,744,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,745,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,746,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,747,7,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=11,748,7,11,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=11,746,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,747,7,11,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=11,748,7,11,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=11,142,7,11,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=11,749,7,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=11,143,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,750,7,11,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=11,105,7,11,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=11,103,7,11,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=11,104,7,11,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=11,102,7,11,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,750,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,751,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,752,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,752,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,753,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,754,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,755,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,756,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,757,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,758,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,759,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,759,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,760,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,761,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,762,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,762,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,763,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,764,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,765,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,764,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,765,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,766,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,767,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,768,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,769,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,768,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,769,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,770,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,771,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,772,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,773,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,772,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,773,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,774,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,775,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,776,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,777,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,775,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,776,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,777,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,778,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,779,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,779,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,780,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,781,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,782,7,12,3,all degrees,torsion-free
@@ -1592,18 +1578,18 @@ sweep_small_graphs:n7_k3_d1,N=7 M=12,809,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,810,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,811,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,812,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,813,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,813,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,814,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,815,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,816,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,816,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,817,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,818,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,819,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,820,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,821,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,822,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,823,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,824,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,823,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,824,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,825,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,826,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,827,7,12,3,all degrees,torsion-free
@@ -1618,56 +1604,56 @@ sweep_small_graphs:n7_k3_d1,N=7 M=12,835,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,836,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,837,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,838,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,839,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,840,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,841,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,842,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,843,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,839,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,840,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,841,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,842,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,843,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,844,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,845,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,845,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,846,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,847,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,848,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,849,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,849,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,850,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,851,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,851,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,852,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,853,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,853,7,12,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=12,854,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,855,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,855,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,856,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,857,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,857,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,129,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,140,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,858,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,130,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,141,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,859,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,128,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,138,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,131,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,124,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,134,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,860,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,861,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,115,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,862,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,863,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,132,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,117,7,12,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=12,18,7,12,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=12,66,7,12,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=12,127,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,137,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,130,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,123,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,133,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,859,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,860,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,114,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,861,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,862,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,131,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,116,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,18,7,12,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=12,65,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=12,126,7,12,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,863,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,864,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,865,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,866,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,866,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,867,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,868,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,868,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,869,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,870,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,871,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,872,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,873,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,872,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,873,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,874,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,875,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,875,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,876,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,877,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,878,7,13,3,all degrees,torsion-free
@@ -1675,82 +1661,82 @@ sweep_small_graphs:n7_k3_d1,N=7 M=13,879,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,880,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,881,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,882,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,883,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,884,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,885,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,883,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,884,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,885,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,886,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,887,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,888,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,889,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,889,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,890,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,891,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,892,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,893,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,894,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,895,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,893,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,894,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,895,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,896,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,897,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,897,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,898,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,899,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,900,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,901,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,900,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,901,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,902,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,903,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,904,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,905,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,906,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,907,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,907,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,908,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,909,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,909,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,910,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,911,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,912,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,913,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,914,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,915,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,916,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,917,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,913,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,914,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,915,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,916,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,917,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,918,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,919,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,920,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,921,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,922,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,923,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,920,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,921,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,922,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,923,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,924,7,13,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=13,925,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,926,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,927,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,926,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,927,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,112,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,115,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,928,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,113,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,116,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,99,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,132,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,107,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,117,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,929,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,100,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,133,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,108,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,118,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,930,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,105,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,121,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,931,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,106,7,13,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=13,122,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,138,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,932,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,139,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,113,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,933,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,114,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,128,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,934,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,129,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,139,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,935,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,140,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,119,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,936,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,120,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,108,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,937,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,109,7,13,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=13,136,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,938,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,137,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,939,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=13,122,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,940,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,123,7,13,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=13,941,7,13,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=13,942,7,13,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,942,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,943,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,944,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,945,7,14,3,all degrees,H_1: Z/2
@@ -1759,62 +1745,62 @@ sweep_small_graphs:n7_k3_d1,N=7 M=14,947,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,948,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,949,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,950,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,951,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,951,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,952,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,953,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,954,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,953,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,954,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,955,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,956,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,956,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,957,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,958,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,959,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,960,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,961,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,962,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,961,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,962,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,963,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,964,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,965,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,966,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,967,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,968,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,969,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,970,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,969,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,970,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,971,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,120,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,972,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,121,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,973,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,125,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,106,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,974,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,126,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,107,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,100,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,118,7,14,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=14,141,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,975,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,101,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,119,7,14,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=14,142,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,976,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,977,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,111,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,978,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,112,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,979,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,980,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,109,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,981,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,110,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,982,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,983,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,984,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,985,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,124,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,986,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,125,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,987,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,988,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,989,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,990,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,991,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=14,135,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,992,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,136,7,14,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=14,993,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,994,7,14,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=14,995,7,14,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=14,996,7,14,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=15,996,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,997,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,998,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,999,7,15,3,all degrees,H_1: Z/2
@@ -1827,12 +1813,12 @@ sweep_small_graphs:n7_k3_d1,N=7 M=15,1005,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1006,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1007,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1008,7,15,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=15,101,7,15,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=15,103,7,15,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1009,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,102,7,15,3,all degrees,torsion-free
-sweep_small_graphs:n7_k3_d1,N=7 M=15,104,7,15,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1010,7,15,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=15,110,7,15,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1011,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,111,7,15,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1012,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1013,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1014,7,15,3,all degrees,H_1: Z/2
@@ -1846,15 +1832,15 @@ sweep_small_graphs:n7_k3_d1,N=7 M=15,1021,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1022,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1023,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1024,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,1025,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,135,7,15,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=15,134,7,15,3,all degrees,torsion-free
 sweep_small_graphs:n7_k3_d1,N=7 M=15,50,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,1026,7,15,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=15,1025,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,53,7,15,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=15,1026,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1027,7,15,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=15,1028,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,1029,7,15,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=15,72,7,15,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=15,71,7,15,3,all degrees,torsion-free
+sweep_small_graphs:n7_k3_d1,N=7 M=16,1029,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1030,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1031,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1032,7,16,3,all degrees,H_1: Z/2
@@ -1875,7 +1861,7 @@ sweep_small_graphs:n7_k3_d1,N=7 M=16,1046,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1047,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1048,7,16,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=16,1049,7,16,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=16,1050,7,16,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=17,1050,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1051,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1052,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1053,7,17,3,all degrees,H_1: Z/2
@@ -1885,16 +1871,16 @@ sweep_small_graphs:n7_k3_d1,N=7 M=17,1056,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1057,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1058,7,17,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=17,1059,7,17,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=17,1060,7,17,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=18,1060,7,18,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=18,1061,7,18,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=18,1062,7,18,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=18,1063,7,18,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=18,1064,7,18,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=18,1065,7,18,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=19,1065,7,19,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=19,1066,7,19,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=19,1067,7,19,3,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k3_d1,N=7 M=20,1068,7,20,3,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k3_d1,N=7 M=20,1067,7,20,3,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k3_d1,N=7 M=21,7,7,21,3,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=6,266,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,267,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,268,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,269,7,6,4,all degrees,torsion-free
@@ -1905,7 +1891,7 @@ sweep_small_graphs:n7_k4_d1,N=7 M=6,273,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,274,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,275,7,6,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=6,276,7,6,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=6,277,7,6,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=7,277,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,278,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,279,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,280,7,7,4,all degrees,torsion-free
@@ -1938,7 +1924,7 @@ sweep_small_graphs:n7_k4_d1,N=7 M=7,306,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,307,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,308,7,7,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=7,309,7,7,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=7,310,7,7,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=8,310,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,311,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,312,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,313,7,8,4,all degrees,torsion-free
@@ -2005,7 +1991,7 @@ sweep_small_graphs:n7_k4_d1,N=7 M=8,373,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,374,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,375,7,8,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=8,376,7,8,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=8,377,7,8,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=9,377,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,378,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,379,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,380,7,9,4,all degrees,torsion-free
@@ -2112,7 +2098,7 @@ sweep_small_graphs:n7_k4_d1,N=7 M=9,480,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,481,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,482,7,9,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=9,483,7,9,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=9,484,7,9,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=10,484,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,485,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,486,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,487,7,10,4,all degrees,torsion-free
@@ -2180,11 +2166,11 @@ sweep_small_graphs:n7_k4_d1,N=7 M=10,548,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,549,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,550,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,551,7,10,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=10,552,7,10,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=10,553,7,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=10,552,7,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=10,553,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,554,7,10,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=10,555,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,13,7,10,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=10,555,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,556,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,557,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,558,7,10,4,all degrees,torsion-free
@@ -2243,8 +2229,8 @@ sweep_small_graphs:n7_k4_d1,N=7 M=10,610,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,611,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,612,7,10,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=10,613,7,10,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=10,614,7,10,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=10,615,7,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=10,614,7,10,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,615,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,616,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,617,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,618,7,11,4,all degrees,torsion-free
@@ -2283,17 +2269,17 @@ sweep_small_graphs:n7_k4_d1,N=7 M=11,650,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,651,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,652,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,653,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,654,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,655,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,654,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,655,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,656,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,657,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,658,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,659,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,660,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,661,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,660,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,661,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,662,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,663,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,664,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,663,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,664,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,665,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,666,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,667,7,11,4,all degrees,torsion-free
@@ -2368,50 +2354,50 @@ sweep_small_graphs:n7_k4_d1,N=7 M=11,735,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,736,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,737,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,738,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,739,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,740,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,739,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,740,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,741,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,742,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,743,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,744,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,743,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,744,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,745,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,746,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,747,7,11,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=11,748,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=11,746,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,747,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=11,748,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=11,142,7,11,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=11,749,7,11,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=11,143,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,750,7,11,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=11,105,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=11,103,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=11,104,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=11,102,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,750,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,751,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,752,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,752,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,753,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,754,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,755,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,756,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,757,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,758,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,759,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,759,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,760,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,761,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,762,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,762,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,763,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,764,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,765,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,764,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,765,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,766,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,767,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,768,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,769,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,768,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,769,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,770,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,771,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,772,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,773,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,772,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,773,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,774,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,775,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,776,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,777,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,775,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,776,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,777,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,778,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,779,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,779,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,780,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,781,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,782,7,12,4,all degrees,torsion-free
@@ -2445,18 +2431,18 @@ sweep_small_graphs:n7_k4_d1,N=7 M=12,809,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,810,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,811,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,812,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,813,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,813,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,814,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,815,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,816,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,816,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,817,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,818,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,819,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,820,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,821,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,822,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,823,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,824,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,823,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,824,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,825,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,826,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,827,7,12,4,all degrees,torsion-free
@@ -2471,221 +2457,221 @@ sweep_small_graphs:n7_k4_d1,N=7 M=12,835,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,836,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,837,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,838,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,839,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,840,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,841,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,842,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,843,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,839,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,840,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,841,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,842,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,843,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,844,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,845,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,845,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,846,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,847,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,848,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,849,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,849,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,850,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,851,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,851,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,852,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,853,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,853,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=12,854,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,855,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,855,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,856,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,857,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,857,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,129,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,140,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,858,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,130,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,141,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,859,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,128,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,138,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,131,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,124,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,134,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,860,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,861,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,115,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,862,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,863,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,132,7,12,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,117,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=12,18,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=12,66,7,12,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=12,127,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,137,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,130,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,123,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,133,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,859,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,860,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,114,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,861,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,862,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,131,7,12,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,116,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,18,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=12,65,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=12,126,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,863,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,864,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,865,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,866,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,866,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,867,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,868,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,868,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,869,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,870,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,871,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,872,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,873,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,874,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,875,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,876,7,13,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,872,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,873,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,874,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,875,7,13,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,876,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,877,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,878,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,879,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,880,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,881,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,882,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,883,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,884,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,885,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,883,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,884,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,885,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,886,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,887,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,888,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,889,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,889,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,890,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,891,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,892,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,893,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,894,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,895,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,893,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,894,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,895,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,896,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,897,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,897,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,898,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,899,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,900,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,901,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,900,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,901,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,902,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,903,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,904,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,905,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,906,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,907,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,907,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,908,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,909,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,909,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,910,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,911,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,912,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,913,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,914,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,915,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,916,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,917,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,913,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,914,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,915,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,916,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,917,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,918,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,919,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,920,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,921,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,922,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,923,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,920,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,921,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,922,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,923,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,924,7,13,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,925,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,926,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,927,7,13,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,926,7,13,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,927,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,112,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,115,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,928,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,113,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,116,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,99,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,132,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,107,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,117,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,929,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,100,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,133,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,108,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,118,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,930,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,930,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,105,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,121,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,931,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,106,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,122,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,932,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,139,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,933,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,114,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,138,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,932,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,113,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,933,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,128,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,934,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,129,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,139,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,935,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,140,7,13,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,936,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,120,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,119,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,936,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,108,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=13,937,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,109,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=13,938,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,137,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,136,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=13,938,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,939,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=13,122,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,940,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,123,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=13,941,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=13,942,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,942,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,943,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,944,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,945,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,946,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,947,7,14,4,all degrees,H_1: Z/2   H_2: (Z/2)^3
+sweep_small_graphs:n7_k4_d1,N=7 M=14,946,7,14,4,all degrees,H_1: Z/2   H_2: (Z/2)^3
+sweep_small_graphs:n7_k4_d1,N=7 M=14,947,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,948,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,949,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,950,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,951,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,951,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=14,952,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,953,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,954,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,953,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,954,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=14,955,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,956,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,956,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,957,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,958,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,959,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,960,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,961,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,962,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,958,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,959,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,960,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,961,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,962,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,963,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,964,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,965,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,966,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,964,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,965,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,966,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,967,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,968,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,969,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,970,7,14,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,968,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,969,7,14,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,970,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,971,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,972,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,121,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,973,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,120,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,972,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,973,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,125,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,106,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=14,974,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,126,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,107,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,100,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,118,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,141,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,975,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,101,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,119,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,142,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,976,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,977,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,978,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,112,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d1,N=7 M=14,979,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,111,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,978,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,979,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,980,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,981,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,110,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,109,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d1,N=7 M=14,981,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,982,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,983,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,983,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,984,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,985,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,124,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=14,986,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,125,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=14,987,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,988,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,989,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,990,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,991,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,135,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,992,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,136,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=14,993,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,994,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,995,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=14,996,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,997,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,998,7,15,4,all degrees,H_1: Z/2   H_2: (Z/2)^4
+sweep_small_graphs:n7_k4_d1,N=7 M=14,994,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=14,995,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,996,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,997,7,15,4,all degrees,H_1: Z/2   H_2: (Z/2)^4
+sweep_small_graphs:n7_k4_d1,N=7 M=15,998,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,999,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1000,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1001,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1002,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,1003,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,1004,7,15,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,1003,7,15,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,1004,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1005,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1006,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1007,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1008,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,101,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,103,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1009,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,102,7,15,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,104,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1010,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,110,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1011,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,111,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1012,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1013,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1014,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2699,18 +2685,18 @@ sweep_small_graphs:n7_k4_d1,N=7 M=15,1021,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1022,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1023,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1024,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,1025,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,135,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,134,7,15,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,50,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,1026,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,1025,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,53,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,1026,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1027,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=15,1028,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,1029,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=15,72,7,15,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=16,1030,7,16,4,all degrees,H_1: Z/2   H_2: (Z/2)^5
-sweep_small_graphs:n7_k4_d1,N=7 M=16,1031,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=16,1032,7,16,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=15,71,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=16,1029,7,16,4,all degrees,H_1: Z/2   H_2: (Z/2)^5
+sweep_small_graphs:n7_k4_d1,N=7 M=16,1030,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=16,1031,7,16,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=16,1032,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1033,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1034,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1035,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2728,8 +2714,8 @@ sweep_small_graphs:n7_k4_d1,N=7 M=16,1046,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1047,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1048,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=16,1049,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=16,1050,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=17,1051,7,17,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=17,1050,7,17,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
+sweep_small_graphs:n7_k4_d1,N=7 M=17,1051,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1052,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1053,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1054,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2738,109 +2724,109 @@ sweep_small_graphs:n7_k4_d1,N=7 M=17,1056,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1057,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1058,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=17,1059,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=17,1060,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=18,1060,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=18,1061,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=18,1062,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=18,1063,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=18,1064,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=18,1065,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=19,1065,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=19,1066,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=19,1067,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d1,N=7 M=20,1068,7,20,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d1,N=7 M=20,1067,7,20,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d1,N=7 M=21,7,7,21,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
-sweep_small_graphs:n7_k4_d3,N=7 M=11,143,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=11,750,7,11,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=11,105,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=11,103,7,11,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,130,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,141,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,859,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,128,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,138,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,131,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,124,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,134,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,860,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,861,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,115,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,862,7,12,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,863,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,132,7,12,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,117,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=12,18,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=12,66,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=11,142,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=11,749,7,11,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=11,104,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=11,102,7,11,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,129,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,140,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,858,7,12,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=12,127,7,12,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,113,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,116,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,137,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,130,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,123,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,133,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,859,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,860,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,114,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,861,7,12,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,862,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,131,7,12,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,116,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,18,7,12,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=12,65,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=12,126,7,12,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,112,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,115,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,928,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,99,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,132,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,107,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,117,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=13,929,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,100,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,133,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,108,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,118,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,930,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,930,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,105,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,121,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=13,931,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,106,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,122,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,932,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,139,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,933,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,114,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,138,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,932,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,113,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,933,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,128,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=13,934,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,129,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,139,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=13,935,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,140,7,13,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,936,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,120,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,119,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,936,7,13,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,108,7,13,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=13,937,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,109,7,13,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=13,938,7,13,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,137,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,136,7,13,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=13,938,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=13,939,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=13,122,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=13,940,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,123,7,13,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=13,941,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=13,942,7,13,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,121,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=14,973,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,120,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,972,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,973,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,125,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,106,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=14,974,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,126,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=14,107,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,100,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,118,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,141,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,975,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,101,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=14,119,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=14,142,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,976,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,977,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,978,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,112,7,14,4,all degrees,torsion-free
-sweep_small_graphs:n7_k4_d3,N=7 M=14,979,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,111,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,978,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,979,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,980,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,981,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,110,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,109,7,14,4,all degrees,torsion-free
+sweep_small_graphs:n7_k4_d3,N=7 M=14,981,7,14,4,all degrees,H_1: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,982,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,983,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,983,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,984,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,985,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,124,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=14,986,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,125,7,14,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=14,987,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,988,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,989,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,990,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,991,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,135,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,992,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,136,7,14,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=14,993,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,994,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,995,7,14,4,all degrees,H_1: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=14,996,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,994,7,14,4,all degrees,H_1: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=14,995,7,14,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,1007,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1008,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,101,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,103,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1009,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,102,7,15,4,all degrees,H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,104,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1010,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,110,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1011,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,111,7,15,4,all degrees,torsion-free
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1012,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1013,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1014,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2854,15 +2840,15 @@ sweep_small_graphs:n7_k4_d3,N=7 M=15,1021,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1022,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1023,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1024,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,1025,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,135,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,134,7,15,4,all degrees,H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,50,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,1026,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,1025,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,53,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,1026,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1027,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=15,1028,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,1029,7,15,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=15,72,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=15,71,7,15,4,all degrees,H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=16,1033,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1034,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1035,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1036,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2879,7 +2865,7 @@ sweep_small_graphs:n7_k4_d3,N=7 M=16,1046,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1047,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1048,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=16,1049,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=16,1050,7,16,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=17,1051,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1052,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1053,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1054,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
@@ -2888,22 +2874,20 @@ sweep_small_graphs:n7_k4_d3,N=7 M=17,1056,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1057,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1058,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=17,1059,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=17,1060,7,17,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=18,1060,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=18,1061,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=18,1062,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=18,1063,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=18,1064,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=18,1065,7,18,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=19,1065,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=19,1066,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=19,1067,7,19,4,all degrees,H_1: Z/2   H_2: Z/2
-sweep_small_graphs:n7_k4_d3,N=7 M=20,1068,7,20,4,all degrees,H_1: Z/2   H_2: Z/2
+sweep_small_graphs:n7_k4_d3,N=7 M=20,1067,7,20,4,all degrees,H_1: Z/2   H_2: Z/2
 sweep_small_graphs:n7_k4_d3,N=7 M=21,7,7,21,4,all degrees,H_1: Z/2   H_2: (Z/2)^2
 two_torsion_anatomy,A:K_4,4,4,6,2,order of an explicit class,infinite
 two_torsion_anatomy,A:K_5,5,5,10,2,order of an explicit class,2
 two_torsion_anatomy,"A:K_{3,3}",17,6,9,2,order of an explicit class,2
 two_torsion_anatomy,A:octahedron,56,6,12,2,order of an explicit class,infinite
-two_torsion_anatomy,A:prism,62,6,9,2,order of an explicit class,infinite
+two_torsion_anatomy,A:prism,61,6,9,2,order of an explicit class,infinite
 two_torsion_anatomy,"B:theta(3,3)",-1,,,4,H_2 generator,"{'generates': True, 'is_cycle': True}"
-two_torsion_anatomy,C:cube,61,8,12,4,order of an explicit class,2
 two_torsion_anatomy,C:octahedron,56,6,12,4,order of an explicit class,2
-two_torsion_anatomy,C:prism,62,6,9,4,order of an explicit class,infinite
+two_torsion_anatomy,C:prism,61,6,9,4,order of an explicit class,infinite

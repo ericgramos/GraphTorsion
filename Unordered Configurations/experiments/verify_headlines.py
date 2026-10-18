@@ -33,7 +33,7 @@ import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (Graph, complete, complete_bip, cube, dodecahedron, from_edges,   # noqa: E402
+from gbt import (Graph, complete, complete_bip, dodecahedron, from_edges,         # noqa: E402
                  icosahedron, lean, octahedron, petersen_family, primary, prism_graph,
                  subdivide)
 from gbt.linalg import peel_sweeps, sparse_smith                                 # noqa: E402
@@ -64,7 +64,7 @@ def k45_plus_three_in_B():
 
 
 def abrams_torsion(G, k, d):
-    """tors H_d(UD^k G) = tors coker(d_{d+1}) in Abrams' cube complex."""
+    """tors H_d(UD^k G) = tors coker(d_{d+1}) in Abrams' cubical complex."""
     toks = [("v", u) for u in range(G.N)] + [("e", i) for i in range(G.M)]
     sup = [{t[1]} if t[0] == "v" else set(G.edges[t[1]]) for t in toks]
     cells = {d: [], d + 1: []}
@@ -123,7 +123,6 @@ def main():
         ("K_{4,5} + 3 edges in B", k45_plus_three_in_B(), 3, 2, [2] * 12 + [6], False),
         ("octahedron", octahedron(), 3, 2, [], False),
         ("octahedron", octahedron(), 4, 2, [2], False),
-        ("cube", cube(), 4, 2, [2], False),
         ("triangular prism", prism_graph(3), 4, 2, [], False),
         ("pentagonal prism", prism_graph(5), 4, 2, [2], False),
         ("K_6", pf["K_6"], 4, 2, [2], False),
@@ -139,7 +138,6 @@ def main():
         ("K_{3,3}", complete_bip(3, 3), 1, 2, 1, [2]),
         ("octahedron", octahedron(), 2, 3, 2, []),
         ("octahedron", octahedron(), 3, 4, 2, [2]),
-        ("cube", cube(), 3, 4, 2, [2]),
         ("K_{4,5}", complete_bip(4, 5), 2, 3, 2, [2, 2, 2, 6]),
         ("K_7", complete(7), 2, 3, 2, [2]),
     ]

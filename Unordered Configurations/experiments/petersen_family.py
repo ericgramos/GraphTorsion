@@ -17,7 +17,7 @@ What the data show (data/petersen_family.json):
 
     * at k = 3 all seven members have torsion-free H_2;
     * at k = 4 all seven members have exactly Z/2 in H_2;
-    * but linklessly embeddable graphs -- the planar octahedron and cube at k = 4, and the
+    * but linklessly embeddable graphs -- the planar octahedron at k = 4, and the
       apex graph apex(planar8) already at k = 3 -- also carry H_2 torsion.
 
 So "has H_2 torsion" does not characterise intrinsic linking at any fixed k: at k = 3 it

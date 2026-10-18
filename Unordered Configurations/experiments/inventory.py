@@ -22,9 +22,9 @@ It then prints a summary: records, distinct graphs and distinct (graph, k) pairs
 many carry torsion in some H_i with i >= 2, how many carry a summand other than Z/2, and the same
 restricted to planar graphs.  The numbers printed when this file was last run were
 
-    2,908 records, 1,069 distinct graphs, 2,479 distinct (graph, k) pairs, k from 2 to 12;
-    183 graphs with torsion in some H_i, i >= 2;   11 graphs with a summand other than Z/2;
-    804 planar graphs, 27 of them with torsion in some H_i, i >= 2, and none with a summand
+    2,892 records, 1,068 distinct graphs, 2,475 distinct (graph, k) pairs, k from 2 to 12;
+    182 graphs with torsion in some H_i, i >= 2;   11 graphs with a summand other than Z/2;
+    803 planar graphs, 26 of them with torsion in some H_i, i >= 2, and none with a summand
     other than Z/2.
 
 One record (the theta-graph generator of two_torsion_anatomy.py) has no single graph attached
@@ -59,9 +59,8 @@ import networkx as nx                                                           
 
 warnings.filterwarnings("ignore", message="The hashes produced")
 
-from gbt import (Graph, antiprism, complete, complete_bip, cube, disjoint_union,  # noqa: E402
-                 dodecahedron, from_networkx, icosahedron, octahedron, petersen_family,
-                 prism, prism_graph, tetrahedron)
+from gbt import (Graph, antiprism, complete, complete_bip, from_networkx,         # noqa: E402
+                 octahedron, petersen_family, platonic_solids, prism, prism_graph)
 from gbt.chain import primary                                                     # noqa: E402
 
 
@@ -116,15 +115,11 @@ def registry():
     for name, E, _ in load_experiment("density_interpolation").cases():
         reg[("density_interpolation", name)] = from_networkx(nx.Graph(E))
     hd = load_experiment("higher_degree_torsion")
-    c3 = Graph(3, [(0, 1), (1, 2), (0, 2)])
-    reg.update({("higher_degree_torsion", "cube"): cube(),
-                ("higher_degree_torsion", "octahedron"): octahedron(),
-                ("higher_degree_torsion", "cube + C_3"): disjoint_union(cube(), c3),
+    reg.update({("higher_degree_torsion", "octahedron"): octahedron(),
                 ("higher_degree_torsion", "octahedron + 1 x C_3"): hd.octahedron_plus_triangles(1),
                 ("higher_degree_torsion", "octahedron + 2 x C_3"): hd.octahedron_plus_triangles(2),
                 ("higher_degree_torsion", "oct-C_3 joined"): hd.octahedron_triangle_joined()})
-    solids = {"tetrahedron": tetrahedron(), "cube": cube(), "octahedron": octahedron(),
-              "dodecahedron": dodecahedron(), "icosahedron": icosahedron()}
+    solids = dict(platonic_solids())
     for n in range(3, 7):
         solids["prism_%d" % n] = prism_graph(n)
         solids["antiprism_%d" % n] = antiprism(n)
@@ -134,7 +129,6 @@ def registry():
                 ("two_torsion_anatomy", "K_5"): complete(5),
                 ("two_torsion_anatomy", "K_{3,3}"): complete_bip(3, 3),
                 ("two_torsion_anatomy", "octahedron"): octahedron(),
-                ("two_torsion_anatomy", "cube"): cube(),
                 ("two_torsion_anatomy", "prism"): prism()})
     return reg
 
@@ -181,7 +175,7 @@ def collect():
     for key, v in data("genuine_higher_torsion").items():
         if key.startswith("deep"):
             _, g, k, d = key.split("|")
-            G = {"cube": cube(), "octahedron": octahedron(), "antiprism_4": antiprism(4)}[g]
+            G = {"octahedron": octahedron(), "antiprism_4": antiprism(4)}[g]
             add("genuine_higher_torsion", g, G, k, "tors H_%s" % d, tors_str(v["torsion"]))
         else:
             G = Graph(v["N"], [tuple(e) for e in v["edgelist"]])

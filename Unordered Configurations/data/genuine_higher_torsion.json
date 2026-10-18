@@ -6576,27 +6576,6 @@
   "k": 6,
   "torsion": []
  },
- "deep|cube|6|4": {
-  "M": 12,
-  "N": 8,
-  "degree": 4,
-  "k": 6,
-  "torsion": []
- },
- "deep|cube|7|3": {
-  "M": 12,
-  "N": 8,
-  "degree": 3,
-  "k": 7,
-  "torsion": []
- },
- "deep|cube|7|4": {
-  "M": 12,
-  "N": 8,
-  "degree": 4,
-  "k": 7,
-  "torsion": []
- },
  "deep|octahedron|6|4": {
   "M": 12,
   "N": 6,

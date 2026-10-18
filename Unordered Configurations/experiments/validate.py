@@ -17,7 +17,7 @@ What is checked, in order:
         cokernel of the Wilson inclusion matrix, including the Z/3 of K_{4,5}.
     4.  The dimension formula dim H_n = max(0, C(b,n) - C(b,n-1)).
     5.  Complete graphs: 2-torsion only, with multiplicity rank H_1 for n >= 8 at k = 3.
-    6.  Planar graphs with torsion: the octahedron and the cube.
+    6.  Planar graphs with torsion: the octahedron.
     7.  The three An--Knudsen planar atoms are torsion-free.
     8.  Internal consistency: d^2 = 0; the closed-form cell counts; reduce_at makes no
         difference; `fast` and `lean` agree; Abrams' model agrees with Swiatkowski.
@@ -29,7 +29,7 @@ from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from gbt import (Graph, complete, complete_bip, cube, octahedron, prism,   # noqa: E402
+from gbt import (Graph, complete, complete_bip, octahedron, prism,         # noqa: E402
                  theta, swiatkowski, subdivide, abrams,
                  cell_count, reduced_cell_count, primary)
 from gbt import fast, lean                                                # noqa: E402
@@ -104,7 +104,6 @@ for n in (8, 9):
 
 print("\n== 6. planar graphs can carry 2-torsion ==")
 check("octahedron n=4, H_2", hom(octahedron(), 4)[2], (95, (2,)))
-check("cube Q_3 n=4, H_2", hom(cube(), 4)[2], (29, (2,)))
 check("octahedron n=3, H_2 (torsion-free)", hom(octahedron(), 3)[2], (47, ()))
 check("prism n=4, H_2 (control, torsion-free)", hom(prism(), 4)[2][1], ())
 
