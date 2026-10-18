@@ -1,0 +1,66 @@
+group order 20 (labels 20 x automorphisms 1); bases: 0 1 5 14
+  [enum2] deg 0: shapes 5005, A-canonical 5005, orbit cells 180180
+deg 0: 180180 cells
+  [enum2] deg 1: shapes 32032, A-canonical 32032, orbit cells 1153152
+deg 1: matrix built, eliminating
+  [elim] pivots=139840 rowNNZ=1997614 colrowsEntries=2137723 liveCols=40340 pq=120020 cnt=22
+  [dense] switching: pivots=161335 liveCols=18845 colcnt=48
+  [z9] m=18845, basis memory <= 0.18 GB
+  [z9] 200000 rows, basis 18641, leftover span 0
+  [z9] 400000 rows, basis 18641, leftover span 0
+  [z9] 600000 rows, basis 18845, leftover span 0
+  [z9] 800000 rows, basis 18845, leftover span 0
+  [z9] stage 0 done: basis 18845, leftover span 0
+  [z9] stage 1 (Z/3 summands): 0
+deg 1: 1153152 cells
+  [enum2] deg 2: shapes 66495, A-canonical 66495, orbit cells 2393820
+deg 2: matrix built, eliminating
+  [elim] pivots=183369 rowNNZ=7809317 colrowsEntries=8083457 liveCols=789603 pq=1047937 cnt=5
+  [elim] pivots=336027 rowNNZ=7661759 colrowsEntries=8133986 liveCols=636945 pq=1050894 cnt=6
+  [elim] pivots=453651 rowNNZ=7572539 colrowsEntries=8187501 liveCols=519321 pq=1001730 cnt=8
+  [elim] pivots=556074 rowNNZ=7513560 colrowsEntries=8230588 liveCols=416898 pq=928677 cnt=10
+  [elim] pivots=639776 rowNNZ=7466012 colrowsEntries=8258792 liveCols=333196 pq=828588 cnt=12
+  [elim] pivots=713007 rowNNZ=7461222 colrowsEntries=8312890 liveCols=259965 pq=717812 cnt=14
+  [elim] pivots=771110 rowNNZ=7474355 colrowsEntries=8347321 liveCols=201862 pq=590414 cnt=18
+  [elim] pivots=817303 rowNNZ=7572715 colrowsEntries=8458500 liveCols=155669 pq=453555 cnt=24
+  [elim] pivots=861885 rowNNZ=7780381 colrowsEntries=8706754 liveCols=111087 pq=320108 cnt=35
+  [elim] pivots=908710 rowNNZ=8271494 colrowsEntries=9305465 liveCols=64262 pq=194953 cnt=63
+  [dense] switching: pivots=944803 liveCols=28169 colcnt=162
+  [z9] m=28169, basis memory <= 0.40 GB
+  [z9] 200000 rows, basis 27841, leftover span 3
+  [z9] 400000 rows, basis 27851, leftover span 3
+  [z9] 600000 rows, basis 27928, leftover span 3
+  [z9] 800000 rows, basis 28139, leftover span 3
+  [z9] 1000000 rows, basis 28163, leftover span 3
+  [z9] 1200000 rows, basis 28163, leftover span 3
+  [z9] stage 0 done: basis 28163, leftover span 3
+  [z9] stage 1 (Z/3 summands): 0
+deg 2: 2393820 cells
+  [enum2] deg 3: shapes 50600, A-canonical 50600, orbit cells 1821600
+deg 3: matrix built, eliminating
+  [elim] pivots=191447 rowNNZ=5897349 colrowsEntries=6147328 liveCols=1214167 pq=1623510 cnt=2
+  [elim] pivots=336549 rowNNZ=5603717 colrowsEntries=6050110 liveCols=1069008 pq=1681559 cnt=2
+  [elim] pivots=466011 rowNNZ=5382934 colrowsEntries=6036316 liveCols=939491 pq=1739873 cnt=3
+  [elim] pivots=590389 rowNNZ=5161876 colrowsEntries=5920815 liveCols=815013 pq=1707331 cnt=3
+  [elim] pivots=693044 rowNNZ=5040125 colrowsEntries=5922746 liveCols=712320 pq=1682970 cnt=4
+  [elim] pivots=781006 rowNNZ=4916608 colrowsEntries=5878394 liveCols=624229 pq=1607447 cnt=4
+  [elim] pivots=849720 rowNNZ=4893617 colrowsEntries=5920671 liveCols=555462 pq=1532605 cnt=5
+  [elim] pivots=913505 rowNNZ=4833616 colrowsEntries=5902720 liveCols=491496 pq=1432614 cnt=5
+  [elim] pivots=962159 rowNNZ=4824333 colrowsEntries=5929361 liveCols=442708 pq=1326746 cnt=6
+  [elim] pivots=1013216 rowNNZ=4803663 colrowsEntries=5949191 liveCols=391535 pq=1217280 cnt=7
+  [elim] pivots=1064020 rowNNZ=4768148 colrowsEntries=5953594 liveCols=340671 pq=1100127 cnt=8
+  [elim] pivots=1110565 rowNNZ=4761910 colrowsEntries=6003037 liveCols=294055 pq=986778 cnt=9
+  [elim] pivots=1149960 rowNNZ=4768770 colrowsEntries=6050724 liveCols=254538 pq=862205 cnt=10
+  [elim] pivots=1189441 rowNNZ=4811524 colrowsEntries=6148735 liveCols=214869 pq=748184 cnt=12
+  [elim] pivots=1224182 rowNNZ=4846673 colrowsEntries=6229197 liveCols=180050 pq=620568 cnt=14
+  [elim] pivots=1262419 rowNNZ=5014419 colrowsEntries=6479907 liveCols=141588 pq=515112 cnt=18
+  [elim] pivots=1295422 rowNNZ=5357686 colrowsEntries=6953517 liveCols=108292 pq=411492 cnt=24
+  [elim] pivots=1326346 rowNNZ=6090187 colrowsEntries=7957109 liveCols=77046 pq=327353 cnt=36
+  [elim] pivots=1352256 rowNNZ=7757065 colrowsEntries=10343520 liveCols=50854 pq=282508 cnt=65
+  [elim] pivots=1369457 rowNNZ=11737728 colrowsEntries=16299968 liveCols=33365 pq=295930 cnt=135
+  [dense] switching: pivots=1374718 liveCols=28007 colcnt=201
+  [z9] m=28007, basis memory <= 0.39 GB
+  [z9] 200000 rows, basis 23986, leftover span 478
+  [z9] stage 0 done: basis 23987, leftover span 478
+  [z9] stage 1 (Z/3 summands): 0
+deg 3: 1821600 cells

@@ -1,0 +1,27 @@
+group order 640 (labels 20 x automorphisms 32); bases: 24 1 25 6 26
+  [enum2] deg 0: shapes 74613, A-canonical 13512, orbit cells 424284
+deg 0: 424284 cells
+  [enum2] deg 1: shapes 590121, A-canonical 94408, orbit cells 3100650
+deg 1: matrix built, eliminating
+  [elim] pivots=174752 rowNNZ=5851030 colrowsEntries=6024826 liveCols=249532 pq=399010 cnt=13
+  [elim] pivots=295096 rowNNZ=5592258 colrowsEntries=5883160 liveCols=129188 pq=319067 cnt=21
+  [elim] pivots=358354 rowNNZ=5244163 colrowsEntries=5572459 liveCols=65930 pq=177856 cnt=42
+  [dense] switching: pivots=366386 liveCols=57898 colcnt=48
+  [z9] m=57898, basis memory <= 1.68 GB
+  [z9] 200000 rows, basis 56148, leftover 0
+  [z9] 400000 rows, basis 57865, leftover 0
+  [z9] 600000 rows, basis 57865, leftover 0
+  [z9] 800000 rows, basis 57865, leftover 0
+  [z9] 1000000 rows, basis 57865, leftover 0
+  [z9] 1200000 rows, basis 57865, leftover 0
+  [z9] 1400000 rows, basis 57865, leftover 0
+  [z9] 1600000 rows, basis 57865, leftover 0
+  [z9] 1800000 rows, basis 57865, leftover 0
+  [z9] 2000000 rows, basis 57898, leftover 0
+  [z9] 2200000 rows, basis 57898, leftover 0
+  [z9] 2400000 rows, basis 57898, leftover 0
+  [z9] 2600000 rows, basis 57898, leftover 0
+  [z9] stage 0 done: basis 57898, leftover rows 0
+  [z9] stage 1 (Z/3 summands): 0
+deg 1: 3100650 cells
+  [enum2] deg 2: shapes 1603695, A-canonical 231003, orbit cells 7842810

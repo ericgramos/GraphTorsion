@@ -1,0 +1,11 @@
+K5 n=2: Swiatkowski betti=[1, 12, 1] torsion=[[], [], []] chi=ok | Abrams betti=[1, 12, 1] torsion=[[], [], []] | agree=True (0.0s)
+K33 n=2: Swiatkowski betti=[1, 8, 1] torsion=[[], [], []] chi=ok | Abrams betti=[1, 8, 1] torsion=[[], [], []] | agree=True (0.0s)
+K4 n=2: Swiatkowski betti=[1, 7, 0] torsion=[[], [], []] chi=ok | Abrams betti=[1, 7, 0] torsion=[[], [], []] | agree=True (0.0s)
+K4 n=3: Swiatkowski betti=[1, 12, 11, 0] torsion=[[], [], [], []] chi=ok | Abrams betti=[1, 12, 11, 0] torsion=[[], [], [], []] | agree=True (0.0s)
+theta3 n=3: Swiatkowski betti=[1, 13, 0] torsion=[[], [], []] chi=ok | Abrams betti=[1, 13, 0, 0] torsion=[[], [], [], []] | agree=True (0.0s)
+fig8 n=3: Swiatkowski betti=[1, 31] torsion=[[], []] chi=ok | Abrams betti=[1, 31, 0, 0] torsion=[[], [], [], []] | agree=True (0.0s)
+lollipop n=3: Swiatkowski betti=[1, 13] torsion=[[], []] chi=ok | Abrams betti=[1, 13, 0, 0] torsion=[[], [], [], []] | agree=True (0.0s)
+H n=3: Swiatkowski betti=[1, 31, 0] torsion=[[], [], []] chi=ok | Abrams betti=[1, 31, 0, 0] torsion=[[], [], [], []] | agree=True (0.0s)
+theta4 n=2: Swiatkowski betti=[1, 11, 0] torsion=[[], [], []] chi=ok | Abrams betti=[1, 11, 0] torsion=[[], [], []] | agree=True (0.0s)
+K4 n=4: Swiatkowski betti=[1, 18, 161, 0, 0] torsion=[[], [], [], [], []] chi=ok | Abrams betti=[1, 18, 161, 0, 0] torsion=[[], [], [], [], []] | agree=True (4.7s)
+ALL OK

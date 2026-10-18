@@ -1,0 +1,40 @@
+group order 80 (labels 20 x automorphisms 4); bases: 0 1 7 14
+  [enum2] deg 0: shapes 5005, A-canonical 2488, orbit cells 80226
+deg 0: 80226 cells
+  [enum2] deg 1: shapes 32032, A-canonical 14292, orbit cells 477840
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=71378 liveCols=8848 colcnt=48
+  [z9] m=8848, basis memory <= 0.04 GB
+  [z9] 200000 rows, basis 8817, leftover 0
+  [z9] stage 0 done: basis 8847, leftover rows 0
+  [z9] stage 1 (Z/3 summands): 0
+deg 1: 477840 cells
+  [enum2] deg 2: shapes 65780, A-canonical 27013, orbit cells 928292
+deg 2: matrix built, eliminating
+  [elim] pivots=162863 rowNNZ=2863116 colrowsEntries=3071613 liveCols=234752 pq=415609 cnt=7
+  [elim] pivots=255937 rowNNZ=2783862 colrowsEntries=3082846 liveCols=141678 pq=327500 cnt=11
+  [elim] pivots=320705 rowNNZ=2789841 colrowsEntries=3131815 liveCols=76910 pq=208962 cnt=18
+  [dense] switching: pivots=364573 liveCols=33042 colcnt=48
+  [z9] m=33042, basis memory <= 0.55 GB
+  [z9] 200000 rows, basis 32128, leftover 46
+  [z9] 400000 rows, basis 32968, leftover 46
+  [z9] stage 0 done: basis 33022, leftover rows 46
+  [z9] stage 1 (Z/3 summands): 0
+deg 2: 928292 cells
+  [enum2] deg 3: shapes 49280, A-canonical 19008, orbit cells 667008
+deg 3: matrix built, eliminating
+  [elim] pivots=156114 rowNNZ=1926797 colrowsEntries=2133727 liveCols=367128 pq=633025 cnt=2
+  [elim] pivots=265400 rowNNZ=1766407 colrowsEntries=2083724 liveCols=257661 pq=604654 cnt=4
+  [elim] pivots=343006 rowNNZ=1662771 colrowsEntries=2044698 liveCols=179857 pq=521683 cnt=5
+  [elim] pivots=395984 rowNNZ=1616866 colrowsEntries=2039654 liveCols=126655 pq=412495 cnt=7
+  [elim] pivots=434990 rowNNZ=1592004 colrowsEntries=2045924 liveCols=87362 pq=279129 cnt=10
+  [elim] pivots=473846 rowNNZ=1627284 colrowsEntries=2138730 liveCols=48252 pq=164745 cnt=18
+  [dense] switching: pivots=502273 liveCols=19566 colcnt=48
+  [z9] m=19566, basis memory <= 0.19 GB
+  [z9] stage 0 done: basis 18080, leftover rows 7
+  [z9] stage 1 (Z/3 summands): 0
+deg 3: 667008 cells
+  [enum2] deg 4: shapes 10560, A-canonical 3916, orbit cells 139536
+deg 4: matrix built, eliminating
+  [elim] pivots=139536 rowNNZ=0 colrowsEntries=2158 liveCols=0 pq=109511 cnt=2
+deg 4: 139536 cells

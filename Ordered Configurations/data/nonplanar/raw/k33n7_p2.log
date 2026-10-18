@@ -1,0 +1,54 @@
+group order 63 (labels 21 x automorphisms 3); bases: 0 8 16 1 9 17
+deg 0: 514800 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=475462 liveCols=39338 colcnt=66
+  [dense] m=39338 input rows=2131843, est. basis memory <= 1.55 GB
+  [dense] mod 16: 200000 rows, basis 29938, leftover 0
+  [dense] mod 16: 400000 rows, basis 35577, leftover 0
+  [dense] mod 16: 600000 rows, basis 37612, leftover 0
+  [dense] mod 16: 800000 rows, basis 39206, leftover 0
+  [dense] mod 16: 1000000 rows, basis 39331, leftover 0
+  [dense] mod 16: 1200000 rows, basis 39331, leftover 0
+  [dense] mod 16: 1400000 rows, basis 39333, leftover 0
+  [dense] mod 16: 1600000 rows, basis 39337, leftover 0
+  [dense] mod 16: 1800000 rows, basis 39337, leftover 0
+  [dense] mod 16: 2000000 rows, basis 39337, leftover 0
+  [dense] stage done: mod 16 basis 39337 leftover rows 0
+deg 1: 2882880 cells
+deg 2: matrix built, eliminating
+  [dense] switching: pivots=2328974 liveCols=39107 colcnt=165
+  [dense] m=39107 input rows=2242945, est. basis memory <= 1.53 GB
+  [dense] mod 16: 200000 rows, basis 22901, leftover 0
+  [dense] mod 16: 400000 rows, basis 27460, leftover 0
+  [dense] mod 16: 600000 rows, basis 33496, leftover 0
+  [dense] mod 16: 800000 rows, basis 37355, leftover 1619
+  [dense] mod 16: 1000000 rows, basis 39086, leftover 13574
+  [dense] mod 16: 1200000 rows, basis 39098, leftover 13574
+  [dense] mod 16: 1400000 rows, basis 39105, leftover 13574
+  [dense] mod 16: 1600000 rows, basis 39105, leftover 13574
+  [dense] mod 16: 1800000 rows, basis 39105, leftover 13574
+  [dense] mod 16: 2000000 rows, basis 39105, leftover 13574
+  [dense] mod 16: 2200000 rows, basis 39105, leftover 13574
+  [dense] stage done: mod 16 basis 39105 leftover rows 13574
+deg 2: 6177600 cells
+deg 3: matrix built, eliminating
+  [dense] switching: pivots=3768705 liveCols=39808 colcnt=704
+  [dense] m=39808 input rows=1208224, est. basis memory <= 1.58 GB
+  [dense] mod 16: 200000 rows, basis 19438, leftover 0
+  [dense] mod 16: 400000 rows, basis 34193, leftover 0
+  [dense] mod 16: 600000 rows, basis 38295, leftover 0
+  [dense] mod 16: 800000 rows, basis 38760, leftover 0
+  [dense] mod 16: 1000000 rows, basis 38849, leftover 0
+  [dense] mod 16: 1200000 rows, basis 38865, leftover 0
+  [dense] stage done: mod 16 basis 38865 leftover rows 0
+deg 3: 6336000 cells
+deg 4: matrix built, eliminating
+  [dense] switching: pivots=2494136 liveCols=29010 colcnt=48
+  [dense] m=29010 input rows=324327, est. basis memory <= 0.84 GB
+  [dense] mod 16: 200000 rows, basis 28119, leftover 0
+  [dense] stage done: mod 16 basis 28744 leftover rows 0
+deg 4: 3168000 cells
+deg 5: matrix built, eliminating
+deg 5: 691200 cells
+deg 6: matrix built, eliminating
+deg 6: 46080 cells

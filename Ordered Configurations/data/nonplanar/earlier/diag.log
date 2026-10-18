@@ -1,0 +1,51 @@
+group order 5
+deg 0: 720720 cells
+deg 1: matrix built, eliminating
+  [elim] pivots=200000 liveRows=3836032 rowNNZ=7657184 (2.0/row) colrowsEntries=7859944
+  [elim] pivots=400000 liveRows=3636032 rowNNZ=7231552 (2.0/row) colrowsEntries=7633424
+  [elim] pivots=600000 liveRows=3436032 rowNNZ=6753792 (2.0/row) colrowsEntries=7236024
+deg 1: 4036032 cells
+deg 2: matrix built, eliminating
+  [elim] pivots=200000 liveRows=8139760 rowNNZ=27116784 (3.3/row) colrowsEntries=27362563
+  [elim] pivots=400000 liveRows=7939760 rowNNZ=26818587 (3.4/row) colrowsEntries=27299366
+  [elim] pivots=600000 liveRows=7739760 rowNNZ=26568406 (3.4/row) colrowsEntries=27281581
+  [elim] pivots=800000 liveRows=7539760 rowNNZ=26295529 (3.5/row) colrowsEntries=27238090
+  [elim] pivots=1000000 liveRows=7339760 rowNNZ=25935861 (3.5/row) colrowsEntries=27092237
+  [elim] pivots=1200000 liveRows=7139760 rowNNZ=25676749 (3.6/row) colrowsEntries=27044388
+  [elim] pivots=1400000 liveRows=6939760 rowNNZ=25328875 (3.6/row) colrowsEntries=26912271
+  [elim] pivots=1600000 liveRows=6739760 rowNNZ=25015392 (3.7/row) colrowsEntries=26784247
+  [elim] pivots=1800000 liveRows=6539760 rowNNZ=24696761 (3.8/row) colrowsEntries=26667186
+  [elim] pivots=2000000 liveRows=6339760 rowNNZ=24310816 (3.8/row) colrowsEntries=26448726
+  [elim] pivots=2200000 liveRows=6139760 rowNNZ=23942574 (3.9/row) colrowsEntries=26234227
+  [elim] pivots=2400000 liveRows=5939760 rowNNZ=23494773 (4.0/row) colrowsEntries=25885711
+  [elim] pivots=2600000 liveRows=5739760 rowNNZ=23017661 (4.0/row) colrowsEntries=25436493
+  [elim] pivots=2800000 liveRows=5539760 rowNNZ=22610163 (4.1/row) colrowsEntries=25067256
+  [elim] pivots=3000000 liveRows=5339760 rowNNZ=22187090 (4.2/row) colrowsEntries=24723531
+  [elim] pivots=3200000 liveRows=5139760 rowNNZ=21890404 (4.3/row) colrowsEntries=24773347
+deg 2: 8339760 cells
+deg 3: matrix built, eliminating
+  [elim] pivots=200000 liveRows=7656640 rowNNZ=28277657 (3.7/row) colrowsEntries=28554525
+  [elim] pivots=400000 liveRows=7456640 rowNNZ=27920134 (3.7/row) colrowsEntries=28471498
+  [elim] pivots=600000 liveRows=7256640 rowNNZ=27562704 (3.8/row) colrowsEntries=28331703
+  [elim] pivots=800000 liveRows=7056640 rowNNZ=27311569 (3.9/row) colrowsEntries=28332249
+  [elim] pivots=1000000 liveRows=6856640 rowNNZ=26921008 (3.9/row) colrowsEntries=28113342
+  [elim] pivots=1200000 liveRows=6656640 rowNNZ=26594965 (4.0/row) colrowsEntries=28021527
+  [elim] pivots=1400000 liveRows=6456640 rowNNZ=26258924 (4.1/row) colrowsEntries=27884252
+  [elim] pivots=1600000 liveRows=6256640 rowNNZ=25968031 (4.2/row) colrowsEntries=27801031
+  [elim] pivots=1800000 liveRows=6056640 rowNNZ=25606605 (4.2/row) colrowsEntries=27626903
+  [elim] pivots=2000000 liveRows=5856640 rowNNZ=25221863 (4.3/row) colrowsEntries=27433802
+  [elim] pivots=2200000 liveRows=5656640 rowNNZ=25015377 (4.4/row) colrowsEntries=27447349
+  [elim] pivots=2400000 liveRows=5456640 rowNNZ=24506122 (4.5/row) colrowsEntries=27076328
+  [elim] pivots=2600000 liveRows=5256640 rowNNZ=24147689 (4.6/row) colrowsEntries=26945588
+  [elim] pivots=2800000 liveRows=5056640 rowNNZ=23838124 (4.7/row) colrowsEntries=26815013
+  [elim] pivots=3000000 liveRows=4856640 rowNNZ=23432501 (4.8/row) colrowsEntries=26575288
+  [elim] pivots=3200000 liveRows=4656640 rowNNZ=23007306 (4.9/row) colrowsEntries=26317278
+  [elim] pivots=3400000 liveRows=4456640 rowNNZ=22494692 (5.0/row) colrowsEntries=25949715
+  [elim] pivots=3600000 liveRows=4256640 rowNNZ=22083756 (5.2/row) colrowsEntries=25668856
+  [elim] pivots=3800000 liveRows=4056640 rowNNZ=21538649 (5.3/row) colrowsEntries=25219870
+  [elim] pivots=4000000 liveRows=3856640 rowNNZ=21017360 (5.4/row) colrowsEntries=24779768
+  [elim] pivots=4200000 liveRows=3656640 rowNNZ=20596828 (5.6/row) colrowsEntries=24511834
+  [elim] pivots=4400000 liveRows=3456640 rowNNZ=20072166 (5.8/row) colrowsEntries=24154660
+  [elim] pivots=4600000 liveRows=3256640 rowNNZ=19810581 (6.1/row) colrowsEntries=24228694
+  [elim] pivots=4800000 liveRows=3056640 rowNNZ=19977846 (6.5/row) colrowsEntries=25013540
+  [elim] pivots=5000000 liveRows=2856640 rowNNZ=59435919 (20.8/row) colrowsEntries=89609462

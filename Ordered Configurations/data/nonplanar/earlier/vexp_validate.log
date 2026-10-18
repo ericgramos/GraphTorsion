@@ -1,0 +1,12 @@
+T(2,2,2)       n=6 p=2 v=0 H_1: direct [] | vexp []  OK
+T(2,2,2)       n=6 p=2 v=0 H_2: direct [2, 2] | vexp [2, 2]  OK
+T(2,2,2)       n=6 p=2 v=2 H_1: direct [] | vexp []  OK
+T(2,2,2)       n=6 p=2 v=2 H_2: direct [2, 2] | vexp [2, 2]  OK
+Traceback (most recent call last):
+  File "/home/claude/gconf/vexp_validate.py", line 32, in <module>
+    vr, vt = vexp(g, n, v, k, p, K)
+             ~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/claude/gconf/vexp_validate.py", line 16, in vexp
+    d = json.loads(out.stdout.strip().splitlines()[-1])
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^
+IndexError: list index out of range

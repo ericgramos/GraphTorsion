@@ -1,0 +1,6 @@
+{"case": "tripled C4", "n": 5, "p": 3, "direct": {"H2_torsion": [3, 3, 3], "secs": 133, "peak_MB": 1310}}
+{"case": "tripled C4", "v": 0, "vexp": {"H2_torsion": [3, 3, 3], "secs": 204, "peak_MB": 1092}, "log": ["[34.4s] n-1 side: |C_k|=140400 |Pi|=36000 cycle reps=9168 (nnz 1396736) hypothesis ok", "[93.6s] n side: |C_{k+1}|=1170000 |C_k|=3276000 dropped=1908232 Delta rows=229200"]}
+{"case": "doubled K4", "n": 5, "p": 2, "direct": {"H2_torsion": [2, 2, 2, 2, 2, 2, 2, 2, 4], "secs": 262, "peak_MB": 1466}}
+{"case": "doubled K4", "v": 0, "vexp": {"H2_torsion": "FAILED rc=-9", "secs": 1892, "peak_MB": 5925}, "log": ["[35.9s] n-1 side: |C_k|=140400 |Pi|=36000 cycle reps=8293 (nnz 4415380) hypothesis ok", "[186.2s] n side: |C_{k+1}|=1170000 |C_k|=3276000 dropped=1918121 Delta rows=207325"]}
+{"case": "T(2,2,3)", "n": 6, "p": 2, "direct": {"H2_torsion": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], "secs": 1510, "peak_MB": 2639}}
+{"case": "T(2,2,3)", "v": 2, "vexp": {"H2_torsion": "FAILED rc=-9", "secs": 507, "peak_MB": 5953}, "log": ["[64.2s] n-1 side: |C_k|=120960 |Pi|=0 cycle reps=10960 (nnz 5233756) hypothesis ok", "[192.6s] n side: |C_{k+1}|=0 |C_k|=1814400 dropped=1566160 Delta rows=263040"]}

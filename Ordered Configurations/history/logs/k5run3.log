@@ -1,0 +1,16 @@
+FAILED [[0, 1], [0, 2], [1, 3], [2, 3]] 2 True -9 peak 5895
+FAILED [[0, 1], [0, 2], [1, 3], [2, 4]] 2 True -9 peak 5952
+{'doubled': [], 'mode': 'full', 'prime': 3, 'cells': [240240, 1287000, 2376000, 1782000], 'ranks': [240239, 1046731, 1317599], 'secs': 39, 'peak_mb': 478, 'transpose': False}
+{'doubled': [[0, 1]], 'mode': 'full', 'prime': 3, 'cells': [360360, 2042040, 3946800, 3065040], 'ranks': [360359, 1681626, 2243854], 'secs': 96, 'peak_mb': 999, 'transpose': False}
+{'doubled': [[0, 1], [0, 2]], 'mode': 'full', 'prime': 3, 'cells': [524160, 3112200, 6246240, 4988880], 'ranks': [524159, 2587961, 3622749], 'secs': 192, 'peak_mb': 1841, 'transpose': False}
+{'doubled': [[0, 1], [2, 3]], 'mode': 'full', 'prime': 3, 'cells': [524160, 3112200, 6289920, 5091840], 'ranks': [524159, 2587961, 3669529], 'secs': 189, 'peak_mb': 1849, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [1, 2]], 'mode': 'Z5', 'prime': 3, 'cells': [148512, 917280, 1900080, 1550640], 'ranks': [148511, 768748, 1120016], 'secs': 235, 'peak_mb': 2459, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [0, 3]], 'mode': 'Z5', 'prime': 3, 'cells': [148512, 917280, 1900080, 1555008], 'ranks': [148511, 768748, 1120472], 'secs': 196, 'peak_mb': 1899, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [1, 3]], 'mode': 'Z5', 'prime': 3, 'cells': [148512, 917280, 1911000, 1579032], 'ranks': [148511, 768748, 1131880], 'secs': 279, 'peak_mb': 3327, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [3, 4]], 'mode': 'Z5', 'prime': 3, 'cells': [148512, 917280, 1921920, 1607424], 'ranks': [148511, 768748, 1143552], 'secs': 235, 'peak_mb': 2595, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [0, 3], [0, 4]], 'mode': 'Z5', 'prime': 3, 'cells': [205632, 1313760, 2795520, 2338560], 'ranks': [205631, 1108103, 1671891], 'secs': 420, 'peak_mb': 4155, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [0, 3], [1, 2]], 'mode': 'Z5', 'prime': 3, 'cells': [205632, 1313760, 2808960, 2361240], 'ranks': [205631, 1108103, 1685231], 'secs': 479, 'peak_mb': 4176, 'transpose': False}
+FAILED [[0, 1], [0, 2], [1, 3], [2, 3]] 3 False -9 peak 5961
+{'doubled': [[0, 1], [0, 2], [0, 3], [1, 4]], 'mode': 'Z5', 'prime': 3, 'cells': [205632, 1313760, 2822400, 2399040], 'ranks': [205631, 1108103, 1699747], 'secs': 562, 'peak_mb': 5828, 'transpose': False}
+{'doubled': [[0, 1], [0, 2], [1, 2], [3, 4]], 'mode': 'Z5', 'prime': 3, 'cells': [205632, 1313760, 2835840, 2431800], 'ranks': [205631, 1108103, 1713615], 'secs': 524, 'peak_mb': 5533, 'transpose': False}
+FAILED [[0, 1], [0, 2], [1, 3], [2, 4]] 3 False -9 peak 5941

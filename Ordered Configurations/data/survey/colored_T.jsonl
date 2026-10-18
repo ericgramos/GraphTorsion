@@ -1,0 +1,14 @@
+{"abc": [2, 2, 2], "colors": "abcdef", "betti": [1, 119, 71848, 11250], "torsion": [[], [], [2, 2], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aabcde", "betti": [1, 83, 36172, 5850], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aabbcd", "betti": [1, 56, 18220, 3045], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aabbcc", "betti": [1, 37, 9183, 1587], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaabcd", "betti": [1, 53, 12232, 2100], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaabbc", "betti": [1, 34, 6168, 1095], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaabbb", "betti": [1, 19, 2093, 395], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaaabc", "betti": [1, 31, 3135, 585], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaaabb", "betti": [1, 19, 1584, 306], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaaaab", "betti": [1, 16, 654, 135], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [2, 2, 2], "colors": "aaaaaa", "betti": [1, 7, 117, 27], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [1, 3, 3], "colors": "aabcde", "betti": [1, 141, 113029, 22169], "torsion": [[], [], [3], []], "chi_ok": true}
+{"abc": [1, 3, 3], "colors": "aabbcd", "betti": [1, 98, 56865, 11408], "torsion": [[], [], [], []], "chi_ok": true}
+{"abc": [1, 3, 3], "colors": "aabbcc", "betti": [1, 66, 28617, 5872], "torsion": [[], [], [], []], "chi_ok": true}

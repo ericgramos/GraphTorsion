@@ -1,0 +1,147 @@
+group order 80 (labels 20 x automorphisms 4); bases: 0 1 3 5 7
+  [enum2] deg 0: shapes 18564, A-canonical 10212, orbit cells 338514
+deg 0: 338514 cells
+  [enum2] deg 1: shapes 129948, A-canonical 65880, orbit cells 2239754
+deg 1: matrix built, eliminating
+  [elim] pivots=164308 rowNNZ=4139504 colrowsEntries=4305471 liveCols=174206 pq=302822 cnt=14
+  [elim] pivots=272550 rowNNZ=3874556 colrowsEntries=4141890 liveCols=65964 pq=211064 cnt=25
+  [dense] switching: pivots=310009 liveCols=28505 colcnt=62
+  [z9] m=28505, basis memory <= 0.41 GB
+  [z9] 200000 rows, basis 28440, leftover span 0
+  [z9] 400000 rows, basis 28504, leftover span 0
+  [z9] 600000 rows, basis 28504, leftover span 0
+  [z9] 800000 rows, basis 28504, leftover span 0
+  [z9] 1000000 rows, basis 28504, leftover span 0
+  [z9] 1200000 rows, basis 28504, leftover span 0
+  [z9] 1400000 rows, basis 28504, leftover span 0
+  [z9] 1600000 rows, basis 28504, leftover span 0
+  [z9] 1800000 rows, basis 28504, leftover span 0
+  [z9] stage 0 done: basis 28504, leftover span 0
+  [z9] stage 1 (Z/3 summands): 0
+deg 1: 2239754 cells
+  [enum2] deg 2: shapes 311220, A-canonical 147996, orbit cells 5135926
+deg 2: matrix built, eliminating
+  [elim] pivots=184031 rowNNZ=17266158 colrowsEntries=17541673 liveCols=1717210 pq=1981032 cnt=5
+  [elim] pivots=353815 rowNNZ=17108010 colrowsEntries=17607142 liveCols=1547426 pq=2009119 cnt=6
+  [elim] pivots=507381 rowNNZ=17005816 colrowsEntries=17704365 liveCols=1393860 pq=2012885 cnt=7
+  [elim] pivots=655127 rowNNZ=16936829 colrowsEntries=17825612 liveCols=1246114 pq=2006135 cnt=8
+  [elim] pivots=798092 rowNNZ=16850900 colrowsEntries=17911453 liveCols=1103149 pq=1984189 cnt=9
+  [elim] pivots=921611 rowNNZ=16790602 colrowsEntries=17996360 liveCols=979630 pq=1937651 cnt=10
+  [elim] pivots=1030900 rowNNZ=16759275 colrowsEntries=18084026 liveCols=870341 pq=1873095 cnt=11
+  [elim] pivots=1125614 rowNNZ=16719707 colrowsEntries=18146738 liveCols=775627 pq=1787190 cnt=12
+  [elim] pivots=1210621 rowNNZ=16697814 colrowsEntries=18208716 liveCols=690620 pq=1689991 cnt=13
+  [elim] pivots=1287092 rowNNZ=16658897 colrowsEntries=18238821 liveCols=614149 pq=1580043 cnt=14
+  [elim] pivots=1368747 rowNNZ=16603264 colrowsEntries=18250535 liveCols=532494 pq=1473656 cnt=15
+  [elim] pivots=1429396 rowNNZ=16601433 colrowsEntries=18294060 liveCols=471845 pq=1347220 cnt=17
+  [elim] pivots=1494743 rowNNZ=16607706 colrowsEntries=18332315 liveCols=406498 pq=1225662 cnt=19
+  [elim] pivots=1552370 rowNNZ=16679352 colrowsEntries=18422984 liveCols=348871 pq=1099751 cnt=22
+  [elim] pivots=1601497 rowNNZ=16778640 colrowsEntries=18534012 liveCols=299744 pq=963945 cnt=26
+  [elim] pivots=1645214 rowNNZ=16934901 colrowsEntries=18692348 liveCols=256027 pq=822261 cnt=32
+  [elim] pivots=1686253 rowNNZ=17117734 colrowsEntries=18893844 liveCols=214988 pq=679656 cnt=39
+  [elim] pivots=1723996 rowNNZ=17349500 colrowsEntries=19146367 liveCols=177245 pq=533115 cnt=49
+  [elim] pivots=1761051 rowNNZ=17859671 colrowsEntries=19731425 liveCols=140190 pq=391867 cnt=65
+  [elim] pivots=1803514 rowNNZ=18861779 colrowsEntries=20843354 liveCols=97727 pq=260557 cnt=99
+  [elim] pivots=1850100 rowNNZ=21210734 colrowsEntries=23520315 liveCols=51141 pq=139533 cnt=208
+  [dense] switching: pivots=1872371 liveCols=28870 colcnt=427
+  [z9] m=28870, basis memory <= 0.42 GB
+  [z9] 200000 rows, basis 27852, leftover span 6
+  [z9] 400000 rows, basis 28801, leftover span 6
+  [z9] 600000 rows, basis 28802, leftover span 6
+  [z9] 800000 rows, basis 28814, leftover span 6
+  [z9] 1000000 rows, basis 28814, leftover span 6
+  [z9] 1200000 rows, basis 28814, leftover span 6
+  [z9] 1400000 rows, basis 28818, leftover span 6
+  [z9] 1600000 rows, basis 28825, leftover span 6
+  [z9] 1800000 rows, basis 28830, leftover span 6
+  [z9] 2000000 rows, basis 28845, leftover span 6
+  [z9] 2200000 rows, basis 28846, leftover span 6
+  [z9] 2400000 rows, basis 28846, leftover span 6
+  [z9] 2600000 rows, basis 28846, leftover span 6
+  [z9] stage 0 done: basis 28846, leftover span 6
+  [z9] stage 1 (Z/3 summands): 0
+deg 2: 5135926 cells
+  [enum2] deg 3: shapes 305305, A-canonical 138649, orbit cells 4890996
+deg 3: matrix built, eliminating
+  [elim] pivots=184672 rowNNZ=18220500 colrowsEntries=18532194 liveCols=3041427 pq=3434139 cnt=2
+  [elim] pivots=348501 rowNNZ=17883977 colrowsEntries=18477364 liveCols=2876291 pq=3565357 cnt=2
+  [elim] pivots=498078 rowNNZ=17662529 colrowsEntries=18490473 liveCols=2726102 pq=3647752 cnt=3
+  [elim] pivots=650999 rowNNZ=17432974 colrowsEntries=18471778 liveCols=2573154 pq=3689222 cnt=3
+  [elim] pivots=796890 rowNNZ=17226551 colrowsEntries=18466463 liveCols=2427153 pq=3729080 cnt=3
+  [elim] pivots=912659 rowNNZ=17127924 colrowsEntries=18529306 liveCols=2311291 pq=3723429 cnt=4
+  [elim] pivots=1054953 rowNNZ=16932965 colrowsEntries=18507102 liveCols=2168994 pq=3720125 cnt=4
+  [elim] pivots=1186276 rowNNZ=16785861 colrowsEntries=18524695 liveCols=2037636 pq=3716697 cnt=4
+  [elim] pivots=1276244 rowNNZ=16763373 colrowsEntries=18624861 liveCols=1947548 pq=3675434 cnt=5
+  [elim] pivots=1387957 rowNNZ=16586991 colrowsEntries=18551235 liveCols=1835827 pq=3610621 cnt=5
+  [elim] pivots=1502953 rowNNZ=16525759 colrowsEntries=18638079 liveCols=1720756 pq=3592792 cnt=5
+  [elim] pivots=1592158 rowNNZ=16484682 colrowsEntries=18697306 liveCols=1631429 pq=3531534 cnt=6
+  [elim] pivots=1669098 rowNNZ=16369759 colrowsEntries=18635398 liveCols=1554464 pq=3425609 cnt=6
+  [elim] pivots=1779458 rowNNZ=16289841 colrowsEntries=18677206 liveCols=1444065 pq=3382712 cnt=6
+  [elim] pivots=1859418 rowNNZ=16287541 colrowsEntries=18768045 liveCols=1363985 pq=3310427 cnt=7
+  [elim] pivots=1920656 rowNNZ=16213704 colrowsEntries=18735366 liveCols=1302725 pq=3189140 cnt=7
+  [elim] pivots=2017157 rowNNZ=16168540 colrowsEntries=18790144 liveCols=1206127 pq=3126923 cnt=7
+  [elim] pivots=2069289 rowNNZ=16169270 colrowsEntries=18847039 liveCols=1153905 pq=3011862 cnt=8
+  [elim] pivots=2152846 rowNNZ=16084376 colrowsEntries=18841120 liveCols=1070317 pq=2923117 cnt=8
+  [elim] pivots=2212238 rowNNZ=16104447 colrowsEntries=18938677 liveCols=1010842 pq=2822872 cnt=9
+  [elim] pivots=2275458 rowNNZ=16053983 colrowsEntries=18933827 liveCols=947603 pq=2708740 cnt=9
+  [elim] pivots=2331974 rowNNZ=16115754 colrowsEntries=19073449 liveCols=890922 pq=2607273 cnt=10
+  [elim] pivots=2395189 rowNNZ=16069476 colrowsEntries=19074602 liveCols=827682 pq=2495132 cnt=10
+  [elim] pivots=2436459 rowNNZ=16095983 colrowsEntries=19142239 liveCols=786309 pq=2363390 cnt=11
+  [elim] pivots=2503554 rowNNZ=16128773 colrowsEntries=19234098 liveCols=719173 pq=2264107 cnt=11
+  [elim] pivots=2542746 rowNNZ=16114403 colrowsEntries=19249927 liveCols=679953 pq=2125202 cnt=12
+  [elim] pivots=2582514 rowNNZ=16176410 colrowsEntries=19361225 liveCols=640141 pq=1994857 cnt=13
+  [elim] pivots=2628053 rowNNZ=16236074 colrowsEntries=19461240 liveCols=594572 pq=1870218 cnt=14
+  [elim] pivots=2671056 rowNNZ=16291023 colrowsEntries=19558135 liveCols=551537 pq=1742649 cnt=15
+  [elim] pivots=2717128 rowNNZ=16399959 colrowsEntries=19703648 liveCols=505407 pq=1623175 cnt=16
+  [elim] pivots=2755294 rowNNZ=16587970 colrowsEntries=19964755 liveCols=467207 pq=1503892 cnt=18
+  [elim] pivots=2799388 rowNNZ=16818428 colrowsEntries=20279506 liveCols=423061 pq=1394526 cnt=20
+  [elim] pivots=2839381 rowNNZ=16996428 colrowsEntries=20559783 liveCols=382997 pq=1278906 cnt=22
+  [elim] pivots=2881107 rowNNZ=17272909 colrowsEntries=20947482 liveCols=341198 pq=1167654 cnt=25
+  [elim] pivots=2917232 rowNNZ=17587963 colrowsEntries=21402336 liveCols=304981 pq=1051125 cnt=28
+  [elim] pivots=2954388 rowNNZ=18067559 colrowsEntries=22066430 liveCols=267702 pq=943673 cnt=33
+  [elim] pivots=2991370 rowNNZ=18619506 colrowsEntries=22841151 liveCols=230584 pq=836607 cnt=38
+  [elim] pivots=3025512 rowNNZ=19430115 colrowsEntries=23958864 liveCols=196300 pq=732825 cnt=47
+  [elim] pivots=3058312 rowNNZ=20596047 colrowsEntries=25546046 liveCols=163355 pq=634566 cnt=59
+  [elim] pivots=3089789 rowNNZ=22332859 colrowsEntries=27894122 liveCols=131738 pq=543746 cnt=77
+  [elim] pivots=3117365 rowNNZ=24950935 colrowsEntries=31486844 liveCols=104000 pq=456006 cnt=108
+  [elim] pivots=3141590 rowNNZ=29323921 colrowsEntries=37445815 liveCols=79661 pq=376170 cnt=164
+  [elim] pivots=3162326 rowNNZ=37387632 colrowsEntries=48562266 liveCols=58845 pq=316164 cnt=273
+  [elim] pivots=3178757 rowNNZ=54347635 colrowsEntries=72709415 liveCols=42352 pq=310661 cnt=513
+  [elim] pivots=3189310 rowNNZ=86347891 colrowsEntries=121073582 liveCols=31735 pq=408190 cnt=1013
+  [dense] switching: pivots=3191950 liveCols=29070 colcnt=1276
+  [z9] m=29070, basis memory <= 0.42 GB
+  [z9] 200000 rows, basis 25601, leftover span 15
+  [z9] 400000 rows, basis 25972, leftover span 19
+  [z9] 600000 rows, basis 26117, leftover span 19
+  [z9] stage 0 done: basis 26119, leftover span 19
+  [z9] stage 1 (Z/3 summands): 0
+deg 3: 4890996 cells
+  [enum2] deg 4: shapes 114660, A-canonical 50700, orbit cells 1810836
+deg 4: matrix built, eliminating
+  [elim] pivots=196888 rowNNZ=4747486 colrowsEntries=4971394 liveCols=1443776 pq=1806765 cnt=1
+  [elim] pivots=391091 rowNNZ=4251096 colrowsEntries=4614424 liveCols=1244346 pq=1903725 cnt=1
+  [elim] pivots=587741 rowNNZ=3755407 colrowsEntries=4186755 liveCols=1044968 pq=2000036 cnt=1
+  [elim] pivots=715724 rowNNZ=3471040 colrowsEntries=3880592 liveCols=916437 pq=1980680 cnt=2
+  [elim] pivots=811746 rowNNZ=3276340 colrowsEntries=3729640 liveCols=820302 pq=1877023 cnt=2
+  [elim] pivots=924903 rowNNZ=3041570 colrowsEntries=3599916 liveCols=706772 pq=1843335 cnt=2
+  [elim] pivots=1020494 rowNNZ=2847985 colrowsEntries=3461736 liveCols=611143 pq=1756871 cnt=2
+  [elim] pivots=1087269 rowNNZ=2713293 colrowsEntries=3343566 liveCols=543705 pq=1655074 cnt=3
+  [elim] pivots=1171843 rowNNZ=2512907 colrowsEntries=3158476 liveCols=458693 pq=1529534 cnt=3
+  [elim] pivots=1247635 rowNNZ=2338382 colrowsEntries=3000296 liveCols=382707 pq=1414356 cnt=3
+  [elim] pivots=1290801 rowNNZ=2224305 colrowsEntries=2879954 liveCols=339012 pq=1273191 cnt=4
+  [elim] pivots=1343336 rowNNZ=2065330 colrowsEntries=2725622 liveCols=286121 pq=1122937 cnt=4
+  [elim] pivots=1383514 rowNNZ=1931271 colrowsEntries=2542647 liveCols=245430 pq=971582 cnt=5
+  [elim] pivots=1441703 rowNNZ=1719370 colrowsEntries=2332186 liveCols=186658 pq=838129 cnt=6
+  [elim] pivots=1482003 rowNNZ=1516451 colrowsEntries=2085633 liveCols=145778 pq=684593 cnt=6
+  [elim] pivots=1519808 rowNNZ=1292552 colrowsEntries=1820200 liveCols=107449 pq=526241 cnt=7
+  [elim] pivots=1551187 rowNNZ=1095891 colrowsEntries=1553932 liveCols=75680 pq=356221 cnt=9
+  [elim] pivots=1586323 rowNNZ=778038 colrowsEntries=1135972 liveCols=40137 pq=189358 cnt=12
+  [elim] pivots=1621420 rowNNZ=198827 colrowsEntries=384439 liveCols=4499 pq=31348 cnt=29
+  [dense] switching: pivots=1625127 liveCols=435 colcnt=48
+  [z9] m=435, basis memory <= 0.00 GB
+  [z9] stage 0 done: basis 381, leftover span 0
+  [z9] stage 1 (Z/3 summands): 0
+deg 4: 1810836 cells
+  [enum2] deg 5: shapes 11700, A-canonical 5148, orbit cells 185328
+deg 5: matrix built, eliminating
+  [elim] pivots=185328 rowNNZ=0 colrowsEntries=0 liveCols=0 pq=118653 cnt=2
+deg 5: 185328 cells

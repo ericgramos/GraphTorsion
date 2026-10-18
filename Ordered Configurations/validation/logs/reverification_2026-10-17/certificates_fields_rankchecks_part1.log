@@ -1,0 +1,41 @@
+== T223 over F_1000003
+[1, 165, 206104, 54740] [0, 665279, 2993596, 2848300, 0]
+== field dims for universal-coefficient counts
+T223 6 2 [1, 165, 206116, 54752]
+T223 6 3 [1, 165, 206112, 54748]
+dK4 5 2 [1, 175, 83624, 63290, 0]
+tC4 5 3 [1, 275, 105206, 84772, 0]
+== verify T133 certificate
+(e) ok: f(z) = 16639 = 1 mod 3
+VERIFIED: H_2(Conf_6(G); Z) contains an element of order 3, G = [(0, 1), (0, 2), (0, 2), (0, 2), (1, 2), (1, 2), (1, 2)]  [65s]
+== new certificate: doubled K4 n=5, H_2, p=2
+eliminating cycle system
+dim ker d_3 mod 2 = 963290
+{"certificate":"/tmp/claude-0/-home-claude/6317a15a-d6c4-555d-857c-d8fa76cb1885/scratchpad/verify/cert_dK4_n5_p2.txt","prime":2,"w_cells":1961822,"f_cells":1234226,"z_support":3161450,"tries_w":1,"tries_f":1}
+(e) ok: f(z) = 5637 = 1 mod 2
+VERIFIED: H_2(Conf_5(G); Z) contains an element of order 2, G = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3), (0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)]  [141s]
+== new certificate: tripled C4 n=5, H_2, p=3
+eliminating cycle system
+dim ker d_3 mod 3 = 984772
+{"certificate":"/tmp/claude-0/-home-claude/6317a15a-d6c4-555d-857c-d8fa76cb1885/scratchpad/verify/cert_tC4_n5_p3.txt","prime":3,"w_cells":2677234,"f_cells":1532433,"z_support":3751068,"tries_w":1,"tries_f":1}
+(e) ok: f(z) = 65534 = 2 mod 3
+VERIFIED: H_2(Conf_5(G); Z) contains an element of order 3, G = [(0, 1), (1, 2), (2, 3), (3, 0), (0, 1), (1, 2), (2, 3), (3, 0), (0, 1), (1, 2), (2, 3), (3, 0)]  [175s]
+== T133 F_2 (rerun)
+[1, 195, 224725, 43091]
+== rational checks of campaign runs
+dk5n5_p3_l: ranks over F_1000003 [16482, 95008, 155925, 64916, 4534], local stage sums [16482, 95008, 155925, 64916, 4534]  AGREE: no summands of order >= p^K  (83s, 122 MB)
+dk5n5_p3_n: ranks over F_1000003 [16481, 95006, 155927, 64916, 4534], local stage sums [16481, 95006, 155927, 64916, 4534]  AGREE: no summands of order >= p^K  (81s, 96 MB)
+t133a_n6_e: ranks over F_1000003 [18306, 117006, 190632, 56592], local stage sums [18306, 117006, 190632, 56592]  AGREE: no summands of order >= p^K  (13s, 56 MB)
+t133a_n6_le: ranks over F_1000003 [18306, 117006, 190632, 56592], local stage sums [18306, 117006, 190632, 56592]  AGREE: no summands of order >= p^K  (13s, 55 MB)
+k5t3n5_p3_l: ranks over F_1000003 [30092, 166586, 259625, 100815, 6543], local stage sums [30092, 166586, 259625, 100815, 6543]  AGREE: no summands of order >= p^K  (49s, 213 MB)
+k5t3n5_p3: ranks over F_1000003 [30099, 166580, 259629, 100815, 6543], local stage sums [30099, 166580, 259629, 100815, 6543]  AGREE: no summands of order >= p^K  (46s, 203 MB)
+t133aa_n6_le: ranks over F_1000003 [22608, 162814, 325530, 161508, 15624], local stage sums [22608, 162814, 325530, 161508, 15624]  AGREE: no summands of order >= p^K  (37s, 98 MB)
+k33T133n6_le: ranks over F_1000003 [29322, 211854, 459466, 303164, 53424, 1728], local stage sums [29322, 211854, 459466, 303164, 53424, 1728]  AGREE: no summands of order >= p^K  (63s, 158 MB)
+k5T133n6_e: ranks over F_1000003 [29834, 223820, 488844, 299736, 37260], local stage sums [29834, 223820, 488844, 299736, 37260]  AGREE: no summands of order >= p^K  (65s, 171 MB)
+k5T133n6_le: ranks over F_1000003 [29834, 223820, 488844, 299736, 37260], local stage sums [29834, 223820, 488844, 299736, 37260]  AGREE: no summands of order >= p^K  (65s, 169 MB)
+t133a_n6_l: ranks over F_1000003 [80226, 397611, 520344, 139536], local stage sums [80226, 397611, 520344, 139536]  AGREE: no summands of order >= p^K  (63s, 348 MB)
+t133a_n6_n: ranks over F_1000003 [80225, 397595, 520353, 139536], local stage sums [80225, 397595, 520353, 139536]  AGREE: no summands of order >= p^K  (58s, 343 MB)
+k5mT133n6_e: ranks over F_1000003 [49962, 351208, 708588, 385236, 42768], local stage sums [49962, 351208, 708588, 385236, 42768]  AGREE: no summands of order >= p^K  (81s, 286 MB)
+k5mT133n6_le: ranks over F_1000003 [49962, 351208, 708588, 385236, 42768], local stage sums [49962, 351208, 708588, 385236, 42768]  AGREE: no summands of order >= p^K  (81s, 289 MB)
+k5T222r_n5_p2: ranks over F_1000003 [148511, 768748, 1120016, 417600], local stage sums [148511, 768748, 1120016, 417600]  AGREE: no summands of order >= p^K  (130s, 886 MB)
+t223a_n6_p3_l: ranks over F_1000003 [180180, 972966, 1398705], local stage sums [180180, 972966, 1398705]  AGREE: no summands of order >= p^K  (1512s, 4171 MB)

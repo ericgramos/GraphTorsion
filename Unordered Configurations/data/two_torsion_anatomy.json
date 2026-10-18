@@ -1,0 +1,30 @@
+{
+ "A|K_4": {
+  "order": "infinite"
+ },
+ "A|K_5": {
+  "order": "2"
+ },
+ "A|K_{3,3}": {
+  "order": "2"
+ },
+ "A|octahedron": {
+  "order": "infinite"
+ },
+ "A|prism": {
+  "order": "infinite"
+ },
+ "B": {
+  "generates": true,
+  "is_cycle": true
+ },
+ "C|cube": {
+  "order": "2"
+ },
+ "C|octahedron": {
+  "order": "2"
+ },
+ "C|prism": {
+  "order": "infinite"
+ }
+}

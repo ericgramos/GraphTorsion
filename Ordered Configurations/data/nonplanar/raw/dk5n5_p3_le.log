@@ -1,0 +1,12 @@
+group order 3200 (labels 20 x automorphisms 160); bases: 0 2 4 6 8
+deg 0: 2 cells
+deg 1: matrix built, eliminating
+deg 1: 12 cells
+deg 2: matrix built, eliminating
+deg 2: 42 cells
+deg 3: matrix built, eliminating
+deg 3: 60 cells
+deg 4: matrix built, eliminating
+deg 4: 30 cells
+deg 5: matrix built, eliminating
+deg 5: 4 cells

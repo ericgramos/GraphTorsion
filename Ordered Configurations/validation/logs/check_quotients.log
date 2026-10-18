@@ -1,0 +1,23 @@
+K4 Klein four (reversals), n=3, p=3        |G|=  4 engine [1, 3, 2, 0] independent [1, 3, 2, 0] chainmap-fail 0  OK
+K4 Klein four x labels S3, n=3, p=5        |G|= 24 engine [1, 1, 0, 0] independent [1, 1, 0, 0] chainmap-fail 0  OK
+theta4 edge swap, n=3, p=3                 |G|=  2 engine [1, 13, 0] independent [1, 13, 0] chainmap-fail 0  OK
+theta4 vertex swap (reversal), n=3, p=3    |G|=  2 engine [1, 2, 1] independent [1, 2, 1] chainmap-fail 0  OK
+theta4 edge swap x S3 labels, n=3, p=5     |G|= 12 engine [1, 3, 0] independent [1, 3, 0] chainmap-fail 0  OK
+K33 diagonal Z3, n=3, p=2                  |G|=  3 engine [1, 6, 15, 0] independent [1, 6, 15, 0] chainmap-fail 0  OK
+K33 diagonal Z3 x labels Z3, n=3, p=2      |G|=  9 engine [1, 2, 3, 0] independent [1, 2, 3, 0] chainmap-fail 0  OK
+K33 swap left 0,1, n=3, p=3                |G|=  2 engine [1, 6, 14, 0] independent [1, 6, 14, 0] chainmap-fail 0  OK
+K33 side swap (reversal), n=3, p=3         |G|=  2 engine [1, 3, 20, 0] independent [1, 3, 20, 0] chainmap-fail 0  OK
+K5 rotation Z5, n=3, p=2                   |G|=  5 engine [1, 6, 35, 0] independent [1, 6, 35, 0] chainmap-fail 0  OK
+K5 rotation x labels Z3, n=3, p=2          |G|= 15 engine [1, 2, 11, 0] independent [1, 2, 11, 0] chainmap-fail 0  OK
+T(1,2,3) parallel swap, n=3, p=3           |G|=  2 engine [1, 27, 5, 0] independent [1, 27, 5, 0] chainmap-fail 0  OK
+doubled K4 Klein four, n=3, p=3            |G|=  4 engine [1, 3, 176, 0] independent [1, 3, 176, 0] chainmap-fail 0  OK
+K4 Klein x labels S3 tw=l                  |G|= 24 engine [0, 0, 0, 0] independent [0, 0, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=l          |G|= 24 engine [0, 1, 0] independent [0, 1, 0] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=l             |G|= 16 engine [0, 0, 1, 0] independent [0, 0, 1, 0] chainmap-fail 0  OK
+K4 Klein x labels S3 tw=e                  |G|= 24 engine [1, 1, 0, 0] independent [1, 1, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=e          |G|= 24 engine [0, 0, 1] independent [0, 0, 1] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=e             |G|= 16 engine [0, 2, 5, 0] independent [0, 2, 5, 0] chainmap-fail 0  OK
+K4 Klein x labels S3 tw=le                 |G|= 24 engine [0, 0, 0, 0] independent [0, 0, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=le         |G|= 24 engine [0, 1, 0] independent [0, 1, 0] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=le            |G|= 16 engine [0, 1, 4, 0] independent [0, 1, 4, 0] chainmap-fail 0  OK
+ALL OK

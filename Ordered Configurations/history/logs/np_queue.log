@@ -1,0 +1,14 @@
+{"job": "K33 n=6 H_5 via explosion at v=0", "p": 2, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 2, "peak_MB": 152}
+{"job": "K33 n=6 H_5 via explosion at v=0", "p": 3, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 2, "peak_MB": 143}
+{"job": "K5 n=6 H_4 via explosion at v=0", "p": 2, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 20, "peak_MB": 1612}
+{"job": "K5 n=6 H_4 via explosion at v=0", "p": 3, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 20, "peak_MB": 1612}
+{"job": "K33+de n=6 H_5 via explosion at v=1", "p": 2, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 4, "peak_MB": 460}
+{"job": "K33+de n=6 H_5 via explosion at v=1", "p": 3, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 4, "peak_MB": 457}
+{"job": "K33 n=6 all degrees, Z/5 quotient", "p": 2, "cells": [432432, 2223936, 4276800, 3801600, 1555200, 248832, 9216], "result": "no p-torsion in any degree", "secs": 449, "peak_MB": 2867}
+{"job": "K33 n=6 all degrees, Z/5 quotient", "p": 3, "cells": [432432, 2223936, 4276800, 3801600, 1555200, 248832, 9216], "result": "no p-torsion in any degree", "secs": 434, "peak_MB": 2537}
+{"job": "K33 n=7 H_5 via explosion at v=0", "p": 2, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 63, "peak_MB": 5511}
+{"job": "K33 n=7 H_5 via explosion at v=0", "p": 3, "result": {"rank": 0, "torsion": {}, "leftover": 0}, "secs": 65, "peak_MB": 5511}
+{"job": "K33+de n=7 H_5 via explosion at v=1", "p": 2, "result": "FAILED rc=-9", "secs": 41, "peak_MB": 4665}
+{"job": "K33+de n=7 H_5 via explosion at v=1", "p": 3, "result": "FAILED rc=-9", "secs": 43, "peak_MB": 5844}
+{"job": "K5+dtri n=6 H_4 via explosion at v=3", "p": 2, "result": "FAILED rc=-9", "secs": 31, "peak_MB": 5305}
+{"job": "K5+dtri n=6 H_4 via explosion at v=3", "p": 3, "result": "FAILED rc=-9", "secs": 30, "peak_MB": 4853}

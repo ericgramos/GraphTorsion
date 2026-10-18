@@ -1,0 +1,36 @@
+group order 128 (labels 16 x automorphisms 8); bases: 4 10 16 13 15 17
+deg 0: 251405 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=250505 liveCols=900 colcnt=48
+  [dense] m=900 input rows=44622, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 900 leftover rows 0
+deg 1: 1415295 cells
+deg 2: matrix built, eliminating
+  [dense] switching: pivots=1124657 liveCols=39233 colcnt=119
+  [dense] m=39233 input rows=1485467, est. basis memory <= 1.54 GB
+  [dense] mod 27: 200000 rows, basis 38824, leftover 0
+  [dense] mod 27: 400000 rows, basis 38999, leftover 0
+  [dense] mod 27: 600000 rows, basis 39010, leftover 0
+  [dense] mod 27: 800000 rows, basis 39153, leftover 0
+  [dense] mod 27: 1000000 rows, basis 39185, leftover 0
+  [dense] mod 27: 1200000 rows, basis 39193, leftover 0
+  [dense] mod 27: 1400000 rows, basis 39231, leftover 0
+  [dense] stage done: mod 27 basis 39233 leftover rows 0
+deg 2: 3039531 cells
+deg 3: matrix built, eliminating
+  [dense] switching: pivots=1836667 liveCols=38180 colcnt=225
+  [dense] m=38180 input rows=743363, est. basis memory <= 1.46 GB
+  [dense] mod 27: 200000 rows, basis 36571, leftover 1
+  [dense] mod 27: 400000 rows, basis 36833, leftover 1
+  [dense] mod 27: 600000 rows, basis 37153, leftover 1
+  [dense] stage done: mod 27 basis 37398 leftover rows 1
+deg 3: 3118041 cells
+deg 4: matrix built, eliminating
+  [dense] switching: pivots=1230515 liveCols=11786 colcnt=48
+  [dense] m=11786 input rows=123467, est. basis memory <= 0.14 GB
+  [dense] stage done: mod 27 basis 11591 leftover rows 0
+deg 4: 1559680 cells
+deg 5: matrix built, eliminating
+deg 5: 340200 cells
+deg 6: matrix built, eliminating
+deg 6: 22626 cells

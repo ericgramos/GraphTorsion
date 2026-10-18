@@ -1,0 +1,32 @@
+{"name": "K4", "colors": "ab", "betti": [1, 7, 0], "torsion": [[], [], []], "chi_ok": true}
+{"name": "K4", "colors": "aab", "betti": [1, 8, 7, 0], "torsion": [[], [], [], []], "chi_ok": true}
+{"name": "K4", "colors": "abc", "betti": [1, 12, 11, 0], "torsion": [[], [], [], []], "chi_ok": true}
+{"name": "K4", "colors": "aabb", "betti": [1, 9, 44, 0, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K4", "colors": "aaab", "betti": [1, 8, 31, 0, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K4", "colors": "aabc", "betti": [1, 13, 84, 0, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K4", "colors": "abcd", "betti": [1, 18, 161, 0, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "ab", "betti": [1, 12, 1], "torsion": [[], [], []], "chi_ok": true}
+{"name": "K5", "colors": "aab", "betti": [1, 12, 86, 0], "torsion": [[], [2], [], []], "chi_ok": true}
+{"name": "K5", "colors": "abc", "betti": [1, 18, 167, 0], "torsion": [[], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "aabb", "betti": [1, 12, 433, 2, 0], "torsion": [[], [2, 2], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "aaab", "betti": [1, 12, 292, 1, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "aabc", "betti": [1, 18, 859, 2, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "abcd", "betti": [1, 24, 1706, 3, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "aabcd", "betti": [1, 24, 5927, 3864, 0, 0], "torsion": [[], [2], [], [], [], []], "chi_ok": true}
+{"name": "K5", "colors": "abcde", "betti": [1, 30, 11670, 7561, 0, 0], "torsion": [[], [], [], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "ab", "betti": [1, 8, 1], "torsion": [[], [], []], "chi_ok": true}
+{"name": "K33", "colors": "aab", "betti": [1, 8, 22, 0], "torsion": [[], [2], [], []], "chi_ok": true}
+{"name": "K33", "colors": "abc", "betti": [1, 12, 41, 0], "torsion": [[], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "aabb", "betti": [1, 8, 100, 3, 0], "torsion": [[], [2, 2], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "aaab", "betti": [1, 8, 68, 1, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "aabc", "betti": [1, 12, 194, 3, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "abcd", "betti": [1, 16, 380, 5, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "aabcd", "betti": [1, 16, 1316, 401, 0, 0], "torsion": [[], [2], [], [], [], []], "chi_ok": true}
+{"name": "K33", "colors": "abcde", "betti": [1, 20, 2580, 761, 0, 0], "torsion": [[], [], [], [], [], []], "chi_ok": true}
+{"name": "K6", "colors": "aa", "betti": [1, 10, 9], "torsion": [[], [2], []], "chi_ok": true}
+{"name": "K6", "colors": "ab", "betti": [1, 20, 19], "torsion": [[], [], []], "chi_ok": true}
+{"name": "K6", "colors": "aabb", "betti": [1, 20, 1549, 450, 0], "torsion": [[], [2, 2], [2], [], []], "chi_ok": true}
+{"name": "K6", "colors": "aaab", "betti": [1, 20, 1039, 300, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K6", "colors": "aabc", "betti": [1, 30, 3080, 891, 0], "torsion": [[], [2], [], [], []], "chi_ok": true}
+{"name": "K6", "colors": "abcd", "betti": [1, 40, 6122, 1763, 0], "torsion": [[], [], [], [], []], "chi_ok": true}
+{"name": "K6", "colors": "aaaa", "betti": [1, 10, 264, 75, 0], "torsion": [[], [2], [2], [], []], "chi_ok": true}

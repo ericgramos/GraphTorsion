@@ -1,0 +1,2 @@
+{"job": "K5 n=6 all degrees, quotient by <1,2,3,4,0,5;0,4,3,2,1,5>", "p": 3, "cells": null, "result": "FAILED rc=-9", "secs": 777, "peak_MB": 5961}
+{"job": "K33+de n=6 all degrees, quotient by <1,2,3,4,0,5>", "p": 2, "cells": null, "result": "FAILED rc=-9", "secs": 767, "peak_MB": 5940}

@@ -1,0 +1,9 @@
+# The library (gbt/) needs nothing but the Python 3 standard library (3.8 or later).
+#
+# networkx is used only to enumerate graphs, test planarity, isomorphism and subgraph
+# containment.  It is needed by gbt.graphs.from_networkx and gbt.graphs.petersen_family, and by
+# the experiments
+#   sweep_small_graphs.py   minimal_carriers.py   petersen_family.py   linkless_controls.py
+#   planar_odd_search.py    genuine_higher_torsion.py   higher_degree_torsion.py
+#   prime_census.py         theta_class.py        inventory.py
+networkx>=2.6

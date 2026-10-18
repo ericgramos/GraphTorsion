@@ -1,0 +1,45 @@
+check,n,what was recomputed (October 16-17 2026; fresh build of the delivered package),result,agrees with record,time
+K4 exact over Z,2-6,full integral homology,"H_1 = Z^(3n+C(n,2)): 7, 12, 18, 25, 33; H_2 = 0, 11, 161, 1464, 11077; H_3(n=6) = Z^965; no torsion",yes,1 min
+K4 vs Abrams model,2-4,independent cube complex (pure Python),identical Betti numbers and torsion,yes,1 min
+T(2,2,2) exact over Z,5 and 6,full integral homology,"n=5 torsion-free; n=6: Z, Z^119, Z^71848 + (Z/2)^2, Z^11250",yes,2 min
+T(2,2,2) field dimensions,6,"F_2, F_3, F_1000003","F_2 exceeds b_2 and b_3 by exactly 2; F_3 and F_1000003 give the Betti numbers",yes,4 min
+T(2,2,2) certificate,6,independent verifier,element of order 2 in H_2 verified,yes,18 s
+T(1,2,3) exact over Z,5 and 6,full integral homology,"n=5 torsion-free; n=6: Z, Z^129, Z^95813 + Z/2, Z^4965",yes,1.5 min
+T(1,2,3) certificate,6,independent verifier,element of order 2 in H_2 verified,yes,15 s
+T(1,3,3) exact over Z,6,full integral homology,"Z, Z^195, Z^224725 + (Z/3)^6, Z^43091",yes,8.5 min
+T(1,3,3) field dimensions,6,"F_2, F_3, F_1000003","F_3 exceeds b_2 and b_3 by exactly 6; F_2 and F_1000003 give the Betti numbers",yes,20 min
+T(1,3,3) certificate,6,independent verifier,element of order 3 in H_2 verified,yes,65 s
+T(1,2,2) exact over Z,6,full integral homology,"Z, Z^83, Z^20692, Z^450; torsion-free",yes,16 s
+T(2,2,2) and T(1,2,3) vs Abrams model,3 and 4,independent cube complex,identical Betti numbers (torsion-free),yes,10 s
+T(2,2,3) local Smith form,6,mod 16 and mod 27,"(Z/2)^12 and (Z/3)^8 in H_2",yes,45 min
+T(2,2,3) field dimensions,6,"F_2, F_3, F_1000003","Betti numbers 1, 165, 206104, 54740; F_2 excess 12 and F_3 excess 8, so every 2- and 3-primary summand has order exactly 2 or 3",yes,1.5 h
+T(2,2,3) exact over Z,6,full integral homology,stops with exit code 3 (64-bit overflow in the residual elimination) after 37 min; the local and field runs are used instead,as recorded (exact had stalled),37 min
+T(2,2,3) F_5 and F_7,6,field dimensions,"equal to the Betti numbers: no 5- or 7-torsion",new,40 min
+T(1,2,4) full complex,6,"F_1000003; local mod 16 and mod 27","Z, Z^225, Z^352084 + (Z/2)^10 + (Z/3)^2, Z^19220 (2- and 3-primary parts exact: stage sums equal the rational ranks)",agrees with the shortcut; first full-complex run,1 h
+doubled K4 exact over Z,5,full integral homology,"Z, Z^175, Z^83615 + (Z/2)^8 + Z/4, Z^63281, 0",yes (first full integral computation),5 min
+doubled K4 local and field,5,"mod 16, 27, 25; F_2 and F_1000003","(Z/2)^8 + Z/4 at p = 2, nothing at p = 3, 5; F_2 excess 9 = 8 + 1",yes,50 min
+doubled K4 certificate,5,new certificate + independent verifier,element of order 2 in H_2 verified,new,2.5 min
+tripled C4 exact over Z,5,full integral homology,"Z, Z^275, Z^105203 + (Z/3)^3, Z^84769, 0",yes (first full integral computation),2 min
+tripled C4 local and field,5,"mod 16, 27, 25; F_3 and F_1000003","(Z/3)^3 at p = 3, nothing at p = 2, 5; F_3 excess 3",yes,25 min
+tripled C4 certificate,5,new certificate + independent verifier,element of order 3 in H_2 verified,new,3 min
+doubled C4,4 and 5,exact (n=4); local mod 16 and 27 + F_1000003 (n=5),"torsion-free; n=5 Betti numbers 1, 105, 11984, 3240",yes,1 min
+doubled K4 and tripled C4,4,local mod 16 and 27,torsion-free,yes,1 min
+survey cases g4_78 and g4_80,5,"exact over Z; F_2, F_3, F_1000003",torsion-free (the spurious 2^32 divisors of an early run do not recur),yes (corrected record),1 min
+survey duplicate runs,3-6,consistency of 64 repeated (graph n) runs in survey_exact.jsonl,all 64 agree exactly,yes,
+survey script,3,search.py on the first 12 jobs,identical to survey_exact.jsonl,yes,1 s
+graph enumeration,,independent networkx enumeration of genus 2-4 multigraphs with degrees >= 3,"3, 15, 111 classes; 10 + 103 with at least three vertices",yes,1 min
+toric bound,,python/toric.py over the whole survey,"16 runs (14 distinct cases) one degree above the bound, none below",yes (report said 16 cases; corrected to 14 distinct),1 min
+star x star span of T(2,2,2),3-5,prod2 + phi formula,"0, 448, 6767",yes,3 min
+all tori and Theta_3 classes of T(2,2,2),4,decomp and cutimg3 (all 12 cut pairs),"tori span 696 = 448 + 248 of b_2 = 697; tori plus Theta_3-supported classes span all 697",yes,1 min
+vertex explosion tool,6,analysis/vexp on T(2,2,2) at v = 0,two Z/2 summands in H_2,yes,40 s
+triangle shortcut,5 and 6,g2tors and triangle_shortcut.py,"rank M = 2250 (n=5, both primes); T(1,2,2), T(2,2,2) at n=5 torsion-free",yes,1 min
+split types,6,g2split on T(2,2,2) mod 2,2 torsion directions,yes (partial run),
+engine regression,,engine/oconf vs version 26 on 33 tests,ALL OK,yes,40 min
+Young quotients,6,colored_T.py: T(2,2,2) aaaaab and aabbcc,identical to colored_T.jsonl,yes,10 min
+Young quotients and positive controls,2-5,colored_quotients.py rerun in full (K4 K5 K33 K6),all 32 records identical to colored.jsonl,yes,10 min
+first non-planar tests,4,nonplanar_n4.py rerun in full (doubled K4 doubled K33 doubled K5 K5 with doubled K4),all 4 records identical,yes,4 min
+unordered,5,unordered_scan.py: UConf_5(K_{3,3}),"Z, Z^4 + Z/2, Z^28, Z^10 (identical); new: UConf_6(K_6) has Z/2 in H_1 and H_2",yes,10 min
+campaign rank checks,5-7,ranks over F_1000003 vs recorded local stage sums,"23 runs agree (so no summands of order >= p^K there); dk33n6_p3_l out of memory; larger runs not attempted",yes,4 h
+p = 7 on non-planar campaign runs,5-6,ranks over F_7 vs recorded rational ranks (14 runs: doubled K5 n=5 and 6; K5 and K33 with a tripled C4 n=5 and 6; K5 and K33+e containing T(1 3 3) n=6; K5 containing T(2 2 2) n=5),no 7-torsion in any of the 14,new,1.5 h
+p = 7 and p = 5 on K5 partial doublings,5,"ranks of d1-d3 over F_7 (all 12 completed classes) and F_5 (the 4 classes computed on the full complex) vs F_1000003",no 7-torsion and no 5-torsion in H0-H2,new,1.5 h
+K_{3 3} at n = 8 (new),8,"quotient by Sylow-2 of S_8 on labels (order 128) x order-8 automorphisms; 18.8M orbit cells in degrees 0-3; H_0-H_2; mod 9 and F_7; trivial and sign characters","trivial part: dims 1, 0, 405 and no Z/3; F_7 ranks identical to the mod 9 stage sums (no 7-torsion). sign part: dims 0, 0, 367 and no Z/3; its F_7 run ran out of memory",new,7 h

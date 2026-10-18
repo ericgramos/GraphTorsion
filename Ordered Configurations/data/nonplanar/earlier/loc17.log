@@ -1,0 +1,45 @@
+UConf_2(K5)            -D -1          MATCH dense_switches=0 [0s]
+UConf_2(K5)            -D 3000 -C 2   MATCH dense_switches=0 [0s]
+UConf_2(K5)            -D 20000 -C 8  MATCH dense_switches=0 [0s]
+UConf_4(K6)            -D -1          MATCH dense_switches=0 [19s]
+UConf_4(K6)            -D 3000 -C 2   MATCH dense_switches=3 [1s]
+UConf_4(K6)            -D 20000 -C 8  MATCH dense_switches=3 [1s]
+UConf_4(K6) mod 27     -D -1          MATCH dense_switches=0 [6s]
+UConf_4(K6) mod 27     -D 3000 -C 2   MATCH dense_switches=3 [1s]
+UConf_4(K6) mod 27     -D 20000 -C 8  MATCH dense_switches=3 [1s]
+K4 n=4 mod 16          -D -1          MATCH dense_switches=0 [0s]
+K4 n=4 mod 16          -D 3000 -C 2   MATCH dense_switches=3 [0s]
+K4 n=4 mod 16          -D 20000 -C 8  MATCH dense_switches=2 [0s]
+T(2,2,2) n=4 mod 9     -D -1          MATCH dense_switches=0 [1s]
+T(2,2,2) n=4 mod 9     -D 3000 -C 2   MATCH dense_switches=2 [0s]
+T(2,2,2) n=4 mod 9     -D 20000 -C 8  MATCH dense_switches=2 [0s]
+doubled K4 n=5 /Z5     -D -1          DIFF dense_switches=- [43s]
+   ref [(1, 104831, [104831], 0), (2, 550334, [550334], 0), (3, 743343, [743334, 8, 1], 0), (4, 180000, [180000], 0)] 
+   new FAILED -9 group order 5
+deg 0: 104832 cells
+deg 1: matrix built, eliminating
+  [dense] m=104832 input rows=655200, est. basis memory <= 10.99 GB
+
+doubled K4 n=5 /Z5     -D 3000 -C 2   MATCH dense_switches=3 [73s]
+doubled K4 n=5 /Z5     -D 20000 -C 8  MATCH dense_switches=3 [104s]
+tripled C4 n=5 /Z5     -D -1          DIFF dense_switches=- [46s]
+   ref [(1, 104831, [104831], 0), (2, 550314, [550314], 0), (3, 739039, [739036, 3], 0), (4, 180000, [180000], 0)] 
+   new FAILED -9 group order 5
+deg 0: 104832 cells
+deg 1: matrix built, eliminating
+  [dense] m=104832 input rows=655200, est. basis memory <= 10.99 GB
+
+tripled C4 n=5 /Z5     -D 3000 -C 2   MATCH dense_switches=2 [65s]
+tripled C4 n=5 /Z5     -D 20000 -C 8  MATCH dense_switches=3 [169s]
+T(1,2,3) n=6 /Z5       -D -1          DIFF dense_switches=- [91s]
+   ref [(1, 66527, [66527], 0), (2, 260036, [260036], 0), (3, 192543, [192542, 1], 0)] 
+   new FAILED -9 
+  [dense] m=66528 input rows=326592, est. basis memory <= 4.43 GB
+  [dense] mod 16: 200000 rows, basis 61151, leftover 0
+  [dense] stage done: mod 16 basis 66527 leftover rows 0
+deg 1: 326592 cells
+deg 2: matrix built, eliminating
+  [dense] m=260065 input rows=471744, est. basis memory <= 67.63 GB
+
+T(1,2,3) n=6 /Z5       -D 3000 -C 2   MATCH dense_switches=3 [17s]
+T(1,2,3) n=6 /Z5       -D 20000 -C 8  MATCH dense_switches=3 [61s]

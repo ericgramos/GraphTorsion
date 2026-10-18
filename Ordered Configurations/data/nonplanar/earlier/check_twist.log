@@ -1,0 +1,10 @@
+K4 Klein x labels S3 tw=l                  |G|= 24 oconf19 [0, 0, 0, 0] independent [0, 0, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=l          |G|= 24 oconf19 [0, 1, 0] independent [0, 1, 0] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=l             |G|= 16 oconf19 [0, 0, 1, 0] independent [0, 0, 1, 0] chainmap-fail 0  OK
+K4 Klein x labels S3 tw=e                  |G|= 24 oconf19 [1, 1, 0, 0] independent [1, 1, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=e          |G|= 24 oconf19 [0, 0, 1] independent [0, 0, 1] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=e             |G|= 16 oconf19 [0, 2, 5, 0] independent [0, 2, 5, 0] chainmap-fail 0  OK
+K4 Klein x labels S3 tw=le                 |G|= 24 oconf19 [0, 0, 0, 0] independent [0, 0, 0, 0] chainmap-fail 0  OK
+theta4 swap+vertex swap x S3 tw=le         |G|= 24 oconf19 [0, 1, 0] independent [0, 1, 0] chainmap-fail 0  OK
+K33 side+swap x labels Z2 tw=le            |G|= 16 oconf19 [0, 1, 4, 0] independent [0, 1, 4, 0] chainmap-fail 0  OK
+ALL OK

@@ -1,0 +1,39 @@
+group order 10
+deg 0: 360360 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=320737 liveCols=39623 colcnt=48
+  [dense] m=39623 input rows=1778266, est. basis memory <= 1.57 GB
+  [dense] mod 27: 200000 rows, basis 39490, leftover 0
+  [dense] mod 27: 400000 rows, basis 39562, leftover 0
+  [dense] mod 27: 600000 rows, basis 39622, leftover 0
+  [dense] mod 27: 800000 rows, basis 39622, leftover 0
+  [dense] mod 27: 1000000 rows, basis 39622, leftover 0
+  [dense] mod 27: 1200000 rows, basis 39622, leftover 0
+  [dense] mod 27: 1400000 rows, basis 39622, leftover 0
+  [dense] mod 27: 1600000 rows, basis 39622, leftover 0
+  [dense] stage done: mod 27 basis 39622 leftover rows 0
+deg 1: 2162160 cells
+deg 2: matrix built, eliminating
+  [dense] switching: pivots=1762779 liveCols=39022 colcnt=227
+  [dense] m=39022 input rows=2333469, est. basis memory <= 1.52 GB
+  [dense] mod 27: 200000 rows, basis 38188, leftover 4
+  [dense] mod 27: 400000 rows, basis 38903, leftover 4
+  [dense] mod 27: 600000 rows, basis 38917, leftover 4
+  [dense] mod 27: 800000 rows, basis 38921, leftover 4
+  [dense] mod 27: 1000000 rows, basis 38921, leftover 4
+  [dense] mod 27: 1200000 rows, basis 38922, leftover 4
+  [dense] mod 27: 1400000 rows, basis 38938, leftover 4
+  [dense] mod 27: 1600000 rows, basis 38959, leftover 4
+  [dense] mod 27: 1800000 rows, basis 39010, leftover 4
+  [dense] mod 27: 2000000 rows, basis 39010, leftover 4
+  [dense] mod 27: 2200000 rows, basis 39010, leftover 4
+  [dense] stage done: mod 27 basis 39010 leftover rows 4
+deg 2: 4633200 cells
+deg 3: matrix built, eliminating
+  [dense] switching: pivots=2786347 liveCols=39726 colcnt=301
+  [dense] m=39726 input rows=724518, est. basis memory <= 1.58 GB
+  [dense] mod 27: 200000 rows, basis 36472, leftover 4
+  [dense] mod 27: 400000 rows, basis 37210, leftover 4
+  [dense] mod 27: 600000 rows, basis 37393, leftover 4
+  [dense] stage done: mod 27 basis 37395 leftover rows 4
+deg 3: 4276800 cells

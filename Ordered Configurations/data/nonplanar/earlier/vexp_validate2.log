@@ -1,0 +1,49 @@
+T(1,3,3)       n=6 p=3 v=2 H_2: direct [3, 3, 3, 3, 3, 3] | vexp [3, 3, 3, 3, 3, 3]  OK
+T(1,3,3)       n=6 p=3 v=0 H_2: direct [3, 3, 3, 3, 3, 3] | vexp [3, 3, 3, 3, 3, 3]  OK
+T(1,2,2)       n=6 p=2 v=2 H_1: direct [] | vexp []  OK
+T(1,2,2)       n=6 p=2 v=2 H_2: direct [] | vexp []  OK
+T(1,2,2)       n=6 p=3 v=2 H_1: direct [] | vexp []  OK
+T(1,2,2)       n=6 p=3 v=2 H_2: direct [] | vexp []  OK
+K4             n=5 p=2 v=0 H_1: direct [] | vexp []  OK
+K4             n=5 p=2 v=0 H_2: direct [] | vexp []  OK
+K4             n=5 p=2 v=0 H_3: direct [] | vexp []  OK
+K4             n=5 p=2 v=3 H_1: direct [] | vexp []  OK
+K4             n=5 p=2 v=3 H_2: direct [] | vexp []  OK
+K4             n=5 p=2 v=3 H_3: direct [] | vexp []  OK
+K4             n=5 p=3 v=0 H_1: direct [] | vexp []  OK
+K4             n=5 p=3 v=0 H_2: direct [] | vexp []  OK
+K4             n=5 p=3 v=0 H_3: direct [] | vexp []  OK
+K4             n=5 p=3 v=3 H_1: direct [] | vexp []  OK
+K4             n=5 p=3 v=3 H_2: direct [] | vexp []  OK
+K4             n=5 p=3 v=3 H_3: direct [] | vexp []  OK
+K5             n=4 p=2 v=0 H_1: direct [] | vexp []  OK
+K5             n=4 p=2 v=0 H_2: direct [] | vexp []  OK
+K5             n=4 p=2 v=0 H_3: direct [] | vexp []  OK
+K5             n=4 p=3 v=0 H_1: direct [] | vexp []  OK
+K5             n=4 p=3 v=0 H_2: direct [] | vexp []  OK
+K5             n=4 p=3 v=0 H_3: direct [] | vexp []  OK
+Theta4+leaves  n=5 p=2 v=0 H_1: direct [] | vexp []  OK
+Theta4+leaves  n=5 p=3 v=0 H_1: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=0 H_1: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=0 H_2: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=0 H_3: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=1 H_1: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=1 H_2: direct [] | vexp []  OK
+tripled C4     n=4 p=2 v=1 H_3: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=0 H_1: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=0 H_2: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=0 H_3: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=1 H_1: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=1 H_2: direct [] | vexp []  OK
+tripled C4     n=4 p=3 v=1 H_3: direct [] | vexp []  OK
+doubled K4     n=4 p=2 v=0 H_1: direct [] | vexp []  OK
+doubled K4     n=4 p=2 v=0 H_2: direct [] | vexp []  OK
+doubled K4     n=4 p=2 v=0 H_3: direct [] | vexp []  OK
+doubled K4     n=4 p=3 v=0 H_1: direct [] | vexp []  OK
+doubled K4     n=4 p=3 v=0 H_2: direct [] | vexp []  OK
+doubled K4     n=4 p=3 v=0 H_3: direct [] | vexp []  OK
+lollipop+loop  n=4 p=2 v=0 H_1: direct [] | vexp []  OK
+lollipop+loop  n=4 p=2 v=1 H_1: direct [] | vexp []  OK
+lollipop+loop  n=4 p=3 v=0 H_1: direct [] | vexp []  OK
+lollipop+loop  n=4 p=3 v=1 H_1: direct [] | vexp []  OK
+ALL OK

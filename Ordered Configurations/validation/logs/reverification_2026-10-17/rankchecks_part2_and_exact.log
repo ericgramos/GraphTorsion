@@ -1,0 +1,8 @@
+== rational checks, non-planar campaign runs
+k33t3n6_p3_l: ranks over F_1000003 [106928, 635344, 1210208, 790518, 154512, 5796], local stage sums [106928, 635344, 1210208, 790518, 154512, 5796]  AGREE: no summands of order >= p^K  (1716s, 5429 MB)
+k33t3n6_p3: ranks over F_1000003 [106951, 635333, 1210214, 790518, 154512, 5796], local stage sums [106951, 635333, 1210214, 790518, 154512, 5796]  AGREE: no summands of order >= p^K  (1596s, 4693 MB)
+dk33n6_p3_l: engine failed with code -9
+Terminated
+doubled K4 exact [1, 175, 83615, 63281, 0] [[], [], [2, 2, 2, 2, 2, 2, 2, 2, 4], [], []] {1: (0, 0, 1), 2: (0, 0, 10), 3: (3608, 1362, 244), 4: (0, 0, 1)} 319
+tripled C4 exact [1, 275, 105203, 84769, 0] [[], [], [3, 3, 3], [], []] {1: (0, 0, 1), 2: (0, 0, 11), 3: (20, 6932, 150), 4: (0, 0, 1)} 128
+QUEUE4 DONE

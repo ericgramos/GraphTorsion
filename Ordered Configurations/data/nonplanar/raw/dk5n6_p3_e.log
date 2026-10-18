@@ -1,0 +1,21 @@
+group order 3200 (labels 20 x automorphisms 160); bases: 0 2 4 6 8
+  [enum2] deg 0: shapes 177100, A-canonical 11179, orbit cells 126
+deg 0: 126 cells
+  [enum2] deg 1: shapes 1487640, A-canonical 83615, orbit cells 1404
+deg 1: matrix built, eliminating
+deg 1: 1404 cells
+  [enum2] deg 2: shapes 4338950, A-canonical 218500, orbit cells 5598
+deg 2: matrix built, eliminating
+deg 2: 5598 cells
+  [enum2] deg 3: shapes 5282200, A-canonical 239910, orbit cells 9540
+deg 3: matrix built, eliminating
+  [dense] switching: pivots=4306 liveCols=14 colcnt=49
+  [dense] m=14 input rows=461, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 14 leftover rows 0
+deg 3: 9540 cells
+  [enum2] deg 4: shapes 2521050, A-canonical 104060, orbit cells 6390
+deg 4: matrix built, eliminating
+deg 4: 6390 cells
+  [enum2] deg 5: shapes 336140, A-canonical 12727, orbit cells 1116
+deg 5: matrix built, eliminating
+deg 5: 1116 cells

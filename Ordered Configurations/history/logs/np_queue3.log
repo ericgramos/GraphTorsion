@@ -1,0 +1,3 @@
+{"job": "K5 n=6 all degrees, quotient by <1,2,3,4,0,5;0,4,3,2,1,5>", "p": 3, "cells": null, "result": "FAILED rc=-9", "secs": 762, "peak_MB": 5955}
+{"job": "K33+de n=6 all degrees, quotient by <1,2,3,4,0,5;0,4,3,2,1,5>", "p": 3, "cells": [360360, 2018016, 4169880, 3928320, 1679040, 276480, 10368], "result": "no p-torsion in any degree", "secs": 976, "peak_MB": 4226}
+{"job": "K33+de n=6 all degrees, quotient by <1,2,3,4,0,5>", "p": 2, "cells": null, "result": "FAILED rc=-9", "secs": 751, "peak_MB": 5961}

@@ -1,0 +1,17 @@
+computations recorded: 804
+distinct graphs (up to isomorphism): 197
+  planar: 164, non-planar: 33
+distinct (graph, n) pairs: 567
+by category:
+  exact survey                  556 computations, 150 graphs, 556 complete
+  Young quotients                46 computations,   6 graphs, 46 complete
+  non-planar campaign            46 computations,  12 graphs, 42 complete
+  non-planar search              43 computations,  23 graphs, 30 complete
+  planar controls (campaign)     31 computations,  14 graphs, 24 complete
+  fat graphs                     30 computations,  10 graphs, 28 complete
+  unordered                      18 computations,   3 graphs, 18 complete
+  triangle family                17 computations,   8 graphs, 17 complete
+  structure of H2                17 computations,   7 graphs, 17 complete
+by status: {'complete': 778, 'failed (memory)': 15, 'partial (small primes ran out of memory)': 2, 'not completed': 9}
+by n: {2: 8, 3: 179, 4: 195, 5: 236, 6: 167, 7: 17, 8: 2}
+computations reporting torsion: 52

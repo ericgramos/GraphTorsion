@@ -1,0 +1,11 @@
+Y graph, center                            n=3: 132 identities checked, mismatches 0, cell count ok  OK
+theta_3, vertex 1                          n=3: 276 identities checked, mismatches 0, cell count ok  OK
+T(1,2,2), middle vertex 1                  n=3: 1392 identities checked, mismatches 0, cell count ok  OK
+T(2,2,2), last vertex 2                    n=3: 2604 identities checked, mismatches 0, cell count ok  OK
+K4, vertex 2                               n=3: 2400 identities checked, mismatches 0, cell count ok  OK
+loop + bridge (lollipop), loop vertex      n=3: 60 identities checked, mismatches 0, cell count ok  OK
+figure eight, the vertex                   n=3: 78 identities checked, mismatches 0, cell count ok  OK
+loop and multi-edge, vertex 0              n=3: 672 identities checked, mismatches 0, cell count ok  OK
+tripled C4, vertex 3                       n=2: 936 identities checked, mismatches 0, cell count ok  OK
+K4 + leaf at v, vertex 0                   n=3: 3540 identities checked, mismatches 0, cell count ok  OK
+ALL OK

@@ -1,0 +1,34 @@
+OK   K4 n=3 exact
+OK   K4 n=4 exact
+OK   K4 n=4 p=2
+OK   K4 n=4 p=3
+OK   K4 n=4 p=1000003
+OK   T(1,2,3) n=4 exact
+OK   T(1,2,3) n=5 q 2 4
+OK   T(1,2,3) n=5 q 3 3
+OK   figure eight n=3 exact
+OK   lollipop n=4 exact
+OK   K4 n=3 colours aab
+OK   K4 n=4 colours aaaa (unordered)
+OK   K4 n=4 -d 2
+OK   K4 n=4 -c
+OK   K4 n=4 -z
+OK   K33 n=3 -z with automorphisms
+OK   K4 n=4 -T -p 2
+OK   K4 n=4 labels Z3 slow
+OK   K4 n=4 labels Z3 fast
+OK   tripled C4 n=4 labels S3 tw=l
+OK   K33 n=3 side swap + (01), q 3 3
+OK   K33 n=3 same, tw=le
+OK   K33 n=3 same, -Y -1,1
+OK   K33 n=4 diag Z3 x labels Z3, q 2 4
+OK   T222 n=5 rotation omega part
+OK   T222 n=5 rotation omega part, dense
+OK   doubled K4 n=4 q 2 2 dense z4
+OK   doubled K4 n=4 q 3 2 dense z9
+OK   doubled K4 n=4 q 2 4 dense generic
+OK   K4 n=4 q 3 3 dense from start
+OK   tripled C4 n=5 /Z5 q 3 2 dense (has Z/3^3)
+OK   T(1,2,3) n=6 /Z5 q 2 2 dense (has Z/2)
+OK   generic matrix mode
+ALL OK

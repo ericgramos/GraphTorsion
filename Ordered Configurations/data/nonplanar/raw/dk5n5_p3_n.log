@@ -1,0 +1,33 @@
+group order 3200 (labels 20 x automorphisms 160); bases: 0 2 4 6 8
+  [enum2] deg 0: shapes 42504, A-canonical 3053, orbit cells 16482
+deg 0: 16482 cells
+  [enum2] deg 1: shapes 309925, A-canonical 19885, orbit cells 111491
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=14318 liveCols=2164 colcnt=48
+  [dense] m=2164 input rows=92849, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 2163 leftover rows 0
+deg 1: 111491 cells
+  [enum2] deg 2: shapes 754600, A-canonical 43610, orbit cells 252192
+deg 2: matrix built, eliminating
+  [elim] pivots=82952 rowNNZ=1189140 colrowsEntries=1332395 liveCols=12058 pq=35946 cnt=46
+  [dense] switching: pivots=83168 liveCols=11842 colcnt=48
+  [dense] m=11842 input rows=161469, est. basis memory <= 0.14 GB
+  [dense] stage done: mod 27 basis 11838 leftover rows 873
+deg 2: 252192 cells
+  [enum2] deg 3: shapes 720300, A-canonical 37820, orbit cells 223863
+deg 3: matrix built, eliminating
+  [elim] pivots=99199 rowNNZ=843222 colrowsEntries=1018496 liveCols=57292 pq=185658 cnt=8
+  [elim] pivots=135774 rowNNZ=1089697 colrowsEntries=1370289 liveCols=20671 pq=81466 cnt=24
+  [dense] switching: pivots=144220 liveCols=12193 colcnt=48
+  [dense] m=12193 input rows=71854, est. basis memory <= 0.15 GB
+  [dense] stage done: mod 27 basis 11707 leftover rows 0
+deg 3: 223863 cells
+  [enum2] deg 4: shapes 240100, A-canonical 11575, orbit cells 69450
+deg 4: matrix built, eliminating
+  [dense] switching: pivots=64880 liveCols=36 colcnt=48
+  [dense] m=36 input rows=1176, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 36 leftover rows 0
+deg 4: 69450 cells
+  [enum2] deg 5: shapes 16807, A-canonical 759, orbit cells 4534
+deg 5: matrix built, eliminating
+deg 5: 4534 cells

@@ -1,0 +1,61 @@
+group order 27 (labels 9 x automorphisms 3); bases: 0 2 4 24 25
+  [enum2] deg 0: shapes 18564, A-canonical 6198, orbit cells 494976
+deg 0: 494976 cells
+  [enum2] deg 1: shapes 129948, A-canonical 43316, orbit cells 3465280
+deg 1: matrix built, eliminating
+  [gr dense] switching: pivots=465409 liveCols=29567 colcnt=58
+  [gr] m=29567, basis memory <= 0.44 GB
+  [gr] 200000 rows, basis 21874, leftover span 0
+  [gr] 400000 rows, basis 28970, leftover span 0
+  [gr] 600000 rows, basis 29522, leftover span 0
+  [gr] 800000 rows, basis 29551, leftover span 0
+  [gr] 1000000 rows, basis 29555, leftover span 0
+  [gr] 1200000 rows, basis 29567, leftover span 0
+  [gr] 1400000 rows, basis 29567, leftover span 0
+  [gr] 1600000 rows, basis 29567, leftover span 0
+  [gr] stage 0 done: basis 29567, leftover span 0
+  [gr] stage 1 (R/2 summands): 0
+deg 1: 3465280 cells
+  [enum2] deg 2: shapes 316680, A-canonical 105560, orbit cells 8444800
+deg 2: matrix built, eliminating
+  [gr dense] switching: pivots=2940589 liveCols=29715 colcnt=837
+  [gr] m=29715, basis memory <= 0.44 GB
+  [gr] 200000 rows, basis 22199, leftover span 70
+  [gr] 400000 rows, basis 25372, leftover span 78
+  [gr] 600000 rows, basis 26151, leftover span 85
+  [gr] 800000 rows, basis 27982, leftover span 96
+  [gr] 1000000 rows, basis 29533, leftover span 104
+  [gr] 1200000 rows, basis 29642, leftover span 104
+  [gr] 1400000 rows, basis 29652, leftover span 104
+  [gr] 1600000 rows, basis 29665, leftover span 104
+  [gr] 1800000 rows, basis 29692, leftover span 104
+  [gr] 2000000 rows, basis 29693, leftover span 104
+  [gr] 2200000 rows, basis 29696, leftover span 104
+  [gr] 2400000 rows, basis 29699, leftover span 104
+  [gr] 2600000 rows, basis 29701, leftover span 104
+  [gr] 2800000 rows, basis 29703, leftover span 104
+  [gr] 3000000 rows, basis 29703, leftover span 104
+  [gr] 3200000 rows, basis 29703, leftover span 104
+  [gr] 3400000 rows, basis 29703, leftover span 104
+  [gr] 3600000 rows, basis 29703, leftover span 104
+  [gr] 3800000 rows, basis 29703, leftover span 104
+  [gr] 4000000 rows, basis 29703, leftover span 104
+  [gr] 4200000 rows, basis 29703, leftover span 104
+  [gr] stage 0 done: basis 29703, leftover span 104
+  [gr] stage 1 (R/2 summands): 0
+deg 2: 8444800 cells
+  [enum2] deg 3: shapes 323050, A-canonical 107700, orbit cells 8614600
+deg 3: matrix built, eliminating
+  [gr dense] switching: pivots=5394224 liveCols=68480 colcnt=720
+  [gr] m=68480, basis memory <= 2.34 GB
+  [gr] 200000 rows, basis 39424, leftover span 91
+  [gr] 400000 rows, basis 48728, leftover span 198
+  [gr] 600000 rows, basis 61207, leftover span 783
+  [gr] 800000 rows, basis 63533, leftover span 1051
+  [gr] 1000000 rows, basis 63738, leftover span 1129
+  [gr] 1200000 rows, basis 63893, leftover span 1194
+  [gr] 1400000 rows, basis 64039, leftover span 1194
+  [gr] 1600000 rows, basis 64096, leftover span 1194
+  [gr] stage 0 done: basis 64110, leftover span 1194
+  [gr] stage 1 (R/2 summands): 0
+deg 3: 8614600 cells

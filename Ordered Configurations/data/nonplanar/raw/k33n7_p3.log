@@ -1,0 +1,44 @@
+group order 128 (labels 16 x automorphisms 8); bases: 4 10 16 13 15 17
+deg 0: 257777 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=229051 liveCols=28726 colcnt=48
+  [dense] m=28726 input rows=1156951, est. basis memory <= 0.83 GB
+  [dense] mod 27: 200000 rows, basis 27620, leftover 0
+  [dense] mod 27: 400000 rows, basis 27702, leftover 0
+  [dense] mod 27: 600000 rows, basis 28264, leftover 0
+  [dense] mod 27: 800000 rows, basis 28702, leftover 0
+  [dense] mod 27: 1000000 rows, basis 28725, leftover 0
+  [dense] stage done: mod 27 basis 28725 leftover rows 0
+deg 1: 1424655 cells
+deg 2: matrix built, eliminating
+  [dense] switching: pivots=1128012 liveCols=38867 colcnt=113
+  [dense] m=38867 input rows=1549358, est. basis memory <= 1.51 GB
+  [dense] mod 27: 200000 rows, basis 36712, leftover 0
+  [dense] mod 27: 400000 rows, basis 37517, leftover 0
+  [dense] mod 27: 600000 rows, basis 37550, leftover 0
+  [dense] mod 27: 800000 rows, basis 38537, leftover 0
+  [dense] mod 27: 1000000 rows, basis 38732, leftover 0
+  [dense] mod 27: 1200000 rows, basis 38810, leftover 0
+  [dense] mod 27: 1400000 rows, basis 38867, leftover 0
+  [dense] stage done: mod 27 basis 38867 leftover rows 0
+deg 2: 3038676 cells
+deg 3: matrix built, eliminating
+  [dense] switching: pivots=1831701 liveCols=39863 colcnt=132
+  [dense] m=39863 input rows=774691, est. basis memory <= 1.59 GB
+  [dense] mod 27: 200000 rows, basis 35537, leftover 4
+  [dense] mod 27: 400000 rows, basis 38547, leftover 4
+  [dense] mod 27: 600000 rows, basis 39515, leftover 4
+  [dense] stage done: mod 27 basis 39663 leftover rows 4
+deg 3: 3117501 cells
+deg 4: matrix built, eliminating
+  [dense] switching: pivots=1232729 liveCols=10145 colcnt=48
+  [dense] m=10145 input rows=111046, est. basis memory <= 0.10 GB
+  [dense] stage done: mod 27 basis 9503 leftover rows 0
+deg 4: 1559806 cells
+deg 5: matrix built, eliminating
+  [dense] switching: pivots=317574 liveCols=0 colcnt=48
+  [dense] m=0 input rows=0, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 0 leftover rows 0
+deg 5: 340200 cells
+deg 6: matrix built, eliminating
+deg 6: 22626 cells

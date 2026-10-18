@@ -1,0 +1,27 @@
+group order 3200 (labels 20 x automorphisms 160); bases: 0 2 4 6 8
+deg 0: 16482 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=14488 liveCols=1994 colcnt=48
+  [dense] m=1994 input rows=91293, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 1994 leftover rows 0
+deg 1: 111491 cells
+deg 2: matrix built, eliminating
+  [elim] pivots=82650 rowNNZ=1198605 colrowsEntries=1341695 liveCols=12359 pq=36237 cnt=46
+  [dense] switching: pivots=82971 liveCols=12038 colcnt=48
+  [dense] m=12038 input rows=161733, est. basis memory <= 0.14 GB
+  [dense] stage done: mod 27 basis 12037 leftover rows 4161
+deg 2: 252192 cells
+deg 3: matrix built, eliminating
+  [elim] pivots=99358 rowNNZ=840677 colrowsEntries=1015230 liveCols=57109 pq=185178 cnt=8
+  [elim] pivots=136100 rowNNZ=1080620 colrowsEntries=1363626 liveCols=20334 pq=81304 cnt=9
+  [dense] switching: pivots=144291 liveCols=12104 colcnt=48
+  [dense] m=12104 input rows=71528, est. basis memory <= 0.15 GB
+  [dense] stage done: mod 27 basis 11634 leftover rows 5
+deg 3: 223863 cells
+deg 4: matrix built, eliminating
+  [dense] switching: pivots=64877 liveCols=39 colcnt=48
+  [dense] m=39 input rows=1228, est. basis memory <= 0.00 GB
+  [dense] stage done: mod 27 basis 39 leftover rows 0
+deg 4: 69450 cells
+deg 5: matrix built, eliminating
+deg 5: 4534 cells

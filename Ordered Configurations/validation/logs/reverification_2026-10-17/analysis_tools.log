@@ -1,0 +1,14 @@
+== decomp n4 all tori
+{"n":4,"prime":1000003,"mode":0,"gens":3522,"rankB2":3888,"rank_span_mod_B":696}
+== decomp n4 mode1 star x star
+{"n":4,"prime":1000003,"mode":1,"gens":360,"rankB2":3888,"rank_span_mod_B":210}
+== phi n4
+{"C3":3888,"C1":12096,"rankPhi":3886}
+== prod2 T222 minus vertex 2, n5
+need exactly two non-leaf vertices
+== vexp T222 n6 v0 k2 p2 K2
+{"n":6,"v":0,"k":2,"p":2,"K":2,"stages":[71548,2],"leftover_nnz":0,"secs":40.0}
+== cutimg3 n4
+{"n":4,"prime":1000003,"mode":0,"gens":3922,"rankB2":3888,"rank_span_mod_B":696}
+== g2split n6 p2 full
+rank M mod 2 = 71548

@@ -1,0 +1,77 @@
+group order 5
+deg 0: 1153152 cells
+deg 1: matrix built, eliminating
+  [dense] switching: pivots=1114649 liveCols=38503 colcnt=150
+  [dense] m=38503 input rows=5524625, est. basis memory <= 1.48 GB
+  [dense] mod 16: 200000 rows, basis 37354, leftover 0
+  [dense] mod 16: 400000 rows, basis 38478, leftover 0
+  [dense] mod 16: 600000 rows, basis 38502, leftover 0
+  [dense] mod 16: 800000 rows, basis 38502, leftover 0
+  [dense] mod 16: 1000000 rows, basis 38502, leftover 0
+  [dense] mod 16: 1200000 rows, basis 38502, leftover 0
+  [dense] mod 16: 1400000 rows, basis 38502, leftover 0
+  [dense] mod 16: 1600000 rows, basis 38502, leftover 0
+  [dense] mod 16: 1800000 rows, basis 38502, leftover 0
+  [dense] mod 16: 2000000 rows, basis 38502, leftover 0
+  [dense] mod 16: 2200000 rows, basis 38502, leftover 0
+  [dense] mod 16: 2400000 rows, basis 38502, leftover 0
+  [dense] mod 16: 2600000 rows, basis 38502, leftover 0
+  [dense] mod 16: 2800000 rows, basis 38502, leftover 0
+  [dense] mod 16: 3000000 rows, basis 38502, leftover 0
+  [dense] mod 16: 3200000 rows, basis 38502, leftover 0
+  [dense] mod 16: 3400000 rows, basis 38502, leftover 0
+  [dense] mod 16: 3600000 rows, basis 38502, leftover 0
+  [dense] mod 16: 3800000 rows, basis 38502, leftover 0
+  [dense] mod 16: 4000000 rows, basis 38502, leftover 0
+  [dense] mod 16: 4200000 rows, basis 38502, leftover 0
+  [dense] mod 16: 4400000 rows, basis 38502, leftover 0
+  [dense] mod 16: 4600000 rows, basis 38502, leftover 0
+  [dense] mod 16: 4800000 rows, basis 38502, leftover 0
+  [dense] mod 16: 5000000 rows, basis 38502, leftover 0
+  [dense] mod 16: 5200000 rows, basis 38502, leftover 0
+  [dense] mod 16: 5400000 rows, basis 38502, leftover 0
+  [dense] stage done: mod 16 basis 38502 leftover rows 0
+deg 1: 7351344 cells
+deg 2: matrix built, eliminating
+  [dense] switching: pivots=6160045 liveCols=38148 colcnt=1321
+  [dense] m=38148 input rows=7629198, est. basis memory <= 1.46 GB
+  [dense] mod 16: 200000 rows, basis 35222, leftover 1942
+  [dense] mod 16: 400000 rows, basis 37851, leftover 11324
+  [dense] mod 16: 600000 rows, basis 38094, leftover 11324
+  [dense] mod 16: 800000 rows, basis 38108, leftover 11324
+  [dense] mod 16: 1000000 rows, basis 38109, leftover 11324
+  [dense] mod 16: 1200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 1400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 1600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 1800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 2000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 2200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 2400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 2600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 2800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 3000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 3200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 3400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 3600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 3800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 4000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 4200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 4400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 4600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 4800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 5000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 5200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 5400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 5600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 5800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 6000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 6200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 6400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 6600000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 6800000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 7000000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 7200000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 7400000 rows, basis 38128, leftover 11324
+  [dense] mod 16: 7600000 rows, basis 38128, leftover 11324
+  [dense] stage done: mod 16 basis 38128 leftover rows 11324
+deg 2: 16576560 cells
