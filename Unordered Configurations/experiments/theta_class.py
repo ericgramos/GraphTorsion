@@ -9,14 +9,15 @@ configuration spaces is generated -- under embedding, disjoint union and edge st
 by three atoms: the cycle, the star and the theta graph.  All three are torsion-free in H_2.
 In fact only the theta has nonzero H_2 at all: configuration spaces of trees have free
 fundamental group and so no H_2, and UConf_k of a circle is a circle.  And
-H_2(B_k theta) = 0 for k <= 3 and Z for k = 4 -- which is exactly the particle number at
-which planar torsion starts appearing (`platonic_solids.py`).
+H_2(B_k theta) = 0 for k <= 3 and Z for k = 4 (for the theta with three paths) -- which is
+exactly the particle number at which planar torsion starts appearing (`platonic_solids.py`).
 
-And yet the octahedron and the dodecahedron are both planar and both have Z/2 in H_2(B_4).  A direct sum of torsion-free groups has no torsion, so the resolution has to be
-that the generation statement is about images, not summands: a FREE class on an embedded atom
-can map to a TORSION class.  This script verifies that directly, and it supports the
-conjecture that torsion in these spaces is never carried by a generator of the Z[E]-module
-of homologies; it is always created by relations.
+And yet the octahedron and the dodecahedron are both planar and both have Z/2 in H_2(B_4).  A
+direct sum of torsion-free groups has no torsion, so the resolution has to be that the
+generation statement is about images, not summands: a FREE class on an embedded atom can map
+to a TORSION class.  This script verifies that directly, and it supports the conjecture that
+torsion in these spaces is never carried by a generator of the Z[E]-module of homologies; it
+is always created by relations.
 
 (This also corrects a plausible-sounding but false inference: that an edge-minimal carrier of
 torsion must be "indecomposable" in the sense of not coming from a subgraph.  Minimality says
@@ -25,20 +26,65 @@ something on a subgraph.)
 
 THE TEST
 --------
-Find a theta subgraph -- two hubs u, w joined by three internally vertex-disjoint paths --
-and compute a Z-basis of its 2-cycles Z_2 at weight k.  Push each one into C_2(Gamma) along
-the inclusion and adjoin the lot to the image of d_3.  If the Z/2 dies, those free theta
-classes map onto it.  Then repeat with every theta subgraph at once.
+Let d_3 be the third differential of the UNREDUCED Swiatkowski complex of Gamma at weight k;
+the torsion of coker d_3 is the torsion of H_2 (the "baseline").  Find a theta subgraph -- two
+hubs u, w joined by three internally vertex-disjoint paths -- build ITS unreduced complex on the
+same vertex set, and compute a Z-basis of its 2-cycles Z_2 (a kernel lattice).  The unreduced
+complex is functorial for inclusions of subgraphs (no basepoint edges are involved), so each
+2-cycle pushes forward to a 2-cycle of Gamma by renaming edges.  Adjoin all pushed cycles to
+the columns of d_3 and recompute the torsion of the cokernel.
+
+Why this decides the question: let z represent the Z/2, so 2z is a boundary.  If the cokernel
+of [d_3 | pushed cycles] is torsion-free, then z lies in (boundaries + pushed cycles), i.e.
+[z] = i_*[y] for a cycle y on the theta: the torsion class is the image of a class of the
+theta, whose H_2 is free.  If the torsion survives, the theta does not reach it.  The test is
+run for the first theta found, and then for all of them together.
 
 Note that the theta subgraph need not have paths of length 2: configuration spaces are
 invariant under subdivision, so every theta graph has the same H_*(B_k), and a graph of girth
 at least four (no two vertices with three common neighbours) needs paths of length three or
-more.
+more.  The thetas are found by a max-flow search (one per pair of vertices that admits three
+disjoint paths), not by looking for common neighbours.
 
-    python3 experiments/theta_class.py [--graph octahedron|dodecahedron|prism|...] [--k 4]
-                                       [--max-thetas N]
+WHAT IS PRINTED
+---------------
+    <graph>: N=.., M=.., k=..
+      weight-k complex {degree: cells}            (unreduced)
+      baseline torsion of coker(d_3) = Z/2
+      <t> theta subgraphs found
+      a single theta subgraph, hubs u and w: its edges, its own H_*(B_k theta) (torsion-free),
+        the rank of Z_2(theta), and "torsion after adjoining it: ..."
+      all <t> thetas together: "torsion after adjoining all of them: ..."
+      a one-line summary and a verdict paragraph.
+Progress lines from the cokernel computation ("... cols -> peeled ..., residual ...") are
+interleaved.  Excerpt (the default, about 20 seconds):
 
-Takes several minutes; the kernel lattice of the theta subgraph is the slow part.
+      baseline torsion of coker(d_3) = Z/2
+      15 theta subgraphs found (one per vertex pair admitting three disjoint paths)
+      a single theta subgraph, hubs 0 and 1:
+        edges [(0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4)]
+        H_*(B_4 theta) = H_1=Z^3  H_2=Z  H_3=0  H_4=0
+        Z_2(theta) has rank 1051; 1051 nonzero pushed columns  [1s]
+        torsion after adjoining it: 0
+      baseline Z/2;  one theta -> 0;  all thetas -> 0
+      A single embedded theta subgraph accounts for the whole torsion. ...
+
+USAGE
+-----
+    python3 experiments/theta_class.py [--graph octahedron] [--k 4] [--max-thetas N]
+
+    --graph NAME     any zero-argument graph constructor in gbt (default octahedron; e.g.
+                     dodecahedron, prism, tetrahedron).
+    --k K            number of particles (default 4).
+    --max-thetas N   stop after N theta subgraphs (default: all of them).
+
+COST, OUTPUT FILES AND EXIT CODE
+--------------------------------
+About 20 seconds for the octahedron; graphs with more vertices take much longer (the unreduced
+complex is used throughout, and the kernel lattice of each theta is the slow part).  Writes no
+data file.  Exits with 1 if the graph has torsion but no theta subgraph, and 0 otherwise --
+including when the thetas do NOT account for the torsion, which is reported in the text.
+Requires networkx.
 """
 
 import argparse
@@ -56,13 +102,15 @@ from gbt.linalg import coker_torsion, indexed_columns, kernel_basis    # noqa: E
 
 
 def theta_subgraphs(G, limit=None):
-    """Theta subgraphs of G: (hubs, edge list) for three internally disjoint u-w paths.
+    """Theta subgraphs of G: a list of ((u, w), edge list), one per vertex pair u < w that is
+    joined by at least three internally vertex-disjoint paths.
 
     Uses a max-flow computation (networkx's node_disjoint_paths) rather than looking for
-    common neighbours, so it finds thetas whose paths are longer than 2 -- which is what graphs of
-    girth at least four, such as the dodecahedron, need.  Only the three shortest disjoint paths found for each
-    pair are used, which keeps the subgraph small; the result is one theta per vertex pair
-    that admits one.
+    common neighbours, so it finds thetas whose paths are longer than 2 -- which is what
+    graphs of girth at least four, such as the dodecahedron, need.  Only the three shortest
+    of the (at most four) disjoint paths found for each pair are used, which keeps the
+    subgraph small.  The edges are given in G's vertex labels as sorted pairs.  `limit`
+    stops the search after that many thetas.
     """
     import networkx as nx
     Gx = nx.Graph(G.edges)
@@ -70,7 +118,7 @@ def theta_subgraphs(G, limit=None):
     for u, w in itertools.combinations(sorted(Gx.nodes()), 2):
         try:
             paths = list(itertools.islice(nx.node_disjoint_paths(Gx, u, w), 4))
-        except Exception:
+        except Exception:                   # no path at all (networkx raises): skip pair
             continue
         if len(paths) < 3:
             continue
@@ -90,8 +138,16 @@ def theta_subgraphs(G, limit=None):
 def push_columns(sub_edges, eG, G, index2, k):
     """Z-basis of Z_2(subgraph, weight k), pushed into C_2(G) as columns.
 
-    The subgraph is built on G's own vertex labels, so the inclusion is the identity on
-    vertices and only the edge indices have to be translated.
+    Arguments: the subgraph's edges `sub_edges` (pairs in G's labels), the map
+    eG {frozenset edge: index in G}, the graph G, `index2` {degree-2 generator of G's
+    unreduced complex: row index} as returned by indexed_columns(C, 3), and k.
+
+    The subgraph is built on G's own vertex labels (unused vertices are isolated), so the
+    inclusion is the identity on vertices and only the edge indices have to be translated.
+    Both complexes are UNREDUCED, which is what makes the inclusion a chain map.
+
+    Returns (columns, rank of Z_2, sizes of the subgraph's complex); each column is a dict
+    {row index of G's degree-2 generators: coefficient}, zero columns dropped.
     """
     TH = Graph(G.N, sub_edges)
     eT = {i: frozenset(e) for i, e in enumerate(TH.edges)}
@@ -100,12 +156,14 @@ def push_columns(sub_edges, eG, G, index2, k):
     Z2 = kernel_basis(cols2, len(CT.gens[1]))
 
     def push(gen):
+        """Image in G's complex of a basis element (mono, st) of the subgraph's complex:
+        parked edges and moving-edge states are renamed from subgraph to G edge indices."""
         mono, st = gen
         nst = [0] * G.N
         for v, x in enumerate(st):
             if x == 1:
                 nst[v] = 1
-            elif x >= 2:
+            elif x >= 2:                    # moving along subgraph edge x-2
                 nst[v] = 2 + eG[eT[x - 2]]
         return (tuple(sorted(eG[eT[e]] for e in mono)), tuple(nst))
 
@@ -123,6 +181,9 @@ def push_columns(sub_edges, eG, G, index2, k):
 
 
 def main():
+    """Run the test of the module docstring on --graph at --k particles and print the verdict.
+
+    Returns 1 if the graph has torsion but no theta subgraph, otherwise 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--graph", default="octahedron",
                    help="any zero-argument graph constructor in gbt, e.g. octahedron, "
@@ -173,6 +234,7 @@ def main():
     print("    theta weight-%d complex %s" % (k, szs))
     print("    Z_2(theta) has rank %d; %d nonzero pushed columns  [%.0fs]"
           % (nz, len(cols), time.time() - t0), flush=True)
+    # adjoin the pushed cycles as extra columns: torsion of C_2 / (B_2 + i(Z_2 theta))
     after_one = coker_torsion(d3 + cols, "+ i_*(Z_2 of one theta)")
     print("    torsion after adjoining it: %s" % (primary(after_one) or "0"), flush=True)
 

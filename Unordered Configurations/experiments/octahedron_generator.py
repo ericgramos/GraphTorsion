@@ -26,8 +26,9 @@ A TRAP WORTH RECORDING
 produced by echelon elimination is highly structured, and in this case the first fourteen
 basis vectors and the first twelve prefix sums all landed in the wrong coset -- lambda = 0 for
 every one of them.  A random element of the kernel works with probability 1/2, so a few random
-tries suffice (with the default seed the first one already works).  Hence the three strategies below; `random` is the default because it is the
-only one that is not fighting the structure of the basis.
+tries suffice (with the default seed the first one already works).  Hence the three strategies
+below; `random` is the default because it is the only one that is not fighting the structure
+of the basis.
 
     random    xor a uniformly random subset of the kernel basis; retry
     prefix    try the prefix sums in order (included to document that it fails here)
@@ -42,9 +43,49 @@ already shared), so push z forward and test it in K_6 by the same idiom.  The an
 i_*(z) generates the K_6 torsion.  That is the second instance (after theta_class.py) of
 torsion created by relations rather than carried by a generator.
 
-    python3 experiments/octahedron_generator.py [--strategy random|prefix|bisect] [--seed S]
+Why "the Z/2 dies" means "z generates": z has order dividing 2, and the torsion of H_2 is a
+single Z/2, so [z] is either 0 or the generator; adjoining z changes the torsion exactly when
+[z] is the generator.  The same reasoning applies in K_6, whose torsion in H_2 is also a single
+Z/2, so there the only alternative to "generates" is "is a boundary".
 
-Takes a few minutes with the default strategy.
+WHAT IS PRINTED
+---------------
+Real output with the defaults (the coker_torsion progress lines are indented further):
+
+    octahedron, weight-4 complex {0: 4974, 1: 21216, 2: 31680, 3: 19200, 4: 3840}
+    baseline torsion of coker(d_3) = Z/2
+    dim ker(d_3) over F_2 = 3851   [0s]
+      trial 0: |supp z| = 15475 -> torsion 0
+      *** generator found on trial 0 ***
+    generator z = d(x)/2, supported on 15475 cells of C_2(octahedron)
+      d(z) = 0 : True
+      adjoining z to d_3 gives torsion 0 (was Z/2)
+    === pushing i_*(z) into K_6 ===
+    K_6 weight-4 complex {0: 9255, 1: 43200, 2: 69750, 3: 45000, 4: 9375}
+    K_6 baseline torsion = Z/2
+    i_*(z) supported on 15475 cells of C_2(K_6)
+    K_6 with i_*(z) adjoined: ...
+
+and the verdict "=> i_*(z) GENERATES the K_6 torsion" (or "is a BOUNDARY in K_6").  With
+--strategy prefix each line is "prefix j: torsion ..."; with --strategy bisect each line is
+"lambda(prefix j) = 0 or 1", ending with the index of a single good basis vector.
+
+USAGE
+-----
+    python3 experiments/octahedron_generator.py [--strategy random|prefix|bisect] [--seed S]
+                                                [--tries T]
+
+    --strategy   (default random) how to search the mod-2 kernel, as described above
+    --seed S     (default 4) seed for the random strategy
+    --tries T    (default 12) maximum number of random trials, or of prefix sums tried
+
+Both complexes are the UNREDUCED ones (`gbt.swiatkowski`), so that the inclusion of the
+octahedron into K_6 is a plain relabelling of basis elements.  The octahedron part takes well
+under a minute; the cokernel computation in K_6 at the end is the slow step, and the whole run
+takes more than five minutes and a few GB.  Nothing is written to data/.
+
+Exit code: 1 if the octahedron shows no torsion or no generator was found with the random or
+bisect strategy; 0 otherwise (including the documented failure of --strategy prefix).
 """
 
 import argparse
@@ -63,7 +104,13 @@ K = 4
 
 
 def halve(cols, mask):
-    """z = d(x)/2 for x the column subset encoded by `mask`, or None if d(x) = 0 over Z."""
+    """z = d(x)/2 for x the column subset encoded by `mask`, or None if d(x) = 0 over Z.
+
+    cols   the columns of d_3, each {row index: coefficient}
+    mask   an integer whose bit j says whether column j is in x (all coefficients of x are 1)
+    Returns z as {row index (a degree-2 generator): coefficient}.  The assertion checks that x
+    really is a mod-2 cycle, i.e. that every coefficient of d(x) is even.
+    """
     acc = defaultdict(int)
     j = 0
     m = mask
@@ -81,7 +128,12 @@ def halve(cols, mask):
 
 
 def is_cycle(z, cols_down):
-    """Check d(z) = 0, as a guard against an indexing slip."""
+    """Check d(z) = 0, as a guard against an indexing slip.
+
+    z is {row index of d_3 = index of a degree-2 generator: coefficient}; cols_down[r] is the
+    boundary of that same generator (the columns of d_2 must be in the same generator order,
+    which `indexed_columns` guarantees by sorting generators by repr).
+    """
     acc = defaultdict(int)
     for r, v in z.items():
         for rr, vv in cols_down[r].items():
@@ -90,6 +142,7 @@ def is_cycle(z, cols_down):
 
 
 def main():
+    """Find a generator z on the octahedron, then test its image in K_6."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--strategy", choices=("random", "prefix", "bisect"),
                     default="random")
@@ -155,6 +208,7 @@ def main():
                 break
     else:   # bisect
         def lam(j):
+            """(lambda of the j-th prefix sum of the kernel basis, as 0/1;  its z or None)."""
             mask = 0
             for t in kern[:j]:
                 mask ^= t
@@ -214,7 +268,12 @@ def main():
     print("K_6 baseline torsion = %s" % primary(base_k), flush=True)
 
     def push(gen):
-        """An octahedron basis element -> the K_6 element with the same vertex states."""
+        """An octahedron basis element -> the K_6 element with the same vertex states.
+
+        The octahedron's vertices 0..5 are K_6's vertices 0..5, so vertex states carry over
+        and the order of the moving slots (hence the Koszul sign) is unchanged; only edge
+        indices are translated, and the parked monomial is re-sorted.
+        """
         mono, st = gen
         nst = [0] * 6
         for v, x in enumerate(st):

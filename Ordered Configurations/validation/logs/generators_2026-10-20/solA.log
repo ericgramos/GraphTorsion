@@ -1,0 +1,10 @@
+C_1: 2162160
+C_2: 4152720
+C_3: 2851200
+dropped 1710995 2-cells outside H
+matrix 2851200 x 2307325
++-1 pivots 2252752, ops 20531810
+residual 1274 x 1055, target entries outside the residual columns 0
+rank 3 of 1274 x 1055
+residual solved: 5 nonzero multipliers, max |lam| 3862901
+y: 40839 cells, 0 of them outside H

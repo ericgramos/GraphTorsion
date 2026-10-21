@@ -1,0 +1,11 @@
+(a) ok: p = 16; 718049 cells in w (degree 3), 854351 cells in f (degree 2)
+(b) ok: d(w) = 16z with z supported on 40839 cells, max |coefficient| 682992899
+(c) ok: d(z) = 0
+Traceback (most recent call last):
+  File "/home/claude/release/gconf-torsion/validation/verify_cert.py", line 218, in <module>
+    main(sys.argv[1])
+    ~~~~^^^^^^^^^^^^^
+  File "/home/claude/release/gconf-torsion/validation/verify_cert.py", line 157, in main
+    assert all(not eds[e] for e in range(SUB, E)), "(c') z has a particle on an edge outside H"
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (c') z has a particle on an edge outside H

@@ -52,6 +52,7 @@ def _perms_by_class(V, edges):
 
 
 def canon(V, edges):
+    """Canonical form of a multigraph: the lexicographically smallest sorted edge list over the relabellings that respect degrees."""
     best = None
     for perm in _perms_by_class(V, edges):
         key = tuple(sorted(tuple(sorted((perm[u], perm[v]))) for u, v in edges))
@@ -61,6 +62,7 @@ def canon(V, edges):
 
 
 def connected(V, edges):
+    """Is the multigraph connected? (depth-first search from vertex 0)."""
     adj = {i: set() for i in range(V)}
     for u, v in edges:
         adj[u].add(v); adj[v].add(u)
@@ -74,6 +76,7 @@ def connected(V, edges):
 
 
 def multigraphs(g, min_deg=3, max_V=None):
+    """All connected multigraphs (loops allowed) of genus g with minimum degree min_deg, up to isomorphism, as {canonical form: edge list}."""
     out = {}
     Vmax = 2 * g - 2 if max_V is None else max_V
     for V in range(1, Vmax + 1):

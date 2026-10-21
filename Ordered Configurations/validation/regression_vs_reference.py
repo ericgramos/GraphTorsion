@@ -12,10 +12,12 @@ NEW, REF = sys.argv[1], sys.argv[2]
 TMP = tempfile.mkdtemp()
 
 def graph(edges, n):
+    """Engine input text for an edge list and n."""
     V = 1 + max(max(e) for e in edges)
     return f"{V} {len(edges)} {n}\n" + "".join(f"{a} {b}\n" for a, b in edges)
 
 def run(binary, args, inp, tag):
+    """Run one engine binary on one test and return a comparable summary of its output."""
     out = subprocess.run([binary, *args, "-o", os.path.join(TMP, tag)], input=inp, capture_output=True, text=True)
     if out.returncode != 0:
         return ("rc", out.returncode)

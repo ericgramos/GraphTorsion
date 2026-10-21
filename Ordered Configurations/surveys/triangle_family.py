@@ -11,7 +11,9 @@ with local Smith forms (local_survey.py) and T(1,2,4) with the shortcut (triangl
 import _common  # sets up the module path and ENGINE (see _common.py)
 import json, sys, time, os
 from gconf import homology
-def T(a, b, c): return [(0, 1)] * a + [(0, 2)] * b + [(1, 2)] * c
+def T(a, b, c):
+    """Edge list of the triangle multigraph T(a, b, c)."""
+    return [(0, 1)] * a + [(0, 2)] * b + [(1, 2)] * c
 jobs = [((1,2,2),5),((1,2,2),6),((0,3,3),6),((0,2,4),6),((1,2,3),5),((2,2,2),5),
         ((1,3,3),6),((2,2,3),6),((1,2,4),6),((1,2,2),7),((0,4,4),6),((2,3,3),6)]
 done = set()

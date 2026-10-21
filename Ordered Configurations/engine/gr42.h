@@ -28,6 +28,7 @@
 
 struct GRT {
     uint8_t add[2][16][16], mul[2][16][16], neg[2][16], inv[2][16];
+  // Precompute addition, multiplication, negation and inverse tables of GR(4,2) (level 0) and F_4 (level 1) on the 4-bit codes.
     GRT() {
         for (int L = 0; L < 2; L++) {
             int M = L == 0 ? 4 : 2;
@@ -54,6 +55,7 @@ struct GRT {
             }
         }
     }
+    // Is this value usable as a pivot (a unit of the coefficient ring)?
     static bool unit(int x) {
         return (x & 5) != 0;
     }
@@ -86,12 +88,15 @@ struct LGR {
     static inline long long denseMax = 70000, denseMin = 30000, nnzBudget = 120000000;
     static inline int cntThresh = 48;
     LGR(int r, int c) : nr(r), nc(c), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0) {}
+    // Packed entry: the column index (high bits).
     static uint32_t col(uint32_t x) {
         return x >> 5;
     }
+    // Packed entry: the value (low bits).
     static uint32_t val(uint32_t x) {
         return x & 31;
     }
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -114,11 +119,13 @@ struct LGR {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     int get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), (uint32_t)c << 5);
         return (it != R.end() && col(*it) == (uint32_t)c) ? (int)val(*it) : 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         int ui = grt.inv[L][get(r, c)];
@@ -170,6 +177,7 @@ struct LGR {
         vector<uint32_t>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // One pass of the sparse elimination at the current stage; returns whether any pivot was found.
     bool sweep() {
         bool any = false;
         typedef pair<int, int> PI;
@@ -254,6 +262,7 @@ struct LGR {
     struct R4 {
         uint64_t *p[4];
     };
+    // Bit-sliced addition in Z/4 of 64 entries at once: (x0, x1) are the low and high bit planes.
     static inline void z4add(uint64_t &x0, uint64_t &x1, uint64_t y0, uint64_t y1) {
         uint64_t c = x0 & y0;
         x0 ^= y0;
@@ -267,11 +276,13 @@ struct LGR {
             z4add(b0[w], b1[w], d0[w], d1[w]);
         }
     }
+    // Read entry c of a bit-sliced GR(4,2) row (four bit planes a0, a1, b0, b1).
     static inline int grget(uint64_t *const *X, int c) {
         int w = c >> 6, s = c & 63;
         return (int)((X[0][w] >> s) & 1) | (int)(((X[1][w] >> s) & 1) << 1) | (int)(((X[2][w] >> s) & 1) << 2) |
                (int)(((X[3][w] >> s) & 1) << 3);
     }
+    // Write entry c of a bit-sliced GR(4,2) row.
     static inline void grset(uint64_t *const *X, int c, int v) {
         int w = c >> 6;
         uint64_t bit = 1ULL << (c & 63);
@@ -320,6 +331,7 @@ struct LGR {
             Bp[w] ^= nb;
         }
     }
+    // Dense finishing phase over GR(4,2): copy the live block into bit-sliced rows and finish the elimination there.
     void dense_gr(long long sparseStagePivots) {
         vector<int> cmap(nc, -1);
         int m = 0;
@@ -551,6 +563,7 @@ struct LGR {
         fprintf(stderr, "  [gr] stage 1 (R/2 summands): %lld\n", r1);
     }
 
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         long long before = 0;
         while (true) {

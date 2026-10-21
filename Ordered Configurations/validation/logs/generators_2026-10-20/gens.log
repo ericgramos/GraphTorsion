@@ -1,0 +1,22 @@
+C_0: 360360
+C_1: 2162160
+C_2: 4152720
+C_3: 2851200
+d_1 mod 32: unit rank 360359, residual entries 0
+d_2 mod 32: unit rank 1801651, residual entries 0
+eliminating d_3: 2851200 x 2351069
+unit rank 2294151, 20834021 row operations
+residual block 1784 x 932
+local Smith form of the residual (valuation: count): 1:7 3:4 4:1  (+920 of valuation >= 5)
+generator 0: order 2, support 592882 cells
+generator 1: order 2, support 217421 cells
+generator 2: order 2, support 357656 cells
+generator 3: order 2, support 587084 cells
+generator 4: order 2, support 597883 cells
+generator 5: order 2, support 601354 cells
+generator 6: order 2, support 603226 cells
+generator 7: order 8, support 607393 cells
+generator 8: order 8, support 606155 cells
+generator 9: order 8, support 607902 cells
+generator 10: order 8, support 603037 cells
+generator 11: order 16, support 610192 cells

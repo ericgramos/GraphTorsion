@@ -1,0 +1,7 @@
+C_0: 30240
+C_1: 120960
+C_2: 134400
+C_3: 40320
+d_1: 30239 pivots, residual entries 0
+d_2: 89706 pivots, residual entries 0
+d_3 on kept cells: 40320 pivots, residual entries 0, non-pivot columns 4374

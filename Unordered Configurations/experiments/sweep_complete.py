@@ -2,30 +2,74 @@
 """
 H_*(B_k K_n) for every (n, k) that fits: the complete-graph sweep.
 
-The complete graphs are the densest graphs on a given vertex set, and the striking finding
-is how TAME their configuration spaces are.  Across every case computed -- 3 <= n <= 12 and
-2 <= k <= 12 -- the torsion is 2-torsion and nothing but 2-torsion, every summand is Z/2
-with no Z/4, and for n >= 8 at k = 3 its multiplicity is exactly
+THE QUESTION
+------------
+The complete graphs are the densest graphs on a given vertex set, and the striking finding is
+how TAME their configuration spaces are.  Across every case computed -- K_3 to K_12, with k up to
+12 for the small ones and k = 2, 3 for K_9 to K_12 -- the torsion is 2-torsion and nothing but
+2-torsion, every summand is Z/2 with no Z/4, and for n >= 8 at k = 3 its multiplicity in H_2 is
+exactly
 
-        rank H_1(B_k K_n)  =  C(n-1, 2),
+        rank H_1(B_k K_n)  =  C(n-1, 2)
 
-so the torsion looks like a shadow of the first homology rather than something new.  The conjecture
-is that this holds for all n and k.  Contrast sweep_bipartite.py: complete BIPARTITE graphs with a
+(rank H_1 = C(n-1, 2) holds for n >= 5; K_4 has rank 4), so the torsion looks like a shadow of
+the first homology rather than something new.  The conjecture is that complete graphs carry
+only Z/2 for all n and k.  Contrast `sweep_bipartite.py`: complete BIPARTITE graphs with a
 sparse large side carry Z/3 and Z/4.  Density appears to destroy odd torsion -- see
 `density_interpolation.py` for the experiment that isolates this.
 
-HOW THE SWEEP WORKS
--------------------
-Jobs are ordered by `gbt.reduced_cell_count`, which is a closed form, so the cheap cases are
-done first and an interrupted run loses at most one job: results are written to
-data/sweep_complete.json after each one and reloaded on restart.  Pass a cell cap to control
-how far it goes; the pipeline is chosen by size (`gbt.fast` below the threshold,
-`gbt.lean` above it).
+METHOD
+------
+All pairs 3 <= n <= NMAX, 2 <= k <= KMAX are sized with `gbt.reduced_cell_count` (a closed
+formula), and those with at most CAP cells are run cheapest first.  Each job computes the full
+homology with `gbt.fast`, or `gbt.lean` above LEAN_THRESHOLD = 600,000 cells, and is saved at
+once, so an interrupted run loses at most one job and a restart skips everything stored.  K_8 at
+k = 4 and K_12 at k = 3 are beyond the default cap; they are in `large_cases.py`.
 
-    python3 experiments/sweep_complete.py [--cap CELLS] [--nmax N] [--kmax K]
+WHAT IS PRINTED
+---------------
+1.  "<J> jobs with at most <CAP> cells".
+2.  For each job not yet stored: "K_n  k=..  <raw> cells -> <reduced>  [time, fast|lean]",
+    then the homology and its torsion.
+3.  A SUMMARY over all stored cases:
+      * the cases with odd torsion anywhere (expected: none), and the set of invariant factors
+        seen (expected: [2]);
+      * "the multiplicity pattern at k = 3": columns graph | rank H_1 | m | C(n-1,2) | match,
+        where m is the number of even invariant factors of tors H_2(B_3 K_n);
+      * "full table": rows K_n, columns k, each entry the torsion in degrees >= 2 ("free" if
+        none, "." if not computed).
 
-    --cap   400000   a few minutes
-    --cap  1600000   a few hours, and needs a couple of GB
+Excerpt (`--cap 20000`, everything stored, a second):
+
+    cases with ODD torsion anywhere: none
+    invariant factors seen anywhere: [2]
+      graph      rank H_1          m   C(n-1,2)
+      K_7               15          1         15
+      K_8               21         21         21 match
+      ...
+      K_12              55         55         55 match
+
+USAGE
+-----
+    python3 experiments/sweep_complete.py [--cap 400000] [--nmax 13] [--kmax 12]
+
+    --cap N     skip jobs whose fully reduced complex has more than N cells.  400,000 (the
+                default) takes a few minutes; 1,600,000 a few hours and a couple of GB.
+    --nmax N    largest n (default 13; K_13 at k = 3 has 1.6 million cells and needs a cap
+                above that, and more memory than 7 GB through the full pipeline).
+    --kmax K    largest k (default 12).
+
+DATA FILE
+---------
+data/sweep_complete.json, keyed "K<n>|<k>" (e.g. "K8|3"), each record
+{"H": {degree: [free rank, [invariant factors > 1]]}, "raw": cells of the fully reduced
+complex, "red": cells after the Morse reduction}, plus "cells_formula" in records written by
+this version.
+
+COST AND EXIT CODE
+------------------
+See --cap.  Always exits 0: the script reports what it finds.  `validate.py` and
+`crosscheck_mod_p.py` test these numbers independently.
 """
 
 import argparse
@@ -41,11 +85,13 @@ from gbt import fast, lean, paths                       # noqa: E402
 from gbt.report import (exponents, has_odd_torsion,      # noqa: E402
                         homology_line, torsion_line, torsion_summary)
 
+#: above this many reduced cells, use the memory-lean pipeline instead of gbt.fast
 LEAN_THRESHOLD = 600_000
 DATA_FILE = "sweep_complete.json"
 
 
 def main():
+    """Run every job under the cap that is not yet stored, then print the summary.  Returns 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--cap", type=int, default=400_000)
     ap.add_argument("--nmax", type=int, default=13)
@@ -55,7 +101,7 @@ def main():
     jobs = [(reduced_cell_count(complete(n), k), n, k)
             for n in range(3, args.nmax + 1)
             for k in range(2, args.kmax + 1)]
-    jobs = sorted(j for j in jobs if j[0] <= args.cap)
+    jobs = sorted(j for j in jobs if j[0] <= args.cap)     # cheapest first
     print("%d jobs with at most %s cells\n" % (len(jobs), format(args.cap, ",")),
           flush=True)
 
@@ -96,6 +142,8 @@ def main():
         if not rec:
             continue
         H = {int(d): tuple(v) for d, v in rec["H"].items()}
+        # number of even invariant factors of tors H_2 = number of Z/2 summands here,
+        # since every factor seen is exactly 2
         m = sum(1 for x in H.get(2, (0, []))[1] if x % 2 == 0)
         print("  K_%-6d %10d %10d %10d %s"
               % (n, H[1][0], m, comb(n - 1, 2),

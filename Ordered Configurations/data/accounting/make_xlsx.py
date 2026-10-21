@@ -10,6 +10,7 @@ F = Font(name="Arial", size=10); B = Font(name="Arial", size=10, bold=True)
 HEAD = PatternFill("solid", fgColor="DDE3EA")
 
 def sheet(wb, title, path, widths):
+    """Add one CSV file to the workbook as a sheet with the given column widths."""
     ws = wb.create_sheet(title)
     rows = list(csv.reader(open(path)))
     for r in rows:

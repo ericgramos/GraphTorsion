@@ -17,6 +17,7 @@ _cache = {}
 
 
 def betti(edges, n):
+    """Betti numbers of Conf_n of the graph (rational, through gconf.homology), cached by (edges, n)."""
     key = (tuple(sorted(map(tuple, edges))), n)
     if key not in _cache:
         if n == 0:
@@ -29,6 +30,7 @@ def betti(edges, n):
 
 
 def explode(edges, v):
+    """The exploded graph Gamma_v: every half-edge at v is replaced by a new leaf (a loop at v gives two leaves)."""
     V, edges = normalize(edges)
     out, nxt = [], V
     for (a, b) in edges:
@@ -44,6 +46,7 @@ def explode(edges, v):
 
 
 def analyse(edges, v, n):
+    """Rank bookkeeping of the vertex explosion at v for Conf_n: compares the Betti numbers of Gamma and Gamma_v."""
     V, edges = normalize(edges)
     d = sum((a == v) + (b == v) for a, b in edges)
     Gv = explode(edges, v)

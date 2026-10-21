@@ -2,36 +2,53 @@
 """
 Indecomposable torsion above H_2 in a planar graph: a search where products are impossible.
 
+THE QUESTION
+------------
+higher_degree_torsion.py produces 2-torsion in H_i of a planar graph for every i >= 2, but it
+does so by taking products with disjoint cycles, so the classes are Kunneth classes -- a
+torsion class in H_2 tensored with the fundamental classes of i-2 disjoint circles.  Those say
+nothing that H_2 did not already say.  The question is whether a planar graph can carry torsion
+in H_3 that is NOT of that form, i.e. whether degree two is the only degree in which a planar
+graph CREATES torsion.
+
 WHY THE VERTEX COUNT IS THE WHOLE POINT
 ---------------------------------------
-higher_degree_torsion.py produces 2-torsion in H_i of a planar graph for every i >= 2, but it does it by
-taking products with disjoint cycles, so the classes are K\"unneth classes -- a torsion class in
-H_2 tensored with the fundamental classes of i-2 disjoint circles.  Those are not interesting:
-they say nothing that H_2 did not already say.  The question is whether a planar graph can carry
-torsion in H_3 that is NOT of that form.
-
-The cleanest way to be sure is to look where no product can reach.  A product class in
-H_3(B_k Gamma) comes from two VERTEX-DISJOINT subgraphs G_1, G_2 with k_1 + k_2 = k, and by
-K\"unneth the only sources of torsion in total degree 3 are
+The cleanest way to be sure a class is not a product is to look where no product can reach.
+A product class in H_3(B_k Gamma) comes from two VERTEX-DISJOINT subgraphs G_1, G_2 with
+k_1 + k_2 = k, and by Kunneth the only sources of torsion in total degree 3 are
 
     H_p(B_{k_1}G_1) (x) H_q(B_{k_2}G_2),  p + q = 3, with torsion in one factor, or
     Tor(H_p, H_q),                        p + q = 2.
 
-Now count vertices.  Torsion in H_1 needs a non-planar factor (Ko--Park), which a subgraph of a
-planar graph cannot be.  Torsion in H_2 needs at least 12 edges (true of every graph on at most
-7 vertices, by the exhaustive sweeps in sweep_small_graphs.py), so at least 6 vertices.  And the other factor must have nonzero H_q with
-q >= 1, so it needs a cycle: at least 3 more vertices.  Hence
+Count vertices.  Torsion in H_1 needs a non-planar factor (Ko--Park), which a subgraph of a
+planar graph cannot be; so Tor(H_1, H_1) and every term with torsion in an H_1 vanish.  Torsion
+in H_2 needs at least 12 edges (true of every graph on at most 7 vertices, by the exhaustive
+sweeps in sweep_small_graphs.py), so at least 6 vertices; and for H_2 (x) H_1 the other factor
+must have nonzero H_1, so it needs a cycle: at least 3 more vertices.  (The remaining term,
+H_3 (x) H_0, is torsion in H_3 of a smaller planar subgraph, which the search would itself find.)
+Hence
 
-    any planar graph on at most 8 vertices whose H_3 has torsion has INDECOMPOSABLE H_3 torsion.
+    any planar graph on at most 8 vertices whose H_3 has torsion has H_3 torsion that is not a
+    Kunneth class built from H_2.
 
-So the search below is exhaustive over the planar graphs on 6 and 7 vertices with minimum degree
-3 -- all 55 of them, from the graph atlas -- together with a SAMPLE of 10 eight-vertex planar
-graphs (cubic ones found by random sampling, the 4-antiprism, some maximal planar ones); the
-eight-vertex part is not exhaustive.  Minimum degree 3
-loses only subdivisions and graphs with leaves; leaves are NOT covered by this search.
+THE POOL
+--------
+  * all connected planar graphs on 6 and 7 vertices with minimum degree >= 3, from networkx's
+    graph atlas (complete up to 7 vertices): 9 on 6 vertices and 46 on 7;
+  * a SAMPLE of 10 eight-vertex planar graphs: 3- and 4-regular ones found by random sampling
+    up to isomorphism (seeded, so the sample is reproducible), the 4-antiprism, and maximal
+    planar graphs grown by stacking a vertex into a random face.  The 8-vertex part is NOT
+    exhaustive.
 
-Only the torsion of H_3 is computed, via tors H_d = tors coker d_{d+1} and `lean.torsion_in_degree`, so only the
-degree-3 and degree-4 slices of each complex are built.
+Minimum degree 3 loses only subdivisions (which do not change the configuration spaces) and
+graphs with leaves; leaves are NOT covered by this search.
+
+THE METHOD
+----------
+Only the torsion of H_d (default d = 3) is computed, with `lean.torsion_in_degree`, which uses
+tors H_d = tors coker d_{d+1}; so only the degree-d and degree-(d+1) slices of the fully reduced
+complex are built.  The slice sizes are known in advance (`reduced_cell_count_by_degree`), and a
+graph whose two slices together exceed --cap is skipped.
 
 WHAT THE SEARCH FOUND
 ---------------------
@@ -39,25 +56,66 @@ Nothing.  Of the 65 graphs in the pool, those whose two slices fit under the def
 computed: 59 at k = 5 (all 9 + 46 on 6 and 7 vertices, 4 of the 10 on 8 vertices) and 52 at
 k = 6 (9 + 40 + 3), as stored in data/genuine_higher_torsion.json.  Every one has torsion-free
 H_3.  The octahedron has torsion-free H_3 at k = 7 and H_4 at k = 6 and 7, and the
-4-antiprism torsion-free H_3 at k = 6 and H_4 at k = 5 (`--deep`).  Every planar example of torsion
-above H_2 that we have is still a Kunneth class.
+4-antiprism torsion-free H_3 at k = 6 and H_4 at k = 5 (`--deep`).  Every planar example of
+torsion above H_2 that we have is still a Kunneth class.
 
 There is a conceptual reason to expect this.  An--Knudsen's three generators of planar H_2 all
 have homological dimension at most two: a cycle and a star have free fundamental group and no
 homology above degree one, and the theta graph has two essential vertices, so Swiatkowski's
-dimension bound gives H_i(B_k Theta) = 0 for i >= 3 (which the computation confirms through
-k = 6).  If their generation statement extends to higher degrees with the same atoms, then every
-class in H_i for i >= 3 is built from atom classes living in degrees <= 2, hence is a product --
-and so is any torsion in it.  Degree two would then be the only degree in which a planar graph
-*creates* torsion -- which is the conjecture this search supports.
+dimension bound gives H_i(B_k Theta) = 0 for i >= 3.  If their generation statement extends to
+higher degrees with the same atoms, then every class in H_i for i >= 3 is built from atom
+classes living in degrees <= 2, hence is a product -- and so is any torsion in it.  Degree two
+would then be the only degree in which a planar graph creates torsion, which is the conjecture
+this search supports.
 
-    python3 experiments/genuine_higher_torsion.py [--k 5] [--cap CELLS] [--degree 3]
+WHAT IS PRINTED
+---------------
+A header giving the pool sizes, then one row per tested graph:
+
+    #             position in the pool (0-8 six vertices, 9-54 seven, 55-64 eight)
+    N, M          vertices and edges
+    girth         length of the shortest cycle
+    slice cells   cells in the degree-d and degree-(d+1) slices together
+    H_d torsion   the torsion of H_d as a primary decomposition, or "none"
+    time          seconds, or "cached" if the result was already stored
+
+A row with torsion is flagged "<== INDECOMPOSABLE".  Graphs over the cap are skipped silently
+and counted.  The run ends with "T graphs tested, S skipped as too large at this cap." and
+either the list of hits with their edge lists or "No tested planar graph has torsion in H_d at
+k = K."  Excerpt (default options, all cached, 3 seconds):
+
+    65 planar graphs with minimum degree >= 3: 9 on 6, 46 on 7, 10 on 8 vertices
+       #    N    M   girth  slice cells H_3 torsion    time
+       0    6    9       3        9,360 none           cached
+    ...
+    59 graphs tested, 6 skipped as too large at this cap.
+    No tested planar graph has torsion in H_3 at k = 5.
+
+With --deep the table has columns graph, N, M, k, deg, slice cells, torsion, time, for the
+fixed jobs octahedron (k, d) = (7, 3), (6, 4), (7, 4) and 4-antiprism (6, 3), (5, 4); a job
+whose two slices exceed 2,200,000 cells is skipped.
+
+USAGE
+-----
+    python3 experiments/genuine_higher_torsion.py [--k 5] [--degree 3] [--cap 400000]
     python3 experiments/genuine_higher_torsion.py --deep
 
-k = 5 is a few minutes for the whole sweep; k = 6 is an hour or so.  `--deep` pushes the
-octahedron to k = 7 in degrees 3 and 4 (and the 4-antiprism to k = 6), which is the furthest this implementation
-reaches (a million cells per slice, a few minutes each).  Exits 0 whether or not anything is
-found -- the finding is the output, not the status.
+    --k K        (default 5) number of particles.
+    --degree D   (default 3) the homological degree whose torsion is computed.  The vertex
+                 argument above is written for D = 3; for D = 4 a Kunneth class needs even more
+                 vertices (an H_2 class and two disjoint cycles: 12), so it still applies.
+    --cap C      (default 400000) skip a graph whose two slices have more than C cells.
+    --deep       instead of the sweep, run the fixed deep jobs listed above.
+
+Results are stored in data/genuine_higher_torsion.json.  Sweep records have key
+"N|u.v-u.v-...|K|D" (vertex count, sorted edge list, particles, degree) and value
+{"torsion": [...], "N", "M", "k", "degree", "edgelist"}; deep records have key
+"deep|NAME|K|D" and no edge list.  Stored results are reused, so a rerun with the shipped
+data takes seconds.  From scratch, k = 5 takes a few minutes and k = 6 an hour or so; --deep
+reaches about a million cells per slice and takes a few minutes per job and a few GB.  The
+closing line "wrote data/..." is printed even when every result was cached.
+
+Exit code: always 0 -- the finding is the output, not the status.
 """
 
 import argparse
@@ -75,7 +133,11 @@ DATA_FILE = "genuine_higher_torsion.json"
 
 
 def atlas_planar(nvert, mindeg=3):
-    """All connected planar graphs on `nvert` vertices with minimum degree >= mindeg."""
+    """All connected planar graphs on `nvert` vertices with minimum degree >= mindeg.
+
+    Read from networkx's graph atlas, which lists every graph on at most 7 vertices exactly
+    once up to isomorphism; hence the ValueError for nvert > 7.  Returns networkx graphs.
+    """
     import networkx as nx
     from networkx.generators.atlas import graph_atlas_g
     if nvert > 7:
@@ -103,6 +165,7 @@ def eight_vertex_planar():
     out = []
 
     def add(Gx):
+        """Append Gx to the sample if connected, min degree >= 3, planar, and new up to iso."""
         if not nx.is_connected(Gx) or min(d for _, d in Gx.degree()) < 3:
             return
         if not nx.check_planarity(Gx)[0]:
@@ -111,7 +174,7 @@ def eight_vertex_planar():
             return
         out.append(Gx)
 
-    rng = random.Random(0)
+    rng = random.Random(0)          # fixed seed: the same sample on every run
     for _ in range(3000):
         add(nx.random_regular_graph(3, 8, seed=rng.randrange(10 ** 9)))
     for _ in range(3000):
@@ -134,7 +197,8 @@ def eight_vertex_planar():
 def deep_probe():
     """The octahedron and the 4-antiprism as far as the machine reaches: degrees 3 and 4.
 
-    Both have at most 8 vertices, so nothing here can be a product.
+    Both have at most 8 vertices, so nothing here can be a product.  Jobs are fixed (see the
+    module docstring); each result is stored under "deep|NAME|K|D".  Returns 0.
     """
     res = paths.load_json(DATA_FILE)
     jobs = []
@@ -184,6 +248,7 @@ def deep_probe():
 
 
 def main():
+    """Build the pool, compute the torsion of H_d for each graph under the cap, report hits."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, default=5)
     ap.add_argument("--degree", type=int, default=3)
@@ -226,6 +291,7 @@ def main():
         if cells > args.cap:
             skipped += 1
             continue
+        # key: vertex count | sorted edge list as "u.v-u.v-..." | k | degree
         key = "%d|%s|%d|%d" % (n, "-".join("%d.%d" % e for e in sorted(G.edges)), k, d)
         if key in res:
             t = res[key]["torsion"]

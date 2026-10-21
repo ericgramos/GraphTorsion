@@ -1,6 +1,6 @@
 # Makefile for the gconf-torsion package.
 #
-#   make            build the engine, the certificate finders and the analysis tools
+#   make            build the engine, the certificate finders, the exact tools and the analysis tools
 #   make engine     build only engine/oconf (this is all that most users need)
 #   make check      run the fast validation scripts (a few minutes in total)
 #   make clean      remove the compiled binaries
@@ -15,7 +15,8 @@ CXXFLAGS ?= -O3 -march=native -fopenmp -std=c++17
 
 ANALYSIS = analysis/prod2 analysis/g2tors analysis/g2split analysis/phi analysis/decomp \
            analysis/cutimg3 analysis/vexp
-CERTS    = certificates/cert certificates/certp
+CERTS    = certificates/cert certificates/certp certificates/certq certificates/orderq certificates/exactsolve certificates/reducecyc \
+           certificates/reducemod certificates/spanq
 
 all: engine $(CERTS) $(ANALYSIS)
 
@@ -26,6 +27,11 @@ engine/oconf: engine/oconf.cpp engine/gr42.h
 
 certificates/%: certificates/%.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $<
+
+# the prime-power and exact tools share three headers
+certificates/certq certificates/orderq certificates/reducemod: certificates/swiat_cells.h certificates/elim_modq.h
+certificates/spanq: certificates/elim_modq.h
+certificates/exactsolve certificates/reducecyc: certificates/swiat_cells.h certificates/elim_z.h certificates/elim_modq.h
 
 analysis/%: analysis/%.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $<
@@ -38,6 +44,8 @@ check: all
 	python3 validation/local_smith_suite.py --quick
 	python3 validation/check_quotients.py
 	python3 validation/verify_cert.py certificates/cert_T123_n6.txt.gz
+	python3 validation/verify_cert.py certificates/cert_K4dbl5_n5_order16.txt.gz
+	python3 validation/verify_cert.py certificates/cert_triangle_leaf_into_K4dbl5_order16.txt.gz
 
 clean:
 	rm -f engine/oconf $(CERTS) $(ANALYSIS)

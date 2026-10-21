@@ -2,24 +2,59 @@
 """
 Regenerate the summary tables from the stored JSON in data/.
 
+WHAT IT IS FOR
+--------------
 The sweeps and the large individual cases write their results to data/*.json as they go.  This
-script reads whatever is there and prints the tables, so the stored numbers can be
-regenerated without recomputing anything -- and so that a reader who has run only part of the
-sweep still gets a coherent, correctly labelled subset.
+script reads whatever is there and prints the tables, so the stored numbers can be regenerated
+without recomputing anything -- and so that a reader who has run only part of a sweep still
+gets a coherent, correctly labelled subset.  It computes nothing new: every number is read
+from data/, except the predictions (binomial coefficients) in tables 2, 4 and 6.
 
+THE TABLES
+----------
+Each table starts with a line "### title".
+
+    1  complete graphs: torsion of H_i(B_k K_n), i >= 2, by (n, k)
+         one row per n, one column per k; each cell lists the torsion in degrees >= 2
+         ("H2: (Z/2)^21"), "free" if there is none, "." if (n, k) was not computed.
+    2  complete graphs at k=3: (Z/2)^m in H_2 vs rank H_1 = C(n-1,2)
+         columns K_n, rank H_1, m (the number of 2-primary cyclic summands of H_2, i.e. the
+         number of even invariant factors), C(n-1,2), and "yes" when m = C(n-1,2).
+    3  complete bipartite: every case with ODD torsion
+         columns K_{a,b}, k, and all of its torsion by degree.
+    4  the a = n+1 family: torsion of H_{k-1} and coker W_{k-1,k}(b)
+         for every stored K_{k+1,b}: whether b <= 2k-1, the torsion of H_{k-1}, the computed
+         rank of H_k, and the predicted rank max(0, C(b,k) - C(b,k-1)).
+    5  the background: 2-torsion multiplicity in H_{k-1} vs rank H_1
+         for every complete and complete bipartite case: rank H_1, the number m of
+         2-primary summands of H_{k-1}, the odd parts of its invariant factors, and
+         "yes" in the last column when m = rank H_1 > 0.
+    6  top-degree vanishing: the trichotomy
+         from data/top_degree_vanishing.json: dim H_n(B_n K_{a,b}), the prediction ("-"
+         where only the conjecture applies), and which case of the trichotomy (a, b, n) is in.
+    7  one table each for planar_torsion.json, linkless_controls.json, petersen_family.json,
+         density_interpolation.json and large_cases.json: case, k, and all torsion.
+
+The run ends with the list of files found in data/.  An empty source prints "(no data -- run
+the corresponding sweep first)" under its title.  Excerpt of table 2:
+
+    ### complete graphs at k=3: (Z/2)^m in H_2 vs rank H_1 = C(n-1,2)
+    K_n   rank H_1  m   C(n-1,2)  match
+    -----------------------------------
+    K_7   15        1   15
+    K_8   21        21  21        yes
+
+The large cases are merged into tables 1-5 under the sweep keys ("K12-3" becomes "K12|3",
+"K55" becomes "K5,5|4"); a sweep record with the same key takes precedence.
+
+USAGE
+-----
     python3 experiments/make_tables.py [--latex]
 
-With --latex the tables come out as LaTeX tabular bodies, ready to paste.
+    --latex   print each table as a LaTeX tabular body (booktabs rules, one "l" column per
+              header, underscores escaped) instead of aligned plain text.
 
-The tables:
-
-    1  complete graphs: torsion of H_i(B_k K_n) for i >= 2, by (n, k)
-    2  complete graphs: the multiplicity pattern, (Z/2)^m in H_2 against rank H_1 = C(n-1,2)
-    3  complete bipartite: every case with odd torsion
-    4  complete bipartite: the a = n+1 family and the coker W prediction
-    5  the "background" count: 2-torsion multiplicity in H_{k-1} against rank H_1
-    6  top-degree vanishing: the trichotomy
-    7  everything else stored (planar graphs, controls, Petersen family, large cases)
+Instant; reads data/ only and writes nothing.  Exit code: always 0.
 """
 
 import argparse
@@ -35,7 +70,11 @@ from gbt.report import torsion_summary                # noqa: E402
 
 
 def load(fname):
-    """{key: {degree: (free, invariant factors)}} from one data file."""
+    """{key: {degree: (free, invariant factors)}} from one data file.
+
+    Records without a full homology dict "H" (e.g. single-degree results) are skipped, and a
+    missing file gives {}.
+    """
     raw = paths.load_json(fname)
     out = {}
     for key, rec in raw.items():
@@ -50,15 +89,18 @@ class Table(object):
     """A tiny table printer with a plain and a LaTeX mode."""
 
     def __init__(self, title, headers, latex=False):
+        """title: printed after "###"; headers: column names; latex: LaTeX output if True."""
         self.title = title
         self.headers = headers
         self.rows = []
         self.latex = latex
 
     def add(self, *cells):
+        """Append one row; every cell is converted with str()."""
         self.rows.append([str(c) for c in cells])
 
     def show(self):
+        """Print the table (or the no-data note), padding columns to their widest entry."""
         print()
         print("### %s" % self.title)
         if not self.rows:
@@ -84,6 +126,7 @@ class Table(object):
 
 
 def main():
+    """Load the stored results and print tables 1-7."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--latex", action="store_true")
     args = ap.parse_args()

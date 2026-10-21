@@ -18,17 +18,45 @@ time a matrix reaches `smith` it is typically a few hundred rows across.
 No pivoting heuristics beyond "least absolute value" are used.  On the residual matrices
 that come out of the Morse reduction, entry growth has not been a problem in any
 computation in this repository.
+
+WHY THE RESULT IS THE SMITH FORM
+--------------------------------
+Every operation is an elementary row or column operation over Z (swap, add an integer
+multiple of one row/column to another), so the diagonal produced generates the same
+determinantal ideals as M.  Each pass strictly decreases |pivot| until the pivot divides
+its whole row and column (Euclid), and the step-3 test guarantees that it also divides
+the rest of the block; so the diagonal entries d_1 | d_2 | ... form a divisibility chain,
+which characterises the Smith form uniquely.
+
+EXAMPLE
+-------
+    >>> from gbt.smith import smith
+    >>> smith([[2, 4], [6, 8]], 2, 2)          # det = -8, gcd of entries = 2
+    (2, [2, 4])
+
+COST
+----
+Dense and cubic: O(rows * cols * min(rows, cols)) integer operations, plus the occasional
+extra pass of step 3.  Fine for a few hundred rows; hopeless for a raw boundary matrix.
 """
 
 
 def smith(M, nr, nc):
     """Smith normal form of the nr x nc integer matrix M (a list of row lists).
 
+    Parameters
+    ----------
+    M : list of lists of int
+        the matrix, as nr rows of length nc.  Entries may be any Python ints.
+    nr, nc : int
+        number of rows and columns (given explicitly so that empty matrices work).
+
     Returns
     -------
     (rank, divs) : (int, list of int)
-        `divs` is the list of diagonal entries in divisibility order, so the invariant
-        factors are the entries that are not 0 or 1, and `rank` is len(divs).
+        `divs` is the list of nonzero diagonal entries (absolute values) in divisibility
+        order d_1 | d_2 | ..., so the invariant factors are the entries that are not 1,
+        and `rank` is len(divs).  Zero diagonal entries are not listed.
 
     The argument is copied, not modified.
     """
@@ -54,6 +82,7 @@ def smith(M, nr, nc):
         if piv is None:
             break                                  # the remaining block is zero
         i, j = piv
+        # move the pivot to position (r0, c0) by one row swap and one column swap
         M[r0], M[i] = M[i], M[r0]
         for row in M:
             row[c0], row[j] = row[j], row[c0]
@@ -62,6 +91,8 @@ def smith(M, nr, nc):
         while again:
             again = False
             # --- clear the pivot column ---
+            # subtract q = floor(entry/pivot) times the pivot row; a nonzero remainder is
+            # smaller in absolute value than |pivot|, so swap it in and repeat (Euclid)
             p = M[r0][c0]
             for i in range(r0 + 1, nr):
                 if M[i][c0]:
@@ -85,6 +116,9 @@ def smith(M, nr, nc):
                             M[i][c0], M[i][j] = M[i][j], M[i][c0]
                         again = True
             # --- divisibility: the pivot must divide the rest of the block ---
+            # if some M[i][j] is not a multiple of p, adding row i to the pivot row puts
+            # M[i][j] into the pivot row; the next column-clearing pass then produces a
+            # remainder smaller than p, so |pivot| strictly decreases and this terminates
             if not again:
                 p = M[r0][c0]
                 bad = None

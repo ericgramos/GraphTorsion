@@ -20,10 +20,12 @@ K5 = list(itertools.combinations(range(5), 2))
 
 
 def canon(S):
+    """Canonical form of a set of doubled edges of K_5 under the symmetric group on the five vertices."""
     return min(tuple(sorted(tuple(sorted((p[a], p[b]))) for a, b in S)) for p in itertools.permutations(range(5)))
 
 
 def counts(edges, n):            # |C_k| for k = 0..5 by the closed formula
+    """Number of cells |C_k| of the complex for k = 0..5, by the closed formula n! e_k(d_v - 1) C(n-k+E-1, E-1)."""
     deg = Counter(x for e in edges for x in e)
     E = len(edges)
     es = [1]

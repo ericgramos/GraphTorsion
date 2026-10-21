@@ -12,15 +12,18 @@ VEXP = os.path.join(HERE, "..", "analysis", "vexp")
 S = tempfile.mkdtemp()
 
 def gin(g, n=None):
+    """Input text for the engine (with n) or for analysis/vexp (without n)."""
     V = 1 + max(max(e) for e in g)
     return (f"{V} {len(g)} {n}\n" if n is not None else f"{V} {len(g)}\n") + "".join(f"{a} {b}\n" for a, b in g)
 
 def direct(g, n, p, K):
+    """p-primary torsion computed directly by the engine in local mode."""
     out = subprocess.run([ENGINE, "-q", str(p), str(K), "-o", S + "/vv"], input=gin(g, n), capture_output=True, text=True)
     d = json.loads(out.stdout)
     return {mm["k"] - 1: sorted(p ** s for s, c in enumerate(mm["stages"]) for _ in range(c) if s > 0) for mm in d["maps"]}
 
 def vexp(g, n, v, k, p, K):
+    """p-primary torsion computed by analysis/vexp through the vertex explosion."""
     out = subprocess.run([VEXP, str(n), str(v), str(k), str(p), str(K)], input=gin(g), capture_output=True, text=True)
     if out.returncode == 3:
         return "hypothesis fails"

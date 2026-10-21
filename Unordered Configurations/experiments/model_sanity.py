@@ -16,12 +16,56 @@ Does the implementation compute what it claims to?  Five independent checks.
         read the torsion of H_{n-1} off a single differential without ever computing
         ker(d_{n-1}) -- see the discussion below the check.
 
+Two smaller groups ride along: (3b) `gbt.fast` and `gbt.lean` give identical homology, and
+under (4) the path P_4 and the cycle C_4 have the homology of a point and of a circle
+(unordered configurations on an interval form a contractible space, and on a circle a space
+homotopy equivalent to a circle), so nothing exotic may appear there.
+
 Nothing here depends on any of the torsion results; it is purely a test of the machinery.
 Run it first if anything looks surprising.
 
-    python3 experiments/model_sanity.py          (about 3 minutes)
+WHAT EACH CHECK COMPARES
+------------------------
+    (1)  `ChainComplex.check_d2()` on the unreduced and fully reduced complexes of K_5 (k=2),
+         K_{3,3} (k=3), the octahedron (k=3) and theta(3,2) (k=4), and on K_{4,5} (k=3)
+         reduced at the B side only.
+    (2)  the number of cells actually built (`fast.build` for the reduced complex,
+         `swiatkowski` for the unreduced one) against `reduced_cell_count` / `cell_count`,
+         for K_6 (k=4), K_{4,5} (k=3), the octahedron (k=4) and the triangular prism (k=3).
+    (3)  the full homology of K_{3,3}, K_{3,4} (k=2) and K_{4,5} (k=3) computed three ways --
+         reduce_at none, B only, all -- with the reference pipeline, and against `gbt.fast`.
+    (3b) `fast` against `lean` on K_{3,3} (k=3), K_6 (k=4), K_{4,5} (k=3).
+    (4)  Abrams' model on the subdivided graph against the Swiatkowski complex: K_5 at k=2
+         (no subdivision needed) and the octahedron at k=3 (edges subdivided twice), plus
+         d o d = 0 for Abrams' complex; then the literature values for B_2 K_5 and B_2 K_{3,3},
+         and the path P_4 and cycle C_4 at k = 2, 3.
+    (5)  (a) on the fully reduced complexes of K_5 and K_{3,3} at k = 2, BEFORE any Morse
+         reduction, and (b) on the Morse-reduced complexes of K_{4,5} (k=3), K_6 (k=4) and the
+         octahedron (k=4): for every degree d, the non-unit invariant factors of d_{d+1}
+         (computed with `sparse_smith`) equal the torsion of H_d, and
+         (#d-cells - rank d_{d+1}) - (free rank of H_d) = rank d_d.
 
-Exits non-zero if any check fails.
+WHAT IS PRINTED
+---------------
+A section header per group, then one line per check:
+
+    [ok  ] NAME: VALUE                      the check passed; VALUE is what was computed
+    [FAIL] NAME: VALUE   (expected WANT)    the check failed
+
+and finally "ALL CHECKS PASSED" (67 checks) or "N CHECK(S) FAILED: [names]".  Excerpt:
+
+    == (2) closed-form cell counts ==
+      [ok  ] reduced count, K_6, k=4: 71220
+      [ok  ] unreduced count, K_6, k=4: 176580
+    == (3) the amount of reduction does not matter ==
+      [ok  ] K_{4,5}, k=3: reduce_at none == B only: {0: (1, ()), 1: (12, (2,)), ...}
+
+USAGE
+-----
+    python3 experiments/model_sanity.py          (about 15 seconds here; well under 1 GB)
+
+No options; writes nothing.  Exit code 1 if any check fails, 0 otherwise.  The checks run at
+import time (the script has no main function), so do not import this file from another script.
 """
 
 import os
@@ -40,6 +84,11 @@ FAILURES = []
 
 
 def check(name, got, want):
+    """Print one "[ok  ]" or "[FAIL]" line comparing got with want; record failures.
+
+    Comparison is plain ==, so both sides must have the same shape (dicts of tuples, ints...).
+    Returns True if they agree.
+    """
     ok = (got == want)
     print("  [%s] %s: %s%s" % ("ok  " if ok else "FAIL", name, got,
                                "" if ok else "   (expected %s)" % (want,)))

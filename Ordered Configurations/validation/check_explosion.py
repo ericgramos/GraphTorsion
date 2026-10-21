@@ -16,6 +16,7 @@ from collections import defaultdict
 
 class Complex:
     def __init__(self, V, edges, labels):
+        """The reduced ordered Swiatkowski complex of a graph for the given particle labels (an independent implementation)."""
         self.V, self.edges, self.labels = V, list(edges), tuple(sorted(labels))
         self.E = len(edges)
         self.halves = defaultdict(list)                 # vertex -> half-edges (2e = tail end, 2e+1 = head end)
@@ -44,6 +45,7 @@ class Complex:
         return out
 
     def push(self, cell, v, h):
+        """Remove the particle at vertex v and push it into edge(h) at the end of h (prepend at a tail end, append at a head end)."""
         verts, words = cell
         p = verts[v][0]
         nv = list(verts); nv[v] = None
@@ -52,6 +54,7 @@ class Complex:
         return (tuple(nv), tuple(nw))
 
     def d(self, cell):
+        """Boundary of a cell as a dictionary {face: coefficient}."""
         verts, _ = cell
         out = defaultdict(int); j = 0
         for v in range(self.V):
@@ -73,17 +76,20 @@ def explode(V, edges, v):
 
 
 def check(V, edges, v, n):
+    """Check the ordered vertex explosion for (Gamma, v, n) cell by cell and sign by sign; returns the number of failures."""
     G = Complex(V, edges, range(n))
     Vx, ex = explode(V, edges, v)
     hv = [h for h in G.halves[v] if h != G.base[v]]
     h0 = G.base[v]
     # sigma_h^q on a Gamma_v cell: insert q at the v-end of edge(h); the Gamma_v vertex set is 0..Vx-1
     def sigma(cell, q, h):
+        """sigma_h^q: insert particle q at the v-end of edge(h) (a cell of Gamma_v becomes a cell of Gamma)."""
         verts, words = cell
         nw = list(words); e = h // 2
         nw[e] = (q,) + words[e] if h % 2 == 0 else words[e] + (q,)
         return (verts, tuple(nw))
     def lift(cellx):   # Gamma_v cell -> Gamma cell with v empty (drop the extra leaf slots)
+        """A cell of Gamma_v as a cell of Gamma with v empty (drop the extra leaf slots)."""
         verts, words = cellx
         return (tuple(verts[:V]), words)
     nbad = 0; ncells = 0

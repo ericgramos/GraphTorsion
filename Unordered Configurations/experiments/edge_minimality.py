@@ -5,8 +5,11 @@ Is the H_2 torsion supported on a proper subgraph?  Single-edge deletions and gr
 Two questions about how tightly the torsion is tied to the whole graph.
 
   (1) EDGE MINIMALITY.  Delete one edge at a time and recompute.  If every single-edge
-      deletion kills the torsion, the carrier is edge-minimal: no proper subgraph on the same
-      vertices has it.  This holds for K_7 at k=3 (all 21 deletions) and for the octahedron
+      deletion kills the torsion, the carrier is called edge-minimal.  (This is a statement
+      about single deletions only.  Having torsion is not known to be monotone under edge
+      deletion, so it does not by itself rule out a smaller subgraph, two or more edges down,
+      that carries torsion again; the exhaustive sweeps of `sweep_small_graphs.py` are what
+      settle such questions.)  This holds for K_7 at k=3 (all 21 deletions) and for the octahedron
       at k=4 (all 12).  It does NOT hold for K_6 at k=4: every one of the 15 deletions leaves
       a graph that still has Z/2 in H_2, which is the first hint that the K_6 class really
       lives on a smaller subgraph -- the greedy descent in (2) then finds it.
@@ -21,10 +24,12 @@ Two questions about how tightly the torsion is tied to the whole graph.
       `sweep_small_graphs.py`, which shows 12 edges is the true minimum and the octahedron
       the unique graph achieving it.
 
-  (3) STABILIZATION IN k.  By An--Drummond-Cole--Knudsen the groups
-      (+)_k H_i(B_k Gamma) form a module over Z[E], and torsion is non-decreasing in k.  The
-      script shows K_6 passing from torsion-free H_2 at k=2,3 to Z/2 at k=4, which is the
-      visible form of that statement: the class is born at k=4 and persists.
+  (3) STABILIZATION IN k.  By An--Drummond-Cole--Knudsen the groups (+)_k H_i(B_k Gamma)
+      form a module over Z[E], where multiplying by an edge e adds a particle on e (edge
+      stabilization).  Edge stabilization H_i(B_k) -> H_i(B_{k+1}) is injective, so torsion
+      present at k persists at every larger k.  The script shows K_6 passing from
+      torsion-free H_2 at k=2,3 to Z/2 at k=4: the class is born at k=4.  (It only PRINTS
+      the groups; it does not test persistence beyond k = 4.)
 
 A warning about interpretation, since this is an easy mistake to make.  Edge
 minimality does NOT mean the class is indecomposable, nor that it fails to come from a
@@ -32,9 +37,50 @@ subgraph: a homomorphism can send a free class to a torsion class, and that is e
 happens here -- see `theta_class.py`.  Minimality says every edge is needed for the class to be
 torsion, not that the class is new.
 
-    python3 experiments/edge_minimality.py [--case K7-3|K6-4|OCT-4|descent|all]
+WHAT IS PRINTED
+---------------
+For a deletion test (cases OCT-4, K6-4, K7-3):
 
-K7-3 is the slow one (21 recomputations of a 7-vertex, k=3 complex).
+    === NAME: H_d = <group> ===
+       NAME - (u, v):  H_d = <group after deleting the first edge>      (a sample)
+       T of M single-edge deletions tested (S skipped: would leave a leaf)
+       every deletion kills the H_d torsion => EDGE-MINIMAL
+    or
+       torsion SURVIVES deleting: [((u, v), [invariant factors]), ...]
+       => not edge-minimal
+
+A deletion that would leave a vertex of degree < 2 is skipped (none of the three graphs tested
+has such an edge).  Real output for the octahedron (3 seconds):
+
+    === octahedron: H_2 = Z^95 + Z/2 ===
+       octahedron - (0, 2):  H_2 = Z^65
+       12 of 12 single-edge deletions tested (0 skipped: would leave a leaf)
+       every deletion kills the H_2 torsion => EDGE-MINIMAL
+
+For the descent: one line per restart, "restart r: stops at m edges, degrees [...]", then the
+best graph found (edges, degree sequence, torsion) and, if it is 4-regular on 6 vertices with
+12 edges, the remark that it is the octahedron.  For the stabilization case: H_2(B_k K_6) for
+k = 2, 3, 4, e.g.
+
+    === K_6: torsion in H_2 as k grows (edge stabilization) ===
+       k=2:  H_2 = Z^9
+       k=3:  H_2 = Z^129
+       k=4:  H_2 = Z^264 + Z/2
+
+USAGE
+-----
+    python3 experiments/edge_minimality.py [--case K7-3|K6-4|OCT-4|descent|stab|all]
+
+    --case   (default all) which part to run:
+             OCT-4    deletions from the octahedron at k = 4            (seconds)
+             K6-4     deletions from K_6 at k = 4                        (about 15 seconds)
+             stab     H_2(B_k K_6) for k = 2, 3, 4                       (a few seconds)
+             descent  six greedy descents from K_6 at k = 4              (about 40 seconds)
+             K7-3     deletions from K_7 at k = 3, 21 recomputations     (about 7 seconds)
+             all      all of the above, in the order OCT-4, K6-4, stab, descent, K7-3
+
+Every computation uses `gbt.fast`; memory stays well under 1 GB.  Nothing is written to
+data/.  Exit code: always 0 (the findings are printed, not asserted).
 """
 
 import argparse
@@ -51,13 +97,23 @@ from gbt.report import torsion_line                             # noqa: E402
 
 
 def torsion_in_degree(G, k, d):
-    """The invariant factors of H_d(B_k G), with a guard for degenerate subgraphs."""
+    """(free rank, invariant factors > 1) of H_d(B_k G), computed in full with `gbt.fast`.
+
+    Degrees above the top of the complex are absent from the homology dict; they are reported
+    as (0, []).  The callers make sure G has no vertex of degree < 2 (fast needs degree >= 1).
+    """
     H, _, _ = fast.compute(G, k)
     return H.get(d, (0, []))
 
 
 def deletion_test(name, G, k, d):
-    """Does every single-edge deletion kill the torsion in degree d?"""
+    """Does every single-edge deletion kill the torsion in degree d?
+
+    name    label used in the printout;  G  the graph;  k  particles;  d  homological degree.
+    Deletions that would leave a vertex of degree < 2 are skipped and counted.
+    Returns None if G itself has no torsion in degree d, True if every tested deletion kills
+    it (edge-minimal), False if some deletion keeps it (the survivors are printed).
+    """
     free, tors = torsion_in_degree(G, k, d)
     print("=== %s: H_%d = %s ===" % (name, d, fmt(free, tors)), flush=True)
     if not tors:
@@ -91,7 +147,13 @@ def deletion_test(name, G, k, d):
 
 
 def _descend(n, k, d, order):
-    """One greedy pass: drop edges in the given order while the torsion survives."""
+    """One greedy descent: repeatedly drop the first droppable edge, in the given order.
+
+    n  number of vertices;  k, d  particles and degree;  order  the starting edge list.
+    An edge is droppable if the remaining graph still uses all n vertices, has minimum degree
+    >= 2, and still has torsion in H_d.  After each drop the scan restarts from the beginning.
+    Returns the edge list at which no further edge can be dropped (a local minimum).
+    """
     cur = list(order)
     while True:
         dropped = False
@@ -112,7 +174,12 @@ def _descend(n, k, d, order):
 
 
 def greedy_descent(n, k, d, restarts=6, seed=0):
-    """Randomised greedy descent from K_n: drop edges while keeping torsion in degree d."""
+    """Randomised greedy descent from K_n: drop edges while keeping torsion in degree d.
+
+    Restart 0 uses the natural edge order of K_n, restarts 1.. a shuffled order drawn from
+    random.Random(seed), so the run is reproducible.  Prints each restart's stopping size and
+    the best (smallest) graph found with its torsion.  Returns None.
+    """
     print("=== greedy descent from K_%d at k=%d (%d randomised restarts) ==="
           % (n, k, restarts), flush=True)
     G = complete(n)
@@ -146,6 +213,11 @@ def greedy_descent(n, k, d, restarts=6, seed=0):
 
 
 def stabilization(n, ks, d):
+    """Print H_d(B_k K_m) for each k in ks, where n is a label of the form "K_m".
+
+    Only prints the groups; the closing sentence about non-decreasing torsion is the theorem
+    the reader should see illustrated, not something this function checks.
+    """
     print("=== %s: torsion in H_%d as k grows (edge stabilization) ===" % (n, d))
     G = complete(int(n.split("_")[1]))
     for k in ks:
@@ -155,6 +227,7 @@ def stabilization(n, ks, d):
 
 
 def main():
+    """Run the case(s) selected by --case; always return 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--case", default="all",
                     choices=("K7-3", "K6-4", "OCT-4", "descent", "stab", "all"))

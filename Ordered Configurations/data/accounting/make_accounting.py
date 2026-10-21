@@ -40,12 +40,14 @@ def gid(edges, label):
     return len(_reps) - 1, label
 
 def planar(edges):
+    """Is the underlying simple graph planar? (networkx)."""
     G = nx.Graph()
     G.add_edges_from([tuple(e) for e in edges if e[0] != e[1]])
     return nx.check_planarity(G)[0]
 
 rows = []
 def add(cat, label, edges, n, method, degrees, result, status, source):
+    """Append one computation to the accounting table, with the isomorphism class of its graph."""
     i, canon = gid(edges, label)
     rows.append(dict(category=cat, graph=label, graph_class=f"G{i:03d} ({canon})", V=len({x for e in edges for x in e}),
                      E=len(edges), planar="yes" if planar(edges) else "no", n=n, method=method, degrees=degrees,
@@ -229,7 +231,9 @@ with open(os.path.join(HERE, "accounting_graphs.csv"), "w", newline="") as f:
                     " ".join(map(str, sorted({int(r["n"]) for r in sub}))), json.dumps(sorted(list(G.edges())))])
 cats = collections.Counter(r["category"] for r in rows)
 with open(os.path.join(HERE, "accounting_summary.txt"), "w") as f:
-    def P(*a): print(*a); print(*a, file=f)
+    def P(*a):
+        """Print to the screen and to the summary file."""
+        print(*a); print(*a, file=f)
     P(f"computations recorded: {len(rows)}")
     P(f"distinct graphs (up to isomorphism): {len(_reps)}")
     P(f"  planar: {sum(1 for G, _, _ in _reps if planar(list(G.edges())))}, non-planar: {sum(1 for G, _, _ in _reps if not planar(list(G.edges())))}")

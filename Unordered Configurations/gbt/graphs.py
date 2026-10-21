@@ -12,9 +12,28 @@ Vertex order conventions used by the bipartite computations:
                          B = {a, ..., a+b-1}.  Every vertex of A precedes every vertex
                          of B, which is what the sign bookkeeping in gbt.flipchains assumes.
 
-Nothing in this module needs networkx.  The two functions that do -- `from_networkx`
-and `petersen_family` -- import it lazily, so the core of the package runs on a bare
-Python 3 installation.
+Only two functions in this module need networkx -- `from_networkx` and
+`petersen_family` -- and they import it lazily, so everything else (and the whole core of
+the package) runs on a bare Python 3 installation.
+
+HOW TO ENTER YOUR OWN GRAPH
+---------------------------
+    >>> from gbt import Graph, from_edges
+    >>> G = Graph(4, [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)])   # vertices 0..3
+    >>> G.N, G.M, G.edges[4], G.inc[0]
+    (4, 5, (0, 2), [0, 3, 4])
+    >>> H = from_edges([("a", "b"), ("b", "c"), ("c", "a")])     # any labels; relabelled
+    >>> H.edges
+    [(0, 1), (1, 2), (0, 2)]
+
+Edges are stored with the smaller endpoint first, in the order given, and that order is
+their index.  Reordering the edge list gives an isomorphic complex (different basepoint
+edges, different generator names) and therefore the same homology.
+
+Families and named graphs: complete, complete_bip, octahedron, tetrahedron, dodecahedron,
+icosahedron, platonic_solids, antiprism, prism_graph, prism, theta, wheel, petersen,
+petersen_family; operations: from_edges, from_networkx, disjoint_union, subdivide,
+Graph.delete_edge.
 """
 
 import itertools
@@ -39,6 +58,11 @@ class Graph:
     """
 
     def __init__(self, N, edges):
+        """N vertices 0..N-1 and an iterable of 2-element edges (pairs of vertices).
+
+        Raises ValueError on a repeated edge, a loop, or an endpoint outside 0..N-1.
+        Vertices with no edges are allowed (but see the pitfall in `gbt.fast`).
+        """
         self.N = N
         self.edges = [tuple(sorted(e)) for e in edges]
         if len(set(self.edges)) != len(self.edges):
@@ -76,6 +100,8 @@ class Graph:
         raise KeyError("no edge %r" % (key,))
 
     def is_connected(self):
+        """True if the graph is connected (depth-first search from vertex 0); the empty
+        graph counts as connected."""
         if self.N == 0:
             return True
         seen = {0}
@@ -93,6 +119,7 @@ class Graph:
         return Graph(self.N, [e for j, e in enumerate(self.edges) if j != ei])
 
     def __repr__(self):
+        """Short description, e.g. 'Graph(N=6, M=12)'."""
         return "Graph(N=%d, M=%d)" % (self.N, self.M)
 
 
@@ -101,7 +128,7 @@ class Graph:
 # =========================================================================
 
 def complete(n):
-    """The complete graph K_n."""
+    """The complete graph K_n on vertices 0..n-1, edges in lexicographic order."""
     return Graph(n, itertools.combinations(range(n), 2))
 
 
@@ -127,14 +154,24 @@ def from_edges(edges):
 
 
 def from_networkx(Gx):
-    """Convert a networkx graph (any hashable labels) to a `Graph`."""
+    """Convert a networkx graph (any hashable labels) to a `Graph`.
+
+    The nodes are relabelled 0..N-1 in networkx's node order, and the edge order is
+    networkx's edge order.  Multi-edges are collapsed (the input is converted to a simple
+    nx.Graph first); a self-loop raises ValueError.  Requires networkx.
+    """
     import networkx as nx
     Gx = nx.convert_node_labels_to_integers(nx.Graph(Gx))
     return Graph(Gx.number_of_nodes(), list(Gx.edges()))
 
 
 def disjoint_union(G, H):
-    """The disjoint union G + H, with H's vertices shifted up by G.N."""
+    """The disjoint union G + H, with H's vertices shifted up by G.N.
+
+    The edges of G come first (same indices), then those of H.  By the Kunneth formula the
+    homology of B_k(G + H) is a sum over k_1 + k_2 = k of tensor and Tor products of the
+    homology of B_{k_1} G and B_{k_2} H.
+    """
     return Graph(G.N + H.N,
                  list(G.edges) + [(u + G.N, v + G.N) for (u, v) in H.edges])
 
@@ -143,7 +180,9 @@ def subdivide(G, t):
     """Replace every edge of G by a path of t edges.
 
     Needed for Abrams' discretised model, which requires enough room on each edge;
-    irrelevant to the Swiatkowski model, which never needs subdivision.
+    irrelevant to the Swiatkowski model, which never needs subdivision.  The original
+    vertices keep their numbers 0..N-1; the new subdivision vertices are numbered N, N+1,
+    ... in order along each edge, edge by edge.  t = 1 returns a copy of G.
     """
     if t < 1:
         raise ValueError("t must be at least 1")
@@ -175,14 +214,17 @@ OCTAHEDRON_EDGES = [(0, 2), (0, 3), (0, 4), (0, 5),
 def octahedron():
     """The octahedron K_{2,2,2}: planar, 6 vertices, 12 edges.
 
-    The carrier of 2-torsion in H_2(B_4) with the fewest vertices among all graphs on at most
-    seven vertices (see experiments/sweep_small_graphs.py).
+    Vertices 0..5 with the antipodal (non-adjacent) pairs {0,1}, {2,3}, {4,5}; the edge
+    list is OCTAHEDRON_EDGES.  The carrier of 2-torsion in H_2(B_4) with the fewest
+    vertices among all graphs on at most seven vertices (see
+    experiments/sweep_small_graphs.py).
     """
     return Graph(6, OCTAHEDRON_EDGES)
 
 
 def tetrahedron():
-    """The tetrahedron, i.e. K_4: planar, 4 vertices, 6 edges, 3-regular."""
+    """The tetrahedron, i.e. K_4 (this simply returns complete(4)): planar, 4 vertices,
+    6 edges, 3-regular."""
     return complete(4)
 
 
@@ -212,7 +254,11 @@ def icosahedron():
 
 
 def platonic_solids():
-    """The Platonic solids provided here, as (name, Graph) pairs, in order of edge count."""
+    """The Platonic solids provided here, as (name, Graph) pairs, in order of edge count.
+
+    The names are 'tetrahedron', 'octahedron', 'dodecahedron', 'icosahedron'; they are
+    the keys used in data/platonic_solids.json.
+    """
     return [("tetrahedron", tetrahedron()),
             ("octahedron", octahedron()),
             ("dodecahedron", dodecahedron()),
@@ -284,13 +330,20 @@ def theta(paths=3, length=2):
 
 
 def wheel(n):
-    """The wheel W_n: a cycle of length n plus a hub joined to every rim vertex."""
+    """The wheel W_n: a cycle of length n plus a hub joined to every rim vertex.
+
+    Rim vertices are 0..n-1 (in cyclic order) and the hub is n; n >= 3.
+    """
     edges = [(i, (i + 1) % n) for i in range(n)] + [(n, i) for i in range(n)]
     return Graph(n + 1, edges)
 
 
 def petersen():
-    """The Petersen graph, as the Kneser graph on 2-subsets of a 5-set."""
+    """The Petersen graph, as the Kneser graph on 2-subsets of a 5-set.
+
+    Vertices are the 2-subsets of {0,..,4} in lexicographic order, adjacent when disjoint:
+    10 vertices, 15 edges, 3-regular, non-planar.
+    """
     sets = list(itertools.combinations(range(5), 2))
     idx = {s: i for i, s in enumerate(sets)}
     edges = [(idx[s], idx[t]) for s, t in itertools.combinations(sets, 2)
@@ -357,6 +410,8 @@ def petersen_family():
                             sorted(d for _, d in G.degree())))
 
     def name_of(G):
+        """A readable name for a member of the family: K_6, K_{3,3,1}, Petersen and
+        K_{4,4}-e are recognised by isomorphism, the others are called G_{N,M}."""
         if nx.is_isomorphic(G, nx.complete_graph(6)):
             return "K_6"
         if nx.is_isomorphic(G, nx.complete_multipartite_graph(3, 3, 1)):

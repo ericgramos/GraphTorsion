@@ -9,10 +9,13 @@ m-set: rows indexed by the t-subsets, columns by the k-subsets, and
 
         W[S][T] = 1  if S is a subset of T,   0 otherwise.
 
-Reduce the Swiatkowski complex of K_{n+1,b} at every vertex of the b-side.  In a suitable
-basis the top differential d_n is
+Take the unreduced Swiatkowski complex of K_{n+1,b} with n particles and b >= n (reducing at
+the vertices of the b-side changes nothing essential; `wilson_block.py` checks the argument
+step by step).  In suitable bases the top differential d_n is
 
-        d_n  ~  diag( W_{n-1,n}(b),  I,  0 ) ,
+        d_n  ~  [ I  0 ]
+                [ 0  W_{n-1,n}(b) ]
+                [ 0  0 ]
 
 an identity block (the "flip" relations, which cancel) plus one genuinely interesting block,
 which is the inclusion matrix.  Two consequences:
@@ -20,10 +23,10 @@ which is the inclusion matrix.  Two consequences:
         H_n(B_n K_{n+1,b})             =  ker W_{n-1,n}(b)
         torsion H_{n-1}(B_n K_{n+1,b}) =  torsion coker W_{n-1,n}(b).
 
-The first gives the top-degree vanishing for b <= 2n-1, via Gottlieb's rank theorem.  The second is the sharp statement:
-it says exactly which torsion appears, and it is what produces odd and non-squarefree
-torsion -- Z/3 in H_2(B_3 K_{4,5}) and Z/4 in H_3(B_4 K_{5,7}) -- rather than merely proving
-that some exists.
+The first gives the top-degree vanishing for b <= 2n-1, via Gottlieb's rank theorem.  The
+second is the sharp statement: it says exactly which torsion appears, and it is what produces
+odd and non-squarefree torsion -- Z/3 in H_2(B_3 K_{4,5}) and Z/4 in H_3(B_4 K_{5,7}) --
+rather than merely proving that some exists.
 
 WHAT THIS SCRIPT CHECKS
 -----------------------
@@ -46,13 +49,53 @@ WHAT THIS SCRIPT CHECKS
         torsion of H_{n-1}(B_n K_{n+1,b}) computed from the Swiatkowski complex, for every
         (n, b) small enough to build.
 
-Check (3) is the one that could fail, and it is a real test of the cokernel statement: the two sides are
-computed by completely different routes -- one a C(b,n-1) x C(b,n) combinatorial matrix, the
-other a Morse reduction of a complex with tens of thousands of cells.
+Check (3) is the one that could fail, and it is a real test of the cokernel statement: the two
+sides are computed by completely different routes -- one a C(b,n-1) x C(b,n) combinatorial
+matrix, the other a Morse reduction of a complex with tens of thousands of cells.
 
-    python3 experiments/wilson_cokernel.py [--cap CELLS] [--matrix-cap ENTRIES]
+WHICH CASES
+-----------
+    (1), (2)  every W_{t,k}(m) with 2 <= m <= 12, 1 <= t < k, t + k <= m and k - t <= 2 (so
+              that the exact Smith form stays affordable), and at most --matrix-cap entries
+              C(m,t) * C(m,k).
+    vanishing for 2 <= n <= 7 and n <= b <= 3n with C(b,n-1) * C(b,n) <= 800,000: the rank of
+              W_{n-1,n}(b), exactly by Smith form below --matrix-cap entries and otherwise
+              over F_1000003 (marked *; safe, since rank mod p never exceeds the rational
+              rank and every diagonal entry of W_{n-1,n}(b) is at most n < p).
+    (3)       2 <= n <= 4 and n+1 <= b <= 11, with at most --cap reduced cells and at most
+              --matrix-cap matrix entries: 15 cases at the defaults, K_{3,3} to K_{4,9}.
 
-Runs in a couple of minutes at the default sizes.
+WHAT IS PRINTED
+---------------
+Three tables.  (1)+(2): columns  W_{t,k}(m) | rows | cols | rank | full? | elementary divisors
+(as "q^multiplicity") | vs Wilson ("matches", or "MISMATCH, predicted ..."; "RANK NOT FULL" is
+appended if Gottlieb fails).  The vanishing table: columns  n | b | C(b,n-1) | C(b,n) |
+rank W | dim ker | b <= 2n-1?.  (3): columns  K_{n+1,b} | n | cells | coker W torsion |
+H_{n-1} torsion | ok/MISMATCH.  Then the number of cases of (3), and the verdict.  Excerpt
+(the defaults, about 7 seconds):
+
+    W_{t,k}(m)        rows    cols    rank full?  elementary divisors        vs Wilson
+    W_{3,4}(7)          35      35      35 yes    2^14 3^6 4                 matches
+    ...
+    K_{4,5}           3     19,976 (Z/2)^4 + Z/3          (Z/2)^4 + Z/3          ok
+    15 case(s) of the cokernel statement checked
+    ALL CHECKS PASSED: Wilson's diagonal form, Gottlieb's rank theorem, and the
+    cokernel statement hold on every case computed.
+
+USAGE
+-----
+    python3 experiments/wilson_cokernel.py [--cap 150000] [--matrix-cap 20000]
+
+    --cap N           skip a homological check (3) whose fully reduced complex has more than
+                      N cells (default 150,000).
+    --matrix-cap N    skip inclusion matrices with more than N entries (rows x columns) in the
+                      exact checks (default 20,000).
+
+COST, OUTPUT FILES AND EXIT CODE
+--------------------------------
+About 7 seconds at the defaults, little memory.  Writes nothing to data/.  Exits with 1 if any
+check fails (a Wilson mismatch, a rank deficiency, a failure of the equivalence, or a cokernel
+mismatch), otherwise 0.
 """
 
 import argparse
@@ -72,7 +115,8 @@ from gbt.linalg import rank_mod_p, sparse_smith              # noqa: E402
 def inclusion_columns(t, k, m):
     """W_{t,k}(m) by columns: (list of {row index: 1}, number of rows).
 
-    Rows are the t-subsets of {0,...,m-1} in lexicographic order, columns the k-subsets.
+    Rows are the t-subsets of {0,...,m-1} in lexicographic order, columns the k-subsets (also
+    lexicographic); column T has a 1 in the row of every t-subset of T.
     """
     rows = list(itertools.combinations(range(m), t))
     ri = {s: i for i, s in enumerate(rows)}
@@ -108,6 +152,7 @@ def elementary_divisors(divs):
         x = d
         p = 2
         while x > 1:
+            # split off the full power of the least prime p dividing x
             while p * p <= x and x % p:
                 p += 1
             if p * p > x:
@@ -122,11 +167,13 @@ def elementary_divisors(divs):
 
 
 def show(counter):
+    """Format a Counter of prime powers as "2^14 3^6 4" (multiplicity 1 is not written)."""
     return " ".join("%d^%d" % (q, m) if m > 1 else "%d" % q
                     for q, m in sorted(counter.items())) or "-"
 
 
 def main():
+    """Run checks (1), (2), the vanishing equivalence and (3); returns 1 on any failure."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--cap", type=int, default=150_000,
                     help="skip the homological check above this many reduced cells")
@@ -224,6 +271,7 @@ def main():
             H, _, _ = fast.compute(G, n)
             hom_tors = H.get(n - 1, (0, []))[1]
 
+            # compare primary decompositions: equal exactly when the groups are isomorphic
             same = (primary(divs) == primary(hom_tors))
             tested += 1
             if not same:
@@ -239,8 +287,8 @@ def main():
     if failures:
         print("%d FAILURE(S): %s" % (len(failures), failures))
         return 1
-    print("ALL CHECKS PASSED: Wilson's diagonal form, Gottlieb's rank theorem, and")
-    print("All checks hold on every case computed.")
+    print("ALL CHECKS PASSED: Wilson's diagonal form, Gottlieb's rank theorem, and the")
+    print("cokernel statement hold on every case computed.")
     return 0
 
 

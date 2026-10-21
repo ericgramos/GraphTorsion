@@ -42,20 +42,62 @@ depend on which of the N-n+1 free B-vertices was used, which gives (P2).  The sc
 
 WHAT THIS SCRIPT DOES
 ---------------------
-Builds X and applies the differential term by term -- no need to build the whole complex --
-then reports |supp X|, |supp dX|, whether the park half vanished, and the gcd of dX.  It
-also runs the COMPETING reading of sigma, in which t(S_B) is listed in increasing order of
-its A-value rather than of its B-source, so that the convention is pinned down by
-computation rather than by recollection.  Under the wrong reading the park half does not
-vanish (18 terms on K_{3,3}), so dX is not a multiple of a sit-only chain, and on K_{4,5} the
-gcd of dX even collapses to 1.
+Builds X straight from the closed formula (no complex is built) and applies the differential
+term by term.  The differential of a top-degree element (S, t) is
 
+    d( h_{v_1} (x) ... (x) h_{v_n} ) = sum_i (-1)^(i-1) h_{v_1} (x) ... (e_i - v_i) ... h_{v_n},
+
+so each source v_i contributes a "park" term (the particle parks on its edge e_i) and a "sit"
+term (it sits at v_i), with the Koszul sign (-1)^(i-1) for the i-th source in increasing order.
+The terms of dX are collected in a dictionary keyed by the resulting cell, and the script
+reports |supp X|, |supp dX|, whether the park half vanished, the gcd g of dX, whether dX / g is
+primitive, and whether g = N - n + 1.
+
+It also runs the COMPETING reading of sigma, in which t(S_B) is listed in increasing order of
+its A-value rather than of its B-source, so that the convention is pinned down by computation
+rather than by recollection.  Under the wrong reading the park half does not vanish (18 terms
+on K_{3,3}), so dX is not a multiple of a sit-only chain, and on K_{4,5} the gcd of dX even
+collapses to 1.  The competing reading is tried on the cases with n <= 3.
+
+WHAT IS PRINTED
+---------------
+For each case and convention a block
+
+      K_{3,3}, n=2, sigma ordered by-source:
+         |supp X| = 72,  |supp dX| = 36  (park 0, sit 36)
+         coefficients of dX: [2],  gcd = 2
+         park half vanishes identically  <-- (P1) holds
+         dX = 2 . y   with y primitive: True,  y coefficients [1]
+         predicted N-n+1 = 2   -> MATCH
+         N = 2n-1, so this gives  Z/2  in H_1(B_2 K_{3,3})
+
+("coefficients of dX" is the set of absolute values occurring; "y coefficients" likewise for
+y = dX / gcd, which should be [1]).  The last line only appears when N = 2n-1.  At the end:
+
+      All 9 cases satisfy (P1) and (P2) under the by-source convention.
+      The by-value convention fails in every case tried:
+      the ordering in the definition of sigma is forced.
+
+USAGE
+-----
     python3 experiments/torsion_class_X.py [n,N ...]
 
-With no arguments it runs nine cases (a few minutes; K_{5,8} with
-n=4 is the slow one).  Each argument is a pair n,N, e.g.
+With no arguments it runs nine cases, (n, N) = (2,3), (2,4), (2,5), (2,6), (3,5), (3,6),
+(3,7), (4,7), (4,8); the three with N = 2n-1 give Z/n.  Each argument is a pair n,N, e.g.
 
     python3 experiments/torsion_class_X.py 2,3 4,7
+
+COST, OUTPUT FILES AND EXIT CODE
+--------------------------------
+The default run takes a few seconds (K_{5,8} with n = 4, with 134,400 matching
+configurations, is the slow case) and little memory.  Writes no data file.  Exits with 1 if the
+by-source convention fails in some case, or if the by-value convention does NOT fail in every
+case tried; otherwise 0.
+
+PITFALL
+-------
+The check "y primitive" is gcd(y) = 1; that every coefficient of y is +-1 is shown in the "y
+coefficients" line but not enforced by the exit code.
 """
 
 import itertools
@@ -68,7 +110,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def sgn_of_sequence(seq):
-    """Sign of the permutation presented by `seq`, a sequence of distinct items."""
+    """Sign (+1 or -1) of the permutation presented by `seq`, a sequence of distinct
+    comparable items: (-1)^(number of inversions)."""
     s = 1
     a = list(seq)
     for i in range(len(a)):
@@ -103,7 +146,12 @@ def matching_configurations(nA, nB, n):
 
 
 def coefficient(S, t, nA, convention):
-    """(-1)^{|S_A|} sgn sigma(S,t), under the stated reading of sigma's middle block."""
+    """The coefficient (-1)^{|S_A|} sgn sigma(S,t) of the matching configuration (S, t) in X.
+
+    `convention` is "by-source" (the correct one: the targets of the B-sources are listed in
+    increasing order of their B-source) or "by-value" (listed in increasing order of the
+    A-vertex itself).  nA = n+1 is the size of A, so exactly one A-vertex (the hole) is
+    unused and goes last."""
     SA = sorted(v for v in S if v < nA)
     SB = sorted(v for v in S if v >= nA)
     if convention == "by-source":
@@ -123,12 +171,15 @@ def boundary(S, t):
 
         d(h_1 (x) ... (x) h_n) = sum_i (-1)^{i-1} h_1 (x)...(x) (e_i - v_i) (x)...(x) h_n
 
-    A parked term is recorded as ('park', edge, ...) and a sitting term as ('sit', v, ...).
+    A parked term is recorded as ('park', edge, rest, rt) and a sitting term as
+    ('sit', v, rest, rt), where `rest` is the tuple of the other sources and `rt` the sorted
+    pairs (source, target) of the other moving particles; these tuples identify the cell.
+    Returns a list of (term, sign).
     """
     out = []
     order = list(S)
     for i, v in enumerate(order):
-        sgn = (-1) ** i
+        sgn = (-1) ** i                 # Koszul sign of the i-th source (counting from 0)
         rest = tuple(x for x in order if x != v)
         rt = tuple(sorted((x, t[x]) for x in rest))
         edge = (min(v, t[v]), max(v, t[v]))
@@ -138,7 +189,10 @@ def boundary(S, t):
 
 
 def dX(n, N, convention):
-    """(the nonzero terms of dX, the number of terms of X)."""
+    """Apply the differential to X for K_{n+1,N} with n particles.
+
+    Returns (dict {boundary term: nonzero coefficient}, number of matching configurations,
+    i.e. |supp X|).  Terms are those produced by boundary()."""
     nA = n + 1
     acc = defaultdict(int)
     count = 0
@@ -151,7 +205,9 @@ def dX(n, N, convention):
 
 
 def report(n, N, convention):
-    """Print the verdict for one (n, N) and return True if the claim held."""
+    """Print the block described in the module docstring for one (n, N) and one convention.
+
+    Returns True if (P1) and (P2) hold: no park terms, and dX = (N-n+1) y with y primitive."""
     d, nterms = dX(n, N, convention)
     park = {k: v for k, v in d.items() if k[0] == "park"}
     sit = {k: v for k, v in d.items() if k[0] == "sit"}
@@ -191,6 +247,10 @@ def report(n, N, convention):
 
 
 def main():
+    """Run the cases given on the command line (or the nine defaults) under both conventions.
+
+    Returns 1 if the by-source convention fails anywhere or the by-value convention does not
+    fail everywhere, else 0."""
     args = sys.argv[1:]
     if args:
         cases = [tuple(int(x) for x in a.split(",")) for a in args]

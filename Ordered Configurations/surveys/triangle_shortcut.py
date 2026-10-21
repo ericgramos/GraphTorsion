@@ -32,9 +32,11 @@ from gconf import homology
 PRIMES = [2, 3, 5, 7]
 BIG = 1000003
 def gin(edges, V=None):
+    """Graph input text for the analysis tools: 'V E' then the edges (no particle number)."""
     V = V or 1 + max(max(e) for e in edges)
     return f"{V} {len(edges)}\n" + "".join(f"{a} {b}\n" for a, b in edges)
 def run(cmd, inp):
+    """Run an analysis tool on the given input and return its last JSON line."""
     out = subprocess.run(cmd, input=inp, capture_output=True, text=True)
     if out.returncode != 0: raise RuntimeError(out.stderr[-300:])
     return json.loads(out.stdout.strip().splitlines()[-1])

@@ -1,0 +1,6 @@
+(a) ok: p = 16; 340306 cells in w (degree 3), 812526 cells in f (degree 2)
+(b) ok: d(w) = 16z with z supported on 548756 cells, max |coefficient| 14
+(c) ok: d(z) = 0
+(d) ok: f is a mod-16 cocycle (checked on all 2851200 cells of degree 3)
+(e) ok: f(z) = 68275 = 3 mod 16, prime to 16
+VERIFIED: H_2(Conf_5(G); Z) contains an element of order 16, G = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3), (0, 1), (0, 2), (0, 3), (1, 2), (1, 3)]  [43s]

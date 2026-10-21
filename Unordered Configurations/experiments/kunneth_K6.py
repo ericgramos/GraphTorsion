@@ -2,29 +2,77 @@
 """
 Is the Z/2 in H_2(B_4 K_6) indecomposable?  Yes -- by exhaustion, no product can reach it.
 
-`decomposability_K8.py` shows that in K_8 at k=3 every torsion class is a Kunneth product.
-K_6 at k=4 is the opposite case, and the argument is a counting one rather than a computation
-on cycles: there simply is no pair of vertex-disjoint subgraphs of K_6 whose homology can
-contribute torsion to degree 2.
+THE QUESTION
+------------
+`decomposability_K8.py` finds that in K_8 at k = 3 the torsion of H_2 disappears once the
+Kunneth product classes are adjoined.  K_6 at k = 4 is the opposite case, and the argument is a
+counting one rather than a computation on cycles: there simply is no pair of vertex-disjoint
+subgraphs of K_6 whose homology can contribute torsion to degree 2.  So the Z/2 of
+H_2(B_4 K_6) is not a Kunneth product, and something else must explain it
+(`octahedron_generator.py` shows it is the image of the octahedron's class).
 
-This script makes that exhaustive.  For every splitting of the six vertices into two disjoint
-sets of sizes m_1 + m_2 <= 6, and every k_1 + k_2 = 4, it looks up H_*(B_{k_i} K_{m_i}) and
-asks whether Kunneth could produce 2-torsion in total degree 2:
+THE METHOD
+----------
+A product class comes from vertex-disjoint subgraphs G_1, G_2 on m_1 and m_2 vertices with
+k_1 + k_2 = k particles.  For every (m_1, m_2) with m_1 + m_2 <= n and every k_1 + k_2 = k, the
+script takes the LARGEST possible pieces, the complete graphs K_{m_1} and K_{m_2}, computes
+their homology with `gbt.fast`, and asks whether Kunneth could produce torsion in total degree 2:
 
         H_i(B_{k_1} K_{m_1}) (x) H_j(B_{k_2} K_{m_2})    with i + j = 2, torsion in a factor
-        Tor( H_i, H_j )                                  with i + j = 1
+                                                         and the other factor nonzero
+        Tor( H_i, H_j )                                  with i + j = 1, torsion in both
 
+A factor with 0 particles is a point (H_0 = Z).  The reason this is enough is the vertex count
+below, not the choice of complete pieces (see PITFALLS).
+
+THE COUNT
+---------
 A product subgraph of K_6 has at most 5 vertices, and no graph on at most 5 vertices has
-torsion in H_i for i >= 2 (`sweep_small_graphs.py --vertices 5`), while torsion in H_1 needs
-non-planarity, i.e. 5 vertices and at least 9 edges, leaving at most 1 vertex for the other
-factor -- not enough for a cycle.  The enumeration confirms that every one of the
-combinations fails.
+torsion in H_i for i >= 2 (`sweep_small_graphs.py`, all graphs on 4 and 5 vertices).  Torsion
+in H_1 needs a non-planar graph (Ko--Park), hence a K_5 or K_{3,3} minor, hence at least 5
+vertices; that leaves at most 1 vertex for the other factor -- not enough for a cycle, so the
+other factor has no H_1, and H_1 (x) H_1 and Tor(H_1, H_0) give nothing either.  The
+enumeration confirms that all 75 combinations fail.
 
-The script prints the homology of all the pieces, so the reasoning can be checked by eye
-rather than taken on trust, and then states the conclusion.  `octahedron_generator.py` finds
-what the class actually is.
+WHAT IS PRINTED
+---------------
+    H_*(B_k K_n) torsion: ...              the group being explained
+    C combinations (|V(G1)|, |V(G2)|, k1, k2) with m1 + m2 <= n and k1 + k2 = k
+    combinations that could contribute 2-torsion in degree 2: H
+       m1=.. m2=.. k1=.. k2=..  via [...]  (one line per possible contribution, if any)
 
+then the torsion of every piece K_m with m < n and 1 <= k' <= k (so the reasoning can be
+checked by eye) and a verdict: "INDECOMPOSABLE" plus the counting argument, or, if some
+combination could contribute, a note that the products must be built explicitly.  Real output
+for the defaults (2 seconds):
+
+    H_*(B_4 K_6) torsion: H_1: Z/2   H_2: Z/2
+    75 combinations (|V(G1)|, |V(G2)|, k1, k2) with m1 + m2 <= 6 and k1 + k2 = 4
+    combinations that could contribute 2-torsion in degree 2: 0
+      K_5, k=2     H_1: Z/2
+    ...
+    No combination can contribute 2-torsion in degree 2, so the Z/2
+    in H_2(B_4 K_6) is INDECOMPOSABLE: ...
+
+USAGE
+-----
     python3 experiments/kunneth_K6.py [--n 6] [--k 4]
+
+    --n N   (default 6) the complete graph K_N whose degree-2 torsion is examined
+    --k K   (default 4) the number of particles
+
+Nothing is written to data/.  Exit code: always 0.
+
+PITFALLS
+--------
+* Only complete pieces are computed.  Torsion is not monotone under taking subgraphs (K_9 has
+  no Z/3 although it contains K_{4,5}), so a smaller piece could in principle carry torsion
+  that K_m does not.  The conclusion rests on the vertex count, which covers every subgraph;
+  the computed table is a check of that count, not a substitute for it.
+* A piece on one vertex has no edges, which `gbt.fast` cannot handle; `homology_or_none` then
+  returns None and that combination contributes nothing.  This is correct (a point carries
+  no torsion), but such combinations are counted among the 75 without being computed.
+* Hits are only possible contributions; a nonzero count would not prove decomposability.
 """
 
 import argparse
@@ -45,7 +93,11 @@ def induced_complete(m):
 
 
 def homology_or_none(m, k, cache):
-    """H_*(B_k K_m) as {d: (free, invariant factors)}, or 'pt' for k = 0, or None."""
+    """H_*(B_k K_m) as {d: (free, invariant factors)}, or 'pt' for k = 0, or None.
+
+    None means the computation failed, which happens exactly for m = 1 (a graph with no edges,
+    which `gbt.fast` does not accept).  Results are memoised in `cache`, keyed by (m, k).
+    """
     if k == 0:
         return "pt"
     if (m, k) not in cache:
@@ -58,6 +110,11 @@ def homology_or_none(m, k, cache):
 
 
 def get(H, d):
+    """(free, invariant factors) of degree d of a piece, or None if its homology is unknown.
+
+    H is a homology dict, the marker "pt" for a factor with no particles (a point: Z in degree
+    0, nothing else), or None.  Missing degrees are (0, []).
+    """
     if H == "pt":
         return (1, []) if d == 0 else (0, [])
     if H is None:
@@ -66,6 +123,7 @@ def get(H, d):
 
 
 def main():
+    """Enumerate the splittings, list the possible Kunneth contributions, print the verdict."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=6)
     ap.add_argument("--k", type=int, default=4)

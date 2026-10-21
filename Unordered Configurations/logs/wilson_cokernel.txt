@@ -1,0 +1,126 @@
+== (1) Wilson's diagonal form  and  (2) Gottlieb's rank theorem ==
+   exact SNF of W_{t,k}(m), compared with the closed form on
+   elementary divisors (see the docstring for why not on the raw list)
+
+   restricted to t < k and t + k <= m, which is the regime of the theorem
+   (W_{k,k} is the identity, and t + k > m is outside Wilson's hypothesis)
+
+W_{t,k}(m)        rows    cols    rank full?  elementary divisors        vs Wilson
+----------------------------------------------------------------------------------
+W_{1,2}(3)           3       3       3 yes    2                          matches
+W_{1,2}(4)           4       6       4 yes    2                          matches
+W_{1,3}(4)           4       4       4 yes    3                          matches
+W_{1,2}(5)           5      10       5 yes    2                          matches
+W_{1,3}(5)           5      10       5 yes    3                          matches
+W_{2,3}(5)          10      10      10 yes    2^4 3                      matches
+W_{1,2}(6)           6      15       6 yes    2                          matches
+W_{1,3}(6)           6      20       6 yes    3                          matches
+W_{2,3}(6)          15      20      15 yes    2^5 3                      matches
+W_{2,4}(6)          15      15      15 yes    2 3^6                      matches
+W_{1,2}(7)           7      21       7 yes    2                          matches
+W_{1,3}(7)           7      35       7 yes    3                          matches
+W_{2,3}(7)          21      35      21 yes    2^6 3                      matches
+W_{2,4}(7)          21      35      21 yes    2 3^7                      matches
+W_{3,4}(7)          35      35      35 yes    2^14 3^6 4                 matches
+W_{1,2}(8)           8      28       8 yes    2                          matches
+W_{1,3}(8)           8      56       8 yes    3                          matches
+W_{2,3}(8)          28      56      28 yes    2^7 3                      matches
+W_{2,4}(8)          28      70      28 yes    2 3^8                      matches
+W_{3,4}(8)          56      70      56 yes    2^20 3^7 4                 matches
+W_{3,5}(8)          56      56      56 yes    2^8 3^27 5                 matches
+W_{1,2}(9)           9      36       9 yes    2                          matches
+W_{1,3}(9)           9      84       9 yes    3                          matches
+W_{2,3}(9)          36      84      36 yes    2^8 3                      matches
+W_{2,4}(9)          36     126      36 yes    2 3^9                      matches
+W_{3,4}(9)          84     126      84 yes    2^27 3^8 4                 matches
+W_{3,5}(9)          84     126      84 yes    2^9 3^35 5                 matches
+W_{4,5}(9)         126     126     126 yes    2^48 3^27 4^8 5            matches
+W_{1,2}(10)         10      45      10 yes    2                          matches
+W_{1,3}(10)         10     120      10 yes    3                          matches
+W_{2,3}(10)         45     120      45 yes    2^9 3                      matches
+W_{2,4}(10)         45     210      45 yes    2 3^10                     matches
+W_{1,2}(11)         11      55      11 yes    2                          matches
+W_{1,3}(11)         11     165      11 yes    3                          matches
+W_{2,3}(11)         55     165      55 yes    2^10 3                     matches
+W_{2,4}(11)         55     330      55 yes    2 3^11                     matches
+W_{1,2}(12)         12      66      12 yes    2                          matches
+W_{1,3}(12)         12     220      12 yes    3                          matches
+W_{2,3}(12)         66     220      66 yes    2^11 3                     matches
+----------------------------------------------------------------------------------
+
+== the numerical fact behind the top-degree vanishing ==
+   ker W_{n-1,n}(b) = 0   <=>   C(b,n-1) >= C(b,n)   <=>   b <= 2n-1
+
+   rank marked * is computed over F_1000003 rather than by an exact SNF, which
+   is safe here: rank mod p never exceeds the rational rank, and the diagonal
+   entries of W_{n-1,n}(b) are all <= n (Wilson), so p cannot divide one.
+
+     n    b   C(b,n-1)     C(b,n)    rank W   dim ker   b <= 2n-1?
+     2    2          2          1        1          0          yes
+     2    3          3          3        3          0          yes
+     2    4          4          6        4          2           no
+     2    5          5         10        5          5           no
+     2    6          6         15        6          9           no
+     3    3          3          1        1          0          yes
+     3    4          6          4        4          0          yes
+     3    5         10         10       10          0          yes
+     3    6         15         20       15          5           no
+     3    7         21         35       21         14           no
+     3    8         28         56       28         28           no
+     3    9         36         84       36         48           no
+     4    4          4          1        1          0          yes
+     4    5         10          5        5          0          yes
+     4    6         20         15       15          0          yes
+     4    7         35         35       35          0          yes
+     4    8         56         70       56         14           no
+     4    9         84        126       84         42           no
+     4   10        120        210      120*        90           no
+     4   11        165        330      165*       165           no
+     4   12        220        495      220*       275           no
+     5    5          5          1        1          0          yes
+     5    6         15          6        6          0          yes
+     5    7         35         21       21          0          yes
+     5    8         70         56       56          0          yes
+     5    9        126        126      126          0          yes
+     5   10        210        252      210*        42           no
+     5   11        330        462      330*       132           no
+     5   12        495        792      495*       297           no
+     6    6          6          1        1          0          yes
+     6    7         21          7        7          0          yes
+     6    8         56         28       28          0          yes
+     6    9        126         84       84          0          yes
+     6   10        252        210      210*         0          yes
+     6   11        462        462      462*         0          yes
+     6   12        792        924      792*       132           no
+     7    7          7          1        1          0          yes
+     7    8         28          8        8          0          yes
+     7    9         84         36       36          0          yes
+     7   10        210        120      120*         0          yes
+     7   11        462        330      330*         0          yes
+     7   12        924        792      792*         0          yes
+
+== (3) coker W_{n-1,n}(b)  vs  torsion H_{n-1}(B_n K_{n+1,b}) ==
+   left: the inclusion matrix.  right: the Swiatkowski complex.
+
+K_{n+1,b}         n      cells coker W torsion        H_{n-1} torsion        
+-----------------------------------------------------------------------------
+K_{3,3}           2        213 Z/2                    Z/2                    ok
+K_{3,4}           2        405 Z/2                    Z/2                    ok
+K_{3,5}           2        658 Z/2                    Z/2                    ok
+K_{3,6}           2        972 Z/2                    Z/2                    ok
+K_{3,7}           2      1,347 Z/2                    Z/2                    ok
+K_{3,8}           2      1,783 Z/2                    Z/2                    ok
+K_{3,9}           2      2,280 Z/2                    Z/2                    ok
+K_{3,10}          2      2,838 Z/2                    Z/2                    ok
+K_{3,11}          2      3,457 Z/2                    Z/2                    ok
+K_{4,4}           3      9,624 Z/2                    Z/2                    ok
+K_{4,5}           3     19,976 (Z/2)^4 + Z/3          (Z/2)^4 + Z/3          ok
+K_{4,6}           3     35,920 (Z/2)^5 + Z/3          (Z/2)^5 + Z/3          ok
+K_{4,7}           3     58,663 (Z/2)^6 + Z/3          (Z/2)^6 + Z/3          ok
+K_{4,8}           3     89,412 (Z/2)^7 + Z/3          (Z/2)^7 + Z/3          ok
+K_{4,9}           3    129,374 (Z/2)^8 + Z/3          (Z/2)^8 + Z/3          ok
+-----------------------------------------------------------------------------
+15 case(s) of the cokernel statement checked
+
+ALL CHECKS PASSED: Wilson's diagonal form, Gottlieb's rank theorem, and the
+cokernel statement hold on every case computed.

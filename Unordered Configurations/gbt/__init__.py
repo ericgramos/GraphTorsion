@@ -35,7 +35,25 @@ TYPICAL USE
     >>> fmt(*H[2])
     'Z^350 + Z/2'
 
-See the repository README for which pipeline to use at which size, and
+Everything listed in __all__ below can be imported directly from `gbt`; the helpers in
+`gbt.linalg`, `gbt.report`, `gbt.paths` and `gbt.flipchains` are imported from their
+modules (e.g. `from gbt.linalg import coker_torsion`).
+
+THE DATA FORMAT SHARED BY ALL PIPELINES
+---------------------------------------
+A homology computation returns H = {degree: (free rank, list of invariant factors > 1)}.
+So {0: (1, []), 1: (6, [2]), 2: (0, [])} means H_0 = Z, H_1 = Z^6 + Z/2, H_2 = 0.
+`fmt(*H[d])` prints one group, `primary(H[d][1])` its torsion as prime powers.
+
+WHICH PIPELINE
+--------------
+    swiatkowski + ChainComplex   small complexes; generators are readable; any reduce_at
+    fast.compute                 up to about 6*10^5 cells (fully reduced complex)
+    lean.compute                 up to about 2*10^6 cells, a third of the memory
+    lean.torsion_in_degree       the torsion of ONE degree, reaching several million cells
+Use `reduced_cell_count(G, k)` to see which applies before building anything.
+
+See the repository README for the full reference and TUTORIAL.md for a walk-through, and
 `experiments/` for one runnable script per computation.
 """
 

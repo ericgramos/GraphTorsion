@@ -28,15 +28,39 @@ To decide whether a cycle z represents a nonzero class in the torsion of H_d, co
 
 Adjoining z as an extra column adds it to the subgroup being quotiented by.  If the
 torsion drops, [z] was a nonzero torsion class; if it does not move, z was already a
-boundary.  The same idiom with a whole family of columns (products, or classes pushed from
+boundary.  (Precisely: [z] = 0 in H_d exactly when the cokernel is unchanged, rank and
+torsion both, since a finitely generated abelian group is not isomorphic to a proper
+quotient of itself.  If z is a cycle of infinite order the rank of the image goes up by
+one instead -- `sparse_smith` reports both, so check the rank too when that matters.)
+
+The same idiom with a whole family of columns (products, or classes pushed from
 a subgraph) tests whether that family GENERATES the torsion.  Used in
 `experiments/decomposability_K8.py`, `theta_class.py` and `octahedron_generator.py`.
 
-A warning that cost real time during this project: when hunting for a specific element of
+A warning that cost real time during development: when hunting for a specific element of
 ker(d) mod 2 whose halved boundary generates the torsion, do NOT scan the kernel basis in
 order, and do not scan prefix sums either -- in the octahedron case the first fourteen
 basis vectors and the first twelve prefix sums all landed in the wrong coset.  Random
 elements each work with probability 1/2.  See `experiments/octahedron_generator.py`.
+
+EXAMPLE
+-------
+    >>> from gbt import swiatkowski, complete
+    >>> from gbt.linalg import indexed_columns, coker_torsion, kernel_basis
+    >>> C = swiatkowski(complete(5), 2)
+    >>> d2, rows, _ = indexed_columns(C, 2)
+    >>> coker_torsion(d2, verbose=False)                # tors H_1(B_2 K_5)
+    [2]
+    >>> d1, _, _ = indexed_columns(C, 1)
+    >>> len(kernel_basis(d1, len(C.gens[0])))           # rank of the 1-cycles
+    166
+
+COST
+----
+Every routine works on sparse columns in pure Python.  The integral peels and the modular
+ranks are roughly linear in the number of nonzeros while the matrix stays sparse, and
+degrade as fill-in grows; `kernel_basis` and the dense `smith` at the end of
+`sparse_smith` are only meant for matrices of a few thousand columns.
 """
 
 import heapq
@@ -51,6 +75,10 @@ from .smith import smith
 
 def indexed_columns(C, d):
     """Columns of d_d of a ChainComplex, with integer row and column indices.
+
+    C is a `gbt.chain.ChainComplex` and d a degree.  This is the bridge from the
+    reference pipeline (generators are labels) to the routines below (generators are
+    integers).
 
     Returns (cols, rowindex, colgens) where
 
@@ -81,15 +109,23 @@ def kernel_basis(cols, nrows):
     give the kernel vectors, read off the transform.
 
     Returns a list of dicts {column index: coefficient}.  Exact, no modular lifting.
+
+    `cols` is a list of dicts {row index: coefficient} and `nrows` an upper bound for the
+    row indices (rows 0..nrows-1 are scanned).  The transform matrix is unimodular, so the
+    columns that become zero form a Z-basis of the kernel lattice, not merely a Q-basis.
+    Cost grows quickly with the number of columns (entries can grow and nothing is
+    sparse-aware), so use it on matrices of at most a few thousand columns.
     """
-    work = [dict(c) for c in cols]
-    trans = [{j: 1} for j in range(len(cols))]
-    pivot_of_row = {}
+    work = [dict(c) for c in cols]               # the columns being reduced
+    trans = [{j: 1} for j in range(len(cols))]   # trans[j]: work[j] as a combination of cols
+    pivot_of_row = {}                            # row r -> the column that owns its pivot
     for r in range(nrows):
         taken = set(pivot_of_row.values())
         live = [j for j in range(len(cols)) if j not in taken and work[j].get(r)]
         if not live:
             continue
+        # Euclid on the entries of row r: reduce every live column by the one of least
+        # absolute value until only one column has a nonzero entry in this row
         while len(live) > 1:
             live.sort(key=lambda j: abs(work[j][r]))
             a = live[0]
@@ -133,16 +169,22 @@ def sparse_smith(cols, label="", verbose=True):
     residual), computed exactly, with no modular reconstruction.
 
     `cols` is a list of dicts {row index: coefficient}; rows need not be contiguous.
+    Returns (rank, list of invariant factors > 1).  `label` names the matrix in the one
+    progress line printed when verbose=True.  The input is not modified.
+
+    The peel uses a Markowitz heap (one entry per unit nonzero); for matrices with millions
+    of nonzeros use `peel_sweeps` first and call this on the residual.
     """
-    m = {c: dict(v) for c, v in enumerate(cols) if v}
-    rows = defaultdict(dict)
+    m = {c: dict(v) for c, v in enumerate(cols) if v}   # working copy, by column
+    rows = defaultdict(dict)                             # the same entries, by row
     for c, v in m.items():
         for r, x in v.items():
             rows[r][c] = x
+    # candidate pivots: every +-1 entry, keyed by Markowitz cost (|col|-1)(|row|-1)
     heap = [((len(v) - 1) * (len(rows[r]) - 1), r, c)
             for c, v in m.items() for r, x in v.items() if x in (1, -1)]
     heapq.heapify(heap)
-    killed = 0
+    killed = 0                                           # number of unit pivots used
     while heap:
         f, r, c = heapq.heappop(heap)
         v = m.get(c)
@@ -157,6 +199,9 @@ def sparse_smith(cols, label="", verbose=True):
             continue
         pv = v[r]
         prow = dict(rw)
+        # column operations c2 <- c2 - (v2/pv) c clear row r; then row r and column c
+        # form a 1x1 unit block that splits off (a unimodular change of basis on both
+        # sides), contributing a 1 to the Smith form and 1 to the rank
         for c2, v2 in prow.items():
             if c2 == c:
                 continue
@@ -178,6 +223,7 @@ def sparse_smith(cols, label="", verbose=True):
         del m[c]
         del rows[r]
         killed += 1
+        # fill-in can create new unit entries: queue them
         for c2 in prow:
             v3 = m.get(c2)
             if v3:
@@ -186,6 +232,8 @@ def sparse_smith(cols, label="", verbose=True):
                         heapq.heappush(
                             heap, ((len(v3) - 1) * (len(rows[r2]) - 1), r2, c2))
 
+    # what is left has no unit entries; compress it to a dense matrix on the rows that
+    # still occur and finish with the exact Smith form
     m = {c: v for c, v in m.items() if v}
     rs = sorted({r for v in m.values() for r in v})
     if not rs:
@@ -210,6 +258,10 @@ def coker_torsion(cols, label="", verbose=True):
 
     A thin wrapper on `sparse_smith` that drops the rank.  This is the workhorse of the
     "adjoin and test" idiom described in the module docstring.
+
+    `cols` are the columns (dicts {row index: coefficient}) of a map into Z^rows; the
+    result is the sorted list of invariant factors > 1 of Z^rows / image.  With the columns
+    of d_{d+1} this is exactly tors H_d.
     """
     return sparse_smith(cols, label=label, verbose=verbose)[1]
 
@@ -220,6 +272,12 @@ def coker_torsion(cols, label="", verbose=True):
 
 def gf2_kernel(cols):
     """A basis of ker(matrix mod 2), as integers whose bits are column indices.
+
+    `cols` is a list of dicts {row index: coefficient}; only the parity of each entry is
+    used.  Each column is turned into a bitmask of its odd rows and reduced against the
+    pivots found so far (Gaussian elimination over F_2 with xor), while a second bitmask t
+    records which original columns were combined.  A column that reduces to zero gives
+    the kernel vector t.
 
     Each returned integer t encodes the column subset {j : bit j of t is set}; the
     corresponding mod-2 column sum is zero.  Columns are processed left to right, so the
@@ -255,12 +313,12 @@ def rank_mod2(cols):
     as fast as pure Python gets: it is what makes the independent mod-2 cross-check of the
     RAW (unreduced) complexes affordable.
     """
-    rows = {}
+    rows = {}                                  # rows[r] = bitmask of the columns odd in row r
     for j, col in enumerate(cols):
         for r, v in col.items():
             if v % 2:
                 rows[r] = rows.get(r, 0) ^ (1 << j)
-    piv = {}
+    piv = {}                                   # leading bit -> reduced row owning it
     rank = 0
     for r, v in rows.items():
         while v:
@@ -291,15 +349,18 @@ def peel_sweeps(cols, nrows=None, verbose=False):
 
     Returns (residual columns, number of pivots used).  The residual has no +-1 entries
     left, and its invariant factors are those of the original with the units removed, so
-    `sparse_smith` on the residual finishes the job.
+    `sparse_smith` on the residual finishes the job.  (The budget sequence is 0, 1, 3, 7,
+    15, ...: each round without progress sets budget = 2 * budget + 1, and any progress
+    resets it to 0.)  `nrows` is accepted for symmetry with the other routines and is not
+    used.  With verbose=True one line is printed per round.
     """
-    m = {c: dict(v) for c, v in enumerate(cols) if v}
-    rows = defaultdict(dict)
+    m = {c: dict(v) for c, v in enumerate(cols) if v}   # working copy, by column
+    rows = defaultdict(dict)                             # the same entries, by row
     for c, v in m.items():
         for r, x in v.items():
             rows[r][c] = x
-    killed = 0
-    budget = 0
+    killed = 0                                           # unit pivots used so far
+    budget = 0                                           # largest Markowitz cost accepted
     rounds = 0
     while True:
         progress = False
@@ -322,6 +383,8 @@ def peel_sweeps(cols, nrows=None, verbose=False):
             _, r = best
             pv = v[r]
             prow = dict(rows[r])
+            # the same unit-pivot elimination as in `sparse_smith`: clear row r using
+            # column c, then delete both
             for c2, v2 in prow.items():
                 if c2 == c:
                     continue
@@ -372,7 +435,7 @@ def rank_mod_p_sparse(cols, p, verbose=False):
     pivots it performs IS the rank.
 
     This is the cheap way to detect torsion in a complex too large for the integral
-    pipeline.  By Lemma "torsion is a cokernel" the torsion of H_d is the torsion of
+    pipeline.  By the identity "torsion is a cokernel" the torsion of H_d is the torsion of
     coker d_{d+1}, and the number of invariant factors of a matrix divisible by a prime p is
 
         rank over Q  -  rank over F_p
@@ -381,7 +444,9 @@ def rank_mod_p_sparse(cols, p, verbose=False):
     discrete Morse reduction, or any integer arithmetic beyond residues mod p.  Coefficients
     cannot grow, which is what makes it fit in memory where the integral peel does not.
 
-    `cols` is a list of dicts {row index: coefficient}.
+    `cols` is a list of dicts {row index: coefficient} with integer entries (reduced mod p
+    here) and p must be prime (the inverse is computed as x^(p-2)).  Returns the rank.
+    With verbose=True a progress line is printed every 50,000 pivots.
     """
     m = {}
     for c, col in enumerate(cols):
@@ -446,15 +511,17 @@ def rank_mod_p_sparse(cols, p, verbose=False):
 def p_primary_count(cols, p=2, big_prime=1000003, verbose=False):
     """How many invariant factors of a matrix are divisible by p.
 
-    Equals rank over F_{big_prime} minus rank over F_p.  By Lemma "torsion is a cokernel"
+    Equals rank over F_{big_prime} minus rank over F_p.  By "torsion is a cokernel"
     this is the number of p-primary summands of the torsion of H_d when `cols` are the
     columns of d_{d+1}: nonzero means there IS p-torsion.  It does not say which powers of
     p occur -- for that the integral pipeline is needed -- but it is the cheapest possible
     yes/no, and the count itself is the multiplicity in the primary decomposition.
 
-    `big_prime` stands in for Q.  Its rank is an upper bound for the rational rank and
-    equals it unless the prime divides an elementary divisor, which for these matrices it
-    does not; pass a second large prime to confirm.
+    `big_prime` stands in for Q.  The rank over any F_q is at most the rational rank, with
+    equality unless q divides some invariant factor; so the answer is exact as long as
+    big_prime divides no invariant factor, which is overwhelmingly likely for a prime of
+    this size but not guaranteed.  To be sure, run it again with a second large prime and
+    check that the two answers agree.  `cols` is a list of dicts {row: coefficient}.
     """
     r_big = rank_mod_p_sparse(cols, big_prime, verbose=verbose)
     r_p = rank_mod_p_sparse(cols, p, verbose=verbose)
@@ -468,7 +535,11 @@ def rank_mod_p(cols, p):
     """Rank over F_p, p an odd prime, by sparse elimination with Markowitz-style ordering.
 
     Columns are processed from sparsest to densest, which keeps fill-in down on the
-    matrices that arise here.
+    matrices that arise here.  Each column is reduced against the stored pivot rows keyed
+    by their smallest row index (a row-echelon form built column by column); a column that
+    does not reduce to zero contributes 1 to the rank.  `cols` is a list of dicts
+    {row: coefficient}; p must be prime (it also works for p = 2, but `rank_mod2` is
+    faster there).
     """
     work = {c: {r: v % p for r, v in col.items() if v % p}
             for c, col in enumerate(cols)}
@@ -501,6 +572,11 @@ def betti_mod_p(C, p):
     normal form, so this is an independent route to the same information: comparing
     dim H_d(F_2) with dim H_d(F_q) for a large prime q detects 2-torsion without any of
     the integral machinery being involved.
+
+    C is a `gbt.chain.ChainComplex`; p a prime.  Uses `rank_mod2` for p = 2 and `rank_mod_p`
+    otherwise.  By universal coefficients, dim H_d(C; F_p) = f_d + (number of invariant
+    factors of tors H_d divisible by p) + (the same for tors H_{d-1}), where f_d is the
+    free rank of H_d; `experiments/crosscheck_mod_p.py` tests exactly this.
     """
     degs = sorted(C.gens)
     rk = {}

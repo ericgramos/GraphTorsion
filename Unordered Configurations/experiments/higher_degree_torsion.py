@@ -15,10 +15,11 @@ gives
 
     H_2(B_4 K_{2,2,2})  (x)  H_1(C_3)^{(x) i-2}   contained in   H_i(B_{i+2} Gamma),
 
-hence Z/2 in degree i.  A disjoint union of planar graphs is planar, so planar graphs have
-2-torsion in H_i for every i >= 2.  This script checks
-the cases i = 3 and i = 4 directly, which is worth doing because the Kunneth summand could in
-principle be killed by the way the pieces are indexed in the Swiatkowski model.
+hence Z/2 in degree i (tensoring Z/2 with copies of Z keeps it).  A disjoint union of planar
+graphs is planar, so planar graphs have 2-torsion in H_i for every i >= 2.  This script checks
+the cases i = 3 and i = 4 directly, which is worth doing as a test of the software: the
+Kunneth summand is guaranteed mathematically, so failing to find it would expose a bug in the
+way disjoint pieces are indexed in the complex.
 
 IT DOES NOT NEED TO BE DISCONNECTED
 -----------------------------------
@@ -29,19 +30,65 @@ extra cycle takes up is exactly what the higher-degree class needs.
 
 AND IT IS NOT ONLY Z/2, NOR ONLY PLANAR
 ---------------------------------------
-The bipartite sweep already contains odd and non-squarefree torsion above degree two:
+The bipartite computations contain odd and non-squarefree torsion above degree two:
 
     H_3(B_4 K_{5,5})  =  Z^1260 + Z/2
     H_3(B_4 K_{5,6})  =  Z^3010 + (Z/2)^5 + Z/3
     H_3(B_4 K_{5,7})  contains Z/4, by the flip-chain class
 
-and the flip-chain class gives Z/n in degree n-1 for every n, so every cyclic group occurs in some degree.
-Those graphs are not planar, and `planar_odd_search.py` is the evidence that they cannot be.
+(primary decompositions of the torsion), and the flip-chain class of K_{n+1,2n-1} gives Z/n in
+degree n-1 for every n, so every cyclic group occurs in some degree.  Those graphs are not
+planar, and `planar_odd_search.py` is the evidence that the odd part cannot be planar.
 
+THE METHOD
+----------
+Only the torsion of the one degree that matters is computed, with `lean.torsion_in_degree`
+(tors H_d = tors coker d_{d+1}: only the slices of degrees d and d+1 are built).  The cases:
+
+    graph                  k   degree   expected
+    octahedron             5   3        none  (control: the carrier alone)
+    octahedron             6   3        none  (control)
+    octahedron + 1 x C_3   5   3        Z/2   (Kunneth: H_2(B_4 oct) (x) H_1(B_1 C_3))
+    octahedron + 2 x C_3   6   4        Z/2   (Kunneth, two triangles)   only if --max-degree >= 4
+    oct-C_3 joined         5   3        Z/2   (connected: triangle attached by one edge)
+
+WHAT IS PRINTED
+---------------
+One row per case, with columns
+
+    graph         the name, also the data key prefix
+    N, M          vertices and edges
+    k             particles
+    deg           the homological degree d whose torsion is computed
+    slice cells   cells in the degree-d and degree-(d+1) slices together
+    torsion       the torsion of H_d, as a primary decomposition, or "none"
+    note          the expectation, then [time] or [cached]
+
+then a fixed explanatory paragraph and either "wrote data/higher_degree_torsion.json" or
+"FAILURES: [...]".  Real output from the stored data:
+
+    octahedron               6  12   5    3        56,700 none           control: ...
+    octahedron               6  12   6    3       291,330 none           control   [cached]
+    octahedron + 1 x C_3     9  15   5    3       168,870 Z/2            Kunneth: Z/2 expected
+    octahedron + 2 x C_3    12  18   6    4     1,529,037 Z/2            Kunneth: Z/2 expected
+    oct-C_3 joined           9  16   5    3       257,160 Z/2            CONNECTED planar
+
+USAGE
+-----
     python3 experiments/higher_degree_torsion.py [--max-degree 4]
 
-Degree 3 takes a couple of minutes; degree 4 needs about 1.5 million cells in two slices and
-a few GB, and runs in roughly a minute thanks to the sweeping peel.
+    --max-degree D   (default 4) build the Kunneth cases for degrees 3..D, with D-2 triangles
+                     and D+2 particles.  D = 3 drops the 1.5-million-cell case.
+
+Results go to data/higher_degree_torsion.json, key "NAME|K|D", record {"torsion": [invariant
+factors], "N", "M", "planar", "k", "degree", "cells"}; stored cases are not recomputed.  From
+scratch, degree 3 takes a couple of minutes; degree 4 needs about 1.5 million cells in two slices
+and a few GB, and runs in roughly a minute thanks to the sweeping peel.  Needs networkx (for
+the planarity check).
+
+Exit code: 1 if a graph turns out non-planar or an expected Z/2 is missing (FAILURES line), 0
+otherwise.  The controls are NOT asserted: torsion in a control would be printed but would not
+fail the run.
 """
 
 import argparse
@@ -61,7 +108,10 @@ C3 = Graph(3, [(0, 1), (1, 2), (0, 2)])
 
 
 def octahedron_plus_triangles(t):
-    """The octahedron together with t disjoint triangles (planar, disconnected for t > 0)."""
+    """The octahedron together with t disjoint triangles (planar, disconnected for t > 0).
+
+    Vertices 0..5 are the octahedron; triangle j occupies vertices 6+3j, 7+3j, 8+3j.
+    """
     G = octahedron()
     for _ in range(t):
         G = disjoint_union(G, C3)
@@ -69,12 +119,16 @@ def octahedron_plus_triangles(t):
 
 
 def octahedron_triangle_joined():
-    """The octahedron with a triangle attached by one edge: planar, connected, 9 vertices."""
+    """The octahedron with a triangle attached by one edge: planar, connected, 9 vertices.
+
+    The triangle is 6-7-8 and the attaching edge is {0, 6}; 16 edges in all.
+    """
     return Graph(9, list(octahedron().edges)
                  + [(6, 7), (7, 8), (6, 8), (0, 6)])
 
 
 def main():
+    """Compute (or load) the torsion of each case, print the table, check the expectations."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-degree", type=int, default=4)
     args = ap.parse_args()

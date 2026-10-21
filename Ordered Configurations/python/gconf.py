@@ -228,11 +228,13 @@ def abrams_homology(edges, n):
     cells_all = [("v", v) for v in range(V)] + [("e", i) for i in range(len(edges))]
 
     def closure(c):
+        """Closed support of an open cell of the subdivided graph: the vertex itself, or the two ends of an edge."""
         return {c[1]} if c[0] == "v" else set(edges[c[1]])
 
     by_dim = {}
 
     def rec(chosen, used):                     # choose n cells with pairwise disjoint closures, in order
+        """Choose n cells with pairwise disjoint closures, in order (a cell of Abrams' discretised model)."""
         if len(chosen) == n:
             d = sum(1 for c in chosen if c[0] == "e")
             by_dim.setdefault(d, []).append(tuple(chosen))

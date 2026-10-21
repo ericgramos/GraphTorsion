@@ -27,6 +27,7 @@ struct Cell {
 };
 
 typedef unsigned __int128 Key;
+// Pack a cell into a 128-bit key: 12 bits per particle, the low 8 its location (half-edge if at a vertex, 2E + e if on edge e) and the high 4 its rank in the word of that edge.
 Key encode(const Cell &c) {
     Key s = 0;
     for (int v = 0; v < V; v++)
@@ -42,6 +43,7 @@ Key encode(const Cell &c) {
     return s;
 }
 
+// Coloured particles (quotient by a Young subgroup): relabel so that the particles of each colour occur in increasing order, giving one representative per orbit.
 void canonicalize(Cell &c) {
     if (!colored)
         return;
@@ -61,6 +63,7 @@ void canonicalize(Cell &c) {
         for (auto &p : c.elist[e])
             p = relabel(p);
 }
+// Inverse of encode: rebuild the occupants of the vertices, their half-edges and the edge words from a key.
 Cell decode(Key s) {
     Cell c;
     c.vocc.assign(V, -1);
@@ -147,6 +150,7 @@ struct F2Elim {
     bool keep;
     F2Elim(int r, int c, bool keep_)
         : nr(r), nc(c), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0), keep(keep_) {}
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -167,10 +171,12 @@ struct F2Elim {
             }
         }
     }
+    // Over F_2 a row is the set of its nonzero columns: is (r, c) nonzero?
     bool has(int r, int c) const {
         auto &R = rows[r];
         return binary_search(R.begin(), R.end(), c);
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         vector<int> &R = rows[r];
         vector<int> targets;
@@ -213,6 +219,7 @@ struct F2Elim {
         vector<int>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {
@@ -272,6 +279,7 @@ struct F2Elim {
     }
 };
 
+// Text form of a cell, V[p/h,...] E[w_0|w_1|...], the format of certificate and cycle files.
 string describe(const Cell &c) {
     string s = "V[";
     for (int v = 0; v < V; v++) {

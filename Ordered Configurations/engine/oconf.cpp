@@ -220,6 +220,7 @@ struct Cell {
 };
 typedef unsigned __int128 Key;
 
+// Pack a cell into a 128-bit key: 12 bits per particle, the low 8 its location (half-edge if at a vertex, 2E + e if on edge e) and the high 4 its rank in the word of that edge.
 Key encode(const Cell &c) {
     Key s = 0;
     for (int v = 0; v < V; v++)
@@ -235,6 +236,7 @@ Key encode(const Cell &c) {
     return s;
 }
 
+// Inverse of encode: rebuild the occupants of the vertices, their half-edges and the edge words from a key.
 Cell decode(Key s) {
     Cell c;
     c.vocc.assign(V, -1);
@@ -635,11 +637,13 @@ struct SparseElim {
             }
         }
     }
+    // Is this value usable as a pivot?  Over Z only +-1; over F_P any nonzero value.
     bool isunit(ll v) const {
         if (P)
             return v != 0;
         return v == 1 || v == -1;
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     ll getval(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), make_pair(c, INT_MIN));
@@ -647,6 +651,7 @@ struct SparseElim {
             return it->second;
         return 0;
     }
+    // a^e mod m by repeated squaring (128-bit intermediate products).
     static ll powmod(ll a, ll e, ll m) {
         ll r = 1;
         a %= m;
@@ -790,6 +795,7 @@ struct SparseElim {
         }
         return any;
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         while (sweep()) {
         }
@@ -848,6 +854,7 @@ struct F2E {
             }
         }
     }
+    // Over F_2 a row is the set of its nonzero columns: is (r, c) nonzero?
     bool has(int r, int c) const {
         auto &R = rows[r];
         return binary_search(R.begin(), R.end(), c);
@@ -893,6 +900,7 @@ struct F2E {
         vector<int>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {
@@ -947,9 +955,11 @@ struct SPE {
     long long pivots = 0;
     ll maxabs = 1;
     SPE(int r, int c, uint32_t p_) : nr(r), nc(c), p(p_), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0) {}
+    // Packed entry: the column index (high bits).
     static uint32_t col(uint32_t x) {
         return x >> 4;
     }
+    // Packed entry: the value (low bits).
     static uint32_t val(uint32_t x) {
         return x & 15;
     }
@@ -959,6 +969,7 @@ struct SPE {
                 return b;
         return 0;
     }
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -981,11 +992,13 @@ struct SPE {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     uint32_t get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), (uint32_t)c << 4);
         return (it != R.end() && col(*it) == (uint32_t)c) ? val(*it) : 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         uint32_t ui = inv(get(r, c));
@@ -1037,6 +1050,7 @@ struct SPE {
         vector<uint32_t>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {
@@ -1138,6 +1152,7 @@ struct LPE {
     static uint32_t col(uint32_t x) {
         return x >> 5;
     }
+    // Packed entry: the value (low bits).
     static uint32_t val(uint32_t x) {
         return x & 31;
     }
@@ -1147,6 +1162,7 @@ struct LPE {
                 return b;
         return 0;
     }
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -1169,14 +1185,17 @@ struct LPE {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     uint32_t get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), (uint32_t)c << 5);
         return (it != R.end() && col(*it) == (uint32_t)c) ? val(*it) : 0;
     }
+    // Is this value usable as a pivot (a unit of the coefficient ring)?
     bool unit(uint32_t v) const {
         return v % p0 != 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         uint32_t ui = inv(get(r, c));
@@ -1370,6 +1389,7 @@ struct LPE {
         default: fprintf(stderr, "dense: unsupported modulus %u\n", mod); exit(5);
         }
     }
+    // Dense phase: multiply a row of bytes by the scalar f modulo the current modulus.
     void scalD(uint8_t *x, uint32_t f, int m) {
         switch (mod) {
         case 2: scal<2>(x, f, m); break;
@@ -1422,6 +1442,7 @@ struct LPE {
             xh[w] = a1 ^ c1 ^ (a0 & c0);
         }
     }
+    // Dense finishing phase over Z/4: bit-sliced rows (two planes), reduced row echelon basis built online; leftovers (all entries even) are halved to F_2.
     void dense_z4(long long sparseStagePivots) {
         vector<int> cmap(nc, -1);       // live column -> dense index 0..m-1
         int m = 0;
@@ -1647,17 +1668,20 @@ struct LPE {
         x2 = r2;
         x3 = r3;
     }
+    // Add two bit-sliced rows over Z/9 (four bit planes per entry).
     static inline void add9row(uint64_t *const *X, uint64_t *const *Y, int W) {
         uint64_t *a = X[0], *b = X[1], *c = X[2], *d = X[3];
         const uint64_t *e = Y[0], *f = Y[1], *g = Y[2], *h = Y[3];
         for (int w = 0; w < W; w++)
             add9w(a[w], b[w], c[w], d[w], e[w], f[w], g[w], h[w]);
     }
+    // Read entry c of a bit-sliced Z/9 row.
     static inline int get9(uint64_t *const *X, int c) {
         int w = c >> 6, b = c & 63;
         return (int)((X[0][w] >> b) & 1) | (int)(((X[1][w] >> b) & 1) << 1) | (int)(((X[2][w] >> b) & 1) << 2) |
                (int)(((X[3][w] >> b) & 1) << 3);
     }
+    // Write entry c of a bit-sliced Z/9 row.
     static inline void set9(uint64_t *const *X, int c, int v) {
         int w = c >> 6;
         uint64_t bit = 1ULL << (c & 63);
@@ -1684,6 +1708,7 @@ struct LPE {
             add9row(X, Yy, W);
         }
     }
+    // Dense finishing phase over Z/9, as dense_z4 for p = 3.
     void dense_z9(long long sparseStagePivots) {
         vector<int> cmap(nc, -1);
         int m = 0;

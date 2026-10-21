@@ -11,8 +11,9 @@ have seen, or only some of it?
 The answer splits by prime, not by degree.
 
     q >= 3   every single Z/q summand in the entire data set occurs in a graph that contains
-             K_{4,5} as a subgraph.  The Z/3's live in K_{4,b} and K_{5,b}; the Z/4's in
-             K_{5,7} and K_{5,8}.  Nothing else, anywhere, has a summand other than Z/2.
+             K_{4,5} as a subgraph.  The Z/3's live in K_{4,b}, K_{5,b} and the supergraphs of
+             K_{4,5} of `density_interpolation.py`; the Z/4's in K_{5,7} and K_{5,8}.  Nothing
+             else, anywhere, has a summand other than Z/2.
 
     q = 2    not bipartite at all.  Ko--Park's Z/2 is the q = 2 case of the same inclusion
              matrix (coker W_{1,2}(3) = Z/2 for K_{3,3}), but the planar mechanism is
@@ -21,32 +22,75 @@ The answer splits by prime, not by degree.
              witness in degree one -- it has only five vertices, so no K_{3,3} minor, and it
              carries the Ko--Park class.
 
-So Z/2 is generic and everything else is structural.  The conjecture this supports: for
-q >= 3, a Z/q summand forces a K_{q+1,2q-1} minor.
+So Z/2 is generic and everything else is structural.  The conjecture this supports: for a
+prime power q >= 3, a Z/q summand forces a K_{q+1,2q-1} minor.
 
 WHY K_{q+1,2q-1} IS THE RIGHT GRAPH FOR Z/q
 -------------------------------------------
 By Wilson's diagonal form, a prime power q is the order of a primary summand of
-H_{n-1}(B_n K_{n+1,b}) exactly when q <= n and b >= n+q-1.  Minimising over (n, b) gives n = q, b = 2q-1: the graph K_{q+1,2q-1} at
-k = q particles, in degree q-1.  That is the flip-chain family, so it is a carrier; the conjecture
-is that for q >= 3 it is the only one, up to minors.
+H_{n-1}(B_n K_{n+1,b}) exactly when q <= n and b >= n+q-1.  Minimising over (n, b) gives
+n = q, b = 2q-1: the graph K_{q+1,2q-1} at k = q particles, in degree q-1.  That is the
+flip-chain family, so it is a carrier; the conjecture is that for q >= 3 it is the only one, up
+to minors.
 
-WHAT THIS SCRIPT DOES
----------------------
-    (1) Computes tors H_3(B_4 K_{5,7}) and tors H_{3}(B_4 K_{5,8}) directly and compares them
-        with coker W_{3,4}(b).  These are the Z/4 cases -- the first non-squarefree torsion in
-        a graph braid group -- and they are reachable only through tors H_d = tors coker d_{d+1} plus the sweeping
-        peel, since the full complexes have 2.6 and 4.6 million cells.
-    (2) Takes a census of the torsion summands stored in data/*.json, by primary type and by graph
-        family, and checks that no non-Z/2 summand occurs outside the complete bipartite
-        families.
-    (3) Lists the Z/2 witnesses with no K_{3,3} minor, which are what make q = 2 exceptional.
+WHAT THIS SCRIPT DOES, AND WHAT IT PRINTS
+-----------------------------------------
+(1) "the bipartite family, computed directly and checked against coker W".  For the five cases
+    of Z4_CASES and Z3_CASES (K_{5,7}, K_{5,8} at k = 4 in degree 3; K_{4,5}, K_{4,9}, K_{4,11}
+    at k = 3 in degree 2) it computes tors H_d with `gbt.lean.torsion_in_degree` (only the two
+    degree slices d and d+1 are built) and compares it with the torsion of
+    coker W_{a-2,a-1}(b) computed from the matrix.  Columns:
+        graph | k | deg | cells (fully reduced complex) | computed | coker W predicts | match
+    The two Z/4 rows are the first non-squarefree torsion found here; the full complexes have
+    2.6 and 4.6 million cells, which the full-homology pipelines cannot handle.
+(2) "census of the torsion summands stored in data/": every stored record of every
+    data/*.json file is read, its torsion split into primary summands, and tallied by graph
+    family.  Columns: family | primary summands found (Z/q x multiplicity).  Then the total, and
+    one line per record that has a summand other than Z/2:
+        key | H_degree | Z/q | the whole torsion group | "contains K_{4,5}" (or a warning)
+    The K_{4,5} test is a genuine subgraph search (networkx GraphMatcher), on the graph rebuilt
+    by graph_of() from the record's key.
+(3) "why q = 2 is exceptional": the Z/2 carriers with no K_{3,3} minor, columns
+        graph | k | deg | planar | K_{3,3}? | note
+    The k and degree columns are quoted, not recomputed (the values are in the data files).
 
+Excerpt (everything stored, a few seconds):
+
+    graph          k  deg         cells computed                       coker W predicts    match
+    K_{5,7}        4    3     2,615,835 (Z/2)^14 + (Z/3)^6 + Z/4       (Z/2)^14 + ...      yes
+    ...
+    total: 955 primary summands counted, 29 of them not Z/2
+    ...
+    Every non-Z/2 summand in the stored data lives in a graph containing K_{4,5}.
+    Every other stored torsion summand is Z/2.
+
+USAGE
+-----
     python3 experiments/prime_census.py [--skip-compute]
 
-The two direct computations take under a minute together; the census is instant.  Exits
-non-zero if the census finds a non-Z/2 summand in a graph with no K_{4,5} subgraph, so it is a
+    --skip-compute   run only the census (2) and the table (3); no homology is computed and
+                     data/prime_census.json is not written.
+
+DATA FILE
+---------
+data/prime_census.json, keyed "K<a>,<b>|<k>|<degree>" (e.g. "K5,7|4|3"), each record
+{"torsion": [invariant factors > 1 of tors H_degree], "a": a, "b": b, "k": k, "degree": d}.
+Stored cases are reused; delete a key to recompute it.
+
+COST AND EXIT CODE
+------------------
+From scratch the two Z/4 computations take a few minutes and about half a GB; with the data
+stored the whole run takes seconds.  The census needs networkx.  Exits with 1 if a direct
+computation disagrees with coker W, or if the census finds a non-Z/2 summand in a graph with
+no K_{4,5} subgraph (or whose graph it cannot rebuild); otherwise 0.  So it doubles as a
 regression test on the conjecture.
+
+PITFALLS
+--------
+* The census counts one entry per stored record, so a graph stored in two files is counted
+  twice, and the small-graph sweep files (which store only a summary string) are skipped.
+* The census checks containment of K_{4,5} only.  For the two Z/4 records it does not check
+  the sharper K_{5,7}; that holds trivially, since the graphs are K_{5,7} and K_{5,8}.
 """
 
 import argparse
@@ -67,16 +111,21 @@ DATA_FILE = "prime_census.json"
 
 #: the (a, b, k, degree) cases where coker W predicts a non-squarefree summand
 Z4_CASES = [(5, 7, 4, 3), (5, 8, 4, 3)]
-#: smaller bipartite cases, for the Z/3 end of the same family
+#: smaller bipartite cases, for the Z/3 end of the same family.  Each tuple is
+#: (a, b, k, degree): the graph K_{a,b} at k = a-1 particles, torsion of H_{degree}, degree = k-1
 Z3_CASES = [(4, 5, 3, 2), (4, 9, 3, 2), (4, 11, 3, 2)]
 
 
 def primary_types(invariant_factors):
-    """The multiset of prime powers in a primary decomposition."""
+    """The primary decomposition of a list of invariant factors, as a multiset.
+
+    Example: [2, 2, 6, 12] -> Counter({2: 3, 3: 2, 4: 1}), i.e. (Z/2)^3 + (Z/3)^2 + Z/4.
+    Each factor is split by trial division into its prime-power parts."""
     out = Counter()
     for t in invariant_factors:
         x, p = t, 2
         while x > 1:
+            # find the least prime p dividing x (or x itself if x is prime)
             while p * p <= x and x % p:
                 p += 1
             if p * p > x:
@@ -91,9 +140,14 @@ def primary_types(invariant_factors):
 
 
 def wilson_cokernel_torsion(n, b):
-    """Non-unit invariant factors of W_{n-1,n}(b): the predicted torsion of H_{n-1}."""
+    """Non-unit invariant factors of the inclusion matrix W_{n-1,n}(b).
+
+    W has rows indexed by the (n-1)-subsets of {0..b-1}, columns by the n-subsets, and entry
+    1 when the row set is contained in the column set.  Its cokernel's torsion is the predicted
+    torsion of H_{n-1}(B_n K_{n+1,b}).  Returns the sorted invariant factors > 1."""
     rows = list(itertools.combinations(range(b), n - 1))
     ri = {s: i for i, s in enumerate(rows)}
+    # one sparse column per n-subset T: a 1 in the row of each (n-1)-subset of T
     cols = [{ri[S]: 1 for S in itertools.combinations(T, n - 1)}
             for T in itertools.combinations(range(b), n)]
     _, divs = sparse_smith(cols, verbose=False)
@@ -101,7 +155,10 @@ def wilson_cokernel_torsion(n, b):
 
 
 def direct_computations(res):
-    """Compute the Z/4 and Z/3 cases and check them against the inclusion matrix."""
+    """Part (1): compute (or reload) the Z/4 and Z/3 cases and compare with coker W.
+
+    `res` is the loaded data/prime_census.json dict; new results are added to it and saved
+    immediately.  Prints the table and returns True if every case matches."""
     print("== (1) the bipartite family, computed directly and checked against coker W ==\n")
     hdr = ("%-12s %3s %4s %13s %-30s %-30s %s"
            % ("graph", "k", "deg", "cells", "computed", "coker W predicts", "match"))
@@ -117,7 +174,9 @@ def direct_computations(res):
             t = lean.torsion_in_degree(G, k, d)
             res[key] = {"torsion": t, "a": a, "b": b, "k": k, "degree": d}
             paths.save_json(DATA_FILE, res)
-        pred = wilson_cokernel_torsion(a - 1, b)
+        pred = wilson_cokernel_torsion(a - 1, b)     # n = a-1 particles for K_{n+1,b}
+        # compare primary decompositions, not raw lists: two lists of invariant factors
+        # describe the same group exactly when their primary decompositions agree
         same = (primary(t) == primary(pred))
         ok = ok and same
         print("%-12s %3d %4d %13s %-30s %-30s %s"
@@ -132,10 +191,16 @@ def direct_computations(res):
 
 
 def census():
-    """Every torsion summand in data/*.json, by primary type and family."""
+    """Part (2): tally every torsion summand stored in data/*.json, by primary type and family.
+
+    Three record shapes are understood: full homology {"H": ...}, single-degree
+    {"torsion": [...], "degree": d}, and {"H2_torsion": [...]}.  Prints the tally and the list
+    of non-Z/2 summands, and returns the list of (key, degree, q) whose graph could not be
+    shown to contain K_{4,5} (empty if all is well)."""
     print("\n== (2) census of the torsion summands stored in data/ ==\n")
 
     def family_of(fname, key):
+        """The family label used in the tally for a record of data file `fname`."""
         spec = key.split("|")[0]
         if fname.startswith("sweep_bipartite") or fname.startswith("prime_census"):
             return "complete bipartite"
@@ -253,7 +318,10 @@ def contains_K45(G):
 
 
 def two_is_different():
-    """The Z/2 witnesses that have no K_{3,3} minor at all."""
+    """Part (3): print the Z/2 carriers that cannot have a K_{3,3} minor.
+
+    Planarity is tested with networkx; the k and degree shown are where the stored data put
+    the Z/2, they are not recomputed here."""
     print("\n== (3) why q = 2 is exceptional ==\n")
     import networkx as nx
     from gbt import dodecahedron, icosahedron, octahedron, complete
@@ -275,6 +343,7 @@ def two_is_different():
 
 
 def main():
+    """Run parts (1)-(3) and print the verdict.  Returns 1 on a mismatch or a violation, else 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--skip-compute", action="store_true",
                     help="census only, no new homology computations")

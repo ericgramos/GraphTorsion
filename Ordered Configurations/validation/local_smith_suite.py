@@ -13,6 +13,7 @@ ENGINE = os.environ.get("OCONF_BIN", os.path.join(HERE, "..", "engine", "oconf")
 S = tempfile.mkdtemp()
 
 def loc(edges, n, p, k, extra=()):
+    """Run the engine in local mode -q p k and return the torsion it reports."""
     V = 1 + max(max(e) for e in edges)
     inp = f"{V} {len(edges)} {n}\n" + "".join(f"{a} {b}\n" for a, b in edges)
     out = subprocess.run([ENGINE, "-q", str(p), str(k), "-o", S + "/loc", *extra], input=inp, capture_output=True, text=True)

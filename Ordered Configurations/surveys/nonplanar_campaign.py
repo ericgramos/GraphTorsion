@@ -34,11 +34,13 @@ recs = json.load(open(DATA))
 
 
 def show(r):
+    """Print one line summarising a recorded campaign run."""
     res = r.get("result") or ("TORSION " + json.dumps(r["torsion"]) if r.get("torsion") else "no torsion")
     print(f"{r['name']:18s} V={r['V']:2d} E={len(r['edges']):2d} n={r['n']}  {' '.join(r['options'])[:70]:70s}  {res}")
 
 
 def rerun(r):
+    """Re-run a recorded campaign run with the current engine and compare the answer with the recorded one."""
     opts = list(r["options"])
     if ("-g" in opts or "-a" in opts) and "-F" not in opts:
         opts.append("-F")
@@ -95,6 +97,7 @@ def field_ranks(r, P, tag, local=False):
 
 
 def rational(r):
+    """Compare a recorded local run (mod p^K) with ranks over a large prime, to rule out summands of order >= p^K."""
     raw = os.path.join(_common.HERE, "..", "data", "nonplanar", "raw", r["name"] + ".json")
     if not os.path.exists(raw) or "-q" not in r["options"]:
         print(f"{r['name']}: no recorded local run to compare with")

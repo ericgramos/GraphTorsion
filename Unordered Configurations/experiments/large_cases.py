@@ -22,13 +22,59 @@ because the theory makes a specific prediction, or because they decide a pattern
     K13-3  K_13 at k=3      1.6M cells.  NOT COMPLETED, same reason.
 
 Each case writes its own entry into data/large_cases.json, so they can be run separately,
-in any order, on different machines, and the results pooled.  The two unfinished cases are
-included because they are the obvious targets for a faster implementation of the peel --
-see the note at the foot of validate_slow.py.
+in any order, on different machines, and the results pooled (by merging the JSON entries by
+hand).  The two unfinished cases are included because they are the obvious targets for a
+faster implementation of the peel -- see the note at the foot of validate_slow.py.
 
+THE METHOD
+----------
+The full homology is computed by `gbt.lean.compute`: the fully reduced Swiatkowski complex is
+built one degree at a time from the top down, unit pivots are cancelled (discrete Morse
+reduction), and the small residual complex goes to the exact Smith normal form.  This is the
+same answer as `gbt.fast.compute` in roughly a third of the memory.
+
+WHAT IS PRINTED
+---------------
+With --list, or with no case names, a table with columns
+
+    name             the case name to pass on the command line
+    case             the graph and k
+    cells            number of cells of the fully reduced complex (`reduced_cell_count`)
+    what it decides  the prediction or question the case settles
+    fits 7GB?        whether the full computation finished on a 7 GB machine
+    stored?          "yes" if data/large_cases.json already has it
+
+Real output (abridged):
+
+    name     case                    cells  what it decides                        fits 7GB?
+    K55      K_{5,5}, k=4          617,235  vanishing: H_4 = 0 (b = 5 <= 2n-1 = 7); ...  yes
+    K57      K_{5,7}, k=4        2,615,835  flip-chain class: Z/4 in H_3           NO
+
+When running a case: a header "=== CASE (N cells) -- what it decides ===", the progress lines
+of `lean.compute` (verbose), then the full homology line, the torsion line with the run time,
+and "wrote data/large_cases.json".  A stored case is not recomputed; its stored torsion
+summary is printed instead ("... already stored: ...").
+
+USAGE
+-----
     python3 experiments/large_cases.py --list
     python3 experiments/large_cases.py K57
     python3 experiments/large_cases.py K55 K56
+    python3 experiments/large_cases.py K8-4 --force
+
+    cases     one or more of K55, K56, K8-4, K12-3, K57, K13-3, run in the order given
+    --list    print the table above and exit (also the behaviour when no case is named)
+    --force   recompute a case even if it is stored, overwriting the stored entry
+
+Data: data/large_cases.json, key = the case name, record {"case": description, "k": k,
+"H": {degree: [free rank, [invariant factors]]}, "raw": total cells of the reduced complex
+before the Morse reduction, "red": total cells after it, "seconds": run time, "summary":
+the torsion line}.  The stored K55 and K56 entries were written by an earlier version of the
+script and have "raw" and "red" set to null and no "seconds".
+
+Exit code: 1 if a case name is unknown, 0 otherwise (also after a successful run).  A run
+killed by the operating system for lack of memory ends with exit code 137 from the shell and
+writes nothing for that case.
 
 WARNING on resources.  These are hours of CPU, and the two largest want several GB of RAM.
 The Python unit-pivot peel is what breaks first: above roughly two million cells it becomes
@@ -68,6 +114,7 @@ CASES = {
 
 
 def main():
+    """List the cases, or run the named ones in order and store each result as it finishes."""
     ap = argparse.ArgumentParser()
     ap.add_argument("cases", nargs="*", help="case names; see --list")
     ap.add_argument("--list", action="store_true", help="show the cases and their sizes")

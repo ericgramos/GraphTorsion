@@ -38,7 +38,43 @@ definitions, this script loads those modules with importlib and calls their `cas
 `families()` / `controls()` functions.  Loading a module runs only its definitions: every
 experiment guards its work with `if __name__ == "__main__"`.
 
-    python3 experiments/inventory.py          (a few seconds; needs networkx)
+WHAT IS PRINTED
+---------------
+A table with one row per source and columns
+
+    source       the script or small-graph sweep file ("sweep_small_graphs:n7_k4_d1" etc.)
+    records      number of stored records from that source
+    graphs       number of distinct isomorphism classes among them
+    k            the range of particle numbers
+    tors H>=2    records showing torsion in some H_i with i >= 2 ("-" for sources that record
+                 no torsion at all, such as the top-degree ranks)
+    non-Z/2      records showing a summand Z/m with m >= 3
+
+followed by the totals quoted above and "wrote data/inventory.csv".  Excerpt:
+
+    source                               records graphs k         tors H>=2  non-Z/2
+    sweep_complete                            46     10 2-12             10        0
+    sweep_bipartite                           92     27 2-7              25        7
+    large_cases                                4      4 3-4               4        1
+
+Per-source columns count RECORDS, so a graph stored by two scripts is counted in both rows;
+the totals at the bottom count distinct graphs.
+
+USAGE
+-----
+    python3 experiments/inventory.py          (a few seconds, well under 1 GB; needs networkx)
+
+No options.  It only reads data/*.json and overwrites data/inventory.csv; rerun it after any
+new computation.  Exit code: 0, or a Python traceback if a stored record names a graph the
+registry does not know (add the graph to `registry()` when a new experiment stores results).
+
+PITFALLS
+--------
+* "Torsion in some H_i, i >= 2" and "summand other than Z/2" are read from the stored result
+  strings by regular expressions (`torsion_above_one`, `not_two`).  If a new experiment
+  stores results in a new string format, check that these still parse it.
+* Graph identity is decided by isomorphism of the underlying simple graph; the labels that the
+  different scripts use are ignored.
 """
 
 import csv
@@ -74,11 +110,13 @@ def load_experiment(name):
 
 
 def data(name):
+    """The parsed contents of data/<name>.json."""
     with open(os.path.join(ROOT, "data", name + ".json")) as fh:
         return json.load(fh)
 
 
 def to_nx(G):
+    """The networkx graph on vertices 0..N-1 with the edges of the gbt Graph G."""
     g = nx.Graph()
     g.add_nodes_from(range(G.N))
     g.add_edges_from(G.edges)
@@ -86,6 +124,7 @@ def to_nx(G):
 
 
 def tors_str(t):
+    """A list of invariant factors as a primary decomposition, or "none" if it is empty."""
     return primary(t) if t else "none"
 
 
@@ -139,6 +178,7 @@ def collect():
     rows = []
 
     def add(src, label, G, k, scope, res):
+        """Append one record (source, label, Graph, k, what was computed, result string)."""
         rows.append(dict(source=src, label=label, G=G, k=int(k), scope=scope, result=res))
 
     for src in ("sweep_complete", "sweep_bipartite"):
@@ -233,6 +273,7 @@ def not_two(r):
 
 
 def main():
+    """Collect and classify every record, write data/inventory.csv, print the summary."""
     rows = collect()
     classify(rows)
 

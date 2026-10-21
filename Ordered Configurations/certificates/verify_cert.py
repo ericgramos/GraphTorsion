@@ -1,4 +1,4 @@
-"""Independent verifier for a p-torsion certificate in H_i(Conf_n(G); Z) (any prime p, default 2).
+"""Independent verifier for a torsion certificate in H_i(Conf_n(G); Z) of prime order p or prime-power order p^k.
 
 Shares no code with the C++ engine. It rebuilds the reduced ordered Swiatkowski
 complex from its definition (Hainaut-Knudsen-Wawrykow, Def. 3.12):
@@ -14,26 +14,37 @@ complex from its definition (Hainaut-Knudsen-Wawrykow, Def. 3.12):
                          - [p pushed into edge(h0) at the end of h0] ),
     where pushing in at a tail end prepends and at a head end appends.
 
-Certificate (file lines):  PRIME p (optional, default 2)
-                           W [coef] <cell>  (a chain w in degree i+1, coefficients 0..p-1)
-                           F [coef] <cell>  (a cochain f in degree i, values mod p)
+Certificate (file lines):  GRAPH V E n, EDGE tail head (E lines), DEGREE i
+                           PRIME P (optional, default 2; P is a prime p or a prime power p^k)
+                           SUBGRAPH h (optional; then z must be supported on the subgraph of the first h edges)
+                           W [coef] <cell>  (a chain w in degree i+1; integer coefficients, any sign and size)
+                           F [coef] <cell>  (a cochain f in degree i, values mod P)
 Checks:
   (a) every cell named is a genuine cell of the right degree;
-  (b) the integral boundary of w is divisible by p; put z = d(w)/p, an integral i-chain;
-  (c) d(z) = 0, so z is an integral i-cycle (and pz = d(w) is a boundary);
-  (d) f is a mod-p cocycle: f(d sigma) = 0 mod p for EVERY (i+1)-cell sigma
+  (b) the integral boundary of w is divisible by P; put z = d(w)/P, an integral i-chain;
+  (c) d(z) = 0, so z is an integral i-cycle (and Pz = d(w) is a boundary);
+  (c') only with SUBGRAPH h: every cell of z uses only edges 0..h-1 (no particle on a later edge, and at every
+      occupied vertex the generator half-edge and the base half-edge lie on edges 0..h-1).  As those edges come
+      first, the base half-edges of H lie in H, so these cells form the reduced complex of H and z is a cycle of
+      Conf_n(H);
+  (d) f is a mod-P cocycle: f(d sigma) = 0 mod P for EVERY (i+1)-cell sigma
       (all (i+1)-cells are enumerated independently and counted against a closed formula);
-  (e) f(z) is nonzero mod p.
-Then z is not a boundary over Z (else f(z) = f(d u) = 0 mod p), but pz is: [z] has order p.
+  (e) f(z) is prime to p.
+Then Pz = d(w) is a boundary, and if (P/p)z were a boundary d(u), then (P/p)f(z) = f(d u) = 0 mod P, so p would
+divide f(z).  Hence [z] has order exactly P.  (For P = p this is the usual statement that z is not a boundary.)
+With SUBGRAPH h this is the order of the image of the class of z under H_i(Conf_n H) -> H_i(Conf_n G).
+Usage:  python3 verify_cert.py certificate.txt[.gz]
 """
 import sys, re, math, itertools, time, gzip
 from collections import defaultdict
 
 
 def load(fn):
+    """Read a certificate file (plain or gzipped): the graph, degree, P, SUBGRAPH and the W and F lines."""
     W, F = [], []
     edges = []
     p = 2
+    sub = None
     opener = gzip.open if fn.endswith(".gz") else open
     for line in opener(fn, "rt"):
         tag, _, rest = line.rstrip("\n").partition(" ")
@@ -45,17 +56,20 @@ def load(fn):
             deg = int(rest)
         elif tag == "PRIME":
             p = int(rest)
+        elif tag == "SUBGRAPH":
+            sub = int(rest)
         elif tag in ("W", "F"):
             first, _, cell = rest.partition(" ")
-            coef, cell = (int(first), cell) if first.isdigit() else (1, rest)
+            coef, cell = (int(first), cell) if first.lstrip("-").isdigit() else (1, rest)
             (W if tag == "W" else F).append((coef, cell))
-    return V, edges, n, deg, W, F, p
+    return V, edges, n, deg, W, F, p, sub
 
 
 CELL_RE = re.compile(r"V\[(.*)\] E\[(.*)\]$")
 
 
 def parse_cell(s, V, E):
+    """Parse the text form V[...] E[...] of a cell into (vertex states, edge words)."""
     m = CELL_RE.match(s)
     vs = m.group(1).split(",")
     es = m.group(2).split("|")
@@ -66,8 +80,11 @@ def parse_cell(s, V, E):
 
 
 def main(fn):
+    """Run checks (a) to (e) on a certificate and print the verdict."""
     t0 = time.time()
-    V, edges, n, deg, Wraw, Fraw, P = load(fn)
+    V, edges, n, deg, Wraw, Fraw, P, SUB = load(fn)
+    assert P >= 2 and len({q for q in range(2, P + 1) if P % q == 0 and all(q % r for r in range(2, q))}) == 1, \
+        "PRIME must be a prime or a prime power"
     E = len(edges)
     end_vertex = {}
     for e, (a, b) in enumerate(edges):
@@ -79,6 +96,7 @@ def main(fn):
     base = {v: min(hs) for v, hs in halves.items()}
 
     def valid(cell, k):
+        """Is this a genuine cell of degree k (non-base generator half-edges, every particle exactly once)?"""
         verts, eds = cell
         seen = []
         occ = 0
@@ -93,6 +111,7 @@ def main(fn):
         return occ == k and sorted(seen) == list(range(n))
 
     def boundary(cell):
+        """Boundary of a cell, from the definition, as a list of (face, sign)."""
         verts, eds = cell
         out = []
         j = 0
@@ -125,7 +144,7 @@ def main(fn):
         for f, s in boundary(c):
             dw[f] += a * s
     dw = {k: v for k, v in dw.items() if v}
-    assert all(v % P == 0 for v in dw.values()), "(b) boundary of w not divisible by p"
+    assert all(v % P == 0 for v in dw.values()), "(b) boundary of w not divisible by P"
     z = {k: v // P for k, v in dw.items()}
     print(f"(b) ok: d(w) = {P}z with z supported on {len(z)} cells, max |coefficient| {max(abs(v) for v in z.values())}", flush=True)
 
@@ -135,6 +154,16 @@ def main(fn):
             dz[f] += a * s
     assert all(v == 0 for v in dz.values()), "(c) z is not a cycle"
     print("(c) ok: d(z) = 0", flush=True)
+    if SUB is not None:
+        # (c') z lives on the subgraph H formed by the first SUB edges: no particle on a later edge, and at every
+        # occupied vertex both the generator half-edge and the base half-edge lie on edges of H.  With base
+        # half-edges inside H these cells form the reduced complex of H, so z is a cycle of Conf_n(H).
+        for (verts, eds) in z:
+            assert all(not eds[e] for e in range(SUB, E)), "(c') z has a particle on an edge outside H"
+            for v, x in enumerate(verts):
+                if x is not None:
+                    assert x[1] // 2 < SUB and base[v] // 2 < SUB, "(c') z uses a half-edge outside H"
+        print(f"(c') ok: z is supported on the subgraph formed by edges 0..{SUB-1}, {edges[:SUB]}", flush=True)
 
     # (d) enumerate every (deg+1)-cell independently and test the cocycle condition
     k = deg + 1
@@ -143,6 +172,7 @@ def main(fn):
     bad = 0
     def compositions(m, parts):
         # all ways to write m as an ordered sum of `parts` non-negative integers
+        """All ways to write m as an ordered sum of `parts` non-negative integers (positions of the edge particles)."""
         for cuts in itertools.combinations(range(m + parts - 1), parts - 1):
             prev = -1; comp = []
             for c in cuts:
@@ -183,9 +213,11 @@ def main(fn):
     print(f"(d) ok: f is a mod-{P} cocycle (checked on all {count} cells of degree {k})", flush=True)
 
     pairing = sum(v * F[c] for c, v in z.items() if c in F)
-    assert pairing % P != 0, "(e) f(z) = 0 mod p"
-    print(f"(e) ok: f(z) = {pairing} = {pairing % P} mod {P}", flush=True)
+    assert math.gcd(pairing, P) == 1, "(e) f(z) is not prime to P"
+    print(f"(e) ok: f(z) = {pairing} = {pairing % P} mod {P}, prime to {P}", flush=True)
     print(f"VERIFIED: H_{deg}(Conf_{n}(G); Z) contains an element of order {P}, G = {edges}  [{time.time()-t0:.0f}s]")
+    if SUB is not None:
+        print(f"VERIFIED: it is the image of the class of the cycle z of Conf_{n}(H), H = {edges[:SUB]}")
 
 
 if __name__ == "__main__":

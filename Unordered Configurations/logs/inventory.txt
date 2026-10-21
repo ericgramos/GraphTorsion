@@ -1,0 +1,30 @@
+source                               records graphs k         tors H>=2  non-Z/2
+sweep_complete                            46     10 2-12             10        0
+sweep_bipartite                           92     27 2-7              25        7
+large_cases                                4      4 3-4               4        1
+top_degree_vanishing                      81     39 2-5               -        0
+prime_census                               5      5 3-4               5        5
+petersen_family                           14      7 3-4               7        0
+linkless_controls                          9      7 3-4               1        0
+planar_torsion                            18      8 3-4               1        0
+planar_odd_search                        100     28 2-5              14        0
+density_interpolation                      6      6 3                 6        3
+platonic_solids                           19     10 2-4               9        0
+higher_degree_torsion                      5      4 5-6               3        0
+genuine_higher_torsion                   116     59 5-7               0        0
+sweep_small_graphs:n4_k2-3-4-5-6_d1       30      6 2-6               0        0
+sweep_small_graphs:n5_k2-3-4-5_d1         84     21 2-5               0        0
+sweep_small_graphs:n5_k2-3-4-5_d2         44     11 2-5               0        0
+sweep_small_graphs:n6_k2-3-4_d1          336    112 2-4               5        0
+sweep_small_graphs:n6_k4_d3               19     19 4                 5        0
+sweep_small_graphs:n7_k3_d1              853    853 3                 1        0
+sweep_small_graphs:n7_k4_d1              853    853 4               130        0
+sweep_small_graphs:n7_k4_d3              150    150 4                97        0
+two_torsion_anatomy                        8      6 2-4               -        0
+
+total: 2892 records, 1068 distinct graphs, 2475 distinct (graph, k) pairs, k from 2 to 12
+graphs with torsion in some H_i, i >= 2 : 182
+graphs with a summand other than Z/2   : 11
+planar graphs: 803; with torsion in some H_i, i >= 2: 26; with a summand other than Z/2: 0
+
+wrote data/inventory.csv

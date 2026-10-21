@@ -1,0 +1,24 @@
+OK   verify cert_K4dbl5_n5_order16.txt.gz 
+OK   verify cert_K4dbl5_n5_order8.txt.gz 
+OK   verify cert_T123_n6.txt.gz 
+OK   verify cert_T133_n6_p3.txt.gz 
+OK   verify cert_T222_n6.txt.gz 
+OK   verify cert_doubledK4_n5_order4.txt.gz 
+OK   verify cert_doubledK4_n5_p2.txt.gz 
+OK   verify cert_triangle_leaf_into_K4dbl5_order16.txt.gz 
+OK   verify cert_tripledC4_n5_p3.txt.gz 
+OK   verify cert_two_tori_into_K4dbl5_order16.txt.gz 
+OK   orderq image of the triangle with a leaf 
+FAIL exactsolve reproduces the cycle y 
+FAIL reducecyc reproduces the homology coordinates of y 
+OK   exactsolve writes 16 y* as a boundary 
+OK   the rebuilt two-tori certificate verifies 
+OK   y lies in the span of the tori of H (mod 2^8, no free part) 
+live 56918, residual rows 1781, generators 12, relation blocks 54540
+OK   spanq = orderq on the 14 tori of the two-tori class (torsion from the span: {16: 1})
+OK   spanq = orderq on 10 random tori (torsion from the span: {})
+OK   spanq = orderq on 300 random tori (torsion from the span: {})
+OK   spanq = orderq on 3000 random tori (torsion from the span: {})
+OK   exact check of the two-tori set (one relation, odd cocycle value) 
+
+19 of 21 checks passed; work files in /tmp/gentools_bqobd1kh

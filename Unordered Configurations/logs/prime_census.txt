@@ -1,0 +1,50 @@
+
+== (2) census of the torsion summands stored in data/ ==
+
+family                                 primary summands found (Z/q with multiplicity)
+------------------------------------------------------------------------------------------------
+Petersen family                        Z/2 x21
+complete K_n                           Z/2 x236
+complete bipartite                     Z/2 x412   Z/3 x23   Z/4 x2
+density interpolation (K_{4,5} to K_9) Z/2 x95   Z/3 x3
+large cases (bipartite and complete)   Z/2 x125   Z/3 x1
+linkless controls                      Z/2 x10
+planar families                        Z/2 x27
+------------------------------------------------------------------------------------------------
+total: 955 primary summands counted, 29 of them not Z/2
+(one count per stored record: a graph stored in two files is counted twice; the
+ small-graph sweep files store only a summary string and are not included)
+
+every non-Z/2 summand, with the graph it came from (checked: the graph contains K_{4,5} as a subgraph):
+   K4,11|3|2                          H_2  Z/3   (Z/2)^10 + Z/3             contains K_{4,5}
+   K4,5|3|2                           H_2  Z/3   (Z/2)^4 + Z/3              contains K_{4,5}
+   K4,9|3|2                           H_2  Z/3   (Z/2)^8 + Z/3              contains K_{4,5}
+   K5,7|4|3                           H_3  Z/3   (Z/2)^14 + (Z/3)^6 + Z/4   contains K_{4,5}
+   K5,7|4|3                           H_3  Z/4   (Z/2)^14 + (Z/3)^6 + Z/4   contains K_{4,5}
+   K5,8|4|3                           H_3  Z/3   (Z/2)^20 + (Z/3)^7 + Z/4   contains K_{4,5}
+   K5,8|4|3                           H_3  Z/4   (Z/2)^20 + (Z/3)^7 + Z/4   contains K_{4,5}
+   K4,5|3                             H_2  Z/3   (Z/2)^4 + Z/3              contains K_{4,5}
+   K4,5|4                             H_2  Z/3   (Z/2)^5 + Z/3              contains K_{4,5}
+   K4,6|3                             H_2  Z/3   (Z/2)^5 + Z/3              contains K_{4,5}
+   K4,6|4                             H_2  Z/3   (Z/2)^6 + Z/3              contains K_{4,5}
+   K4,7|3                             H_2  Z/3   (Z/2)^6 + Z/3              contains K_{4,5}
+   K4,8|3                             H_2  Z/3   (Z/2)^7 + Z/3              contains K_{4,5}
+   K5,6|4                             H_3  Z/3   (Z/2)^5 + Z/3              contains K_{4,5}
+   K_{4,5} + 3 in B|3                 H_2  Z/3   (Z/2)^13 + Z/3             contains K_{4,5}
+   K_{4,5} + all A|3                  H_2  Z/3   (Z/2)^4 + Z/3              contains K_{4,5}
+   K_{4,5}|3                          H_2  Z/3   (Z/2)^4 + Z/3              contains K_{4,5}
+   K56                                H_3  Z/3   (Z/2)^5 + Z/3              contains K_{4,5}
+
+== (3) why q = 2 is exceptional ==
+
+graph              k  deg planar    K_{3,3}?  note
+K_5                2    1 False     no        Ko--Park class; only 5 vertices, so no K_{3,3} minor
+octahedron         4    2 True      no        planar
+dodecahedron       4    2 True      no        planar
+icosahedron        4    2 True      no        planar
+
+All four carry Z/2 and none can have a K_{3,3} minor, so the q = 2 case of
+the odd-torsion conjecture is false -- which is exactly the point of the dichotomy.
+
+Every non-Z/2 summand in the stored data lives in a graph containing K_{4,5}.
+Every other stored torsion summand is Z/2.

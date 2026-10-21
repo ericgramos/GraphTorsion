@@ -67,6 +67,33 @@ any subset of vertices independently of the others:
 
 A vertex of degree 1 has no non-basepoint edge, so reducing at it deletes all of its
 generators; `swiatkowski` therefore skips vertex subsets containing a reduced leaf.
+
+THE DIFFERENTIAL ON A BASIS ELEMENT, WITH SIGNS
+-----------------------------------------------
+Write a basis element as  m . x_{v_1} x_{v_2} ... x_{v_N}  with x_v the state at v, taken in
+increasing order of v.  Only moving states have degree 1, so by the Leibniz rule with
+Koszul signs
+
+    d(m . x_{v_1} ... x_{v_N})  =  sum over moving v_i of  (-1)^(number of moving v_j, j < i)
+                                   m . x_{v_1} ... d(x_{v_i}) ... x_{v_N},
+
+and d(x_{v_i}) is (e . empty) - (sit at v_i) when v_i is unreduced, or
+(e . empty) - (e0(v_i) . empty) when it is reduced.  Multiplying by an edge e just adds e
+to the monomial m (Z[E] is central and in degree 0, so it costs no sign).  This is the
+loop at the bottom of `swiatkowski`, and `gbt.fast` / `gbt.lean` repeat it with integer
+encodings.
+
+EXAMPLE
+-------
+    >>> from gbt import swiatkowski, complete_bip
+    >>> C = swiatkowski(complete_bip(3, 3), 2)
+    >>> C.sizes()
+    {0: 114, 1: 252, 2: 135}
+    >>> C.B[1][((0,), (0, 0, 0, 5, 0, 0))]   # parked on e_0, vertex 3 moving along e_3
+    {((0, 3), (0, 0, 0, 0, 0, 0)): 1, ((0,), (0, 0, 0, 1, 0, 0)): -1}
+
+i.e. d(e_0 . h_{3,e_3}) = e_0 e_3 - e_0 . (sit at 3).  Building the unreduced complex is
+practical only for small cases (it has `gbt.cell_count(G, k)` generators).
 """
 
 import itertools
@@ -78,8 +105,10 @@ from .chain import ChainComplex
 def edge_monomials(M, k):
     """{r: list of all edge monomials of weight r}, for r = 0..k.
 
-    A monomial is a sorted tuple of edge indices with repetition allowed, so there are
-    C(M + r - 1, r) of weight r.
+    M is the number of edges.  A monomial is a sorted tuple of edge indices with repetition
+    allowed (e.g. (0, 0, 3) = e_0^2 e_3: two particles parked on edge 0, one on edge 3), so
+    there are C(M + r - 1, r) of weight r.  The lists are in lexicographic order, which
+    fixes the generator order used by `gbt.fast` and `gbt.lean`.
     """
     return {r: list(itertools.combinations_with_replacement(range(M), r))
             for r in range(k + 1)}
@@ -91,8 +120,9 @@ def swiatkowski(G, k, reduce_at=()):
     Parameters
     ----------
     G : Graph
+        any simple graph; isolated vertices are allowed here (unlike `gbt.fast`).
     k : int
-        the number of particles.
+        the number of particles (the weight).
     reduce_at : iterable of vertices
         the set R above.  `()` gives the unreduced complex, `range(G.N)` the fully
         reduced one.
@@ -111,6 +141,8 @@ def swiatkowski(G, k, reduce_at=()):
     """
     R = set(reduce_at)
     N, M = G.N, G.M
+    # (an isolated vertex in R would make min() fail below; reduce only at vertices with
+    # at least one edge)
     # Basepoint edge at each reduced vertex.  Any choice gives an isomorphic complex;
     # the least index makes runs reproducible.
     e0 = {v: min(G.inc[v]) for v in R}
@@ -136,6 +168,8 @@ def swiatkowski(G, k, reduce_at=()):
                     st[v] = x
                 st = tuple(st)
                 d = sum(1 for x in combo if x >= 2)       # degree = number moving
+                # j occupied vertices (sitting or moving) carry weight j; the remaining
+                # k - j particles are parked, in every possible way
                 for m in mon[k - j]:                      # park the remaining weight
                     gens[d].add((m, st))
 
@@ -151,6 +185,7 @@ def swiatkowski(G, k, reduce_at=()):
             sgn = 1                               # Koszul sign of the current slot
 
             def add(key, c):
+                """Add c to the coefficient of `key` in the current column, dropping zeros."""
                 col[key] = col.get(key, 0) + c
                 if col[key] == 0:
                     del col[key]
@@ -172,6 +207,8 @@ def swiatkowski(G, k, reduce_at=()):
                     s2 = list(st)
                     s2[v] = 1
                     add((m, tuple(s2)), -sgn)
+                # the next MOVING slot carries the opposite Koszul sign; sitting and empty
+                # slots have degree 0 and are skipped above, so they do not flip it
                 sgn = -sgn
             mat[g] = col
         B[d] = mat

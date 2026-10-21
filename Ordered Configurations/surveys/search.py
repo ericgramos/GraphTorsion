@@ -16,6 +16,7 @@ from gconf import homology, smooth, normalize
 
 
 def cell_count(edges, n):
+    """Total number of cells of the complex of Conf_n, by the closed formula."""
     V, edges = normalize(edges)
     deg = [0] * V
     for u, v in edges:
@@ -30,6 +31,7 @@ def cell_count(edges, n):
 
 
 def ess(edges):
+    """Number of essential vertices (degree at least 3)."""
     V, edges = normalize(edges)
     deg = [0] * V
     for u, v in edges:

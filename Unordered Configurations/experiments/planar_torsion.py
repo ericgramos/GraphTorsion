@@ -2,22 +2,65 @@
 """
 Planar graphs with torsion in H_2, and the three planar generators of An--Knudsen.
 
-In degree one, Ko--Park says torsion happens exactly for non-planar graphs.  In degree two
-that is false: the octahedron K_{2,2,2} is planar and carries Z/2 in H_2(B_4).  This script establishes that, and then puts it next to the theorem that makes it
-surprising.
+THE QUESTION
+------------
+In degree one, Ko--Park says torsion happens exactly for non-planar graphs.  In degree two that
+is false: the octahedron K_{2,2,2} is planar and carries Z/2 in H_2(B_4).  This script
+establishes that, and then puts it next to the theorem that makes it surprising.
 
 An and Knudsen (J. Topol. 15 (2022) 666-691) prove that for a PLANAR graph, H_2 of the
 configuration spaces is generated, under embedding, disjoint union and edge stabilization, by
-three atoms: the cycle, the star, and the theta graph.  This script computes H_2 for all
-three and finds them torsion-free.  Since torsion cannot appear in a direct sum of
+three atoms: the cycle, the star, and the theta graph.  This script computes the homology of
+all three and finds it torsion-free.  Since torsion cannot appear in a direct sum of
 torsion-free groups, the 2-torsion in the octahedron cannot be a "new generator" -- it has to
 be produced by the RELATIONS, i.e. a free class on an embedded atom must map to a torsion
-class.  `theta_class.py` verifies exactly that: the torsion is created by relations.
+class.  `theta_class.py` verifies exactly that.
 
-The script also sweeps the graphs around the octahedron -- the prism (same vertex count, no
-torsion), the wheel, small complete bipartite graphs -- so the finding is not a one-off.
+The script also computes the graphs around the octahedron -- the triangular prism (same vertex
+count, no torsion), the wheel W_5, K_4, K_{2,3}, K_{2,4} -- so the finding is not a one-off.
 
+METHOD
+------
+The nine graphs of cases() are computed in full (H_*(B_k Gamma; Z) in every degree) with
+`gbt.fast`, or with `gbt.lean` above LEAN_THRESHOLD = 600,000 reduced cells.  A graph "carries
+torsion above H_1" if some H_i with i >= 2 has a non-trivial torsion subgroup.
+
+WHAT IS PRINTED
+---------------
+1.  For every (graph, k) NOT already stored: one progress line
+        name  n=<vertices> m=<edges> k=<k>  <raw cells> cells  [time]  H_1=... H_2=...
+    followed by the torsion.  Stored cases are not recomputed and print nothing here.
+2.  A table, one row per (graph, k), columns
+        graph | n (vertices) | m (edges) | k | torsion (all degrees) |
+        above H_1 (YES / no) | note
+3.  The verdict: whether the three atoms are torsion-free, and the list of planar carriers of
+    torsion above H_1, with a short explanation.
+
+Excerpt (default `--k 3,4`, everything stored, about a second):
+
+    graph            n   m    k torsion                        above H_1  note
+    cycle C_4        4   4    3 none                           no         An--Knudsen atom
+    ...
+    octahedron       6  12    4 H_2: Z/2                       YES        planar, 6 vertices ...
+    An--Knudsen's three planar atoms are torsion-free in H_2: True
+    Planar graphs carrying torsion above H_1: [('octahedron', 4)]
+
+USAGE
+-----
     python3 experiments/planar_torsion.py [--k 3,4]
+
+    --k LIST    comma-separated particle numbers (default "3,4").  At k = 3 nothing planar has
+                torsion; the octahedron needs k = 4.
+
+DATA FILE
+---------
+data/planar_torsion.json, keyed "<name>|<k>" (e.g. "octahedron|4"), each record
+{"H": {degree: [free rank, [invariant factors > 1]]}, "vertices": N, "edges": M, "note": text}.
+
+COST AND EXIT CODE
+------------------
+About a second from scratch at k <= 4.  Always exits 0.  To recompute a stored case delete its
+key from the data file.
 """
 
 import argparse
@@ -32,12 +75,18 @@ from gbt import (Graph, complete, complete_bip, octahedron, prism,          # no
 from gbt import fast, lean                                                 # noqa: E402
 from gbt.report import has_torsion, homology_line, torsion_line             # noqa: E402
 
+#: above this many reduced cells, use the memory-lean pipeline instead of gbt.fast
 LEAN_THRESHOLD = 600_000
 DATA_FILE = "planar_torsion.json"
 
 
 def cases():
-    """[(name, Graph, note)] -- planar graphs, plus the An--Knudsen atoms."""
+    """The nine test graphs, as a list of (name, Graph, note).
+
+    The first three are An--Knudsen's planar atoms (their note contains the word "atom", which
+    main() uses to recognise them): the 4-cycle, the star K_{1,4} and the theta graph with
+    three paths of length 2.  Then K_4, the triangular prism, the wheel W_5, K_{2,3}, K_{2,4}
+    and the octahedron.  All are planar."""
     star = Graph(5, [(0, 1), (0, 2), (0, 3), (0, 4)])
     cyc = Graph(4, [(0, 1), (1, 2), (2, 3), (0, 3)])
     return [
@@ -54,6 +103,9 @@ def cases():
 
 
 def main():
+    """Compute or reload every (graph, k) of cases(), print the table and the verdict.
+
+    Returns 0 (the process exit code)."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", default="3,4", help="comma-separated particle numbers")
     args = ap.parse_args()
@@ -89,7 +141,7 @@ def main():
     carriers = []
     atoms_ok = True
     for name, k, n, m, H, note in rows:
-        above = has_torsion(H, min_degree=2)
+        above = has_torsion(H, min_degree=2)       # torsion in some H_i with i >= 2
         if above:
             carriers.append((name, k))
             if "atom" in note:

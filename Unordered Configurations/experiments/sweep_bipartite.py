@@ -2,25 +2,84 @@
 """
 H_*(B_k K_{a,b}) for every (a, b, k) that fits: the complete bipartite sweep.
 
-This is where the exotic torsion lives.  For a = n+1 the top differential contains
-the inclusion matrix W_{n-1,n}(b) (beside an identity block), whose cokernel supplies
+THE QUESTION
+------------
+This is where the exotic torsion lives.  For a = n+1 the top differential contains the
+inclusion matrix W_{n-1,n}(b) (beside an identity block), whose cokernel supplies
 
-        Z/3   in  H_2(B_3 K_{4,5}),           the first odd torsion in a graph braid group
-        Z/4   in  H_3(B_4 K_{5,7}),           the first non-squarefree torsion
+        Z/3   in  H_2(B_3 K_{4,5}),           the first odd torsion found
+        Z/4   in  H_3(B_4 K_{5,7}),           the first non-squarefree torsion found
 
-and more generally Z/n for K_{n+1,2n-1}.  The sweep confirms that and maps out where the
-torsion stops being generic: in most cases the (k-1)-st homology has 2-torsion of
-multiplicity exactly rank H_1, which is the "background" count, and the
-interesting graphs are the ones that deviate from it -- K_{4,5} has (Z/2)^4 where the
-background would give (Z/2)^12, plus a Z/3 on top.
+and more generally Z/n for K_{n+1,2n-1}.  The sweep confirms the small cases and maps out where
+the torsion stops being generic: in most cases the (k-1)-st homology has 2-torsion of
+multiplicity exactly rank H_1, which is the "background" count, and the interesting graphs are
+the ones that deviate from it -- K_{4,5} at k = 3 has (Z/2)^4 where the background would give
+(Z/2)^12, plus a Z/3 on top.
 
-Jobs are ordered by `gbt.reduced_cell_count` and results are written to
-data/sweep_bipartite.json after each one, so the run is resumable.
+METHOD
+------
+All triples 2 <= a <= AMAX, a <= b <= BMAX, 2 <= k <= KMAX are listed, their fully reduced
+complexes are sized with `gbt.reduced_cell_count` (a closed formula, so nothing is built), and
+those with at most CAP cells are run in order of size, cheapest first.  Each job computes the
+full homology H_*(B_k K_{a,b}; Z) with `gbt.fast`, or `gbt.lean` above LEAN_THRESHOLD = 600,000
+cells, and is saved immediately, so an interrupted run loses at most one job and a restart
+skips everything stored.  Only a >= 2 and b >= a are run: K_{a,b} = K_{b,a}.
 
-    python3 experiments/sweep_bipartite.py [--cap CELLS] [--amax A] [--bmax B] [--kmax K]
+WHAT IS PRINTED
+---------------
+1.  "<J> jobs with at most <CAP> cells".
+2.  For every job NOT already stored, a block
+        K_a,b    k=<k>   <raw cells> cells -> <cells after Morse>  [time, fast|lean]
+                   H_1=...  H_2=...
+                   torsion: H_1: Z/2   H_2: ...
+3.  A SUMMARY over ALL stored cases (not only this run's), in three tables:
+      * "invariant factors seen anywhere" (at the stored data: [2, 6]);
+      * "cases with ODD torsion": one line per case, K_a,b | k | torsion in every degree;
+      * "the a = n+1 family": columns K_{a,b} | k | torsion of H_{k-1} | b = 2k-1?
+        (only the cases with a = k+1, the family governed by coker W);
+      * "the background pattern": columns
+            K_{a,b} | k | rank H_1 | m(Z/2) | odd | generic?
+        where m(Z/2) is the number of EVEN invariant factors of tors H_{k-1} (which equals the
+        number of 2-primary summands, since every factor seen is 2 or 6), odd lists the odd
+        parts > 1 of the factors, and generic? is "yes" when m(Z/2) = rank H_1 > 0.
 
-    --cap   400000   a few minutes
-    --cap   700000   an hour or so (the cap used for the stored data)
+Excerpt (`--cap 20000`, everything stored, a few seconds):
+
+    cases with ODD torsion -- these are the ones coker W governs:
+      K_4,5        k=3   H_1: Z/2   H_2: (Z/2)^4 + Z/3
+      ...
+      K_5,6        k=4   H_1: Z/2   H_2: (Z/2)^21   H_3: (Z/2)^5 + Z/3
+    ...
+      K_{a,b}           k   rank H_1     m(Z/2)      odd generic?
+      K_{5,5}           3         16         16        - yes
+
+USAGE
+-----
+    python3 experiments/sweep_bipartite.py [--cap 400000] [--amax 7] [--bmax 8] [--kmax 7]
+
+    --cap N     skip jobs whose fully reduced complex has more than N cells (default 400,000:
+                a few minutes; 700,000, the cap used for the stored data, takes an hour or so).
+    --amax A    largest small side a (default 7).
+    --bmax B    largest large side b (default 8).
+    --kmax K    largest particle number k (default 7).
+
+DATA FILE
+---------
+data/sweep_bipartite.json, keyed "K<a>,<b>|<k>" (e.g. "K4,5|3"), each record
+{"H": {degree: [free rank, [invariant factors > 1]]}, "raw": total cells of the fully reduced
+complex, "red": total cells after the Morse reduction}.  Records written by this version also
+carry "cells_formula" (the predicted size); two older records hold only "H".
+
+COST AND EXIT CODE
+------------------
+See --cap.  The largest jobs at the default cap need about a GB.  Always exits 0: the sweep
+reports, it does not test.  `wilson_cokernel.py` and `top_degree_vanishing.py` test the
+predictions against these numbers.
+
+PITFALL
+-------
+To recompute a case delete its key from the data file; a stored case is never redone, even
+when the cap changes.
 """
 
 import argparse
@@ -36,11 +95,13 @@ from gbt.chain import odd_part                           # noqa: E402
 from gbt.report import (exponents, has_odd_torsion,       # noqa: E402
                         homology_line, torsion_line, torsion_summary)
 
+#: above this many reduced cells, use the memory-lean pipeline instead of gbt.fast
 LEAN_THRESHOLD = 600_000
 DATA_FILE = "sweep_bipartite.json"
 
 
 def main():
+    """Run every job under the cap that is not yet stored, then print the summary.  Returns 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--cap", type=int, default=400_000)
     ap.add_argument("--amax", type=int, default=7)
@@ -52,7 +113,7 @@ def main():
             for a in range(2, args.amax + 1)
             for b in range(a, args.bmax + 1)
             for k in range(2, args.kmax + 1)]
-    jobs = sorted(j for j in jobs if j[0] <= args.cap)
+    jobs = sorted(j for j in jobs if j[0] <= args.cap)     # cheapest first
     print("%d jobs with at most %s cells\n" % (len(jobs), format(args.cap, ",")),
           flush=True)
 
@@ -78,6 +139,7 @@ def main():
     print("SUMMARY over %d stored cases" % len(res))
     print("=" * 78)
 
+    # every stored case, with degrees back to int and groups to (free, factors) tuples
     allH = {key: {int(d): tuple(v) for d, v in rec["H"].items()}
             for key, rec in res.items()}
     print("invariant factors seen anywhere: %s"
@@ -117,6 +179,7 @@ def main():
         H = allH[key]
         if k - 1 not in H:
             continue
+        # number of even invariant factors = number of 2-primary cyclic summands
         m = sum(1 for x in H[k - 1][1] if x % 2 == 0)
         odd = ",".join(str(odd_part(x)) for x in H[k - 1][1] if odd_part(x) > 1) or "-"
         b1 = H[1][0]

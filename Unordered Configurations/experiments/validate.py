@@ -2,25 +2,56 @@
 """
 Regression suite: every headline number that is cheap enough to recompute.
 
-Run this after changing anything in `gbt/`.  It exits non-zero on the first failure, and each
-line names the claim it is checking, so a failure points at the statement it would invalidate.
+WHY
+---
+Run this after changing anything in `gbt/`.  Each line names the claim it is checking, so a
+failure points at the statement it would invalidate.  The heavy counterparts -- the
+million-cell cases -- are in `validate_slow.py`; an independent recomputation of the headline
+torsion groups by two further routes is in `verify_headlines.py`.
 
-    python3 experiments/validate.py            (about five minutes)
-
-The heavy counterparts -- the million-cell cases -- are in `validate_slow.py`.
-
-What is checked, in order:
-
-    1.  Values known independently from the literature (Abrams' surfaces, Ko--Park).
-    2.  The top-degree vanishing for a = n+1, b <= 2n-1.
-    3.  The exact torsion of H_{n-1}(B_n K_{n+1,b}), which is the
-        cokernel of the Wilson inclusion matrix, including the Z/3 of K_{4,5}.
+WHAT IS CHECKED, IN ORDER (60 checks)
+-------------------------------------
+    1.  Values known independently from the literature: Abrams' surfaces B_2 K_5 = N_7 and
+        B_2 K_{3,3} = N_5 (H_1 = Z^6 + Z/2 and Z^4 + Z/2), and Ko--Park (torsion in H_1
+        exactly for non-planar graphs, and then a single Z/2).
+    2.  The top-degree vanishing H_n(B_n K_{n+1,b}) = 0 for b <= 2n-1, and H_n = 0 for a <= n.
+    3.  The exact torsion of H_{n-1}(B_n K_{n+1,b}), which is the torsion of the cokernel of the
+        Wilson inclusion matrix, including the Z/3 of K_{4,5}.
     4.  The dimension formula dim H_n = max(0, C(b,n) - C(b,n-1)).
-    5.  Complete graphs: 2-torsion only, with multiplicity rank H_1 for n >= 8 at k = 3.
-    6.  Planar graphs with torsion: the octahedron.
+    5.  Complete graphs: 2-torsion only, with multiplicity rank H_1 = C(n-1,2) for n = 8, 9
+        at k = 3.
+    6.  Planar graphs with torsion: the octahedron (Z/2 in H_2 at k = 4, none at k = 3), and
+        the triangular prism as a torsion-free control.
     7.  The three An--Knudsen planar atoms are torsion-free.
-    8.  Internal consistency: d^2 = 0; the closed-form cell counts; reduce_at makes no
-        difference; `fast` and `lean` agree; Abrams' model agrees with Swiatkowski.
+    8.  Internal consistency: d^2 = 0 on reduced and unreduced complexes; the closed-form cell
+        counts; reduce_at makes no difference; `fast` and `lean` agree; Abrams' model agrees
+        with Swiatkowski's.
+
+WHAT IS PRINTED
+---------------
+A heading per group ("== 2. top-degree vanishing ... ==") and one line per check,
+
+    [ok  ] <what is checked>: <value computed>
+    [FAIL] <what is checked>: <value computed>   (expected <value>)
+
+where a value is usually a pair (free rank, (invariant factors)).  The last line is
+"ALL CHECKS PASSED", or "<m> CHECK(S) FAILED: [names]".  Excerpt:
+
+    == 1. values known from the literature ==
+      [ok  ] H_1(B_2 K_5): (6, (2,))
+      [ok  ] H_2(B_2 K_5): (0, ())
+      ...
+      [ok  ] Abrams == Swiatkowski, octahedron k=3: {0: (1, []), 1: (8, []), 2: (47, []), ...}
+    ALL CHECKS PASSED
+
+USAGE, COST AND EXIT CODE
+-------------------------
+    python3 experiments/validate.py
+
+No options.  Under a minute on the machine used here (allow up to five on a slow one), and
+well under a GB.  Every check runs even after a failure; the script then exits with 1, and
+with 0 if everything passed.  Nothing is written to data/.  The script runs at import time
+(it has no main()), so do not import it from other code.
 """
 
 import os
@@ -34,10 +65,11 @@ from gbt import (Graph, complete, complete_bip, octahedron, prism,         # noq
                  cell_count, reduced_cell_count, primary)
 from gbt import fast, lean                                                # noqa: E402
 
-FAILURES = []
+FAILURES = []          # names of the failed checks, reported at the end
 
 
 def check(name, got, want):
+    """Compare `got` with `want`, print an [ok  ] or [FAIL] line, and record failures."""
     ok = (got == want)
     print("  [%s] %s: %s%s" % ("ok  " if ok else "FAIL", name, got,
                                "" if ok else "   (expected %s)" % (want,)))
@@ -46,10 +78,15 @@ def check(name, got, want):
 
 
 def hom(G, k, pipeline="fast"):
+    """H_*(B_k G; Z) as {degree: (free rank, tuple of invariant factors > 1)}.
+
+    `pipeline` is "fast" (gbt.fast) or anything else for gbt.lean.  Tuples rather than lists,
+    so that results compare with == against the expected values below."""
     H, _, _ = (fast if pipeline == "fast" else lean).compute(G, k)
     return {d: (H[d][0], tuple(H[d][1])) for d in H}
 
 
+# two of An--Knudsen's planar atoms (the third is theta(3, 2))
 STAR = Graph(5, [(0, 1), (0, 2), (0, 3), (0, 4)])
 CYCLE4 = Graph(4, [(0, 1), (1, 2), (2, 3), (0, 3)])
 

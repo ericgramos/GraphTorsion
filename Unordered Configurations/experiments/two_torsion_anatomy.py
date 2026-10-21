@@ -44,11 +44,53 @@ WHAT THIS SCRIPT CHECKS
         compute its order.  Prediction: exactly 2 in the octahedron, and not of order 2 in
         the triangular prism, which has no torsion.
 
+HOW ORDERS ARE COMPUTED
+-----------------------
+Every complex here is the UNREDUCED Swiatkowski complex, which is functorial for inclusions of
+subgraphs: a basis element of the subgraph's complex maps to the basis element of G with the
+same states (renamed edges), and this is a chain map.  The generator of H_d of the small graph
+(the tripod at k = 2, d = 1; the theta at k = 4, d = 2) is found as a kernel vector z of d_d
+whose class is a generator: adjoining z to the columns of d_{d+1} raises the rank by one and
+adds no torsion.  It is then pushed into G, giving a d-cycle s of G.
+
 Orders are computed exactly: m.s lies in the image of d iff adjoining it as a column changes
 neither the rank nor the invariant factors (a finitely generated abelian group is Hopfian, so
-G / <g> = G forces g = 0), and s has infinite order iff adjoining it raises the rank.
+G / <g> = G forces g = 0), and s has infinite order iff adjoining it raises the rank.  Orders
+m = 1..8 are tried; a larger finite order is reported as "finite > 8".
 
-    python3 experiments/two_torsion_anatomy.py          (a few minutes)
+WHAT IS PRINTED
+---------------
+(A) one row per graph, columns  graph | planar | vertex ("v -> [three neighbours]", the
+    tripod used) | order of the star class.
+(B) the number of terms of the product of the two hub exchanges in theta(3,3), whether it is
+    a 2-cycle, and whether it generates H_2(B_4 theta) = Z.
+(C) one row per graph, columns  graph | planar | theta (hubs; branch lengths) | order, with
+    the time taken.  (The planar column of (C) is not computed: both graphs are planar.)
+
+Output of the full run (about 40 seconds):
+
+    graph          planar   vertex     order of the star class
+    K_{3,3}        False    0 -> [3, 4, 5] 2
+    K_5            False    0 -> [1, 2, 3] 2
+    K_4            True     0 -> [1, 2, 3] infinite
+    prism          True     0 -> [1, 2, 3] infinite
+    octahedron     True     0 -> [2, 3, 4] infinite
+    ...
+       it is a 2-cycle on 4 particles:          True
+       it generates H_2(B_4 theta) = Z:         True
+    ...
+    graph        planar   theta (hubs; branches)         order
+    octahedron   True     0,1; 2,2,2                     2   [20s]
+    prism        True     0,3; 1,3,3                     infinite   [20s]
+
+USAGE, DATA FILE AND EXIT CODE
+------------------------------
+    python3 experiments/two_torsion_anatomy.py          (no options; about 40 seconds)
+
+Writes data/two_torsion_anatomy.json with keys "A|<graph>" and "C|<graph>", each
+{"order": "2" | "infinite" | "0" | "finite > 8" ...}, and "B" = {"is_cycle": bool,
+"generates": bool}.  Always exits 0 (the predictions are checked by eye from the table); a
+RuntimeError is raised if no generator of H_d of the small graph can be found.
 """
 
 import os
@@ -83,6 +125,7 @@ def subgraph_complex(G, sub_edges, k):
     glob = {i: eG[frozenset((verts[a], verts[b]))] for i, (a, b) in enumerate(H.edges)}
 
     def push(gen):
+        """Image in G of a basis element (mono, st) of the subgraph's complex."""
         mono, st = gen
         nst = [0] * G.N
         for lv, x in enumerate(st):
@@ -106,6 +149,9 @@ def generator_of_Z(C, d):
     r0, t0 = sparse_smith(up, verbose=False) if up else (0, [])
 
     def is_generator(z):
+        """True if the cycle z spans H_d = Z: rank of [d_{d+1} | z] up by one, torsion
+        unchanged.  (Rows of `up` and the indices of z both follow the repr order of the
+        degree-d generators, as indexed_columns guarantees.)"""
         r, t = sparse_smith(up + [z], verbose=False)
         return r == r0 + 1 and t == t0
 
@@ -151,7 +197,10 @@ def order_in(G, k, d, chain):
 
 
 def pushed_chain(G, sub_edges, k, d):
-    """Generator of H_d(B_k sub) pushed into G, as {G-generator: coeff}."""
+    """A generator of H_d(B_k sub) = Z, pushed into G, as {G-generator: coefficient}.
+
+    `sub_edges` are edges of G (in G's labels) spanning the subgraph; H_d of the subgraph
+    must be infinite cyclic (generator_of_Z raises otherwise)."""
     C, push = subgraph_complex(G, sub_edges, k)
     z, gens_d = generator_of_Z(C, d)
     out = {}
@@ -164,6 +213,9 @@ def pushed_chain(G, sub_edges, k, d):
 
 
 def tripod(G, v, nbrs):
+    """The edges of the star at v towards the vertices `nbrs` (in G's labels).
+
+    With three neighbours this is the tripod K_{1,3}, whose H_1(B_2) = Z is the star class."""
     return [(v, w) for w in nbrs]
 
 
@@ -172,11 +224,16 @@ def tripod(G, v, nbrs):
 # ---------------------------------------------------------------------------
 
 def moving(st):
+    """The vertices at which a particle is moving in the state vector `st` (st[v] >= 2)."""
     return [v for v, x in enumerate(st) if x >= 2]
 
 
 def merge(b1, b2):
-    """Tensor two generators with disjoint vertex supports, with the Koszul sign."""
+    """Tensor two basis elements with disjoint vertex supports, with the Koszul sign.
+
+    The moving generators of a basis element are read in increasing vertex order, so
+    writing b1 (x) b2 in that order costs (-1)^(number of pairs x in b1, y in b2 with
+    x > y).  Returns (the merged basis element, the sign)."""
     m1, s1 = b1
     m2, s2 = b2
     st = tuple(a + b for a, b in zip(s1, s2))
@@ -185,7 +242,11 @@ def merge(b1, b2):
 
 
 def theta_is_a_torus():
-    """In theta(3,3), the product of the two hub exchanges generates H_2(B_4 theta)."""
+    """Test (B): in theta(3,3), is the product of the two hub exchanges a generator of
+    H_2(B_4 theta) = Z?
+
+    Returns (is_cycle, generates, number of terms of the product, cls), where cls describes
+    the class when it is a nonzero multiple of a generator, and is None otherwise."""
     T = theta(3, 3)                   # hubs 0 and 1, three branches of length 3
     hub_u, hub_w = 0, 1
     nu = T.nbrs(hub_u)
@@ -224,6 +285,7 @@ def theta_is_a_torus():
 # ---------------------------------------------------------------------------
 
 def main():
+    """Run (A), (B), (C), print the tables and save the orders.  Returns 0."""
     res = paths.load_json(DATA_FILE)
     t_start = time.time()
 

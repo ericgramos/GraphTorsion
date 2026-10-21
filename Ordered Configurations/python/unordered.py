@@ -19,6 +19,7 @@ from gconf import normalize, sparse_snf
 
 
 def compositions(total, parts):
+    """All ordered ways to write `total` as a sum of `parts` non-negative integers."""
     if parts == 0:
         if total == 0:
             yield ()
@@ -29,6 +30,7 @@ def compositions(total, parts):
 
 
 def uhomology(edges, n):
+    """Integral homology of the unordered configuration space UConf_n via the reduced unordered Swiatkowski complex."""
     V, edges = normalize(edges)
     E = len(edges)
     half = {v: [] for v in range(V)}

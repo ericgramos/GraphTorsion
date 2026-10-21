@@ -31,8 +31,32 @@ Every item is computed from the complex itself, not from the formulas being test
 
     python3 experiments/wilson_block.py [n,b ...]
 
-Default cases: (n,b) = (2,3), (2,4), (2,5), (3,4), (3,5), (3,6) -- about a minute in total.
-Exits non-zero if anything fails.
+Each argument is a pair n,b (for K_{n+1,b} with n particles).  Default cases:
+(n,b) = (2,3), (2,4), (2,5), (3,4), (3,5), (3,6) -- a few seconds in total; the cost grows
+quickly with n and b, since the whole unreduced complex is built.
+
+WHAT IS PRINTED
+---------------
+For each case, "K_{a,b}, n=..: <number> n-cells" and then one line per check, in the order
+(1), (2), (3), (4), (6), (5), each ending in True or False; finally "ALL CHECKS PASSED: in
+every case d_n ~ W (+) I (+) 0, ..." or "SOME CHECK FAILED".  Excerpt:
+
+    K_{3,3}, n=2: 135 n-cells
+       (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+       (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+       (3) d' = parked + B-sitting rows: rank 132, non-unit factors none, kernel rank 3 = ...
+       (4) the 3 chains Y_T: disjoint supports, entries +-1:          True
+       (6) unit pivots in the rows R' clear all 132 non-reference columns:  True
+       (5) non-unit factors of d_n [2] = those of W_{1,2}(3) [2]:  True
+
+In (3) "kernel rank" is (number of n-cells) - rank d'.  In (6) the reference columns are the
+C(b,n) configurations c_0(B_0) in which A-vertex i moves to the i-th vertex of B_0 (vertex 0 of
+A is left out); the check is that the remaining columns can all be eliminated with +-1 pivots
+in the rows R' alone.
+
+EXIT CODE AND OUTPUT FILES
+--------------------------
+Exits with 1 if any check fails in any case, else 0.  Writes nothing to data/.
 """
 
 import itertools
@@ -48,7 +72,11 @@ from gbt.linalg import sparse_smith                                       # noqa
 
 
 def row_kind(r, a):
-    """'P' (parked), 'VA' (sitting in A) or 'VB' (sitting in B) for an (n-1)-cell r."""
+    """'P' (parked), 'VA' (sitting in A) or 'VB' (sitting in B) for an (n-1)-cell r.
+
+    An (n-1)-cell of the unreduced complex with n particles has n-1 moving particles and one
+    more, which is either parked on an edge (mono nonempty) or sitting at a vertex (the unique
+    v with st[v] == 1).  A = {0, ..., a-1} in complete_bip's vertex order."""
     mono, st = r
     if mono:
         return "P"
@@ -57,7 +85,10 @@ def row_kind(r, a):
 
 
 def nonunit(cols):
-    """Rank and non-unit invariant factors of a matrix given by {row: coeff} columns."""
+    """Rank and non-unit invariant factors of a matrix given by {row label: coeff} columns.
+
+    Row labels may be any hashable objects (cells); they are indexed in repr order.
+    Returns (rank, sorted list of invariant factors > 1)."""
     rows = sorted({r for c in cols for r in c}, key=repr)
     ri = {r: i for i, r in enumerate(rows)}
     rk, divs = sparse_smith([{ri[r]: x for r, x in c.items()} for c in cols], verbose=False)
@@ -107,12 +138,15 @@ def unit_pivot(cols, allowed):
 
 
 def wilson(n, b):
-    """Columns of W_{n-1,n}(b): n-subsets -> the (n-1)-subsets they contain."""
+    """Columns of the inclusion matrix W_{n-1,n}(b): one column per n-subset S of {0..b-1},
+    with entry 1 in the row of each (n-1)-subset of S.  Rows are labelled by the subsets."""
     return [{T: 1 for T in itertools.combinations(S, n - 1)}
             for S in itertools.combinations(range(b), n)]
 
 
 def check(n, b):
+    """Run checks (1)-(6) of the module docstring for K_{n+1,b} with n particles and print
+    them.  Returns True if all hold."""
     a = n + 1
     G = complete_bip(a, b)
     D = swiatkowski(G, n).B[n]                 # columns: n-cells -> {(n-1)-cell: coeff}
@@ -133,12 +167,13 @@ def check(n, b):
         pred = {}
         for T in itertools.combinations(B0, n - 1):
             add_into(pred, Y_T(n, b, T), (-1) ** (n - 1))
-        good1 &= (bd == pred)
+        good1 &= (bd == pred)                  # exact equality, coefficient by coefficient
     print("   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          %s" % good1)
     print("   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       %s" % good2)
     ok &= good1 and good2
 
     # (3) the identity block
+    # d' = d_n restricted to the parked and B-sitting rows (drop the A-sitting rows)
     dprime = [{r: x for r, x in col.items() if row_kind(r, a) != "VA"} for col in D.values()]
     rk, nu = nonunit(dprime)
     good3 = (not nu) and (len(D) - rk == comb(b, n))
@@ -166,7 +201,7 @@ def check(n, b):
     for B0 in itertools.combinations(range(a, a + b), n):
         st = [0] * G.N
         for i, w in enumerate(B0):
-            st[i + 1] = 2 + G.edges.index((i + 1, w))
+            st[i + 1] = 2 + G.edges.index((i + 1, w))   # A-vertex i+1 moves towards w
         refs.add(((), tuple(st)))
     rprime = {r for col in D.values() for r in col if row_kind(r, a) != "VA"}
     left = unit_pivot([{r: x for r, x in D[c].items() if r in rprime}
@@ -188,6 +223,7 @@ def check(n, b):
 
 
 def main():
+    """Run check() on the cases given as n,b arguments (or the defaults); exit code 0/1."""
     args = sys.argv[1:]
     cases = ([tuple(int(x) for x in s.split(",")) for s in args] if args else
              [(2, 3), (2, 4), (2, 5), (3, 4), (3, 5), (3, 6)])

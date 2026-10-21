@@ -1,0 +1,7 @@
+OK   exactsolve writes x = y + du with y on the triangle with a leaf 
+OK   the certificate built from this y verifies 
+OK   reducecyc reproduces the homology coordinates of the saved y 
+OK   exactsolve writes 16 y* as a boundary 
+OK   the rebuilt two-tori certificate verifies 
+
+5 of 5 checks passed; work files in /tmp/gentools_2yvk9ejf

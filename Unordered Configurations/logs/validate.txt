@@ -1,0 +1,79 @@
+== 1. values known from the literature ==
+  [ok  ] H_1(B_2 K_5): (6, (2,))
+  [ok  ] H_2(B_2 K_5): (0, ())
+  [ok  ] H_1(B_2 K_{3,3}): (4, (2,))
+  [ok  ] H_1(B_2 K_4) torsion-free (planar): ()
+  [ok  ] H_1(B_3 K_5) = Z/2 (non-planar): (2,)
+  [ok  ] H_1(B_4 octahedron) torsion-free (planar): ()
+
+== 2. top-degree vanishing: H_n(B_n K_{n+1,b}) = 0 for b <= 2n-1 ==
+  [ok  ] dim H_2(B_2 K_3,3)  [b <= 2n-1]: 0
+  [ok  ] dim H_3(B_3 K_4,4)  [b <= 2n-1]: 0
+  [ok  ] dim H_3(B_3 K_4,5)  [b <= 2n-1]: 0
+  and a <= n always vanishes:
+  [ok  ] dim H_2(B_2 K_2,5)  [a <= n]: 0
+  [ok  ] dim H_3(B_3 K_3,7)  [a <= n]: 0
+  [ok  ] dim H_4(B_4 K_2,8)  [a <= n]: 0
+
+== 3. the torsion is coker of the Wilson matrix ==
+  [ok  ] K_{3,3} n=2, H_1: (4, (2,))
+  [ok  ] K_{4,4} n=3, H_2: (80, (2,))
+  [ok  ] K_{4,5} n=3, H_2  [the first odd torsion]: (155, (2, 2, 2, 6))
+  [ok  ] K_{4,5} n=3, H_2 primary: (Z/2)^4 + Z/3
+  [ok  ] K_{4,6} n=3, H_2: (259, (2, 2, 2, 2, 6))
+  [ok  ] K_{4,7} n=3, H_2 primary: (Z/2)^6 + Z/3
+
+== 4. dim H_n = max(0, C(b,n) - C(b,n-1)) for a = n+1 ==
+  [ok  ] dim H_2(B_2 K_3,3): 0
+  [ok  ] dim H_2(B_2 K_3,4): 2
+  [ok  ] dim H_2(B_2 K_3,5): 5
+  [ok  ] dim H_2(B_2 K_3,6): 9
+  [ok  ] dim H_2(B_2 K_3,7): 14
+  [ok  ] dim H_3(B_3 K_4,4): 0
+  [ok  ] dim H_3(B_3 K_4,5): 0
+  [ok  ] dim H_3(B_3 K_4,6): 5
+  [ok  ] dim H_3(B_3 K_4,7): 14
+
+== 5. complete graphs: 2-torsion only ==
+  [ok  ] K_7 n=3, H_2: (350, (2,))
+  [ok  ] K_8 n=3, H_2: (734, (2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2))
+  [ok  ] K_9 n=3, H_2: (1401, (2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2))
+  [ok  ] K_6 n=4, H_2: (264, (2,))
+  multiplicity vs rank H_1 = C(n-1,2), for n >= 8 at k = 3:
+  [ok  ] K_8: m((Z/2)) == C(7,2): (21, 21)
+  [ok  ] K_9: m((Z/2)) == C(8,2): (28, 28)
+
+== 6. planar graphs can carry 2-torsion ==
+  [ok  ] octahedron n=4, H_2: (95, (2,))
+  [ok  ] octahedron n=3, H_2 (torsion-free): (47, ())
+  [ok  ] prism n=4, H_2 (control, torsion-free): ()
+
+== 7. the three An--Knudsen planar atoms are torsion-free ==
+  [ok  ] cycle C_4, k=3: no torsion anywhere: False
+  [ok  ] cycle C_4, k=4: no torsion anywhere: False
+  [ok  ] star K_{1,4}, k=3: no torsion anywhere: False
+  [ok  ] star K_{1,4}, k=4: no torsion anywhere: False
+  [ok  ] theta, k=3: no torsion anywhere: False
+  [ok  ] theta, k=4: no torsion anywhere: False
+
+== 8. internal consistency ==
+  [ok  ] d^2 = 0, K_5 k=2 [unreduced]: True
+  [ok  ] d^2 = 0, K_5 k=2 [reduced]: True
+  [ok  ] d^2 = 0, K_{3,3} k=3 [unreduced]: True
+  [ok  ] d^2 = 0, K_{3,3} k=3 [reduced]: True
+  [ok  ] d^2 = 0, octahedron k=3 [unreduced]: True
+  [ok  ] d^2 = 0, octahedron k=3 [reduced]: True
+  [ok  ] reduced cell count, K_6 k=4: 71220
+  [ok  ] unreduced cell count, K_6 k=4: 176580
+  [ok  ] reduced cell count, K_{4,5} k=3: 19976
+  [ok  ] unreduced cell count, K_{4,5} k=3: 46664
+  [ok  ] K_{4,5} k=3: reduce_at none == B only: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] K_{4,5} k=3: reduce_at none == all: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] K_{4,5} k=3: reduce_at all == fast: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] fast == lean, K_{3,3} k=3: {0: (1, ()), 1: (4, (2,)), 2: (8, ()), 3: (0, ())}
+  [ok  ] fast == lean, K_6 k=4: {0: (1, ()), 1: (10, (2,)), 2: (264, (2,)), 3: (75, ()), 4: (0, ())}
+  [ok  ] fast == lean, K_{4,5} k=3: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] Abrams == Swiatkowski, K_5 k=2: {0: (1, []), 1: (6, [2]), 2: (0, [])}
+  [ok  ] Abrams == Swiatkowski, octahedron k=3: {0: (1, []), 1: (8, []), 2: (47, []), 3: (0, [])}
+
+ALL CHECKS PASSED

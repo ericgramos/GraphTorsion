@@ -13,24 +13,26 @@ THE RESULT
 
 So the tetrahedron is the exception, and it is not a matter of waiting for more particles:
 H_*(B_k K_4) is torsion-free for every k up to 10, with rank H_2 = 6k - 15 growing linearly.
-The triangular prism (the 3-prism) is likewise torsion-free for every k up to 7 (k <= 4 is stored in data/; k = 5, 6, 7
-were checked separately with fast.compute and are not stored).
+The triangular prism (the 3-prism) is likewise torsion-free for every k up to 7 (k <= 4 is
+stored in data/; k = 5, 6, 7 were checked separately with fast.compute and are not stored).
 
 WHY k = 4
 ---------
 An--Knudsen (J. Topol. 15 (2022) 666-691) prove that for a PLANAR graph, H_2 of the
 configuration spaces is generated -- under embedding, disjoint union and edge stabilization --
-by three atoms: the cycle, the star and the theta graph.  Of those three, only the theta has
-nonzero H_2 at all:
+by three atoms: the cycle, the star and the theta graph (two vertices joined by three paths).
+Of those three, only the theta has nonzero H_2 at all:
 
     cycle  UConf_k(S^1) is a circle, so H_2 = 0 for every k;
     star   configuration spaces of trees have free fundamental group (Farley--Sabalka), so
            H_i = 0 for i >= 2 and every k;
-    theta  H_2(B_k theta) = 0 for k <= 3, and Z for k = 4.
+    theta  H_2(B_k theta) = 0 for k <= 3, and Z for k = 4 (Z^3 at k = 5).
 
-The threshold in the last line is the answer to "why four particles": below k = 4 a planar
-graph has no second homology to speak of beyond products of circles, and at k = 4 the theta
-class switches on.  The script verifies all three rows.
+The threshold in the last line is the suggested answer to "why four particles": the basic
+planar 2-class, the theta class, switches on at k = 4, and no planar graph computed has any
+torsion at k <= 3.  (A theta with four paths already has H_2 = Z at k = 3, and other planar
+graphs have free H_2 at k = 3; but that free homology carries no torsion in any case
+computed.)  With --extras the script prints all of this.
 
 WHAT THE TORSION IS
 -------------------
@@ -41,24 +43,65 @@ exhibits this for the octahedron, where one embedded theta accounts for the enti
 
 NO CLEAN CRITERION
 ------------------
-The mechanism is common to all three; a combinatorial criterion is not, and the data says
-fairly firmly that none exists.  Among the eighteen graphs on seven vertices with twelve edges and minimum degree three, three
-have the torsion and fifteen do not, and the three are not separated from the fifteen by
-degree sequence, girth, planarity, connectivity or triangle count.  What IS visible is a
-threshold: no graph of minimum degree three with at most eleven edges has H_2 torsion at
-k = 4, in any case computed.  The property is not minor-closed (density_interpolation.py), so no forbidden-minor
-characterisation can exist.
+The mechanism is common to all three; a combinatorial criterion is not, and the data say
+fairly firmly that none exists.  Among the eighteen graphs on seven vertices with twelve edges
+and minimum degree three, three have the torsion and fifteen do not, and the three are not
+separated from the fifteen by degree sequence, girth, planarity, connectivity or triangle
+count.  What IS visible is a threshold: no graph on at most seven vertices with at most eleven
+edges (leaves included) has H_2 torsion at k = 4.  The property is not minor-closed
+(`density_interpolation.py`), so no forbidden-minor characterisation can exist.
 
+WHAT IS PRINTED
+---------------
+1.  "the Platonic solids, full homology for k <= KMAX": one row per (solid, k), columns
+        solid | N | M | k | cells (fully reduced complex) | homology | torsion | [time]
+    always recomputed (cheap), and a closing remark that nothing has torsion at k <= 3.
+2.  With --include-k4: "k = 4, where the torsion is", columns
+        solid | N | M | cells | torsion of H_2 | route
+    where route is "cached", "full homology", or "lean, torsion only, <time>".
+3.  With --extras, three further tables:
+      * the three atoms (cycle C_4, star K_{1,4}, thetas with 3 and 4 paths) at k = 2..5,
+        columns atom | k | homology | H_2;
+      * the tetrahedron at k = 2..10, columns k | cells | homology | torsion;
+      * the prism and antiprism families at k = 4 for n = 3..6, columns
+        graph | N | M | cells | torsion of H_2 | note  (antiprism_3 is the octahedron;
+        antiprism_6 is skipped as too large for the full pipeline).
+
+Excerpt (`--include-k4`, k = 4 rows cached):
+
+    solid            N   M        cells torsion of H_2             route
+    tetrahedron      4   6        1,286 none                       cached
+    octahedron       6  12       26,142 Z/2                        cached
+    dodecahedron    20  30      943,840 Z/2                        cached
+    icosahedron     12  30    1,319,160 Z/2                        cached
+
+USAGE
+-----
     python3 experiments/platonic_solids.py [--kmax 3] [--include-k4] [--extras]
 
-    --kmax N        compute the full homology for k = 2..N (cheap for N <= 3)
+    --kmax N        compute the full homology for k = 2..N (default 3; cheap for N <= 3).
+                    Cases above FAST_LIMIT = 300,000 reduced cells are skipped in this table.
     --include-k4    also do k = 4, where the torsion is.  The dodecahedron and the
-                    icosahedron need `gbt.lean.torsion_in_degree`, which uses the
-                    "torsion is a cokernel" lemma to avoid the lower differentials
+                    icosahedron need `gbt.lean.torsion_in_degree`, which uses
+                    tors H_d = tors coker d_{d+1} to avoid the lower differentials
                     entirely; expect a few minutes for the dodecahedron and considerably
-                    longer, with several GB, for the icosahedron.
-    --extras        the prism and antiprism families, the three An--Knudsen atoms, and the
-                    tetrahedron pushed to high k
+                    longer, with several GB, for the icosahedron.  Stored k = 4 results are
+                    reused ("cached").
+    --extras        the three An--Knudsen atoms, the tetrahedron pushed to k = 10, and the
+                    prism and antiprism families at k = 4.  About half a minute.
+
+DATA FILE
+---------
+data/platonic_solids.json, keyed "<name>|<k>" (e.g. "icosahedron|4", "prism_5|4").  A record
+is {"H": {degree: [free rank, [invariant factors > 1]]}, "N": vertices, "M": edges}; the k = 4
+records of the solids also carry "H2_torsion": [invariant factors of tors H_2], and those
+computed by the torsion-only route have no "H".  The atom and tetrahedron tables of --extras
+are printed but not stored.
+
+COST AND EXIT CODE
+------------------
+Default run: a few seconds.  With every option and the k = 4 results stored: about half a
+minute.  Always exits 0.
 """
 
 import argparse
@@ -77,17 +120,24 @@ FAST_LIMIT = 300_000         # above this, use the lean torsion-only path
 
 
 def full_homology(G, k):
-    """{degree: (free, invariant factors)} by the ordinary pipeline."""
+    """The full homology H_*(B_k G; Z) by gbt.fast.
+
+    Returns {degree: (free rank, list of invariant factors > 1)}."""
     H, _, _ = fast.compute(G, k)
     return H
 
 
 def torsion_only(G, k, d=2, verbose=False):
-    """The torsion of H_d alone, via the identity "torsion is a cokernel" (cheap for big cases)."""
+    """The torsion of H_d(B_k G) alone, via tors H_d = tors coker d_{d+1}.
+
+    Builds only the degree-d and degree-(d+1) slices (gbt.lean.torsion_in_degree), so it
+    reaches complexes far too big for the full homology.  Returns the list of invariant
+    factors > 1 of the torsion subgroup."""
     return lean.torsion_in_degree(G, k, d, verbose=verbose)
 
 
 def main():
+    """Print the tables selected by the options (see the module docstring); returns 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--kmax", type=int, default=3)
     ap.add_argument("--include-k4", action="store_true")

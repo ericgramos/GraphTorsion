@@ -2,6 +2,8 @@
 """
 Top-degree vanishing and the trichotomy conjecture: when does H_n(B_n K_{a,b}) vanish?
 
+THE QUESTION
+------------
 The top interesting degree of B_n(Gamma) for a bipartite Gamma is n, and the expected answer is
 
     (1)  a <= n                      =>  H_n(B_n K_{a,b}) = 0        (too few A-vertices)
@@ -11,8 +13,8 @@ together with the exact dimension in case a = n+1 for every b,
 
          dim H_n(B_n K_{n+1,b})  =  max( 0, C(b,n) - C(b,n-1) ) ,
 
-which holds because the top differential is the unsigned inclusion matrix W_{n-1,n}(b) plus
-an identity block, so the top cycles are exactly ker W).  The vanishing in (2) is then the
+which holds because the top differential is the unsigned inclusion matrix W_{n-1,n}(b) beside
+an identity block, so the top cycles are exactly ker W.  The vanishing in (2) is then the
 numerical fact
 
          b <= 2n-1   <=>   C(b,n-1) >= C(b,n) ,
@@ -21,14 +23,71 @@ a GLOBAL count: no local propagation argument sees it, which is why the proof ha
 through Gottlieb's rank theorem for inclusion matrices.
 
 Conjecturally the list is complete -- H_n(B_n K_{a,b}) != 0 whenever a >= n+2, and whenever
-a = n+1 and b >= 2n.  That converse is open, and this script is
-the evidence for it: every triple (a,b,n) small enough to compute is checked against the
-prediction, and any disagreement is reported as a counterexample.
+a = n+1 and b >= 2n.  That converse is open, and this script is the evidence for it: every
+triple (a,b,n) small enough to compute is checked against the prediction, and any disagreement
+is reported as a counterexample.
 
-    python3 experiments/top_degree_vanishing.py [--cap CELLS] [--amax A] [--bmax B]
+METHOD
+------
+All triples 2 <= a <= AMAX, a <= b <= BMAX, 2 <= n <= NMAX whose fully reduced complex has at
+most CAP cells are run, cheapest first.  For each, the full homology of B_n K_{a,b} is
+computed (gbt.fast, or gbt.lean above 600,000 cells) and dim H_n -- the free rank in degree n;
+H_n is the top degree, so it has no torsion -- is compared with predicted_dim(a, b, n):
+an exact value for a <= n+1, and "nonzero" for a >= n+2.  Since only a <= b is run, the
+smaller side is always a.
 
-Default cap is 400,000 cells, which takes a few minutes.  Raising it to a few million
-reaches further but needs `gbt.lean` territory; the script picks the pipeline by size.
+WHAT IS PRINTED
+---------------
+1.  "<J> triples (a,b,n) with at most <CAP> reduced cells", then one row per triple, columns
+        K_{a,b} | n | cells | dim H_n | predicted ("-" when only the conjecture applies) |
+        verdict | H_n
+    where verdict is "ok" (exact prediction met), "MISMATCH", "conj !=0" (a >= n+2 and H_n is
+    nonzero, as conjectured) or "CONJ FAILS".
+2.  The number of cases, how many vanishing and nonzero exact predictions were confirmed, how
+    many conjectural cases were checked, and either "no disagreements" or the list of them.
+3.  "the a = n+1 family": columns K_{n+1,b} | n | C(b,n-1) | C(b,n) | dim H_n | b <= 2n-1?,
+    for the cases of THIS run (sorted numerically by a, b, n).
+4.  "the torsion it forces in degree n-1": for every a = n+1 case of this run below 600,000
+    cells, the torsion of H_{n-1} (recomputed), which `wilson_cokernel.py` compares with
+    coker W_{n-1,n}(b).
+
+Excerpt (`--cap 5000`, under a second):
+
+    K_{a,b}         n      cells    dim H_n  predicted verdict   H_n
+    K_{2,2}         2         32          0          0 ok        0
+    ...
+    39 cases in 1 s
+      vanishing cases confirmed       : 22
+      nonzero cases with exact formula: 7
+      cases with a >= n+2 (conjecture): 10
+    no disagreements: every computable triple matches the prediction.
+
+USAGE
+-----
+    python3 experiments/top_degree_vanishing.py [--cap 400000] [--amax 7] [--bmax 10]
+                                                [--nmax 5]
+
+    --cap N     skip triples whose fully reduced complex has more than N cells (default
+                400,000: a few minutes; a few million reaches further, with gbt.lean).
+    --amax A    largest a (default 7).     --bmax B    largest b (default 10).
+    --nmax N    largest particle number n (default 5).
+
+DATA FILE
+---------
+data/top_degree_vanishing.json, keyed "K<a>,<b>|<n>" (e.g. "K4,5|3"), each record
+{"cells": reduced cells, "H_n": [free rank, [invariant factors]] (H_n only),
+ "predicted": the predicted dimension, or null for a >= n+2}.  New results are MERGED into the
+stored file, so a run with a smaller cap never discards stored cases.
+
+COST AND EXIT CODE
+------------------
+See --cap; memory as for the bipartite sweep.  Exits with 1 if any triple disagrees with the
+prediction (an exact mismatch, or a vanishing H_n for a >= n+2), otherwise 0.
+
+PITFALL
+-------
+Nothing is cached on input: every run recomputes every triple under the cap (the stored file
+is only written to), and step 4 recomputes the a = n+1 cases once more.
 """
 
 import argparse
@@ -46,7 +105,10 @@ LEAN_THRESHOLD = 600_000       # above this many cells, use the memory-lean pipe
 
 
 def predicted_dim(a, b, n):
-    """The predicted dim H_n(B_n K_{a,b}), or None where no prediction is made."""
+    """The predicted dim H_n(B_n K_{a,b}) (an int), or None where only the conjecture applies.
+
+    a <= n gives 0; a = n+1 gives max(0, C(b,n) - C(b,n-1)), the rank of ker W_{n-1,n}(b);
+    a >= n+2 gives None (conjecturally nonzero)."""
     if a <= n:
         return 0                                   # case (1)
     if a == n + 1:
@@ -55,6 +117,8 @@ def predicted_dim(a, b, n):
 
 
 def main():
+    """Check every triple under the cap, print the tables, merge the results into the data
+    file.  Returns 1 if some triple disagrees with the prediction, else 0."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--cap", type=int, default=400_000,
                     help="skip any case with more than this many reduced cells")
@@ -131,7 +195,8 @@ def main():
     print("\nthe a = n+1 family (vanishing, and torsion one degree down):")
     print("  %-12s %3s %9s %9s %12s %s"
           % ("K_{n+1,b}", "n", "C(b,n-1)", "C(b,n)", "dim H_n", "b <= 2n-1?"))
-    for key, rec in sorted(results.items()):
+    for key, rec in sorted(results.items(),
+                           key=lambda kv: [int(x) for x in kv[0][1:].replace('|', ',').split(',')]):
         ab, n = key.split("|")
         a, b = (int(x) for x in ab[1:].split(","))
         n = int(n)

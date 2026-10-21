@@ -13,11 +13,16 @@ particles, for instance
     H_2(Conf_6 T(1,3,3); Z) = Z^224725 ⊕ (Z/3)^6
 
 These triangle examples were the first torsion found. Afterwards Eric Ramos and Nicholas
-Wawrykow found torsion in Conf_5 of the doubled K_4, with H_2 = Z^83615 ⊕ (Z/2)^8 ⊕ Z/4. A long
+Wawrykow found torsion in Conf_5 of the doubled K_4, with H_2 = Z^83615 ⊕ (Z/2)^8 ⊕ Z/4.
+Related doublings of K_4 have torsion of order 8 and 16, and for those classes the package
+contains certificates of exact order, explicit generators, and a cycle on a six-edge subgraph
+with torsion-free configuration space (a triangle with two doubled edges and a leaf) whose
+image has order exactly 16 (Section 8, and `data/survey/k4_family/support/`). A long
 search for torsion in configuration spaces of non-planar graphs (K_5, K_{3,3} and many
 graphs built from them) found none in any case that fitted in 8 GB of memory.
 
-This README explains how to install the package, how to use the engine and the Python
+If you are new to the package, start with `TUTORIAL.md`, a guided path through every tool with
+worked examples. This README explains how to install the package, how to use the engine and the Python
 library, and what every file in the package does. It is long because it is meant to be
 usable by someone who has never seen the code. Sections 1 to 3 are enough to start
 computing. Section 4 is the reference for the engine's options. Section 5 explains group
@@ -61,7 +66,7 @@ The package needs
 To build everything, run `make` in the top folder:
 
     cd gconf-torsion
-    make            # builds engine/oconf, certificates/cert, certificates/certp, analysis/*
+    make            # builds engine/oconf, certificates/cert, certp, certq, orderq, exactsolve, reducecyc, analysis/*
     make check      # runs the fast validation scripts (about 25 minutes)
 
 If you only want the engine, `make engine` is enough. The Makefile passes
@@ -410,7 +415,7 @@ followed by the edges, and n is a command-line argument.
 | `g2tors` | `g2tors n x prime < graph` | The "triangle shortcut". For a graph Γ such that deleting vertex x leaves two essential vertices, it builds the relation lattice M from the vertex explosion and prints its rank mod the prime. The p-torsion of H_2(Conf_n Γ) has rank_Q(M) − rank_p(M) cyclic summands. |
 | `g2split` | `g2split n x p [samples] < graph` | Which split types of tori (k particles at u, n − k at w) produce the torsion found by `g2tors`. |
 | `phi` | `phi n prime < graph` | Rank of an auxiliary "double push" map C_3 → C_1 used in the analysis of the free part of H_2 for graphs with three essential vertices. |
-| `decomp` | `decomp n prime [mode] < graph` | Dimension of the span of all tori (products of disjoint 1-dimensional classes) inside H_2, mod a prime. Mode 1 keeps only the basis cycles supported at one vertex; it is only a lower bound for the star×star span (the exact star×star span is Σ_x b_2(Conf_n Γ_x) − (rank ∂_3 − rank Φ), from `prod2` and `phi`; see the header of `decomp.cpp`). |
+| `decomp` | `decomp n prime [mode] < graph` | Dimension of the span of all tori (a star class at an essential vertex x times a 1-cycle of Γ minus x) inside H_2, mod a prime. With the environment variable `DUMP=file` (and a large prime) it also writes every torus as an integral chain, for use as relations in `certificates/orderq`. Mode 1 keeps only the basis cycles supported at one vertex; it is only a lower bound for the star×star span (the exact star×star span is Σ_x b_2(Conf_n Γ_x) − (rank ∂_3 − rank Φ), from `prod2` and `phi`; see the header of `decomp.cpp`). |
 | `cutimg3` | `cutimg3 n prime mode [edges ...] < graph` | Adds to the tori the images of H_2 of graphs obtained by cutting given edges. Used to show that the classes of T(2,2,2) not spanned by tori are supported on Θ_3 subgraphs. |
 | `vexp` | `vexp n v k p K < graph` | p-primary torsion of H_k(Conf_n Γ) through the ordered vertex explosion at vertex v. It checks its own hypothesis (no p-torsion in H_{k−1}(Conf_{n−1} Γ_v)) and exits with code 3 if it fails. |
 
@@ -422,33 +427,79 @@ Example, with T(2,2,2) as the graph (vertex 2 is x):
 
 ## 8. Certificates `certificates/`
 
+### 8.1 What a certificate proves
+
 A torsion certificate is a short, independently checkable proof that a homology group has an
-element of order exactly p. It consists of
+element of a given order P, where P is a prime p or a prime power p^k. It consists of
 
-* an integral chain w of degree i+1 with ∂w ≡ 0 mod p, so that z = ∂w/p is an integral cycle
-  and p·z is a boundary, and
-* a mod-p cocycle f of degree i with f(z) ≢ 0 mod p.
+* an integral chain w of degree i+1 with ∂w ≡ 0 mod P, so that z = ∂w/P is an integral cycle
+  and P·z is a boundary, and
+* a cocycle f of degree i with values in Z/P such that f(z) is prime to p.
 
-If z were a boundary ∂u, then f(z) = f(∂u) = 0 mod p, a contradiction. So [z] ≠ 0 and p[z] = 0.
+If (P/p)·z were a boundary ∂u, then (P/p)·f(z) = f(∂u) = 0 mod P, so p would divide f(z).
+Hence [z] has order exactly P. For P = p this is the statement that z is not a boundary.
 
-| file | what it is |
+A certificate may also contain the line `SUBGRAPH h`. Then the verifier also checks that z
+lives on the subgraph H formed by the first h edges (no particle on a later edge, and at every
+occupied vertex both the generator half-edge and the base half-edge lie in H). Since the
+edges of H come first, the base half-edges of H lie in H and these cells form the reduced
+complex of H. So z is a cycle of Conf_n(H), and the certificate proves that the image of its
+class in H_i(Conf_n Γ) has order exactly P.
+
+### 8.2 Programs
+
+| file | what it does |
 |---|---|
-| `cert.cpp` | finder for mod-2 certificates. Usage `cert deg seed outfile < graph_with_n` (the input has the engine's format, with n on the first line). |
-| `certp.cpp` | finder for mod-p certificates, any prime. Usage `certp deg prime seed outfile < graph_with_n`. It reduces the maps with unit pivots, draws random kernel vectors and stops at the first pair (w, f) with nonzero pairing. |
-| `verify_cert.py` | the independent verifier (a copy of `validation/verify_cert.py`). It shares no code with the engine. It rebuilds the complex from the definition, checks that every cell named in the certificate exists, recomputes ∂w, checks divisibility by p and ∂z = 0, enumerates every cell of degree i+1 (comparing their number with the closed formula) and checks that f vanishes on all their boundaries, and evaluates f(z). It rejects a corrupted certificate. |
-| `cert_T222_n6.txt.gz` | 2-torsion in H_2(Conf_6 T(2,2,2)) |
-| `cert_T123_n6.txt.gz` | 2-torsion in H_2(Conf_6 T(1,2,3)) |
-| `cert_T133_n6_p3.txt.gz` | 3-torsion in H_2(Conf_6 T(1,3,3)) |
-| `cert_doubledK4_n5_p2.txt.gz` | 2-torsion in H_2(Conf_5 of the doubled K_4) (made October 2026; verification takes about 2.5 minutes and 3 GB) |
-| `cert_tripledC4_n5_p3.txt.gz` | 3-torsion in H_2(Conf_5 of the tripled C_4) (made October 2026; about 3 minutes and 3 GB) |
+| `verify_cert.py` | The independent verifier (a copy of `validation/verify_cert.py`). It shares no code with the engine or the finders. It rebuilds the complex from the definition, checks that every cell named in the certificate exists, recomputes ∂w, checks divisibility by P and ∂z = 0, checks the subgraph condition if one is given, enumerates every cell of degree i+1 (comparing their number with the closed formula) and checks that f vanishes mod P on all their boundaries, and checks that f(z) is prime to p. It rejects a corrupted certificate. Coefficients may be negative and arbitrarily large. |
+| `cert.cpp` | Finder for mod-2 certificates. Usage `cert deg seed outfile < graph_with_n` (the input has the engine's format, with n on the first line). |
+| `certp.cpp` | Finder for mod-p certificates, any prime. Usage `certp deg prime seed outfile < graph_with_n`. It reduces the maps with unit pivots, draws random kernel vectors and stops at the first pair (w, f) with nonzero pairing. |
+| `certq.cpp` | Finder for certificates of prime-power order p^k, and generator export. Usage `certq deg p k index outfile [K] < graph_with_n`. It eliminates ∂_{i+1} mod p^(k+1) with unit pivots while logging every row operation, takes the local Smith form of the residual block with both transformations, and turns a diagonal entry p^k·unit back into a chain w and a cocycle f. With index −1 it writes integral cycles generating every cyclic summand of order below p^K, each with a chain w_t (∂w_t = order · z_t) and, for the summands of order p^k, a detecting cocycle. |
+| `orderq.cpp` | Where does a cycle live? Coordinates of given cycles in the torsion of M = C_i / (B_i + C_i(H) + relations), localised at p, where H is Γ minus some edges and the relations are optional extra cycles. Usage `orderq deg p K cycles deleted_edges base_overrides [relations] < graph_with_n`. A torsion cycle is in the image of H_i(Conf_n H) (plus the relations) exactly when its coordinates vanish. The header explains how to make the conclusion exact (compare with the rank over a large prime). |
+| `exactsolve.cpp` | Writes a cycle x as y + ∂u exactly over Z, with y supported on the subgraph of the first h edges. Usage `exactsolve deg h target out_prefix < graph_with_n`. Pivots ±1 only, a dropping step that keeps the residual small, and `solve_residual.py` (Hermite normal form) for the residual block. |
+| `solve_residual.py` | The exact integral solver for the residual block of `exactsolve`. |
+| `reducemod.cpp` | Eliminates the boundaries of Γ once (mod p^K) and writes many cycles as short reduced vectors, so that span questions become small. Usage `reducemod deg p K blocks out < graph_with_n`. |
+| `spanq.cpp` | Answers queries "which torsion lies in the span of these cycles modulo boundaries?" on the output of `reducemod`, one per line of stdin. Its answers are mod p^K and must be confirmed exactly (see its header and `data/survey/k4_family/support/tori/exact_check.py`). |
+| `reducecyc.cpp` | Reduces an integral cycle modulo boundaries with pivots ±1, giving its coordinates in a basis of H_i when the maps reduce completely. Usage `reducecyc deg cycle out < graph_with_n`. |
+| `swiat_cells.h`, `elim_modq.h`, `elim_z.h` | Code shared by the four programs above. They contain the cells of the complex (encoding, enumeration, boundary, text form), sparse elimination mod p^K with an operation log and a dense local Smith form, and exact elimination over Z with pivots ±1. Each header documents its conventions and the facts the programs rely on. |
 
-To check a certificate: `python3 certificates/verify_cert.py certificates/cert_T222_n6.txt.gz`
-(about a minute; it prints each check (a) to (e) as it passes and a final line beginning
-with `VERIFIED`).
+### 8.3 Certificate files
 
-To make a new one:
+| file | what it proves | verification |
+|---|---|---|
+| `cert_T222_n6.txt.gz` | an element of order 2 in H_2(Conf_6 T(2,2,2)) | 1 min |
+| `cert_T123_n6.txt.gz` | an element of order 2 in H_2(Conf_6 T(1,2,3)) | 1 min |
+| `cert_T133_n6_p3.txt.gz` | an element of order 3 in H_2(Conf_6 T(1,3,3)) | 1 min |
+| `cert_doubledK4_n5_p2.txt.gz` | an element of order 2 in H_2(Conf_5 of the doubled K_4) | 2.5 min, 3 GB |
+| `cert_tripledC4_n5_p3.txt.gz` | an element of order 3 in H_2(Conf_5 of the tripled C_4) | 3 min, 3 GB |
+| `cert_doubledK4_n5_order4.txt.gz` | an element of order exactly 4 in H_2(Conf_5 of the doubled K_4) | 1 min |
+| `cert_K4dbl5_n5_order8.txt.gz` | an element of order exactly 8 in H_2(Conf_5) of K_4 with 01, 02, 03, 12, 13 doubled | 1 min |
+| `cert_K4dbl5_n5_order16.txt.gz` | an element of order exactly 16 in the same group | 1 min |
+| `cert_two_tori_into_K4dbl5_order16.txt.gz` | the class of order 16 as a SUM OF TWO TORI on the triangle with a leaf: a 653-cell cycle with coefficients ±1, ±2 whose image has order exactly 16 (`SUBGRAPH 6`) | 1 min |
+| `cert_triangle_leaf_into_K4dbl5_order16.txt.gz` | a cycle on the triangle with two doubled edges and a leaf (the first six edges) whose image in the same group has order exactly 16 (`SUBGRAPH 6`) | 1 min |
+
+To check a certificate: `python3 certificates/verify_cert.py certificates/cert_T222_n6.txt.gz`.
+It prints each check (a) to (e) as it passes and a final line beginning with `VERIFIED`.
+
+To make new ones:
 
     printf "3 7 6\n0 1\n0 2\n0 2\n0 2\n1 2\n1 2\n1 2\n" | certificates/certp 2 3 5 my_cert.txt
+    G=data/survey/k4_family/support/graphs
+    certificates/certq 2 2 4 0 cert16.txt < $G/K4dbl5_n5.txt        # order 16, about 4 min and 3 GB
+
+### 8.4 Explicit generators and subgraphs, step by step
+
+This is how the cycle on the triangle with a leaf was obtained (all files are in
+`data/survey/k4_family/support/`, see its README for the results).
+
+1. `certq 2 2 4 -1 gens.txt < graphs/K4dbl5_Hfirst_n5.txt` writes twelve generators of the
+   torsion (Z/2)^7 ⊕ (Z/8)^4 ⊕ Z/16, in an edge order that lists the triangle with a leaf first.
+2. `orderq 2 2 10 gens.txt 6,7,8,9,10 - < graphs/K4dbl5_Hfirst_n5.txt > img.json` gives their
+   coordinates modulo the image of the subgraph (edges 6 to 10 deleted), and `kernel.py img.json`
+   finds the torsion that comes from it, (Z/2)^4 ⊕ (Z/8)^4 ⊕ Z/16, and an element of order 16 in it
+   (z_2 + z_11).
+3. `exactsolve 2 6 x.txt sol < graphs/K4dbl5_Hfirst_n5.txt` writes that element as y + ∂u with
+   y on the subgraph, exactly over Z.
+4. The certificate is W = w_2·8 + w_11 − 16u, the cocycle of z_11, `PRIME 16` and `SUBGRAPH 6`.
 
 ## 9. Validation `validation/`
 
@@ -465,6 +516,7 @@ print one line per test and a final verdict.
 | `local_smith_suite.py` | The local mode `-q` on every known torsion example, against the known answers. `--quick` skips the two half-hour T(2,2,3) runs. | 10 min (quick) |
 | `dense_phase_suite.py` | Every dense finishing phase (byte, Z/4, Z/9) against pure sparse elimination, forcing early switches. All lines must say MATCH. | 3 min |
 | `vexp_validate.py` | `analysis/vexp` against the direct computation, on T(2,2,2), T(1,3,3), T(1,2,2), K_4, K_5, a theta graph with leaves, the tripled C_4 and the doubled K_4. Needs about 4 GB. | about 1 hour |
+| `check_generator_tools.py` | Every computation behind the explicit generators (Section 8): all certificates, the generator export, the subgraph image test, exactsolve and reducecyc against the saved results, the torus span, a rebuilt two-tori certificate, and the fast span path (reducemod + spanq) against the independent slow path (orderq) on random sets of tori. Steps can be run separately (`certs gens exact tori span`). | 2 hours, 6 GB |
 | `regression_vs_reference.py` | Usage `regression_vs_reference.py NEW REF`. Compares two engine binaries on 33 small tests that cover every mode; used to confirm that the commented release engine behaves exactly like version 26 (`history/engine_versions/oconf26.cpp`). | 2 min |
 
 The outputs of these scripts from the final run of the package are in `validation/logs/`.
@@ -508,6 +560,8 @@ inside the `surveys/` folder.
 | `nonplanar/campaign.json` | every run of the non-planar campaign with options and results (77 records). The `dims` field gives the dimensions of the homology of the quotient complex over the residue field and `torsion` gives the local stage counts by degree. |
 | `nonplanar/raw/` | the engine's JSON output and log of every campaign run, and `run_status.txt` with return codes and times |
 | `nonplanar/earlier/` | logs of the earlier experiments (partial doublings of K_5, fat graphs, group quotients of the tripled C_4, benchmarks, elimination diagnostics, vertex explosion runs) |
+| `survey/k4_family/` | K_4 with some edges doubled at n = 5: exact homology of all doubling patterns, Young and odd-order symmetry quotients, independent checks of the Z/8 and Z/16 (its own README) |
+| `survey/k4_family/support/` | explicit generators of the torsion of K_4 with five doubled edges, the subgraph search for the class of order 16, the cycle on the triangle with a leaf, the torus decomposition test, and the graph files to rerun all of it (its own README) |
 | `accounting/` | a single accounting of every recorded computation: `accounting.csv` (one row per computation, 804 rows), `accounting_graphs.csv` (one row per graph up to isomorphism, 197 graphs), `accounting_summary.txt`, `accounting.xlsx` (the same as a workbook, with a summary sheet and the October 2026 re-verification), and the scripts `make_accounting.py` and `make_xlsx.py` that build them from the files above |
 
 ## 12. Example inputs `examples/graphs/`
@@ -536,6 +590,8 @@ logs. They are not needed to use the package.
 | doubled K_4, n = 5 | `engine/oconf -q 2 3 < examples/graphs/dk4_5.in` | 5 min, 1.5 GB |
 | tripled C_4, n = 5 | `engine/oconf -q 3 2 < examples/graphs/tc4_5.in` | 2 min, 1.3 GB |
 | the certificates | `python3 certificates/verify_cert.py certificates/cert_T133_n6_p3.txt.gz` | 1 min |
+| order 16, and its support | `python3 certificates/verify_cert.py certificates/cert_triangle_leaf_into_K4dbl5_order16.txt.gz` | 1 min, 3 GB |
+| generators and subgraph tests | Section 8.4 | 5 to 10 min per step, 3 to 6 GB |
 | the shortcut | `cd surveys && python3 triangle_shortcut.py '[[1,2,4,6]]' out.jsonl` | 2 min |
 | any campaign run | `cd surveys && python3 nonplanar_campaign.py --run t133a_n6_l` | see `campaign.json` |
 

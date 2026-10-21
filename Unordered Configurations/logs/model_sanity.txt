@@ -1,0 +1,97 @@
+== (1) d o d = 0 ==
+  [ok  ] K_5, k=2 [unreduced]: True
+  [ok  ] K_5, k=2 [fully reduced]: True
+  [ok  ] K_{3,3}, k=3 [unreduced]: True
+  [ok  ] K_{3,3}, k=3 [fully reduced]: True
+  [ok  ] octahedron, k=3 [unreduced]: True
+  [ok  ] octahedron, k=3 [fully reduced]: True
+  [ok  ] theta(3,2), k=4 [unreduced]: True
+  [ok  ] theta(3,2), k=4 [fully reduced]: True
+  [ok  ] K_{4,5}, k=3 [reduced at B only]: True
+
+== (2) closed-form cell counts ==
+  [ok  ] reduced count, K_6, k=4: 71220
+  [ok  ] unreduced count, K_6, k=4: 176580
+  [ok  ] reduced count, K_{4,5}, k=3: 19976
+  [ok  ] unreduced count, K_{4,5}, k=3: 46664
+  [ok  ] reduced count, octahedron, k=4: 26142
+  [ok  ] unreduced count, octahedron, k=4: 80910
+  [ok  ] reduced count, prism, k=3: 1405
+  [ok  ] unreduced count, prism, k=3: 4685
+
+== (3) the amount of reduction does not matter ==
+  [ok  ] K_{3,3}, k=2: reduce_at none == B only: {0: (1, ()), 1: (4, (2,)), 2: (0, ())}
+  [ok  ] K_{3,3}, k=2: reduce_at none == all: {0: (1, ()), 1: (4, (2,)), 2: (0, ())}
+  [ok  ] K_{3,3}, k=2: reduce_at all == fast pipeline: {0: (1, ()), 1: (4, (2,)), 2: (0, ())}
+  [ok  ] K_{3,4}, k=2: reduce_at none == B only: {0: (1, ()), 1: (6, (2,)), 2: (2, ())}
+  [ok  ] K_{3,4}, k=2: reduce_at none == all: {0: (1, ()), 1: (6, (2,)), 2: (2, ())}
+  [ok  ] K_{3,4}, k=2: reduce_at all == fast pipeline: {0: (1, ()), 1: (6, (2,)), 2: (2, ())}
+  [ok  ] K_{4,5}, k=3: reduce_at none == B only: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] K_{4,5}, k=3: reduce_at none == all: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+  [ok  ] K_{4,5}, k=3: reduce_at all == fast pipeline: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+
+== (3b) the two fast pipelines agree ==
+  [ok  ] fast == lean, K_{3,3}, k=3: {0: (1, ()), 1: (4, (2,)), 2: (8, ()), 3: (0, ())}
+  [ok  ] fast == lean, K_6, k=4: {0: (1, ()), 1: (10, (2,)), 2: (264, (2,)), 3: (75, ()), 4: (0, ())}
+  [ok  ] fast == lean, K_{4,5}, k=3: {0: (1, ()), 1: (12, (2,)), 2: (155, (2, 2, 2, 6)), 3: (0, ())}
+
+== (4) Abrams' model, and values known from the literature ==
+  [ok  ] Abrams d o d = 0, K_5, k=2: True
+  [ok  ] Abrams == Swiatkowski, K_5, k=2 (subdivided 1x, 0s): {0: (1, []), 1: (6, [2]), 2: (0, [])}
+  [ok  ] Abrams d o d = 0, octahedron, k=3: True
+  [ok  ] Abrams == Swiatkowski, octahedron, k=3 (subdivided 2x, 0s): {0: (1, []), 1: (8, []), 2: (47, []), 3: (0, [])}
+
+  B_2(K_5) is the surface N_7 and B_2(K_{3,3}) is N_5 (Abrams 2000):
+  [ok  ] H_1(B_2 K_5): (6, (2,))
+  [ok  ] H_2(B_2 K_5): (0, ())
+  [ok  ] H_1(B_2 K_{3,3}): (4, (2,))
+  [ok  ] H_2(B_2 K_{3,3}): (0, ())
+  (the Z/2 is the Ko--Park class; H_2 vanishes because these are the
+   NON-orientable closed surfaces, whose top integral homology is Z/2 in H_1)
+
+  trees and cycles: configuration spaces are homotopy equivalent to a point
+  or a circle, so nothing exotic may appear --
+  [ok  ] path P_4, k=2: ((1, ()), (0, ()))
+  [ok  ] cycle C_4, k=2: ((1, ()), (1, ()))
+  [ok  ] path P_4, k=3: ((1, ()), (0, ()))
+  [ok  ] cycle C_4, k=3: ((1, ()), (1, ()))
+
+== (5) torsion is a cokernel ==
+  coker(d_{d+1}) = C_d / im d_{d+1} forgets to intersect with ker d_d, so it is
+  bigger than H_d -- but only by the free group im d_d.  Hence the torsion agrees
+  and the free ranks differ by exactly rank d_d.
+
+  (a) on the fully reduced complex, before any discrete Morse reduction:
+  [ok  ] K_5, k=2, degree 1: tors coker d_2 == tors H_1: (2,)
+  [ok  ] K_5, k=2, degree 1: free ranks differ by rank d_1 = 54: 54
+  [ok  ] K_5, k=2, degree 2: tors coker d_3 == tors H_2: ()
+  [ok  ] K_5, k=2, degree 2: free ranks differ by rank d_2 = 90: 90
+  [ok  ] K_{3,3}, k=2, degree 1: tors coker d_2 == tors H_1: (2,)
+  [ok  ] K_{3,3}, k=2, degree 1: free ranks differ by rank d_1 = 44: 44
+  [ok  ] K_{3,3}, k=2, degree 2: tors coker d_3 == tors H_2: ()
+  [ok  ] K_{3,3}, k=2, degree 2: free ranks differ by rank d_2 = 60: 60
+
+  (b) on Morse-reduced complexes, which reaches the interesting cases:
+  [ok  ] K_{4,5}, k=3, degree 1: tors coker d_2 == tors H_1: (2,)
+  [ok  ] K_{4,5}, k=3, degree 1: free ranks differ by rank d_1 = 0: 0
+  [ok  ] K_{4,5}, k=3, degree 2: tors coker d_3 == tors H_2: (2, 2, 2, 6)
+  [ok  ] K_{4,5}, k=3, degree 2: free ranks differ by rank d_2 = 1: 1
+  [ok  ] K_{4,5}, k=3, degree 3: tors coker d_4 == tors H_3: ()
+  [ok  ] K_{4,5}, k=3, degree 3: free ranks differ by rank d_3 = 4: 4
+  [ok  ] K_6, k=4, degree 1: tors coker d_2 == tors H_1: (2,)
+  [ok  ] K_6, k=4, degree 1: free ranks differ by rank d_1 = 0: 0
+  [ok  ] K_6, k=4, degree 2: tors coker d_3 == tors H_2: (2,)
+  [ok  ] K_6, k=4, degree 2: free ranks differ by rank d_2 = 1: 1
+  [ok  ] K_6, k=4, degree 3: tors coker d_4 == tors H_3: ()
+  [ok  ] K_6, k=4, degree 3: free ranks differ by rank d_3 = 1: 1
+  [ok  ] octahedron, k=4, degree 1: tors coker d_2 == tors H_1: ()
+  [ok  ] octahedron, k=4, degree 1: free ranks differ by rank d_1 = 0: 0
+  [ok  ] octahedron, k=4, degree 2: tors coker d_3 == tors H_2: (2,)
+  [ok  ] octahedron, k=4, degree 2: free ranks differ by rank d_2 = 0: 0
+  [ok  ] octahedron, k=4, degree 3: tors coker d_4 == tors H_3: ()
+  [ok  ] octahedron, k=4, degree 3: free ranks differ by rank d_3 = 1: 1
+
+  This is why one can read the torsion of H_{n-1} off the single matrix d_n:
+  ker d_{n-1} changes the free rank of H_{n-1} and nothing else.
+
+ALL CHECKS PASSED

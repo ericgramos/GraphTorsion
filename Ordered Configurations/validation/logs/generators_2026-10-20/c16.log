@@ -1,0 +1,10 @@
+C_0: 360360
+C_1: 2162160
+C_2: 4152720
+C_3: 2851200
+d_1 mod 32: unit rank 360359, residual entries 0
+d_2 mod 32: unit rank 1801651, residual entries 0
+eliminating d_3: 2851200 x 2351069
+unit rank 2294151, 16953493 row operations
+residual block 1552 x 1074
+local Smith form of the residual (valuation: count): 1:7 3:4 4:1  (+1062 of valuation >= 5)

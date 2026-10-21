@@ -1,0 +1,6 @@
+(a) ok: p = 8; 323707 cells in w (degree 3), 723075 cells in f (degree 2)
+(b) ok: d(w) = 8z with z supported on 528208 cells, max |coefficient| 14
+(c) ok: d(z) = 0
+(d) ok: f is a mod-8 cocycle (checked on all 2851200 cells of degree 3)
+(e) ok: f(z) = 31191 = 7 mod 8, prime to 8
+VERIFIED: H_2(Conf_5(G); Z) contains an element of order 8, G = [(0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3), (0, 1), (0, 2), (0, 3), (1, 2), (1, 3)]  [41s]

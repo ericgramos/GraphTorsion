@@ -1,0 +1,8 @@
+(a) ok: p = 16; 718049 cells in w (degree 3), 854351 cells in f (degree 2)
+(b) ok: d(w) = 16z with z supported on 40839 cells, max |coefficient| 682992899
+(c) ok: d(z) = 0
+(c') ok: z is supported on the subgraph formed by edges 0..5, [(0, 1), (1, 2), (1, 2), (1, 3), (1, 3), (2, 3)]
+(d) ok: f is a mod-16 cocycle (checked on all 2851200 cells of degree 3)
+(e) ok: f(z) = 3137070849 = 1 mod 16, prime to 16
+VERIFIED: H_2(Conf_5(G); Z) contains an element of order 16, G = [(0, 1), (1, 2), (1, 2), (1, 3), (1, 3), (2, 3), (0, 1), (0, 2), (0, 2), (0, 3), (0, 3)]  [49s]
+VERIFIED: it is the image of the class of the cycle z of Conf_5(H), H = [(0, 1), (1, 2), (1, 2), (1, 3), (1, 3), (2, 3)]

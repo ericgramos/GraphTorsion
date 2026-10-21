@@ -35,13 +35,43 @@ ENCODING
 Chains are returned as {cell: coefficient} with cells in the encoding of `gbt.swiatkowski`
 (unreduced): (mono, st) with st[v] = 1 for a sitting particle and 2 + edge index for a moving
 one.  Vertices are A = 0..n and B = n+1..n+b, exactly as `complete_bip(n+1, b)` builds them.
+Every chain here has no parked particles, so mono is always ().
+
+SIGN CONVENTIONS
+----------------
+A product of generators written in some order is converted to a basis element by sorting
+the generators into increasing vertex order; only the degree-1 (moving) generators
+anticommute, so the sign is the sign of the permutation that sorts the moving vertices
+(`word_to_cell`).  `perm_sign` computes signs by counting inversions, so a "permutation of
+A" is any sequence of distinct elements of A, compared with its sorted order.
+
+EXAMPLE
+-------
+    >>> from gbt import flipchains, swiatkowski, complete_bip
+    >>> X = flipchains.X(2, 3)                    # the chain for K_{3,3}, 2 particles
+    >>> X == flipchains.closed_formula_X(2, 3)
+    True
+    >>> C = swiatkowski(complete_bip(3, 3), 2)
+    >>> dX = {}
+    >>> for c, a in X.items():
+    ...     for r, v in C.B[2][c].items():
+    ...         dX[r] = dX.get(r, 0) + a * v
+    >>> sorted({abs(v) for v in dX.values() if v})       # dX = +-(b - n + 1) y, b - n + 1 = 2
+    [2]
+
+`experiments/torsion_class_X.py` and `experiments/wilson_block.py` check these identities
+systematically.
 """
 
 import itertools
 
 
 def perm_sign(seq):
-    """Sign of the permutation presented by a sequence of distinct comparable items."""
+    """Sign of the permutation presented by a sequence of distinct comparable items.
+
+    That is, (-1)^(number of inversions): +1 if sorting the sequence takes an even number
+    of transpositions.  Quadratic in the length, which is at most n + 1 here.
+    """
     s = 1
     a = list(seq)
     for i in range(len(a)):
@@ -52,7 +82,10 @@ def perm_sign(seq):
 
 
 def edge_index(n, b, a, w):
-    """Index of the edge {a, w} in complete_bip(n+1, b): lexicographic in (a, w)."""
+    """Index of the edge {a, w} in complete_bip(n+1, b): lexicographic in (a, w).
+
+    a in A = {0..n}, w in B = {n+1..n+b}; the index is a*b + (w - (n+1)).
+    """
     return a * b + (w - (n + 1))
 
 
@@ -97,6 +130,10 @@ def z(n, b, a, w):
 
 
 def add_into(acc, chain, c=1):
+    """acc += c * chain, in place, for chains as dicts {cell: coefficient} (zeros dropped).
+
+    Returns acc so that calls can be nested.
+    """
     for k, v in chain.items():
         acc[k] = acc.get(k, 0) + c * v
         if acc[k] == 0:
@@ -105,7 +142,14 @@ def add_into(acc, chain, c=1):
 
 
 def X_B0(n, b, B0):
-    """X_{B_0} = sum over bijections g : B_0 u {*} -> A of sgn(g) z(e_1)...z(e_n)."""
+    """X_{B_0} = sum over bijections g : B_0 u {*} -> A of sgn(g) z(e_1)...z(e_n).
+
+    n is the number of particles (|A| = n + 1), b = |B|, and B0 an n-subset of
+    B = {n+1, ..., n+b}.  A bijection g is enumerated as the tuple
+    (g(w_1), ..., g(w_n), g(*)) of all of A, and sgn(g) is the sign of that tuple; e_i is
+    the edge {g(w_i), w_i}.  Returns the chain as {cell: coefficient}; it has
+    (n+1)! * 2^n terms before cancellation.
+    """
     N = n + 1 + b
     B0 = sorted(B0)
     acc = {}
@@ -116,7 +160,12 @@ def X_B0(n, b, B0):
 
 
 def Y_T(n, b, T):
-    """Y_T = sum over injections g : T -> A of sgn(g; x, y) z(...)...z(...) (x - y)."""
+    """Y_T = sum over injections g : T -> A of sgn(g; x, y) z(...)...z(...) (x - y).
+
+    T is an (n-1)-subset of B; for each injection g, {x < y} = A minus g(T), the factor
+    (x - y) is "sit at x" minus "sit at y" (degree 0), and sgn(g; x, y) is the sign of the
+    tuple (g(t_1), ..., g(t_{n-1}), x, y).  Returns {cell: coefficient}.
+    """
     N = n + 1 + b
     T = sorted(T)
     acc = {}
@@ -129,7 +178,13 @@ def Y_T(n, b, T):
 
 
 def X(n, b):
-    """X = sum over all n-subsets B_0 of X_{B_0}, with dX = +-(b-n+1) y for y primitive."""
+    """X = sum over all n-subsets B_0 of X_{B_0}, with dX = +-(b-n+1) y for y primitive.
+
+    Primitive means the coefficients of y have gcd 1 (in fact they are all +-1), so when
+    b <= 2n - 1 (where H_n(B_n K_{n+1,b}) = 0 and so nothing smaller kills y) the class [y]
+    has order exactly b - n + 1 in H_{n-1}.  Returns {cell: coefficient}; the number of
+    terms grows like C(b, n) (n+1)! 2^n, so keep n <= 4.
+    """
     acc = {}
     for B0 in itertools.combinations(range(n + 1, n + 1 + b), n):
         add_into(acc, X_B0(n, b, B0))
@@ -143,6 +198,12 @@ def closed_formula_X(n, b):
     (-1)^{|S_A|} sgn sigma(S,t), where sigma lists A as
         [ S_A increasing | t(v) for v in S_B, in increasing order of v | the hole ].
     Returns {cell: coefficient} over all matching configurations, in the same encoding as X().
+
+    A matching configuration is a top-degree cell in which the n moving particles use n
+    pairwise disjoint edges.  It is enumerated as: the n A-vertices used (A0, so the hole
+    is the remaining one), the n B-vertices used (B0), a bijection pairing them, and for
+    each pair which endpoint is the source (marks: 0 = the A end moves, 1 = the B end
+    moves).  t maps each source to the other end of its edge.
     """
     N = n + 1 + b
     A = list(range(n + 1))
@@ -160,8 +221,12 @@ def closed_formula_X(n, b):
                             t[a] = w
                         else:
                             t[w] = a
-                    SA = sorted(v for v in t if v <= n)
-                    SB = sorted(v for v in t if v > n)
+                    SA = sorted(v for v in t if v <= n)       # sources in A
+                    SB = sorted(v for v in t if v > n)        # sources in B
+                    # sigma lists all of A once: the A-sources, then the A-targets of the
+                    # B-sources in order of their B-source (NOT in order of their own
+                    # value -- the other choice does not give a chain with dX ~ y), then
+                    # the hole
                     sigma = SA + [t[v] for v in SB] + [hole]
                     st = [0] * N
                     for v, u in t.items():

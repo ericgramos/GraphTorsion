@@ -51,6 +51,7 @@ struct Graph {
     vector<int> tail, head, hvert;
     vector<vector<int>> vhalf;
     vector<int> base;
+    // Set up the half-edge tables (half-edge 2e = tail end of edge e, 2e+1 = head end; vhalf[v] sorted) and the base half-edge of each vertex (its lowest half-edge).
     void build(int V_, const vector<pair<int, int>> &ed) {
         V = V_;
         E = ed.size();
@@ -198,6 +199,7 @@ u64 PR;
 u64 mulm(u64 a, u64 b) {
     return (unsigned __int128)a * b % PR;
 }
+// a^e modulo the prime, by repeated squaring.
 u64 powm(u64 a, u64 e) {
     u64 r = 1;
     while (e) {
@@ -218,6 +220,7 @@ struct FpElim {
     vector<char> rowdead, coldead;
     long long piv = 0;
     FpElim(int r, int c) : nr(r), nc(c), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0) {}
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -240,11 +243,13 @@ struct FpElim {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     u64 get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), make_pair(c, (uint32_t)0));
         return (it != R.end() && it->first == c) ? it->second : 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         u64 ui = powm(get(r, c), PR - 2);
@@ -296,6 +301,7 @@ struct FpElim {
         vector<pair<int, uint32_t>>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {

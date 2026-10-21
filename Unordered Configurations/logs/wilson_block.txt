@@ -1,0 +1,49 @@
+K_{3,3}, n=2: 135 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 132, non-unit factors none, kernel rank 3 = C(b,n) = 3:  True
+   (4) the 3 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 132 non-reference columns:  True
+   (5) non-unit factors of d_n [2] = those of W_{1,2}(3) [2]:  True
+
+K_{3,4}, n=2: 246 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 240, non-unit factors none, kernel rank 6 = C(b,n) = 6:  True
+   (4) the 4 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 240 non-reference columns:  True
+   (5) non-unit factors of d_n [2] = those of W_{1,2}(4) [2]:  True
+
+K_{3,5}, n=2: 390 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 380, non-unit factors none, kernel rank 10 = C(b,n) = 10:  True
+   (4) the 5 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 380 non-reference columns:  True
+   (5) non-unit factors of d_n [2] = those of W_{1,2}(5) [2]:  True
+
+K_{4,4}, n=3: 3584 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 3580, non-unit factors none, kernel rank 4 = C(b,n) = 4:  True
+   (4) the 6 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 3580 non-reference columns:  True
+   (5) non-unit factors of d_n [2] = those of W_{2,3}(4) [2]:  True
+
+K_{4,5}, n=3: 7340 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 7330, non-unit factors none, kernel rank 10 = C(b,n) = 10:  True
+   (4) the 10 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 7330 non-reference columns:  True
+   (5) non-unit factors of d_n [2, 2, 2, 6] = those of W_{2,3}(5) [2, 2, 2, 6]:  True
+
+K_{4,6}, n=3: 13088 n-cells
+   (1) dX_{B_0} = (-1)^(n-1) sum_T Y_T for every B_0:          True
+   (2) X_{B_0} has the coefficients (-1)^|S_A| sgn sigma:       True
+   (3) d' = parked + B-sitting rows: rank 13068, non-unit factors none, kernel rank 20 = C(b,n) = 20:  True
+   (4) the 15 chains Y_T: disjoint supports, entries +-1:          True
+   (6) unit pivots in the rows R' clear all 13068 non-reference columns:  True
+   (5) non-unit factors of d_n [2, 2, 2, 2, 6] = those of W_{2,3}(6) [2, 2, 2, 2, 6]:  True
+
+ALL CHECKS PASSED: in every case d_n ~ W (+) I (+) 0, for the reasons above.

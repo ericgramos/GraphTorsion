@@ -1,0 +1,40 @@
+{"graph": "doubled K4", "quotient": "aabcd", "betti": [1, 121, 42176, 31976, 0], "torsion": [[], [], [], [], []], "secs": 91}
+{"graph": "doubled K4", "quotient": "aabbc", "betti": [1, 80, 21277, 16158, 0], "torsion": [[], [], [], [], []], "secs": 40}
+{"graph": "doubled K4", "quotient": "aaabc", "betti": [1, 73, 14312, 10880, 0], "torsion": [[], [], [], [], []], "secs": 28}
+{"graph": "doubled K4", "quotient": "aaabb", "betti": [1, 45, 7222, 5498, 0], "torsion": [[], [], [], [], []], "secs": 16}
+{"graph": "doubled K4", "quotient": "aaaab", "betti": [1, 38, 3678, 2801, 0], "torsion": [[], [], [], [], []], "secs": 12}
+{"graph": "doubled K4", "quotient": "aaaaa", "betti": [1, 16, 764, 581, 0], "torsion": [[], [], [], [], []], "secs": 9}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aabcd", "betti": [1, 70, 12156, 747, 0], "torsion": [[], [], [2, 2, 2], [], []], "secs": 13}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aabbc", "betti": [1, 47, 6127, 411, 0], "torsion": [[], [], [], [], []], "secs": 6}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aaabc", "betti": [1, 43, 4118, 296, 0], "torsion": [[], [], [], [], []], "secs": 5}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aaabb", "betti": [1, 27, 2077, 161, 0], "torsion": [[], [], [], [], []], "secs": 4}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aaaab", "betti": [1, 23, 1059, 92, 0], "torsion": [[], [], [], [], []], "secs": 2}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "aaaaa", "betti": [1, 10, 221, 23, 0], "torsion": [[], [], [], [], []], "secs": 2}
+{"graph": "doubled C4 + diagonals", "quotient": "aabcd", "betti": [1, 87, 17468, 7662, 0], "torsion": [[], [], [], [], []], "secs": 25}
+{"graph": "doubled C4 + diagonals", "quotient": "aabbc", "betti": [1, 58, 8821, 3904, 0], "torsion": [[], [], [], [], []], "secs": 13}
+{"graph": "doubled C4 + diagonals", "quotient": "aaabc", "betti": [1, 53, 5938, 2646, 0], "torsion": [[], [], [], [], []], "secs": 9}
+{"graph": "doubled C4 + diagonals", "quotient": "aaabb", "betti": [1, 33, 3000, 1348, 0], "torsion": [[], [], [], [], []], "secs": 6}
+{"graph": "doubled C4 + diagonals", "quotient": "aaaab", "betti": [1, 28, 1533, 696, 0], "torsion": [[], [], [], [], []], "secs": 4}
+{"graph": "doubled C4 + diagonals", "quotient": "aaaaa", "betti": [1, 12, 321, 148, 0], "torsion": [[], [], [], [], []], "secs": 3}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aabcd", "betti": [1, 87, 18703, 5297, 0], "torsion": [[], [], [2, 2, 2], [], []], "secs": 27}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aabbc", "betti": [1, 58, 9438, 2721, 0], "torsion": [[], [], [], [], []], "secs": 13}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aaabc", "betti": [1, 53, 6349, 1857, 0], "torsion": [[], [], [], [], []], "secs": 10}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aaabb", "betti": [1, 33, 3206, 954, 0], "torsion": [[], [], [], [], []], "secs": 6}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aaaab", "betti": [1, 28, 1635, 498, 0], "torsion": [[], [], [], [], []], "secs": 4}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "aaaaa", "betti": [1, 12, 341, 108, 0], "torsion": [[], [], [], [], []], "secs": 3}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aabcd", "betti": [1, 104, 28710, 14747, 0], "torsion": [[], [], [8], [], []], "secs": 53}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aabbc", "betti": [1, 69, 14488, 7490, 0], "torsion": [[], [], [], [], []], "secs": 24}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aaabc", "betti": [1, 63, 9748, 5066, 0], "torsion": [[], [], [], [], []], "secs": 17}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aaabb", "betti": [1, 39, 4921, 2573, 0], "torsion": [[], [], [], [], []], "secs": 10}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aaaab", "betti": [1, 33, 2508, 1321, 0], "torsion": [[], [], [], [], []], "secs": 8}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "aaaaa", "betti": [1, 14, 522, 278, 0], "torsion": [[], [], [], [], []], "secs": 5}
+{"graph": "doubled K4", "quotient": "3-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2, 2, 4], "rank_local": [0, 174719, 917202, 1238911, 300000, 0], "secs": 172}
+{"graph": "doubled K4", "quotient": "5-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2, 2, 4], "rank_local": [0, 104831, 550334, 743343, 180000, 0], "secs": 100}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "3-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2, 2, 2], "rank_local": [0, 51479, 225675, 241472, 46080, 0], "secs": 10}
+{"graph": "T222+apex (triangle 012 doubled)", "quotient": "5-cycle", "torsion_mod16": [2, 2, 2], "rank_local": [0, 30887, 135413, 144882, 27648, 0], "secs": 6}
+{"graph": "doubled C4 + diagonals", "quotient": "3-cycle", "torsion_mod16": [2, 2, 4], "rank_local": [0, 80079, 377464, 455789, 102400, 0], "secs": 31}
+{"graph": "doubled C4 + diagonals", "quotient": "5-cycle", "torsion_mod16": [2, 2, 4], "rank_local": [0, 48047, 226488, 273469, 61440, 0], "secs": 15}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "3-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2, 2, 8, 8], "rank_local": [0, 80079, 377464, 446165, 96000, 0], "secs": 33}
+{"graph": "Z/8 pattern (012 and 03 doubled)", "quotient": "5-cycle", "torsion_mod16": [2, 2, 8, 8], "rank_local": [0, 48047, 226488, 267697, 57600, 0], "secs": 17}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "3-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2, 8, 8], "rank_local": [0, 120119, 600533, 764724, 176000, 0], "secs": 65}
+{"graph": "Z/16 pattern (all but 23 doubled)", "quotient": "5-cycle", "torsion_mod16": [2, 2, 2, 2, 2, 2, 2], "rank_local": [0, 72071, 360331, 458830, 105600, 0], "secs": 42}

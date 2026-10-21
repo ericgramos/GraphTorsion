@@ -19,6 +19,10 @@
 //          dimension rank d_3 - rank Phi.
 //
 //  OUTPUT.  {"n","prime","mode","gens","rankB2","rank_span_mod_B"}.    USAGE.  decomp n prime [mode] < graph
+//  With the environment variable DUMP=file the generators are also written there as integral chains (blocks
+//  "Z id 0 x=X A=a,b,.. i1=I i2=J" followed by "coef cell"; X is the star vertex, A the particles at the star, I and J
+//  the indices of the star cycle and of the cycle of Gamma minus X in their bases), for use as relations in
+//  certificates/orderq.  Use a large prime, so that the signs of the +-1 coefficients can be read off.
 //
 //  SHARED HELPER CODE.  Everything above main() in this file (struct Graph, struct Cell, encode/decode of
 //  128-bit cell keys, enumerate(), boundary(), lookup(), the F_p eliminator FpElim and, where present,
@@ -44,6 +48,7 @@ struct Graph {
     vector<int> tail, head, hvert;
     vector<vector<int>> vhalf;
     vector<int> base;
+    // Set up the half-edge tables (half-edge 2e = tail end of edge e, 2e+1 = head end; vhalf[v] sorted) and the base half-edge of each vertex (its lowest half-edge).
     void build(int V_, const vector<pair<int, int>> &ed) {
         V = V_;
         E = ed.size();
@@ -73,6 +78,7 @@ struct Cell {
     vector<vector<int>> el;
 };
 
+// Pack a cell into a 128-bit key: 12 bits per particle, the low 8 its location (half-edge if at a vertex, 2E + e if on edge e) and the high 4 its rank in the word of that edge.
 Key encode(const Graph &G, int N, const Cell &c) {
     Key s = 0;
     for (int v = 0; v < G.V; v++)
@@ -83,6 +89,7 @@ Key encode(const Graph &G, int N, const Cell &c) {
             s |= (Key)(unsigned)((2 * G.E + e) | (r << 8)) << (12 * c.el[e][r]);
     return s;
 }
+// Inverse of encode: rebuild the occupants of the vertices, their half-edges and the edge words from a key.
 Cell decode(const Graph &G, int N, Key s) {
     Cell c;
     c.vocc.assign(G.V, -1);
@@ -106,6 +113,7 @@ Cell decode(const Graph &G, int N, Key s) {
     }
     return c;
 }
+// All cells of degree k (k occupied vertices), placing the particles one at a time at a vertex (with a non-base half-edge) or into an edge word.
 void enumerate(const Graph &G, int N, int k, vector<Key> &out) {
     Cell c;
     c.vocc.assign(G.V, -1);
@@ -144,6 +152,7 @@ void enumerate(const Graph &G, int N, int k, vector<Key> &out) {
     rec(0);
     sort(out.begin(), out.end());
 }
+// Signed boundary of a cell: for the j-th occupied vertex v carrying (p, h), (-1)^j ( [p pushed into edge(h)] - [p pushed into the base edge] ).
 void boundary(const Graph &G, int N, const Cell &c, vector<pair<Key, int>> &out) {
     out.clear();
     int idx = 0;
@@ -166,6 +175,7 @@ void boundary(const Graph &G, int N, const Cell &c, vector<pair<Key, int>> &out)
             }
         }
 }
+// Index of a key in the sorted list of cells of its degree (binary search); -1 if absent.
 int lookup(const vector<Key> &C, Key k) {
     auto it = lower_bound(C.begin(), C.end(), k);
     if (it == C.end() || *it != k)
@@ -178,6 +188,7 @@ u64 PR;
 u64 mulm(u64 a, u64 b) {
     return (unsigned __int128)a * b % PR;
 }
+// a^e modulo the prime, by repeated squaring.
 u64 powm(u64 a, u64 e) {
     u64 r = 1;
     while (e) {
@@ -196,6 +207,7 @@ struct FpElim {
     vector<char> rowdead, coldead;
     long long piv = 0;
     FpElim(int r, int c) : nr(r), nc(c), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0) {}
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -218,11 +230,13 @@ struct FpElim {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     u64 get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), make_pair(c, (uint32_t)0));
         return (it != R.end() && it->first == c) ? it->second : 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         u64 ui = powm(get(r, c), PR - 2);
@@ -274,6 +288,7 @@ struct FpElim {
         vector<pair<int, uint32_t>>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {
@@ -473,6 +488,7 @@ int main(int argc, char **argv) {
     int n = atoi(argv[1]);
     PR = strtoull(argv[2], 0, 10);
     int mode = argc > 3 ? atoi(argv[3]) : 0;
+    FILE *dumpf = getenv("DUMP") ? fopen(getenv("DUMP"), "w") : nullptr;
     int V, E;
     if (scanf("%d %d", &V, &E) != 2)
         return 1;
@@ -647,6 +663,25 @@ int main(int argc, char **argv) {
                                 int kos = vocc < x ? 1 : -1; // Koszul sign: sign of d_v in Gamma
                                 row.push_back({j, (uint32_t)(((ll)s1 * s2 * kos + (ll)PR) % PR)});
                             }
+                        if (dumpf) {
+                            // DUMP=file: write the generator as an integral chain (coefficients are +-1; read back
+                            // from the residues, so use a large prime)
+                            // header: id, 0, then the type of the torus: vertex x of the star, the particles A at
+                            // the star, and the indices of the two basis cycles (star cycle, cycle of Gamma minus x)
+                            string Adesc;
+                            for (size_t q = 0; q < A.size(); q++) Adesc += (q ? "," : "") + to_string(A[q]);
+                            fprintf(dumpf, "Z %lld 0 x=%d A=%s i1=%ld i2=%ld\n", ngen, x, Adesc.c_str(), (long)(&z1 - &zs[0]), (long)(&z2 - &zp[0]));
+                            for (auto [j, cf] : row) {
+                                Cell c = decode(G, n, C2[j]);
+                                string sdesc = "V[";
+                                for (int v = 0; v < V; v++) { if (v) sdesc += ","; sdesc += c.vocc[v] < 0 ? string("-") : to_string(c.vocc[v]) + "/" + to_string(c.vh[v]); }
+                                sdesc += "] E[";
+                                for (int e = 0; e < E; e++) { if (e) sdesc += "|"; for (size_t r = 0; r < c.el[e].size(); r++) { if (r) sdesc += " "; sdesc += to_string(c.el[e][r]); } }
+                                sdesc += "]";
+                                ll cc = cf > PR / 2 ? (ll)cf - (ll)PR : (ll)cf;
+                                fprintf(dumpf, "%lld %s\n", cc, sdesc.c_str());
+                            }
+                        }
                         rows.push_back(row);
                         ngen++;
                     }

@@ -15,6 +15,7 @@ from gconf import normalize
 
 
 def cycle_vertex_sets(edges):
+    """Vertex sets of the inclusion-minimal cycles (loops, double edges, simple cycles) of the graph."""
     V, edges = normalize(edges)
     sets = set()
     cnt = Counter(tuple(sorted(e)) for e in edges)
@@ -34,6 +35,7 @@ def cycle_vertex_sets(edges):
 
 
 def toric_bound(edges, n):
+    """The toric bound: the largest degree of a product of disjoint basic classes (see the module docstring)."""
     V, edges, cycles = cycle_vertex_sets(edges)
     deg = Counter()
     for u, v in edges:

@@ -39,6 +39,7 @@ def run_engine(options, edges, n, tag="run"):
     peak = [0]
 
     def watch():                                   # sample VmRSS twice a second
+        """Background thread: sample the resident memory of the engine process twice a second and keep the peak."""
         while p.poll() is None:
             try:
                 peak[0] = max(peak[0], int(open(f"/proc/{p.pid}/status").read().split("VmRSS:")[1].split()[0]) // 1024)

@@ -1,0 +1,34 @@
+== route 1: slice pipeline gbt.lean on the Swiatkowski complex ==
+lean    K_7                        k=3  tors H_2 = Z/2                        ok        15,400 cells     0s
+lean    K_8                        k=3  tors H_2 = (Z/2)^21                   ok        40,320 cells     0s
+lean    K_9                        k=3  tors H_2 = (Z/2)^28                   ok        92,316 cells     1s
+lean    K_10                       k=3  tors H_2 = (Z/2)^36                   ok       191,040 cells     5s
+lean    K_6                        k=4  tors H_2 = Z/2                        ok        48,000 cells     1s
+lean    K_7                        k=4  tors H_2 = (Z/2)^2                    ok       213,150 cells    10s
+lean    K_5                        k=5  tors H_2 = 0                          ok        34,650 cells     1s
+lean    K_{3,3}                    k=5  tors H_2 = 0                          ok        17,100 cells     0s
+lean    K_{4,5}                    k=3  tors H_2 = (Z/2)^4 + Z/3              ok        11,926 cells     0s
+lean    K_{5,5}                    k=4  tors H_2 = (Z/2)^17                   ok       426,000 cells    67s
+lean    K_{5,5}                    k=4  tors H_3 = Z/2                        ok       245,760 cells     1s
+lean    K_{5,6}                    k=4  tors H_3 = (Z/2)^5 + Z/3              ok       564,865 cells     4s
+lean    K_{4,5} + 3 edges in B     k=3  tors H_2 = (Z/2)^13 + Z/3             ok        19,706 cells     0s
+lean    octahedron                 k=3  tors H_2 = 0                          ok         2,160 cells     0s
+lean    octahedron                 k=4  tors H_2 = Z/2                        ok        17,010 cells     0s
+lean    triangular prism           k=4  tors H_2 = 0                          ok         4,140 cells     0s
+lean    pentagonal prism           k=4  tors H_2 = Z/2                        ok        36,000 cells     1s
+lean    K_6                        k=4  tors H_2 = Z/2                        ok        48,000 cells     1s
+lean    Petersen                   k=4  tors H_2 = Z/2                        ok        36,000 cells     1s
+lean    Petersen                   k=3  tors H_2 = 0                          ok         3,660 cells     0s
+lean    apex(planar 8)             k=3  tors H_2 = (Z/2)^4                    ok        29,946 cells     0s
+lean    dodecahedron               k=4  tors H_2 = Z/2                        ok       627,000 cells   206s
+lean    icosahedron                k=4  tors H_2 = Z/2                        ok       913,440 cells   117s
+
+== route 2: Abrams' discretised model UD^k of the subdivided graph ==
+Abrams  K_5 (edges x1)             k=2  tors H_1 = Z/2                        ok            45 cells     0s
+Abrams  K_{3,3} (edges x1)         k=2  tors H_1 = Z/2                        ok            54 cells     0s
+Abrams  octahedron (edges x2)      k=3  tors H_2 = 0                          ok         4,280 cells     0s
+Abrams  octahedron (edges x3)      k=4  tors H_2 = Z/2                        ok       310,818 cells    10s
+Abrams  K_{4,5} (edges x2)         k=3  tors H_2 = (Z/2)^4 + Z/3              ok        23,970 cells     0s
+Abrams  K_7 (edges x2)             k=3  tors H_2 = Z/2                        ok        24,570 cells     0s
+
+ALL HEADLINE VALUES CONFIRMED by both routes.

@@ -43,6 +43,7 @@ struct Cell {
 };
 
 typedef unsigned __int128 Key;
+// Pack a cell into a 128-bit key: 12 bits per particle, the low 8 its location (half-edge if at a vertex, 2E + e if on edge e) and the high 4 its rank in the word of that edge.
 Key encode(const Cell &c) {
     Key s = 0;
     for (int v = 0; v < V; v++)
@@ -58,6 +59,7 @@ Key encode(const Cell &c) {
     return s;
 }
 
+// Coloured particles (quotient by a Young subgroup): relabel so that the particles of each colour occur in increasing order, giving one representative per orbit.
 void canonicalize(Cell &c) {
     if (!colored)
         return;
@@ -77,6 +79,7 @@ void canonicalize(Cell &c) {
         for (auto &p : c.elist[e])
             p = relabel(p);
 }
+// Inverse of encode: rebuild the occupants of the vertices, their half-edges and the edge words from a key.
 Cell decode(Key s) {
     Cell c;
     c.vocc.assign(V, -1);
@@ -158,6 +161,7 @@ u64 PR;
 u64 mulm(u64 a, u64 b) {
     return (unsigned __int128)a * b % PR;
 }
+// a^e modulo the prime, by repeated squaring.
 u64 powm(u64 a, u64 e) {
     u64 r = 1;
     while (e) {
@@ -168,6 +172,7 @@ u64 powm(u64 a, u64 e) {
     }
     return r;
 }
+// Inverse of a nonzero residue (a unit) modulo the current modulus.
 u64 inv(u64 a) {
     return powm(a, PR - 2);
 }
@@ -181,6 +186,7 @@ struct FpElim {
     bool keep;
     FpElim(int r, int c, bool keep_)
         : nr(r), nc(c), rows(r), colrows(c), colcnt(c, 0), rowdead(r, 0), coldead(c, 0), keep(keep_) {}
+    // Sort every sparse row, merge repeated columns, drop zero entries, and build the column structures (rows per column, number of usable pivot entries per column).
     void finalize() {
         for (int r = 0; r < nr; r++) {
             auto &R = rows[r];
@@ -203,11 +209,13 @@ struct FpElim {
             }
         }
     }
+    // Entry (r, c) of the sparse matrix, found by binary search in row r; 0 if absent.
     u64 get(int r, int c) const {
         auto &R = rows[r];
         auto it = lower_bound(R.begin(), R.end(), make_pair(c, (uint32_t)0));
         return (it != R.end() && it->first == c) ? it->second : 0;
     }
+    // Pivot on the usable entry (r, c): subtract the right multiple of row r from every other live row with an entry in column c, then mark row r and column c as dead.
     void pivot(int r, int c) {
         auto &R = rows[r];
         u64 ui = inv(get(r, c));
@@ -260,6 +268,7 @@ struct FpElim {
         vector<pair<int, uint32_t>>().swap(rows[r]);
         vector<int>().swap(colrows[c]);
     }
+    // Elimination driver: repeatedly pivot in the column with the fewest usable entries (Markowitz order) on its shortest row, until no usable pivot is left.
     void run() {
         bool any = true;
         while (any) {
@@ -303,6 +312,7 @@ struct FpElim {
             }
         }
     }
+    // A random kernel vector: random values on the free columns, then back-substitution through the recorded pivot rows in reverse order.
     vector<u64> kernel_vector(mt19937_64 &rng) {
         vector<u64> x(nc, 0);
         for (int c = 0; c < nc; c++)
@@ -323,6 +333,7 @@ struct FpElim {
     }
 };
 
+// Text form of a cell, V[p/h,...] E[w_0|w_1|...], the format of certificate and cycle files.
 string describe(const Cell &c) {
     string s = "V[";
     for (int v = 0; v < V; v++) {

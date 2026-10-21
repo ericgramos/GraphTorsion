@@ -1,0 +1,6 @@
+(a) ok: p = 2; 188300 cells in w (degree 3), 281374 cells in f (degree 2)
+(b) ok: d(w) = 2z with z supported on 343552 cells, max |coefficient| 2
+(c) ok: d(z) = 0
+(d) ok: f is a mod-2 cocycle (checked on all 967680 cells of degree 3)
+(e) ok: f(z) = 413 = 1 mod 2, prime to 2
+VERIFIED: H_2(Conf_6(G); Z) contains an element of order 2, G = [(0, 1), (0, 2), (0, 2), (1, 2), (1, 2), (1, 2)]  [15s]

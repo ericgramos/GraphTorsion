@@ -37,13 +37,17 @@ All told the stored data hold 2,892 computations on 1,068 graphs up to isomorphi
 distinct pairs (Γ, k), with k between 2 and 12). Section 12 explains how that accounting is
 made and how to regenerate it.
 
-This README explains how to install the package, how to use the Python library, and what
-every file in the package does. It is long because it is meant to be usable by someone who
-has never seen the code. Sections 1 to 3 are enough to start computing. Section 4 is the
+This README is the reference manual: it explains how to install the package, how to use the
+Python library, and what every file in the package does. **If you are new to the package, start
+with [TUTORIAL.md](TUTORIAL.md)**, a sequence of short lessons for a mathematician who is
+comfortable at a terminal but is not a programmer; every command in it works as written. The
+README is long because it is meant to be usable by someone who has never seen the code.
+Sections 1 to 3 are enough to start computing. Section 4 is the
 reference for the library, and Section 5 explains how to choose between its three pipelines.
 Sections 6 to 10 go through the experiment scripts one file at a time, Sections 11 and 12
-describe the stored data, and Sections 13 and 14 are for reproducing the results and for
-avoiding the mistakes that are easy to make.
+describe the stored data, Sections 13 and 14 are for reproducing the results and for
+avoiding the mistakes that are easy to make, and Section 15 describes the example scripts, the
+Makefile and the logs of our own validation runs.
 
 ## Contents
 
@@ -61,7 +65,8 @@ avoiding the mistakes that are easy to make.
 12. The inventory of all computations
 13. Reproducing the main results
 14. Limits, pitfalls and practical advice
-15. References
+15. Example scripts `examples/`, the Makefile, and the logs `logs/`
+16. References
 
 ---
 
@@ -86,13 +91,19 @@ There is no installation step. Unpack the folder and run the scripts from anywhe
     cd graph-braid-torsion
     pip install -r requirements.txt       # only networkx
     python3 experiments/validate.py       # 60 regression checks; prints ALL CHECKS PASSED
+    make check                            # the whole fast validation suite, about 5 minutes
+
+`make` is optional: the `Makefile` only collects commands (Section 15), and each of its targets
+is a few `python3 ...` lines that can be typed by hand.
 
 Every script in `experiments/` puts the repository root on `sys.path` itself, so
 `python3 experiments/NAME.py` works from any working directory. To use the library from your
 own code, either run Python from the repository root or add that folder to `PYTHONPATH`.
 
-The scripts write their results into `data/`, which is located relative to the package
-(`gbt/paths.py`), not relative to the current folder. They never write anywhere else.
+The scripts in `experiments/` write their results into `data/`, which is located relative to
+the package (`gbt/paths.py`), not relative to the current folder. They never write anywhere
+else. The example scripts in `examples/` write nothing, except `sweep_template.py`, which
+writes to `examples/output/`.
 
 ## 2. A first computation
 
@@ -523,7 +534,7 @@ invariant factors > 1. Keys use `|` as a separator.
 |---|---|---|---|
 | `sweep_complete.json` | `K{n}\|{k}` | `H`; `raw`, `red`: total cells before and after the Morse reduction | 46 (K_3 to K_12) |
 | `sweep_bipartite.json` | `K{a},{b}\|{k}` | as above | 92 (27 graphs) |
-| `large_cases.json` | `K55`, `K56`, `K8-4`, `K12-3` | `H`, `case`, `k`, `raw`, `red` (cells by degree before and after reduction), `summary` | 4 |
+| `large_cases.json` | `K55`, `K56`, `K8-4`, `K12-3` | `H`, `case`, `k`, `raw`, `red` (total cells before and after the Morse reduction; `null` for `K55` and `K56`, whose runs did not record them), `summary` (the torsion as one line) | 4 |
 | `top_degree_vanishing.json` | `K{a},{b}\|{n}` | `H_n` (H_n only), `cells`, `predicted` (null where only the conjecture applies) | 81 |
 | `prime_census.json` | `K{a},{b}\|{k}\|{d}` | `a`, `b`, `k`, `degree`, `torsion` (of H_d only) | 5 |
 | `density_interpolation.json` | `{name}\|{k}` | `H`, `edges`, `note` | 6 |
@@ -649,7 +660,51 @@ recompute.
 * **Stored data and `--cap`.** The sweeps skip stored jobs, so to recompute a case delete its
   key from the JSON file, or for `large_cases.py` pass `--force`.
 
-## 15. References
+## 15. Example scripts `examples/`, the Makefile, and the logs `logs/`
+
+### `examples/`
+
+Four short scripts, written to be read as well as run, and used by the lessons of
+[TUTORIAL.md](TUTORIAL.md). Each starts with a docstring explaining what it is for, how to call
+it, and what its output means.
+
+| script | usage | what it does | time |
+|---|---|---|---|
+| `compute.py` | `GRAPH K [--degree D] [--invariant-factors]` | the homology of B_K of a named graph (`complete:7`, `bipartite:4,5`, `octahedron`, `prism:5`, `wheel:6`, `theta:3,2`, `petersen`, …) or of an edge list such as `"0-1 1-2 2-0"`. Prints the cell counts first, chooses `gbt.fast` or `gbt.lean` by size, and with `--degree D` computes only tors H_D from two slices. The quickest way to get an answer with no programming | seconds for most graphs |
+| `look_at_the_complex.py` | `[GRAPH] [K] [--max-cells N]` | prints every generator of the Świątkowski complex in words ("parked: e2={0,3} \| moving: 0 along e1={0,2}") with its boundary, checks ∂∘∂ = 0, computes the homology, then does the same for the complex reduced at every vertex of degree ≥ 2 and checks that the homology agrees. Default: the tripod with two particles, whose H_1 = Z is the exchange loop | a second |
+| `explicit_torsion_class.py` | none | the three steps used for explicit classes, on the Z/2 of H_1(B_2 K_5): halving (z = ∂x/2 for x in ker ∂ mod 2), adjoin and test (the torsion of the cokernel drops when z is added as a column), and push forward along K_5 ⊂ K_6 | under a second |
+| `sweep_template.py` | `[--nmax 8] [--kmax 4] [--cap 300000] [--out PATH]` | a template for a new experiment: a family of graphs (wheels, as shipped) sorted by size, a cap, results saved after every job and skipped on rerun, and a summary. Edit `jobs()` to study another family. Writes to `examples/output/` (ignored by git), never to `data/` | two seconds as shipped |
+
+`look_at_the_complex.py` exports `describe_cell(G, cell, reduced_at=())`, which turns a cell
+`(mono, st)` into the text above; `compute.py` exports `parse_graph(text)`. Both can be imported
+by your own scripts if `examples/` is on `sys.path`.
+
+### The Makefile
+
+The package is pure Python and nothing is compiled; the Makefile only collects commands.
+
+| target | runs | time |
+|---|---|---|
+| `make help` | prints the list below | |
+| `make examples` | the four example scripts (and removes their scratch output) | seconds |
+| `make check` | `model_sanity`, `validate`, `wilson_block`, `wilson_cokernel`, `crosscheck_mod_p` (default cap) and `verify_headlines --skip-large` | about 5 minutes |
+| `make check-full` | `check`, then `verify_headlines` in full and `validate_slow 0` (K_{5,5} at k = 4) | 20 minutes or more |
+| `make tables` | `make_tables.py` | instant |
+| `make inventory` | `inventory.py` (rebuilds `data/inventory.csv`) | seconds |
+| `make logs` | the scripts of `check` (with `verify_headlines` in full), `inventory` and `prime_census --skip-compute`, each writing its output to `logs/NAME.txt` | about 10 minutes |
+| `make clean` | removes `__pycache__` folders and `examples/output/` | |
+
+Every target accepts `PYTHON=...` to choose the interpreter, e.g. `make check PYTHON=python3.11`.
+
+### `logs/`
+
+The output of `make logs` from the final run of the package: `model_sanity.txt`,
+`validate.txt`, `wilson_block.txt`, `wilson_cokernel.txt`, `crosscheck_mod_p.txt`,
+`verify_headlines.txt`, `inventory.txt` and `prime_census.txt`. Each ends with its verdict line.
+Rerun `make logs` and compare with `diff` to check a new installation or a change to `gbt/`
+(timings in the logs will differ; nothing else should).
+
+## 16. References
 
 The works the code relies on directly are
 
