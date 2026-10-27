@@ -5,7 +5,8 @@ A single accounting of every stored computation in data/*.json.
 WHAT IT DOES
 ------------
 Every sweep and every individual experiment writes its results to its own JSON file, in its own
-format.  This script reads all of them, rebuilds the graph behind every record, identifies graphs
+format (the large search torsion_hunt.py writes JSON lines, data/torsion_hunt.jsonl; its
+timed-out jobs, if any, are left out).  This script reads all of them, rebuilds the graph behind every record, identifies graphs
 up to isomorphism (Weisfeiler--Lehman hash, then a full isomorphism test), and writes one table:
 
     data/inventory.csv     one row per stored computation, with columns
@@ -22,9 +23,9 @@ It then prints a summary: records, distinct graphs and distinct (graph, k) pairs
 many carry torsion in some H_i with i >= 2, how many carry a summand other than Z/2, and the same
 restricted to planar graphs.  The numbers printed when this file was last run were
 
-    2,892 records, 1,068 distinct graphs, 2,475 distinct (graph, k) pairs, k from 2 to 12;
-    182 graphs with torsion in some H_i, i >= 2;   11 graphs with a summand other than Z/2;
-    803 planar graphs, 26 of them with torsion in some H_i, i >= 2, and none with a summand
+    10,653 records, 8,140 distinct graphs, 10,062 distinct (graph, k) pairs, k from 2 to 12;
+    3,991 graphs with torsion in some H_i, i >= 2;   207 graphs with a summand other than Z/2;
+    5,714 planar graphs, 2,032 of them with torsion in some H_i, i >= 2, and none with a summand
     other than Z/2.
 
 One record (the theta-graph generator of two_torsion_anatomy.py) has no single graph attached
@@ -228,6 +229,23 @@ def collect():
             add(name.replace("small_graphs_", "sweep_small_graphs:"), "N=%d M=%d" % (G.N, G.M),
                 G, v["k"], "all degrees",
                 v["torsion"] if v["torsion"] != "none" else "torsion-free")
+    # random supergraph walks from known carriers (supergraph_walks.py): torsion of H_2 only
+    if os.path.exists(os.path.join(ROOT, "data", "supergraph_walks.json")):
+        for key, v in data("supergraph_walks").items():
+            G = Graph(v["N"], [tuple(e) for e in v["edges"]])
+            add("supergraph_walks", key, G, v["k"], "tors H_2", tors_str(v["torsion"]["2"]))
+    # the large search (torsion_hunt.py): torsion of H_2 only; one JSON object per line
+    hunt = os.path.join(ROOT, "data", "torsion_hunt.jsonl")
+    if os.path.exists(hunt):
+        with open(hunt) as fh:
+            for line in fh:
+                v = json.loads(line)
+                if v.get("summary") is None:          # a job that timed out
+                    continue
+                g = nx.convert_node_labels_to_integers(nx.Graph([tuple(e) for e in v["edges"]]))
+                G = Graph(g.number_of_nodes(), sorted((min(a, b), max(a, b)) for a, b in g.edges()))
+                add("torsion_hunt:" + v["family"], v["name"], G, v["k"], "tors H_2",
+                    "none" if v["summary"] == "0" else v["summary"])
     for key, v in data("two_torsion_anatomy").items():
         if "|" in key:
             part, g = key.split("|")
@@ -240,20 +258,22 @@ def collect():
 
 def classify(rows):
     """Attach an isomorphism-class number and a planarity flag to every row."""
-    classes = []                       # [(WL hash, networkx graph)]
+    by_hash = {}                       # WL hash -> [(class number, networkx graph)]
+    count = 0
     for r in rows:
         if r["G"] is None:
             r["cls"], r["planar"] = -1, None
             continue
         g = to_nx(r["G"])
         h = nx.weisfeiler_lehman_graph_hash(g)
-        for i, (hh, gg) in enumerate(classes):
-            if hh == h and nx.is_isomorphic(g, gg):
+        for i, gg in by_hash.get(h, []):     # only graphs with the same hash can be isomorphic
+            if nx.is_isomorphic(g, gg):
                 r["cls"] = i
                 break
         else:
-            classes.append((h, g))
-            r["cls"] = len(classes) - 1
+            by_hash.setdefault(h, []).append((count, g))
+            r["cls"] = count
+            count += 1
         r["planar"] = nx.check_planarity(g)[0]
 
 

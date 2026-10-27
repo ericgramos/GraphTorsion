@@ -22,8 +22,9 @@ Contents
 8. The bipartite mechanism: torsion from an inclusion matrix
 9. The stored results, and how to search them
 10. Writing your own experiment
-11. Checking the software yourself
-12. Practical advice and common mistakes
+11. Searching at scale for exotic torsion
+12. Checking the software yourself
+13. Practical advice and common mistakes
 
 ---
 
@@ -273,7 +274,26 @@ paths between vertices of degree ≠ 2 of length at least k−1). It shares no c
 which agrees with `fast.compute(octahedron(), 3)`. The function does not check the subdivision
 condition for you, and the model grows very quickly; use it on small cases.
 
-**(c) A different pipeline.** `fast.compute`, `lean.compute` and the reference pipeline
+**(c) The local Smith form.** `gbt.linalg.local_smith(cols, p, K)` computes the p-primary part
+of a cokernel modulo p^K without ever taking a gcd. It is independent of the exact Smith form,
+and it is the tool to use when the exact one stalls on entry growth (README Section 14):
+
+    >>> from gbt.lean import boundary, slice_cells
+    >>> from gbt.swiatkowski import edge_monomials
+    >>> from gbt.linalg import local_smith, rank_mod_p_sparse
+    >>> G = from_edges([(a, b) for a in range(4) for b in range(4, 9)] + [(4, 5), (4, 6), (5, 6)])
+    >>> mon = edge_monomials(G.M, 3)
+    >>> rows = {cell: i for i, cell in enumerate(slice_cells(G, 3, 2, mon))}
+    >>> d3 = boundary(G, 3, 3, mon, rows)               # the columns of d_3
+    >>> local_smith(d3, 2, 4), rank_mod_p_sparse(d3, 1000003)
+    ([5753, 11, 2, 0], 5766)
+
+Read the first list as: 5,753 invariant factors are odd, 11 are exactly 2, and 2 are exactly 4.
+The stage counts add up to the rank over a large prime, so nothing of order 16 or more is
+hidden. So the 2-primary torsion of H_2(B_3 Γ) is (Z/2)^11 ⊕ (Z/4)^2, for K_{4,5} with a
+triangle on its larger side.
+
+**(d) A different pipeline.** `fast.compute`, `lean.compute` and the reference pipeline
 (`swiatkowski` + `reduce_fully` + `homology`) must agree; `experiments/validate.py` checks this on
 a spread of graphs.
 
@@ -362,14 +382,14 @@ recomputing. In each file a homology group is `[free rank, [invariant factors]]`
 The keys are `GRAPH|k` (README Section 11 lists every file and its format).
 
 **All computations in one table.** `data/inventory.csv` has one row per stored computation
-(2,892 rows), with columns `source`, `graph`, `class` (an isomorphism-class number shared across
+(10,653 rows), with columns `source`, `graph`, `class` (an isomorphism-class number shared across
 files), `N`, `M`, `k`, `computed`, `result`. Open it in a spreadsheet, or search it from Python:
 
     >>> import csv
     >>> rows = list(csv.DictReader(open("data/inventory.csv")))
     >>> odd = [r for r in rows if "Z/3" in r["result"] or "Z/4" in r["result"]]
     >>> len(odd)
-    16
+    372
     >>> odd[0]["graph"], odd[0]["k"], odd[0]["result"]
     ('K4,5', '3', 'H1:Z/2; H2:(Z/2)^4 + Z/3')
 
@@ -412,7 +432,75 @@ For a long run, start it so that it survives closing the terminal and writes a l
     nohup python3 -u examples/sweep_template.py --nmax 12 --cap 2000000 > wheels.log 2>&1 &
     tail -f wheels.log              # watch it; Ctrl-C stops watching, not the run
 
-## 11. Checking the software yourself
+## 11. Searching at scale for exotic torsion
+
+**The question.** Is there odd torsion in some planar graph, or torsion of order 4 or more in
+H_2, among thousands of graphs?
+
+`experiments/torsion_hunt.py` runs such a search. It computes the torsion of H_2 only, for many
+graphs, two at a time, and it never uses the exact Smith form, which can stall on entry growth.
+Instead it uses ranks modulo every prime p ≤ 97 and the local Smith form of Lesson 6.
+
+It needs two things beyond networkx: `numpy` (`pip install numpy`) and the graph generator nauty
+(`sudo apt-get install nauty` on Debian or Ubuntu, `brew install nauty` on macOS, where its
+programs are called `geng` and `planarg`; change the two names in the script, as its docstring
+says).
+
+**One graph at a time.** The heart of the search is a function you can call yourself:
+
+    >>> import sys; sys.path.insert(0, "experiments")
+    >>> import torsion_hunt as th
+    >>> G = from_edges([(a, b) for a in range(4) for b in range(4, 9)] + [(4, 5), (4, 6), (5, 6)])
+    >>> tors, r = th.h2_torsion(G, 3)
+    >>> tors
+    {2: [0, 11, 2, 0, 0, 0], 3: [12, 1, 0]}
+    >>> th.summary(tors)
+    '(Z/2)^11 + Z/3 + (Z/4)^2'
+
+`tors[p][s]` is the number of invariant factors of valuation exactly s at the prime p. Read
+`{2: [0, 11, 2, ...], 3: [12, 1, 0]}` as (Z/2)^11 ⊕ (Z/4)^2 at 2 and Z/3 at 3. This graph is
+K_{4,5} with a triangle on its larger side, the first graph found with Z/4 in H_2.
+
+**A whole search.** Each family is a list of graphs (README Section 8 describes them). For
+example
+
+    python3 experiments/torsion_hunt.py --family K45AB
+
+computes K_{4,5} plus every pair of graphs on its two sides at k = 3. It spends about a minute
+and a half building the families, then prints one line per graph. Hits are marked `!!`:
+
+    !! K45AB    K45+A0+B5        k=3 N= 9 M=23        H_2: (Z/2)^11 + Z/3 + (Z/4)^2  [0.2s]
+
+Results go to `data/torsion_hunt.jsonl` as they are computed, so an interrupted search resumes
+where it stopped. Graphs already stored are skipped, which is why rerunning the command above
+only prints the final list of hits. To see what is stored:
+
+    >>> import json
+    >>> recs = [json.loads(line) for line in open("data/torsion_hunt.jsonl")]
+    >>> hits = [r for r in recs if r["summary"] and "Z/4" in r["summary"]]
+    >>> len(recs), len(hits)
+    (7291, 24)
+    >>> planar = [r for r in recs if r["planar"]]
+    >>> len(planar), sum(1 for r in planar if r["summary"] != "0")
+    (5241, 2030)
+
+So of 5,241 planar computations, 2,030 found torsion, and every summand found was Z/2. For nauty
+families the job name ends in the graph6 code of the graph; `networkx.from_graph6_bytes(code.encode())`
+rebuilds it.
+
+**Adding a family of your own.** Add an entry to the dictionary built in `families()`. Each job
+is `(name, edge list, list of k)`, and the name must be unique, since it is the key used to
+skip stored jobs. Then run with `--family YOURNAME`.
+
+The companion script `experiments/supergraph_walks.py` takes known carriers of 2-torsion and adds
+random edges and vertices to them, checking whether the 2-torsion ever dies. In 470 graphs it
+never did, and one of those walks is how the Z/4 was found.
+
+A search of this size is long: the stored data took about twelve hours on two cores. Start it
+with `nohup` as in Lesson 10. Stop it with `kill` and the process number, never with
+`pkill -f torsion_hunt`, which also kills the shell that started it.
+
+## 12. Checking the software yourself
 
 | command | what it checks | time |
 |---|---|---|
@@ -428,7 +516,7 @@ runs are in `logs/`; `make logs` regenerates them, so you can compare line by li
 Run `python3 experiments/model_sanity.py` first whenever something looks surprising: it tests
 the machinery without assuming any of the results.
 
-## 12. Practical advice and common mistakes
+## 13. Practical advice and common mistakes
 
 * **Count before you compute.** `reduced_cell_count(G, k)` is instant. Memory is the limit: a few
   hundred bytes per cell for `gbt.fast`. If a run is killed with no message, or the shell
@@ -440,8 +528,10 @@ the machinery without assuming any of the results.
   degree 1 cannot. Do not restrict a search to minimum degree 3 if you want every graph.
 * **A disconnected graph has disconnected configuration spaces.** H_0 counts the ways of
   distributing the k particles among the components, so it can be Z^m with m > 1.
-* **Torsion persists in k.** Edge stabilization is injective, so once H_i(B_k Γ) has an element
-  of order q, so does H_i(B_{k+1} Γ). Searching small k first loses nothing.
+* **Torsion persists in k.** Edge stabilization, which adds a particle on a fixed edge, induces
+  an injective map H_i(B_k Γ) → H_i(B_{k+1} Γ) (An, Drummond-Cole and Knudsen, *Subdivisional
+  spaces and graph braid groups*, Proposition 5.21). So once H_i(B_k Γ) has an element of order
+  q, so does H_i(B_{k+1} Γ), and searching small k first loses nothing.
 * **Subgraph inclusions are not injective.** K_9 contains K_{4,5}, but the Z/3 of K_{4,5} dies
   in K_9 (`experiments/density_interpolation.py`).
 * **Abrams' model needs subdivision**, which the code does not check (Lesson 6).

@@ -21,9 +21,23 @@ not planar, and zero otherwise. Above degree one the computations here show that
   torsion of H_{n−1}(B_n K_{n+1,b}) is the torsion of the cokernel of the 0/1 inclusion matrix
   of (n−1)-subsets against n-subsets of a b-set, so Wilson's diagonal form for that matrix gives
   it in closed form. The scripts check this identification on every case they can build.
-* **planar graphs carry torsion in H_2.** The octahedron, the dodecahedron and the icosahedron
-  all have exactly Z/2 in H_2(B_4). In all 803 planar graphs computed, every
-  torsion summand found, in any degree, is Z/2.
+* **Z/4 occurs in H_2, without any large bipartite minor.** K_{4,5} with a triangle added on
+  its 5-vertex side (9 vertices, 23 edges) has
+
+      tors H_2(B_3 Γ; Z) = (Z/2)^11 ⊕ Z/3 ⊕ (Z/4)^2,
+
+  confirmed by two independent computations. Wilson's mechanism alone gives nothing above Z/3
+  in H_2. A survey of all 313 supergraphs of K_{4,5} on its nine vertices finds Z/4 in exactly
+  12 of them: those where the edges added on the 5-vertex side form a triangle, a triangle with
+  a pendant edge, K_4 minus an edge, or K_4 (so one vertex of that side stays untouched), and
+  the edges added on the 4-vertex side are none, one, or two disjoint edges. A star K_{1,4} on the 5-vertex side gives (Z/3)^3 instead. No summand of
+  order 5 or more, and no Z/8, has been found anywhere.
+* **planar graphs carry torsion in H_2, and so far only Z/2.** The octahedron, the dodecahedron
+  and the icosahedron all have exactly Z/2 in H_2(B_4). A search over 5,714 planar graphs,
+  including every planar graph of minimum degree 3 on 8 and on 9 vertices, found Z/2 and
+  nothing else, and no planar graph in the data has more than a single Z/2 in H_2.
+* **all odd torsion found lives on a K_{4,5} minor.** Of the 207 graphs with a summand other
+  than Z/2, 206 contain K_{4,5} as a subgraph and the remaining one contains it as a minor.
 * **complete graphs carry only Z/2.** For 8 ≤ n ≤ 12, H_2(B_3 K_n) has torsion (Z/2)^m with
   m = C(n−1, 2) = rank H_1.
 * **the smallest carriers are known.** Among all 853 connected graphs on seven vertices, K_7 is
@@ -33,7 +47,7 @@ not planar, and zero otherwise. Above degree one the computations here show that
   seven-vertex graphs with 12 edges, and a seven-vertex graph with a pendant edge are all
   minimal under edge deletion, and none of them contains the octahedron.
 
-All told the stored data hold 2,892 computations on 1,068 graphs up to isomorphism (2,475
+All told the stored data hold 10,653 computations on 8,140 graphs up to isomorphism (10,062
 distinct pairs (Γ, k), with k between 2 and 12). Section 12 explains how that accounting is
 made and how to regenerate it.
 
@@ -83,8 +97,12 @@ The package needs
   `pip install --break-system-packages networkx`). The scripts that need it are listed in
   `requirements.txt`: `sweep_small_graphs`, `minimal_carriers`, `petersen_family`,
   `linkless_controls`, `planar_odd_search`, `genuine_higher_torsion`, `higher_degree_torsion`,
-  `prime_census`, `theta_class` and `inventory`, together with the two library functions
-  `gbt.graphs.from_networkx` and `gbt.graphs.petersen_family`.
+  `prime_census`, `theta_class`, `inventory`, `supergraph_walks` and `torsion_hunt`, together
+  with the two library functions `gbt.graphs.from_networkx` and `gbt.graphs.petersen_family`;
+* only for `torsion_hunt.py`: `numpy` (`pip install numpy`) and the graph generator `nauty`
+  (its programs `nauty-geng` and `nauty-planarg`; `sudo apt-get install nauty` on Debian or
+  Ubuntu, `brew install nauty` on macOS, where the programs are called `geng` and `planarg` and
+  the two names in the script must be changed accordingly).
 
 There is no installation step. Unpack the folder and run the scripts from anywhere:
 
@@ -348,6 +366,7 @@ produce.
 | `rank_mod_p(cols, p)`, `rank_mod_p_sparse(cols, p, verbose=False)` | rank over F_p (odd p), the second by sparse Markowitz elimination |
 | `p_primary_count(cols, p=2, big_prime=1000003, verbose=False)` | how many invariant factors are divisible by p: rank over a large prime minus rank over F_p |
 | `betti_mod_p(C, p)` | {degree: dim H_d(C; F_p)} for a `ChainComplex` |
+| `local_smith(cols, p, K, verbose=False)` | the local Smith form at p, computed modulo p^K: a list whose entry s is the number of invariant factors of p-adic valuation exactly s. Pivots only on units and divides by p between stages, so it never takes a gcd and never suffers entry growth; compare `sum(stages)` with the rank over a large prime to make sure nothing of order ≥ p^K is hidden. Written independently of `sparse_smith`, and the tool of choice when `sparse_smith` stalls (Section 14) |
 
 ### `gbt.discretised`
 
@@ -451,9 +470,10 @@ sensible.
   0 otherwise; the failure is also printed. This holds for `validate`, `validate_slow`,
   `model_sanity`, `verify_headlines`, `crosscheck_mod_p`, `wilson_block`, `wilson_cokernel`,
   `top_degree_vanishing`, `torsion_class_X`, `prime_census`, `planar_odd_search`,
-  `higher_degree_torsion`, `theta_class`, `octahedron_generator`, `decomposability_K8` and
-  `large_cases`. Searches that merely report what they find (for instance
-  `genuine_higher_torsion`) exit with 0 either way.
+  `higher_degree_torsion`, `theta_class`, `octahedron_generator`, `decomposability_K8`,
+  `large_cases`, and `supergraph_walks` (1 when a counterexample to "no 2-torsion is
+  minor-closed" turns up). Searches that merely report what they find (for instance
+  `genuine_higher_torsion` and `torsion_hunt`) exit with 0 either way.
 * **Long runs** should be detached, and run unbuffered so that the log is current:
 
       nohup python3 -u experiments/sweep_complete.py --cap 1600000 > sweep.log 2>&1 &
@@ -489,6 +509,8 @@ degree, and so reaches further.
 | `higher_degree_torsion.py` | `[--max-degree 4]` | Z/2 in H_3 and H_4 of planar graphs, from Künneth products of the octahedron's class with disjoint triangles, including a connected example (octahedron and triangle joined by an edge, Z/2 in H_3(B_5)). The octahedron alone stays torsion-free in H_3 at k = 5, 6 | about a minute |
 | `genuine_higher_torsion.py` | `[--k 5] [--degree 3] [--cap 400000]`, or `--deep` | torsion in H_3 of planar graphs on at most 8 vertices, where no Künneth product can produce it: all 55 planar graphs of minimum degree 3 on 6 and 7 vertices, and a sample of 10 on 8 vertices. 59 fit the cap at k = 5 and 52 at k = 6. `--deep` takes the octahedron and the 4-antiprism further. Nothing found. The search does not cover graphs with leaves | minutes at k = 5; about an hour at k = 6 |
 | `petersen_family.py` | `[--k 3]` | the seven Petersen-family graphs: H_2 torsion-free at k = 3, exactly Z/2 at k = 4. So H_2 torsion does not detect intrinsic linking | minutes at k = 3; hours at k = 4 |
+| `supergraph_walks.py` | `[--start NAME ...] [--walks 4] [--steps 8] [--cap 600000] [--nmax 10]` | random walks that enlarge a known 2-torsion carrier (the octahedron, the 7-vertex carriers, the pendant-edge example, the 4-antiprism, the 5-prism, the 9-vertex triangulation, K_{4,5}, K_7) one random edge or new vertex at a time, keeping the start as a subgraph, and recompute tors H_2 after each step. Tests whether "no 2-torsion" is minor-closed. 470 graphs up to 10 vertices: the 2-torsion never died. This is also how the Z/4 in H_2 was found | about two hours as run |
+| `torsion_hunt.py` | `[--family F ...] [--sample 600] [--cap 400000] [--timeout 600] [--workers 2]` | the large search for (1) odd torsion in planar graphs and (2) summands of order ≥ 4 in H_2. Families: all planar graphs of minimum degree 3 on 8 vertices (k = 4, 5) and on 9 vertices (k = 4), 600 on 10 vertices; K_{4,5} plus any graphs on its two sides (k = 3, 4); K_{4,6}, K_{5,5}, K_{5,6}, K_{4,7}, K_{5,7} plus graphs on one side; complete multipartite graphs; random graphs on 9 and 10 vertices; multigraphs (via subdivision). For each graph: build the degree-2 and degree-3 slices, peel unit pivots, then for every prime p ≤ 97 compare ranks over F_p and F_1000003 and take the local Smith form where they differ. Writes `data/torsion_hunt.jsonl`, resumable; hits are marked `!!` | about 12 hours on 2 cores for everything stored |
 | `linkless_controls.py` | `[--k 3]` | linklessly embeddable graphs: K_5, K_{3,3}, K_{3,3}+e, apex graphs, maximal planar graphs, the octahedron, and K_6 minus a perfect matching (which is the octahedron again, a consistency check). The apex graph apex(planar 8) has (Z/2)^4 in H_2 already at k = 3 | seconds at k = 3; a few minutes at k = 4 |
 
 ## 9. The structure of the torsion classes
@@ -545,9 +567,11 @@ invariant factors > 1. Keys use `|` as a separator.
 | `linkless_controls.json` | `{name}\|{k}` | `H` | 9 |
 | `higher_degree_torsion.json` | `{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `cells`, `planar` | 5 |
 | `genuine_higher_torsion.json` | `{N}\|{edge list}\|{k}\|{d}`, or `deep\|{name}\|{k}\|{d}` | `torsion` (of H_d), `N`, `M`, `k`, `degree`, `edgelist` | 116 |
+| `supergraph_walks.json` | `{start}\|{walk}\|{step}` | `k`, `N`, `M`, `edges`, `slices` (cells in the two slices), `torsion` (`{"2": invariant factors of tors H_2}`, plus higher degrees when H_2 lost its 2-torsion), `seconds` | 470 |
+| `torsion_hunt.jsonl` | one JSON object per line | `family`, `name`, `k`, `N`, `M`, `planar`, `edges`, `rank` (of the residual), `primes_checked` (`"<= 97"`), `torsion` (`{p: [number of invariant factors of valuation 0, 1, 2, …]}`), `summary` (tors H_2 as a primary decomposition), `seconds` | 7,291 |
 | `two_torsion_anatomy.json` | `A\|{graph}`, `C\|{graph}`, and `B` | `order` of the pushed class (`"2"` or `"infinite"`); for `B`, `is_cycle` and `generates` | 8 |
 | `small_graphs_n{N}_k{K}_d{D}.json` | (a list) | one entry per (graph, k): `edgelist`, `degrees`, `edges`, `k`, `planar`, `torsion` (a string, `none` if torsion-free), `torsion_above_H1` | see below |
-| `inventory.csv` | (a table) | Section 12 | 2,892 |
+| `inventory.csv` | (a table) | Section 12 | 10,653 |
 
 The small-graph sweeps stored are
 
@@ -584,14 +608,15 @@ It also prints a summary per source. The current totals:
 
 | | |
 |---|---|
-| records | 2,892 |
-| distinct graphs (up to isomorphism) | 1,068 |
-| distinct pairs (graph, k) | 2,475, with k from 2 to 12 |
-| graphs with torsion in some H_i, i ≥ 2 | 182 |
-| graphs with a torsion summand other than Z/2 | 11, all containing K_{4,5} |
-| planar graphs | 803, of which 26 have torsion in some H_i with i ≥ 2, and none has a summand other than Z/2 |
+| records | 10,653 |
+| distinct graphs (up to isomorphism) | 8,140 |
+| distinct pairs (graph, k) | 10,062, with k from 2 to 12 |
+| graphs with torsion in some H_i, i ≥ 2 | 3,991 |
+| graphs with a torsion summand other than Z/2 | 207: 206 contain K_{4,5} as a subgraph and one as a minor; the only orders seen are 2, 3 and 4 |
+| planar graphs | 5,714, of which 2,032 have torsion in some H_i with i ≥ 2, and none has a summand other than Z/2 |
 
-Of the 1,068 graphs, 992 come from the exhaustive sweeps of Section 11. The script takes a
+Of the 8,140 graphs, 992 come from the exhaustive sweeps of Section 11 and most of the rest from
+`torsion_hunt.py`. The script takes a
 few seconds; rerun it after any new computation.
 
 ## 13. Reproducing the main results
@@ -618,6 +643,8 @@ recompute.
 | higher degrees | `higher_degree_torsion.py`, `genuine_higher_torsion.py --k 5`, `genuine_higher_torsion.py --deep` | minutes to an hour |
 | intrinsic linking | `petersen_family.py --k 3,4`, `linkless_controls.py --k 3,4` | hours (Petersen graph at k = 4) |
 | independent checks | `crosscheck_mod_p.py`, `verify_headlines.py` | minutes; about ten minutes |
+| Z/4 in H_2, and the planar search | `python3 experiments/torsion_hunt.py` (needs nauty and numpy) | about 12 hours on 2 cores |
+| supergraph walks | `python3 experiments/supergraph_walks.py --walks 6 --steps 10` | about 2 hours |
 | summaries | `make_tables.py`, `inventory.py` | seconds |
 
 ## 14. Limits, pitfalls and practical advice
@@ -657,6 +684,11 @@ recompute.
   vertices of degree ≠ 2 needs length at least k−1 and every cycle length at least k+1.
   `verify_headlines.py` shows the subdivisions that suffice for the cases it runs.
 * **Edge-minimal does not mean indecomposable** (Section 9).
+* **The exact Smith form can stall.** `gbt.smith` (used by `sparse_smith`, and so by
+  `lean.torsion_in_degree` and the full pipelines) can run for hours on a residual of only a
+  dozen columns when its entries grow, as on K_{4,5} plus a triangle at k = 3. The local Smith
+  form `gbt.linalg.local_smith` never takes a gcd and finishes such cases in a fraction of a
+  second, one prime at a time; `torsion_hunt.py` uses it for every prime p ≤ 97.
 * **Stored data and `--cap`.** The sweeps skip stored jobs, so to recompute a case delete its
   key from the JSON file, or for `large_cases.py` pass `--force`.
 
@@ -691,6 +723,7 @@ The package is pure Python and nothing is compiled; the Makefile only collects c
 | `make check-full` | `check`, then `verify_headlines` in full and `validate_slow 0` (K_{5,5} at k = 4) | 20 minutes or more |
 | `make tables` | `make_tables.py` | instant |
 | `make inventory` | `inventory.py` (rebuilds `data/inventory.csv`) | seconds |
+| `make hunt` | `torsion_hunt.py` with its default (first-phase) families; resumes from `data/torsion_hunt.jsonl`, so with the shipped data it only prints the list of hits | about two minutes with the shipped data; hours from scratch |
 | `make logs` | the scripts of `check` (with `verify_headlines` in full), `inventory` and `prime_census --skip-compute`, each writing its output to `logs/NAME.txt` | about 10 minutes |
 | `make clean` | removes `__pycache__` folders and `examples/output/` | |
 
@@ -711,8 +744,9 @@ The works the code relies on directly are
 * J. Świątkowski, *Estimates for homological dimension of configuration spaces of graphs*,
   Colloquium Mathematicum 89 (2001), 69–79. The chain complex.
 * B. H. An, G. C. Drummond-Cole and B. Knudsen, *Subdivisional spaces and graph braid groups*,
-  Documenta Mathematica 24 (2019), 1513–1583. The complex as Z[E] ⊗ ⊗_v S_v, and the reduced
-  version.
+  Documenta Mathematica 24 (2019), 1513–1583. The complex as Z[E] ⊗ ⊗_v S_v, the reduced
+  version, and Proposition 5.21: edge stabilization H_i(B_k Γ) → H_i(B_{k+1} Γ) is injective,
+  so torsion present at k persists at every larger k.
 * A. Abrams, *Configuration spaces and braid groups of graphs*, PhD thesis, University of
   California, Berkeley (2000). The discretised model and the surfaces B_2 K_5 and B_2 K_{3,3}.
 * P. Prue and T. Scrimshaw, *Abrams's stable equivalence for graph braid groups*, Topology and

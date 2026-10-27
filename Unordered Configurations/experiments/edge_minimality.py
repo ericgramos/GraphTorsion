@@ -26,8 +26,10 @@ Two questions about how tightly the torsion is tied to the whole graph.
 
   (3) STABILIZATION IN k.  By An--Drummond-Cole--Knudsen the groups (+)_k H_i(B_k Gamma)
       form a module over Z[E], where multiplying by an edge e adds a particle on e (edge
-      stabilization).  Edge stabilization H_i(B_k) -> H_i(B_{k+1}) is injective, so torsion
-      present at k persists at every larger k.  The script shows K_6 passing from
+      stabilization).  Edge stabilization H_i(B_k) -> H_i(B_{k+1}) is injective
+      (An--Drummond-Cole--Knudsen, "Subdivisional spaces and graph braid groups",
+      Doc. Math. 24 (2019), Proposition 5.21), so torsion present at k persists at every
+      larger k.  The script shows K_6 passing from
       torsion-free H_2 at k=2,3 to Z/2 at k=4: the class is born at k=4.  (It only PRINTS
       the groups; it does not test persistence beyond k = 4.)
 

@@ -584,3 +584,94 @@ def betti_mod_p(C, p):
         cols, _, _ = indexed_columns(C, d)
         rk[d] = (rank_mod2(cols) if p == 2 else rank_mod_p(cols, p)) if cols else 0
     return {d: len(C.gens[d]) - rk.get(d, 0) - rk.get(d + 1, 0) for d in degs}
+
+
+def local_smith(cols, p, K, verbose=False):
+    """The local Smith form at a prime p of a sparse integer matrix, computed modulo p^K.
+
+    Returns a list `stages` of length K: stages[s] is the number of invariant factors whose
+    p-adic valuation is exactly s, for s = 0, ..., K-1.  So the p-primary part of the cokernel
+    (equivalently, by "torsion is a cokernel", of tors H_d when `cols` are the columns of
+    d_{d+1}) is  (+)_{s >= 1} (Z/p^s)^{stages[s]},  up to the summands of order >= p^K, which
+    are invisible modulo p^K.  To make sure there are none, compare sum(stages) with the rank
+    over a large prime (rank_mod_p_sparse(cols, 1000003)): they agree exactly when no invariant
+    factor is divisible by p^K.
+
+    THE ALGORITHM.  Work in Z/p^K.  Stage s: while some entry is a unit (not divisible by p),
+    pivot on it -- choosing a short column and a short row, to limit fill-in -- and clear its
+    row from every other column.  Such a pivot is an invertible operation over the local ring
+    Z_(p), so it removes exactly one invariant factor of valuation s (after the divisions
+    below).  When no unit is left, every remaining entry is divisible by p; divide them all
+    by p and start stage s + 1.  This never takes a gcd and never lets entries grow, which is
+    why it succeeds on matrices where the exact Smith form over Z stalls on entry growth.
+
+    `cols` is a list of dicts {row: integer}; it is not modified.  Cost: like a sparse rank
+    computation, repeated at most K times on what is left.  Written independently of
+    `sparse_smith` and `peel_sweeps`, so it doubles as a cross-check of them.
+    """
+    Q = p ** K
+    cols = [{r: v % Q for r, v in c.items() if v % Q} for c in cols]
+    rows = {}                                   # row -> set of live columns containing it
+    for j, c in enumerate(cols):
+        for r in c:
+            rows.setdefault(r, set()).add(j)
+    alive = {j for j, c in enumerate(cols) if c}
+    stages = []
+    for s in range(K):
+        count = 0
+        while alive:
+            # A unit entry in one of the shortest live columns, with the shortest row.
+            best = None
+            for j in sorted(alive, key=lambda j: len(cols[j]))[:64]:
+                for r, v in cols[j].items():
+                    if v % p:
+                        cost = (len(cols[j]) - 1) * (len(rows[r]) - 1)
+                        if best is None or cost < best[0]:
+                            best = (cost, j, r)
+                if best is not None and best[0] == 0:
+                    break
+            if best is None:                    # look everywhere before giving up the stage
+                for j in alive:
+                    r = next((r for r, v in cols[j].items() if v % p), None)
+                    if r is not None:
+                        best = (0, j, r)
+                        break
+            if best is None:
+                break
+            _, j, r = best
+            pivot = cols[j]
+            inv = pow(pivot[r], -1, Q)
+            for j2 in list(rows[r]):
+                if j2 == j:
+                    continue
+                c2 = cols[j2]
+                f = (c2[r] * inv) % Q
+                for r2, v in pivot.items():        # c2 -= f * pivot  (clears row r in c2)
+                    nv = (c2.get(r2, 0) - f * v) % Q
+                    if nv:
+                        if r2 not in c2:
+                            rows[r2].add(j2)
+                        c2[r2] = nv
+                    elif r2 in c2:
+                        del c2[r2]
+                        rows[r2].discard(j2)
+                if not c2:
+                    alive.discard(j2)
+            for r2 in pivot:
+                rows[r2].discard(j)
+            alive.discard(j)
+            count += 1
+        stages.append(count)
+        # No unit is left: everything alive is divisible by p.  Divide by p (stage s + 1).
+        for j in list(alive):
+            c = cols[j]
+            for r in list(c):
+                c[r] //= p
+                if not c[r]:
+                    del c[r]
+                    rows[r].discard(j)
+            if not c:
+                alive.discard(j)
+        if verbose:
+            print("      local Smith at %d: stage %d, %d pivots" % (p, s, count), flush=True)
+    return stages

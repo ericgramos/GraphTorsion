@@ -6,11 +6,13 @@
 #
 #   make help        list the targets below
 #   make examples    run the four tutorial scripts in examples/ (a few seconds)
-#   make check       the fast validation suite (about 5 minutes; see TUTORIAL.md, Lesson 10)
+#   make check       the fast validation suite (about 5 minutes; see TUTORIAL.md, Lesson 12)
 #   make check-full  everything in `check`, plus the full two-route recomputation of the
 #                    headline groups and the first million-cell regression case (20+ minutes)
 #   make tables      print the summary tables from the stored data (instant)
 #   make inventory   rebuild data/inventory.csv from the stored data (seconds; needs networkx)
+#   make hunt        resume the large search torsion_hunt.py (first-phase families; hours;
+#                    needs numpy and nauty; see TUTORIAL.md, Lesson 11)
 #   make logs        run `check` and save every output in logs/ (the logs shipped with the
 #                    package were made this way)
 #   make clean       delete Python caches and the template's scratch output
@@ -20,10 +22,10 @@
 PYTHON ?= python3
 EXP = experiments
 
-.PHONY: help examples check check-full tables inventory logs clean
+.PHONY: help examples check check-full tables inventory hunt logs clean
 
 help:
-	@sed -n '1,22p' Makefile | sed 's/^# \{0,1\}//'
+	@sed -n '1,20p' Makefile | sed 's/^# \{0,1\}//'
 
 examples:
 	$(PYTHON) examples/compute.py bipartite:4,5 3
@@ -49,6 +51,9 @@ tables:
 
 inventory:
 	$(PYTHON) $(EXP)/inventory.py
+
+hunt:
+	$(PYTHON) -u $(EXP)/torsion_hunt.py
 
 logs:
 	mkdir -p logs
