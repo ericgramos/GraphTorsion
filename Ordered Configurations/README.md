@@ -12,8 +12,7 @@ particles, for instance
     H_2(Conf_6 T(2,2,2); Z) = Z^71848 ⊕ (Z/2)^2
     H_2(Conf_6 T(1,3,3); Z) = Z^224725 ⊕ (Z/3)^6
 
-These triangle examples were the first torsion found. Afterwards Eric Ramos and Nicholas
-Wawrykow found torsion in Conf_5 of the doubled K_4, with H_2 = Z^83615 ⊕ (Z/2)^8 ⊕ Z/4.
+These triangle examples were the first torsion found. We later found torsion in Conf_5 of the doubled K_4, with H_2 = Z^83615 ⊕ (Z/2)^8 ⊕ Z/4.
 Related doublings of K_4 have torsion of order 8 and 16, and for those classes the package
 contains certificates of exact order, explicit generators, and a cycle on a six-edge subgraph
 with torsion-free configuration space (a triangle with two doubled edges and a leaf) whose
